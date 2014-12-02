@@ -31,6 +31,17 @@ requires jQuery 1.7+
 		hr: 'hr',
 		hrs: 'hrs'
 	};
+	
+	$(function() {
+		 $("#datepicker").datepicker();
+		    var currentDate = new Date();  
+			$("#datepicker").datepicker("setDate",currentDate);
+		 	 });
+
+		$(function() {
+		 $('#setTimeExample').timepicker();
+		    $('#setTimeExample').timepicker('setTime', new Date());
+		     });
 
 	var methods =
 	{

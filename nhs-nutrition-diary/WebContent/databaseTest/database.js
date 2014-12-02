@@ -18,7 +18,42 @@
  * Comments in source code below are my own. 
  * 
  */
+ 	function Database(){}
  	
+ 	Database.prototype.get(oStore, dateFrom, dateTo)
+     {
+     	alert('test');
+     }
+
+ 	/**
+     * This function is used to return all the data in a given object store between (and including) a certain date interval. 
+     * @param oStore		The object store results will be taken from.  
+     * @param dateFrom	Argument can be left blank. This is required when searching between an interval.
+     * @param dateTo 	Argument can be left blank. This is required when searching between an interval.
+     
+     function databaseGet(oStore, dateFrom, dateTo)
+     {
+     	alert('test');
+     }
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	//Using the JavaScript module pattern to contain global variables as per http://www.w3.org/wiki/JavaScript_best_practices
 	var databaseJS = function()
 	{
@@ -173,16 +208,7 @@
         };
 	}
     
-    /**
-    * This function is used to return all the data in a given object store between (and including) a certain date interval. 
-    * @param oStore		The object store results will be taken from.  
-    * @param dateFrom	Argument can be left blank. This is required when searching between an interval.
-    * @param dateTo 	Argument can be left blank. This is required when searching between an interval.
-    */
-    function databaseGet(oStore, dateFrom, dateTo)
-    {
-    	alert('test');
-    }
+    
     
 
 

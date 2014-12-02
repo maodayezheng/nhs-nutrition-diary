@@ -6,17 +6,9 @@ function showDate() {
 	document.getElementById("datepicker").datepicker();
 }
 
-
-function DatabaseTest() {}
-
-DatabaseTest.prototype.get = function() {
-	alert('rob test from js in folder');
-}
-
-
 function makeGraph(presented) {
-	var database = new DatabaseTest();
-	database.prototype.get();
+	var database = new Database();
+	database.get();
 	
 	d3.select("svg").text("");
 	

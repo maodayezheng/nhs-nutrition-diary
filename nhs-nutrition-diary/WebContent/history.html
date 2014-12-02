@@ -6,12 +6,11 @@
     	<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link href="lib/bootstrap/bootstrap.min.css" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="css/graphs.css"/>
-		<script src="scripts/graphs.js" type="text/javascript"></script>
+		<script src="scripts/history.js" type="text/javascript"></script>
 		<script src="lib/d3/d3.v3.js" charset="utf-8"></script>
 		<script src="lib/bootstrap/bootstrap.min.js"></script>
     	<script src="lib/jquery/jquery-2.1.1.min.js"></script>
 		<script src="scripts/Navigator.js"></script>
-		<script src="scripts/database/Database.js"></script>
 		<script src="lib/jquery/jquery-ui-1.11.2.js" type="text/javascript"></script>
 		<title>History</title>
 	</head>
@@ -68,11 +67,11 @@
      				<div id="datepicker_div">
 						<p>
 							From: <input type="text" id="datepicker" onclick="showDate()"/>
-							To: <input type="text" id="datepicker"/>
+							To: <input type="text" id="datepicker" onclick="showDate()"/>
 						</p>
 					</div>
      				
-     				<div id="historyVisualisation" style="width=1000 height=1000">
+     				<div id="historyVisualisation">
 						<svg id="visualisation"></svg>
 					</div>
      			</div>

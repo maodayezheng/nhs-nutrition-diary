@@ -18,7 +18,7 @@
  * Comments in source code below are my own. 
  * 
  */
- 	function Database(){}
+ 	var Database = function Database(){}
  	
  	Database.prototype.get()
      {

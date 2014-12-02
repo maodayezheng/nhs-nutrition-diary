@@ -4,15 +4,31 @@
 
 $(document).ready(function(){
 	
-		$('#list').empty();
-		var li =createBasicLi();
-		li.addItemToContentPos("testing the utility button and the method");
-		$('#list').append(li);
+		var data =["apple","banana","chicken","beef","peal"];
+		$('#list').generateList(data);
 });
 
 
 
 jQuery.fn.extend({
 		
+	generateList:function(data){
+		var list = $(this);
+		list.empty();
+		$.each(data,function(index){
+			var li =createBasicLi();
+			var deleteButton = createDeleteButton('li');
+			var accountButton = createAccountButton('1');
+			var reduceButton = createReduceButton();
+			var increaseButton = createIncreaseButton();
+			var controlPanel = createControlPanel();
+			controlPanel.addItems([reduceButton,accountButton,increaseButton]);
+			li.addItemToIconPos(deleteButton);
+			li.addItemToContentPos(data[index]);
+			li.addItemToControlPanelPos(controlPanel);
+			list.append(li);
+		})
+	}
+	
 	
 });

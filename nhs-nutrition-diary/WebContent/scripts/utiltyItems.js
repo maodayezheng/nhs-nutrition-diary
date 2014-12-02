@@ -45,7 +45,7 @@ jQuery.fn.extend({
 // constructor of deleteButton target is the delete target
 function createDeleteButton(target){
 	var deleteButton = $('<button>',{
-	"class":"btn btn-danger",
+	"class":"btn btn-danger btn-xs",
 	"id":"deleteButton"
 	}).bind('click',function(){
 		var item = $(this).closest($(target));
@@ -94,6 +94,10 @@ function createReduceButton(){
 	}).bind('click',function(){
 		var accountButton = $(this).siblings('[name=accountButton]');
 		var portion  = parseInt(accountButton.text())-1;
+		if (portion <0){
+			
+			portion = 0;
+		}
 		accountButton.text(portion);
 
 	});
@@ -129,17 +133,21 @@ function createBasicLi(){
 	})));
 	
 	li.addItemToIconPos = function(item){
-		var position = $(this).children('div .iconPosition');
+		console.log("add icon to list");
+		var position = $(this).find('.iconPosition');
+		
 		position.append(item);	
 	};
 	
 	li.addItemToContentPos = function(item){
-		var position = $(this).children('div .contentPostion');
+		console.log("add content to list");
+		var position = $(this).find('.contentPostion');
 		position.text(item);
 	};
 	
 	li.addItemToControlPanelPos = function(item){
-		var position = $(this).children('div .controlPanelPosition');
+		console.log("add panel to list");
+		var position = $(this).find('.controlPanelPosition');
 		position.append(item);
 	}
 	

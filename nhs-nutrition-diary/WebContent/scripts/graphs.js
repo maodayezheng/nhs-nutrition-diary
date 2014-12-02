@@ -8,6 +8,8 @@ function showDate() {
 
 function makeGraph(presented) {
 	
+	
+	
 	d3.select("svg").text("");
 	
 	var jsonInput = retrieveData();

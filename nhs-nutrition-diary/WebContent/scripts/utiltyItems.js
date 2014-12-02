@@ -135,7 +135,7 @@ function createBasicLi(){
 	
 	li.addItemToContentPos = function(item){
 		var position = $(this).children('div .contentPostion');
-		position.append(item);
+		position.text(item);
 	};
 	
 	li.addItemToControlPanelPos = function(item){

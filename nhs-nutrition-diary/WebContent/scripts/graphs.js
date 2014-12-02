@@ -1,3 +1,5 @@
+
+
 $(document).ready(function() {
 	$("#datepicker").datepicker();
 });
@@ -8,7 +10,7 @@ function showDate() {
 
 function makeGraph(presented) {
 	var database = new Database();
-	database.prototype.get(null, null, null);
+	database.get();
 	
 //	alert('bla');
 //	Database.get(null, null, null);

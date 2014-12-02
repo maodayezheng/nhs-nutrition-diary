@@ -32,58 +32,81 @@
 
 jQuery.fn.extend({
 
-addControlPanel:function(items){
+	addItems:function(items){
+		var target = $(this);
+		$.each(items,function(index){
+			target.append(items[index]);
+		});
+			}
+
+});
+
+
+	var deleteButton = $('<button>',{
+	"class":"btn btn-danger",
+	"id":"deleteButton"
+	}).bind('click',function(){
+
+		var item = $(this).closest($('div .controlPanel'));
+		item.remove();
+
+	}).append($('<span>',{
+	"class":"glyphicon glyphicon-trash"
+	}));
+
 	var controlPanel = $('<div>',{
-		"class":"btn-group btn-group-xs",
+		"class":"btn-group btn-group-xs controlPanel",
 		"role":"group",
 		"aria-label":"...",
 	});
-	$.each(items,function(index){
-		controlPanel.append(items[index]);
+
+
+	var increaseButton  = $('<button>',{
+		"class":"btn btn-default btn",
+		"name":"increaseButton",
+		"text":"+"
+	}).bind('click',function(){
+
+		var accountButton = $(this).siblings('[name=accountButton]');
+		var portion  = parseInt(accountButton.text())+1;
+		accountButton.text(portion);
+
 	});
 
-	$(this).append(controlPanel);
-}
-});
+	var reduceButton =$('<button>',{
 
+		"class":"btn btn-default btn",
+		"name":"reduceButton",
+		"text":"-"		
 
-var deleteButton = $('<button>',{
-	"class":"btn btn-danger",
-	"id":"deleteButton"
-}).append($('<span>',{
-	"class":"glyphicon glyphicon-trash"
-}));
+	}).bind('click',function(){
+		var accountButton = $(this).siblings('[name=accountButton]');
+		var portion  = parseInt(accountButton.text())-1;
+		accountButton.text(portion);
 
+	});
 
-
-var increaseButton  = $('<button>',{
-"class":"btn btn-default btn",
-"name":"increaseButton",
-"text":"+"
-});
-
-var reduceButton =$('<button>',{
-"class":"btn btn-default btn",
-"name":"reduceButton",
-"text":"-"		
-});
-
-var accountButton  = $('<button>',{
+	var accountButton  = $('<button>',{
 	"class":"btn btn-default btn",
 	"name":"accountButton",
-	"disabled":true
-});
-
-
-function createCheckBox(){
-	
-	
-	var checkBox = $('<input>',{
-			"type":"checkbox",
-			"checked":"checked"
+	"disabled":true,
+	"text":"1"
 	});
-	
-}
+
+	var li = $('<li>',{
+		"class":"list-group-item",
+	}).append($('<div>',{
+		"class":"row",
+	}).append($('<div>',{
+		"class":"col-md-1 iconPosition"
+	})).append($('<div>',{
+		"class":"col-md-9 contentPostion"
+	})).append($('<div>',{
+		"class":"col-md-2 controlPanelPosition"
+	})));
+
+
+
 
 
 

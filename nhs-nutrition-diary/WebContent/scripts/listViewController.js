@@ -36,15 +36,10 @@ jQuery.fn.extend({
 		$(this).updateList(data,classes);
 	},
 
-	updateList:function(data,classes) {
+	updateList:function(data) {
 		var list = $(this)
 		list.empty();
 		$.each(data, function(index,name) {
-			var li = $('<li>', {
-				"class":classes,
-				"text":name,
-				"id":index
-			});
 			list.append(li);
 			list.addElements;
 		});

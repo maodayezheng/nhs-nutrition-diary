@@ -8,7 +8,7 @@ function showDate() {
 
 function makeGraph(presented) {
 	var database = new Database();
-	database.get(null, null, null);
+	database.prototype.get(null, null, null);
 	
 //	alert('bla');
 //	Database.get(null, null, null);

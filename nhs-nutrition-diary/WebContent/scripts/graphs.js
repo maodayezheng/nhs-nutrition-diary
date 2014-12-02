@@ -8,11 +8,7 @@ function showDate() {
 
 function makeGraph(presented) {
 	var database = new Database();
-	database.prototype.get(null, null, null);
-	
-//	alert('bla');
-//	Database.get(null, null, null);
-	
+	database.get();
 	
 	d3.select("svg").text("");
 	

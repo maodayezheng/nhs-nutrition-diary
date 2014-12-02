@@ -32,35 +32,43 @@
 
 jQuery.fn.extend({
 
+	//add more items to a target DOM
 	addItems:function(items){
 		var target = $(this);
 		$.each(items,function(index){
 			target.append(items[index]);
 		});
 			}
-
 });
 
 
+// constructor of deleteButton target is the delete target
+function createDeleteButton(target){
 	var deleteButton = $('<button>',{
 	"class":"btn btn-danger",
 	"id":"deleteButton"
 	}).bind('click',function(){
-
-		var item = $(this).closest($('div .controlPanel'));
+		var item = $(this).closest($(target));
 		item.remove();
-
 	}).append($('<span>',{
 	"class":"glyphicon glyphicon-trash"
 	}));
+	return deleteButton;
+	}
 
+// constructor of control panel
+function createControlPanel(){
 	var controlPanel = $('<div>',{
 		"class":"btn-group btn-group-xs controlPanel",
 		"role":"group",
 		"aria-label":"...",
 	});
+		return controlPanel;
+	}
 
 
+// constructor of increaseButton
+function createIncreaseButton(){
 	var increaseButton  = $('<button>',{
 		"class":"btn btn-default btn",
 		"name":"increaseButton",
@@ -72,7 +80,11 @@ jQuery.fn.extend({
 		accountButton.text(portion);
 
 	});
+	return increaseButton;
+	}
 
+// constructor of reduce button
+function createReduceButton(){	
 	var reduceButton =$('<button>',{
 
 		"class":"btn btn-default btn",
@@ -85,14 +97,25 @@ jQuery.fn.extend({
 		accountButton.text(portion);
 
 	});
+	
+	return reduceButton;
+	}
 
+
+// constructor of account button 
+function createAccountButton(account){
 	var accountButton  = $('<button>',{
 	"class":"btn btn-default btn",
 	"name":"accountButton",
 	"disabled":true,
-	"text":"1"
+	"text":account
 	});
+	return accountButton;
+}
 
+
+// constructor of basic <li> DOM in our project
+function createBasicLi(){
 	var li = $('<li>',{
 		"class":"list-group-item",
 	}).append($('<div>',{
@@ -104,6 +127,24 @@ jQuery.fn.extend({
 	})).append($('<div>',{
 		"class":"col-md-2 controlPanelPosition"
 	})));
+	
+	li.addItemToIconPos = function(item){
+		var position = $(this).children('div .iconPosition');
+		position.append(item);	
+	};
+	
+	li.addItemToContentPos = function(item){
+		var position = $(this).children('div .contentPostion');
+		position.append(item);
+	};
+	
+	li.addItemToControlPanelPos = function(item){
+		var position = $(this).children('div .controlPanelPosition');
+		position.append(item);
+	}
+	
+	return li;
+	}
 
 
 

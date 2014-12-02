@@ -18,9 +18,9 @@
  * Comments in source code below are my own. 
  * 
  */
- 	function Database(){}
+ 	var Database = function Database(){}
  	
- 	Database.prototype.get(oStore, dateFrom, dateTo)
+ 	Database.prototype.get()
      {
      	alert('test');
      }
@@ -93,6 +93,8 @@
     	for (var i in arrayOfObjects) 
         {
     		dbAdditionRequest =objectStore.add(arrayOfObjects[i]);
+    		databaseJS.syncToServerArray[i]=arrayOfObjects[i];
+    		databaseJS.syncToServerArray[i].storedIn = oStore; //adding this property makes it clear which objectStore each object was added to in the local database (useful for the sync with the server). 	
         }
     	dbAdditionRequest.onerror = function(e) 
     	{
@@ -104,14 +106,14 @@
     	    
     	    if (recursion === undefined) //only run if third argument is not specified
     	    {
-    	    	databaseAdd(syncToServerTable,databaseJS.syncToServerArray,1);
+    	    	databaseAdd(syncToServerTable,arrayOfObjects,1);
     	    }    	    	
     	    else 
     	    {
     	    	for (var i=0; i<arrayOfObjects.length; i++) 
     	        {
     	    		databaseJS.syncToServerArray[i]=arrayOfObjects[i];
-    	    		syncToServerArray[i].storedIn = oStore; //adding this property makes it clear which objectStore each object was added to in the local database (useful for the sync with the server). 		
+    	    		databaseJS.syncToServerArray[i].storedIn = oStore; //adding this property makes it clear which objectStore each object was added to in the local database (useful for the sync with the server). 		
     	        }
     		}    
     	}

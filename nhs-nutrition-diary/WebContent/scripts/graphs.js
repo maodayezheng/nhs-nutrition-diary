@@ -1,5 +1,3 @@
-
-
 $(document).ready(function() {
 	$("#datepicker").datepicker();
 });
@@ -8,20 +6,17 @@ function showDate() {
 	document.getElementById("datepicker").datepicker();
 }
 
-function Database() {}
 
-Database.prototype.get() {
+function DatabaseTest() {}
+
+DatabaseTest.prototype.get = function() {
 	alert('rob test from js in folder');
 }
 
 
 function makeGraph(presented) {
-//	var database = new Database();
-//	database.prototype.get();
-//	
-//	alert('bla');
-//	Database.get(null, null, null);
-	
+	var database = new DatabaseTest();
+	database.prototype.get();
 	
 	d3.select("svg").text("");
 	

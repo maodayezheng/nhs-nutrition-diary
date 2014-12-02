@@ -4,11 +4,10 @@
 
 $(document).ready(function(){
 	
-	
-	$('#list').initList(data,classes);
-	
-	
-
+		$('#list').empty();
+		var li =createBasicLi();
+		li.addItemToContentPos("testing the utility button and the method");
+		$('#list').append(li);
 });
 
 

@@ -18,7 +18,18 @@
  * Comments in source code below are my own. 
  * 
  */
- 
+ 	
+	//Using the JavaScript module pattern to contain global variables (http://www.w3.org/wiki/JavaScript_best_practices).
+	myNameSpace = function(){
+	  var current = null;
+	  function init(){}
+	  function change(){}
+	  function verify(){}
+	  return{
+	    init:init,
+	    set:change
+	  }
+	}();
 	
 	const dbName = "appetiteLocalStore"; 
     var db; // defined globally so that event.target.result can be assigned to db in any function.

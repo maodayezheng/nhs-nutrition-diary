@@ -7,9 +7,6 @@ function showDate() {
 }
 
 function makeGraph(presented) {
-	var database = new Database();
-	database.get();
-	
 	d3.select("svg").text("");
 	
 	var jsonInput = retrieveData();
@@ -17,14 +14,14 @@ function makeGraph(presented) {
 	var parseDate = d3.time.format("%Y%m%d").parse;
 	
 	var vis = d3.select("#visualisation"),
-    	//WIDTH = 800,
-    	//HEIGHT = 300,
-    	//MARGINS = {
-//			top: 20,
-//			right: 20,
-//			bottom: 20,
-//			left: 50
-//    	},
+    	WIDTH = 800,
+    	HEIGHT = 300,
+    	MARGINS = {
+			top: 20,
+			right: 20,
+			bottom: 20,
+			left: 50
+    	},
     	
         xRange = d3.time.scale().range([MARGINS.left, WIDTH - MARGINS.right]).domain([
             d3.min(jsonInput, function(d) {

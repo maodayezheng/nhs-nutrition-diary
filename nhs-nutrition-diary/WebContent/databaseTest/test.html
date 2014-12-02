@@ -20,14 +20,9 @@
     <h1>Search For Your Food Below!</h1>
     <input type="text" id="searchTerms" />
 
-
-      <script>
-
-
-      </script>
-      <button id="searchFood" onclick="databaseSearch(document.getElementById('searchTerms').value, foodListTable, 'FoodNamelc', displayResults)">Search</button>
+     <button id="searchFood" onclick="databaseSearch(document.getElementById('searchTerms').value, foodListTable, 'FoodNamelc', displayResults)">Search</button>
       <br />
-     <button id="populateDB" onclick="databaseOpen(dbInitialise)">Populate DB</button>
+     <button id="populateDB" onclick="databaseOpen(dbInitialise)">Initialise DB</button>
     <br /><br />
     <div id="tableOfResults"></div>
     </div>

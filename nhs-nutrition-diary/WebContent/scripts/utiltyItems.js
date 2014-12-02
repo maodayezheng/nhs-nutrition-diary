@@ -38,21 +38,7 @@ jQuery.fn.extend({
 		$.each(items,function(index){
 			target.append(items[index]);
 		});
-			},
-	//add DOM to specific position in <li> 
-	addItemToIconPos:function(item){
-		var position = $(this).children('div .iconPosition');
-			position.append(item);
-	},
-	addItemToContentPos:function(item){
-		var position = $(this).children('div .contentPostion');
-			position.append(item);
-	},
-	addItemToControlPanelPos:function(item){
-		var position = $(this).children('div .controlPanelPosition');
-			position.append(item);
-	}
-
+			}
 });
 
 
@@ -141,6 +127,22 @@ function createBasicLi(){
 	})).append($('<div>',{
 		"class":"col-md-2 controlPanelPosition"
 	})));
+	
+	li.addItemToIconPos = function(item){
+		var position = $(this).children('div .iconPosition');
+		position.append(item);	
+	};
+	
+	li.addItemToContentPos = function(item){
+		var position = $(this).children('div .contentPostion');
+		position.append(item);
+	};
+	
+	li.addItemToControlPanelPos = function(item){
+		var position = $(this).children('div .controlPanelPosition');
+		position.append(item);
+	}
+	
 	return li;
 	}
 

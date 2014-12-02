@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	    <meta charset="utf-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href="lib/bootstrap/bootstrap.min.css" rel="stylesheet">
+		<link href="css/home.css" rel="stylesheet">
+    	<script src="lib/bootstrap/bootstrap.min.js"></script>
+    	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    	<script src="scripts/Navigator.js"></script>
+    	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    	<!--[if lt IE 9]>
+      		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    	<![endif]-->
+    	<title>Appetite</title>
+  	</head>
+	
+	<body>
+		<nav class="navbar navbar-default" role="navigation">
+  			<div class="container-fluid">
+    			<!-- Brand and toggle get grouped for better mobile display -->
+    			<div class="navbar-header">
+      				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        				<span class="sr-only">Toggle navigation</span>
+        				<span class="icon-bar"></span>
+        				<span class="icon-bar"></span>
+        				<span class="icon-bar"></span>
+      				</button>
+      				
+      				<a class="navbar-brand" href="#">
+						<img src="resources/NHS_logo.jpg" alt="NHS_Logo" style="width:43px;height:27px">
+      				</a>
+    			</div>
+
+    			<!-- Collect the nav links, forms, and other content for toggling -->
+    			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      				<ul class="nav navbar-nav navbar-right">
+        				<li><a id="listEl_home_to_settings" href="#" onclick="Navigator.prototype.navigate(this.id)">Settings</a></li>
+        				<li><a href="#">Log out</a></li>
+      				</ul>
+    			</div>
+  			</div>
+		</nav>
+    	
+    	<div class="container">
+     		<div class="row clearfix">
+    			<div class="col-md-12 column"></div>
+			</div>
+	   		<div class="row clearfix">
+	    		<div class="col-md-12 column">
+	    			<div class="panel panel-default" style="margin-top:40px">
+						<div class="panel-heading">Goals</div>
+	    				<div class="panel-body">
+						    <div class="goal-progress"> 
+	    						<div style="float:left">Calories:</div>
+	      						<div class="progress">
+	        						<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width:50%">1000/2000 kcal</div>
+	      						</div>
+	    					</div>
+							<div class="goal-progress"> 
+						    	<div style="float:left">Prot:</div>
+	      						<div class="progress">
+		        					<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width:50%">10/30 g</div>
+	    					  	</div>
+	    					</div>
+						    <div class="goal-progress"> 
+	    						<div style="float:left">Fluid:</div>
+	      						<div class="progress">
+	        						<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width:50%">1000/2000 ml</div>
+	      						</div>
+	    					</div>
+	     				</div>
+	     			</div>
+				</div>
+			</div>
+     	
+     		<div class="row clearfix">
+				<div class="col-md-12 column">
+     				<div style="margin-top:15px"><button id="btn_home_to_food" class="btn btn-lg btn-primary btn-block" onclick="Navigator.prototype.navigate(this.id)">Food/Drink  <span class="glyphicon-plus"></span></button></div>
+     				<div style="margin-top:15px"><button id="btn_home_to_symptoms" class="btn btn-lg btn-primary btn-block" onclick="Navigator.prototype.navigate(this.id)">Symptom  <span class="glyphicon-plus"></span></button></div>
+     				<div style="margin-top:15px">
+     					<button id="btn_home_to_history" class="btn btn-lg btn-primary" style="width:48%;float:left" onclick="Navigator.prototype.navigate(this.id)">History</button>
+     					<button id="btn_home_to_weight" class="btn btn-lg btn-primary" style="width:48%;float:right" onclick="Navigator.prototype.navigate(this.id)">Weight</button>
+     				</div>
+     			</div>
+     		</div>
+		</div>
+  	</body>
+</html>

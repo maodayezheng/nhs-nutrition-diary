@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  		<script src="lib/bootstrap/bootstrap.js"></script> 
+    	<script src="lib/bootstrap/bootstrap.min.js"></script>
+    	<script src="symptoms.js"></script>
+    	<meta charset="utf-8">
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+    	<title>Weight</title>
+		<link href="lib/bootstrap/bootstrap.min.css" rel="stylesheet">
+  		<link href="css/weight.css" rel="stylesheet">
+	</head>
+	
+	<body>
+		<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+			<div class="container-fluid">
+				<div class="collapse navbar-collapse">
+  					<h3 class="nav-title">Weight
+    					<button class="btn btn-default btn-lg" type="button" style="margin-left:15px;border-radius: 6px; "><span class="glyphicon glyphicon-calendar"></span></button>
+  					</h3>
+				</div>
+  			</div>
+		</nav>
+
+		<div class="container">
+  			<div class="panel-body">
+  				<h4>It is recommend to enter your weight a maximum of once per week.</h4>
+
+				<style type="text/css">
+					/* Place the HTML 5 spinner at the default position */
+					#html5Form .inputContainer .form-control {
+	    				padding-right: 10px;
+					}
+	
+					/* Adjust feedback icon position */
+					#html5Form .inputContainer .form-control-feedback {
+	    				right: -15px;
+					}
+				</style>
+
+				<form role="form">
+					<div class="well" style="max-height: 300px;overflow: auto;">
+            			<ul class="list-group checked-list-box">
+                  			<li class="list-group-item">I have swollen feet.</li>
+                  			<li class="list-group-item">I have swollen legs.</li>
+                  			<li class="list-group-item">I have a swollen abdomen.</li>
+                  			<li class="list-group-item">I have none of the above.</li>
+                		</ul>
+            		</div>
+      			</form>
+    		</div>
+
+			<form id="html5Form" class="form-horizontal"
+    			data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
+    			data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
+    			data-bv-feedbackicons-validating="glyphicon glyphicon-refresh">
+
+			    <div class="form-group">
+      				<label class="col-md-3 control-label">Current Weight is: </label>
+      				<label class="col-md-3 control-label" id="currentWeight">75kg</label>
+        			<label class="col-md-3 control-label">Update current weight:</label>
+        			
+        			<div class="col-md-3 inputContainer">
+            			<input class="form-control" name="number" step="any"
+                			type="number" placeholder="kg" 
+                			data-bv-integer-message="The value is not a number" />
+        			</div>
+    			</div>
+			</form>
+		</div>
+	</body>
+</html>

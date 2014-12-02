@@ -16,9 +16,9 @@ Database.prototype.get() {
 
 
 function makeGraph(presented) {
-	var database = new Database();
-	database.get();
-	
+//	var database = new Database();
+//	database.prototype.get();
+//	
 //	alert('bla');
 //	Database.get(null, null, null);
 	

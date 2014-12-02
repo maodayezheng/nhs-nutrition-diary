@@ -20,7 +20,7 @@
  */
  	var Database = function Database(){}
  	
- 	Database.prototype.get()
+ 	Database.prototype.get = function() 
      {
      	alert('test');
      }
@@ -86,9 +86,10 @@
     
     var arrayToAdd = [{name: "one"},{name: "two"},{name: "three"},{name: "four"}]; //for testing. Delete after test. 
     
-    function databaseAdd(oStore, arrayOfObjects, /*Optional Argument */recursion) 
+    function databaseAdd(oStore, arrayOfObjects) 
     {
     	var objectStore = db.transaction([oStore], "readwrite").objectStore(oStore);
+    	var serverObjectStore = db.transaction([syncToServerTable], "readwrite").objectStore(syncToServerTable);
     	var dbAdditionRequest;
     	for (var i in arrayOfObjects) 
         {

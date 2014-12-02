@@ -7,8 +7,11 @@ function showDate() {
 }
 
 function makeGraph(presented) {
-	alert('bla');
-	Database.get(null, null, null);
+	var database = new Database();
+	database.get(null, null, null);
+	
+//	alert('bla');
+//	Database.get(null, null, null);
 	
 	
 	d3.select("svg").text("");

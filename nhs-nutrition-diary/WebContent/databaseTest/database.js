@@ -19,21 +19,25 @@
  * 
  */
  	
-	//Using the JavaScript module pattern to contain global variables (http://www.w3.org/wiki/JavaScript_best_practices).
-	myNameSpace = function(){
-	  var current = null;
+	//Using the JavaScript module pattern to contain global variables as per http://www.w3.org/wiki/JavaScript_best_practices
+	var databaseJS = function()
+	{
+	  var syncToServerArray = [];
+	  var test = '!!!got the variable!!!';
 	  function init(){}
 	  function change(){}
 	  function verify(){}
 	  return{
 	    init:init,
-	    set:change
+	    set:change,
+	    syncToServerArray:syncToServerArray,
+	    test: test
 	  }
 	}();
 	
 	const dbName = "appetiteLocalStore"; 
     var db; // defined globally so that event.target.result can be assigned to db in any function.
-    var syncToServerArray = []; //This global array contains The local variable is to control the function's recursive call and array is to store an amended copy of the arrayOfObjects.
+    //var syncToServerArray = []; //This global array contains The local variable is to control the function's recursive call and array is to store an amended copy of the arrayOfObjects.
     
     //The following declarations and initialisations refer to tables as variable names to make re-factoring easier in the future.
     var foodListTable = 'foodListTable', userFoodListTable = 'userFoodListTable', symptomListTable = 'symptomListTable', userSymptomListTable = 'userSymptomListTable', foodManifestTable = 'foodManifestTable';
@@ -41,6 +45,66 @@
     var begin, end; //Variables used to see how long it takes to populate the database.
     
     databaseOpen(dbInitialise);
+    
+    console.log('Trying to see if referencing works '+databaseJS.test);
+    
+    
+    var arrayToAdd = [{name: "one"},{name: "two"},{name: "three"},{name: "four"}]; //for testing. Delete after test. 
+    
+    function databaseAdd(oStore, arrayOfObjects, /*Optional Argument */recursion) 
+    {
+    	var objectStore = db.transaction([oStore], "readwrite").objectStore(oStore);
+    	var dbAdditionRequest;
+    	for (var i in arrayOfObjects) 
+        {
+    		dbAdditionRequest =objectStore.add(arrayOfObjects[i]);
+        }
+    	dbAdditionRequest.onerror = function(e) 
+    	{
+    	    console.log("Error",e.target.error.name);
+    	}
+    	dbAdditionRequest.onsuccess = function(e) 
+    	{
+    	    console.log("Woot! Added first object");
+    	    
+    	    if (recursion === undefined) //only run if third argument is not specified
+    	    {
+    	    	databaseAdd(syncToServerTable,databaseJS.syncToServerArray,1);
+    	    }    	    	
+    	    else 
+    	    {
+    	    	for (var i=0; i<arrayOfObjects.length; i++) 
+    	        {
+    	    		databaseJS.syncToServerArray[i]=arrayOfObjects[i];
+    	    		syncToServerArray[i].storedIn = oStore; //adding this property makes it clear which objectStore each object was added to in the local database (useful for the sync with the server). 		
+    	        }
+    		}    
+    	}
+    }
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     /*
      * dbInitialise is the callback function defined for specific use with databaseOpen. It outputs the time in milliseconds that was taken to 
@@ -101,7 +165,7 @@
             if (cursor)
             {
                 results.push(cursor.value);
-                cursor.continue(); //Eclipse and other IDEs may report this as an error. It is NOT. continue() is explicitly used on examples from W3 and Mozilla.  
+                cursor.continue(); //Eclipse and other IDEs may report this as an error. It is NOT. continue() used like this is defined in the IndexedDB API and is explicitly used in examples from W3 and Mozilla.  
             } else {
                 console.log("Got all results");
                 callback(results);
@@ -117,56 +181,14 @@
     */
     function databaseGet(oStore, dateFrom, dateTo)
     {
-    	
+    	alert('test');
     }
     
-    var arrayToAdd = [{name: "one"},{name: "two"},{name: "three"},{name: "four"}]; //for testing. Delete after test. 
-    
-    function databaseAdd(oStore, arrayOfObjects) 
-    {
-    	
-    	 
-    	
-    	
-    	var objectStore = db.transaction([oStore], "readwrite").objectStore(oStore);
-    	var dbAdditionRequest;
-    	for (var i in arrayOfObjects) 
-        {
-    		dbAdditionRequest =objectStore.add(arrayOfObjects[i]);
-        }
-    	dbAdditionRequest.onerror = function(e) 
-    	{
-    	    console.log("Error",e.target.error.name);
-    	}
-    	dbAdditionRequest.onsuccess = function(e) 
-    	{
-    	    console.log("Woot! Added first object");
-    	    if (syncToServerArray.length===0)
-    	    {
-    	    	databaseAddRecursionController++;
-    	    	for (var i=0; i<arrayOfObjects.length; i++) 
-    	        {
-    	    		syncToServerArray[i]=arrayOfObjects[i];
-    	    		syncToServerArray[i].objectStore = oStore; //adding this property makes it clear which objectStore each object was added to in the local database (useful for synching to server). 
-    	    		databaseAdd(syncToServerTable,syncToServerArray);
-    	        }
-    		} else 
-    		{
-    			databaseAddRecursionController =0;
-    			return;
-    		}
-    	    
-    	}
-    }
 
-    /*
-    if (!databaseAddRecursionController)
-	
-*/
 
     
     /**
-     * When this function is called for the first time/when the version number is incremented the 'onupgradeneeded' event handler will run and the 
+     * The first time this function is called (or if the version number is incremented) the 'onupgradeneeded' event handler will run and the 
      * object stores will be created. Indexes are then made to make it easier to search the database.
      */
     function databaseOpen(callback)
@@ -200,13 +222,11 @@
                     console.log(foodListTable+" Initialisation Complete!");
                 }
             }
-
             if(!db.objectStoreNames.contains(userFoodListTable)) //table 2. Will contain any custom food created by the user.
             {
                 var userFoodList = db.createObjectStore(userFoodListTable, { keyPath: 'EntryNumber', autoIncrement: true }); //key should be combination of user uniqueID, food-ID, and table auto-generated key.
                 userFoodList.createIndex("Date", "Date", { unique: false });
             }
-
             if(!db.objectStoreNames.contains(symptomListTable)) //table 3. Contains the symptoms given by the staff at Guy's
             {
                var symptomList = db.createObjectStore(symptomListTable, { keyPath: 'FoodCode' });
@@ -240,9 +260,7 @@
             {
               var syncToServer = db.createObjectStore(syncToServerTable, { keyPath: 'EntryNumber', autoIncrement: true });
             }
-
         };
-
         request.onsuccess = function(event)
         {
             db = event.target.result;
@@ -258,7 +276,10 @@
 
     
     
-    
+    /**
+     * Function prints error to the console if the database encounters one. 
+     * @param event
+     */
     
     function databaseError(event)
     {

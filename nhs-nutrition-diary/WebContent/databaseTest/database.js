@@ -18,16 +18,28 @@
  * Comments in source code below are my own. 
  * 
  */
- 
-
+ 	
+	//Using the JavaScript module pattern to contain global variables (http://www.w3.org/wiki/JavaScript_best_practices).
+	myNameSpace = function(){
+	  var current = null;
+	  function init(){}
+	  function change(){}
+	  function verify(){}
+	  return{
+	    init:init,
+	    set:change
+	  }
+	}();
+	
 	const dbName = "appetiteLocalStore"; 
     var db; // defined globally so that event.target.result can be assigned to db in any function.
+    var syncToServerArray = []; //This global array contains The local variable is to control the function's recursive call and array is to store an amended copy of the arrayOfObjects.
     
     //The following declarations and initialisations refer to tables as variable names to make re-factoring easier in the future.
     var foodListTable = 'foodListTable', userFoodListTable = 'userFoodListTable', symptomListTable = 'symptomListTable', userSymptomListTable = 'userSymptomListTable', foodManifestTable = 'foodManifestTable';
     var symptomManifestTable = 'symptomManifestTable', weightManifestTable = 'weightManifestTable', requirementsManifestTable = 'requirementsManifestTable', syncToServerTable = 'syncToServerTable';
     var begin, end; //Variables used to see how long it takes to populate the database.
-
+    
     databaseOpen(dbInitialise);
     
     /*
@@ -108,34 +120,49 @@
     	
     }
     
+    var arrayToAdd = [{name: "one"},{name: "two"},{name: "three"},{name: "four"}]; //for testing. Delete after test. 
     
-    function databaseAdd(oStore) 
+    function databaseAdd(oStore, arrayOfObjects) 
     {
-    	var objectStore = db.transaction(oStore, "readwrite").objectStore(oStore);
     	
-    	//Define a person
-    	var person = {
-    	    name:name,
-    	    email:email,
-    	    created:new Date()
-    	}
     	 
-    	//Perform the add
-    	var additionRequest = store.add(person,100);
     	
-    	additionRequest.onerror = function(e) {
+    	
+    	var objectStore = db.transaction([oStore], "readwrite").objectStore(oStore);
+    	var dbAdditionRequest;
+    	for (var i in arrayOfObjects) 
+        {
+    		dbAdditionRequest =objectStore.add(arrayOfObjects[i]);
+        }
+    	dbAdditionRequest.onerror = function(e) 
+    	{
     	    console.log("Error",e.target.error.name);
-    	    //some type of error handler
     	}
-    	 
-    	additionRequest.onsuccess = function(e) {
-    	    console.log("Woot! Did it");
+    	dbAdditionRequest.onsuccess = function(e) 
+    	{
+    	    console.log("Woot! Added first object");
+    	    if (syncToServerArray.length===0)
+    	    {
+    	    	databaseAddRecursionController++;
+    	    	for (var i=0; i<arrayOfObjects.length; i++) 
+    	        {
+    	    		syncToServerArray[i]=arrayOfObjects[i];
+    	    		syncToServerArray[i].objectStore = oStore; //adding this property makes it clear which objectStore each object was added to in the local database (useful for synching to server). 
+    	    		databaseAdd(syncToServerTable,syncToServerArray);
+    	        }
+    		} else 
+    		{
+    			databaseAddRecursionController =0;
+    			return;
+    		}
+    	    
     	}
-    	
-    	
     }
 
-
+    /*
+    if (!databaseAddRecursionController)
+	
+*/
 
     
     /**
@@ -176,7 +203,7 @@
 
             if(!db.objectStoreNames.contains(userFoodListTable)) //table 2. Will contain any custom food created by the user.
             {
-                var userFoodList = db.createObjectStore(userFoodListTable, { keyPath: 'FoodCode' }); //key should be combination of user uniqueID, food-ID, and table auto-generated key.
+                var userFoodList = db.createObjectStore(userFoodListTable, { keyPath: 'EntryNumber', autoIncrement: true }); //key should be combination of user uniqueID, food-ID, and table auto-generated key.
                 userFoodList.createIndex("Date", "Date", { unique: false });
             }
 
@@ -186,7 +213,7 @@
             }
             if(!db.objectStoreNames.contains(userSymptomListTable)) //table 4. Will contain any custom created symptoms by the user.
             {
-               var userSymptomList = db.createObjectStore(userSymptomListTable, { keyPath: 'FoodCode' });
+               var userSymptomList = db.createObjectStore(userSymptomListTable, { keyPath: 'Date' });
             }
             if(!db.objectStoreNames.contains(foodManifestTable)) //table 5
             {
@@ -211,7 +238,7 @@
             }
             if(!db.objectStoreNames.contains(syncToServerTable)) //table 9
             {
-              //var syncToServer = db.createObjectStore(syncToServerTable, { keyPath: 'FoodCode' });
+              var syncToServer = db.createObjectStore(syncToServerTable, { keyPath: 'EntryNumber', autoIncrement: true });
             }
 
         };
@@ -222,13 +249,17 @@
 
             db.onversionchange = function(event)
             {
-                event.target.close(); //close the database connection if successful (DELETE AFTER TESTING)
+                event.target.close(); //close the database connection if successful (DELETE COMMENT AFTER TESTING)
             };
             callback();
         };
         request.onerror = databaseError;
     }
 
+    
+    
+    
+    
     function databaseError(event)
     {
         console.error('An IndexedDB error has occurred', event);
@@ -255,6 +286,7 @@
         };
     }
 
+    /*
     $(document).ready(function(){
     	$("#searchTerms").on("keyup", function(e)
             {
@@ -265,3 +297,4 @@
                 databaseSearch(value, foodListTable, 'FoodNamelc',displayResults);
               }
             });});
+    */

@@ -5,8 +5,6 @@
 $(document).ready(function(){
 	
 	
-	classes ="list-group-item";
-	
 	$('#list').initList(data,classes);
 	
 	
@@ -16,17 +14,6 @@ $(document).ready(function(){
 
 
 jQuery.fn.extend({
-	
-	
-	
-	
-	
-	
-addElements:function(){
 		
-		// extend this method to add more element in the li
-	}
-	
-	
 	
 });

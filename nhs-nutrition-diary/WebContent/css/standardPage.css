@@ -65,9 +65,9 @@ body{
 	display:none;
 	text-align: center;
 }
+
 input.time {
     font-size: 13px;
-
     padding: 3px;
     background: #fff;
     border: 1px solid #aac;
@@ -76,7 +76,6 @@ input.time {
 
 input.date {
     font-size: 13px;
-
     padding: 3px;
     background: #fff;
     border: 1px solid #aac;

@@ -7,7 +7,8 @@ $(document).ready(function(){
 		var data =["apple","banana","chicken","beef","peal"];
 		$('#list').generateList(data);
 		$('#search').autocomplete({
-			source:data
+			source:data,
+			minLength: 2,
 		});
 });
 

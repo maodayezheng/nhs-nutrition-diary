@@ -2,11 +2,22 @@
 <html>
 <head>
 	<script type="text/javascript" src="localDb.js"></script>
+	<script type="text/javascript" src="foodData.js"></script>
 <meta charset="UTF-8">
 <title>Local DB Test</title>
-</head>
-<body>
+</head>  <body>
+    <div id="content">
 
+    <button id="databaseDelete" onclick="db1.databaseDelete()">Click Here to Delete the Database from your Local Storage</button>
+	
+    <h1>Search For Your Food Below!</h1>
+    <input type="text" id="searchTerms" />
 
-</body>
+     <button id="searchFood" onclick="">Search</button>
+      <br />
+     <button id="populateDB" onclick="">Initialise DB</button>
+    <br /><br />
+    <div id="tableOfResults"></div>
+    </div>
+  </body>
 </html>

@@ -5,5 +5,5 @@ ValidatorTest.prototype.testValidateDates = function() {
 	var to = "20141127"
 	
 	var validator = new Validator();
-	assertEquals(true, validator.validate(form, to));
+	assertEquals(true, validator.validateDates(form, to));
 }

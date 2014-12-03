@@ -12,18 +12,11 @@
   		<script src="lib/jquery/jquery-ui.min.js"></script>
     	<script src="lib/bootstrap/bootstrap.min.js"></script>
     	<script src="scripts/timepicker.js"></script>
+    	<script src="scripts/util/dateTimePicker.js"></script>
     	<script src="scripts/Navigator.js"></script>
   		<script src="scripts/listViewController.js"></script>
   		
-  		<script>
-       	 $(function() {
-       	 $( "#datepicker" ).datepicker();
-       	 });
-        </script>
-        
-		<script type="text/javascript">
- 			 document.getElementById('#date').value = Date();
-		</script>
+
  
   
     	<title>Symptoms</title>
@@ -57,20 +50,6 @@
 			</form>
 			<button id="btn_symptoms_to_symptomNotInList" class="btn btn-lg btn-primary btn-block" onclick="Navigator.prototype.navigate(this.id)">Symptom not in list</button>
 			<button class="btn btn-lg btn-primary btn-block" type="submit">Submit symptoms</button>
-		</div>
-
-		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script>
-            $("input[name='demo3']").TouchSpin();
-        </script>
-        
-	<script>
-		$('#datetimepicker1').datetimepicker({
-		  datepicker:false,
-		  format:'H:i',
-		  step:15
-		});
-	</script>
-      
+		</div>    
   </body>
 </html>

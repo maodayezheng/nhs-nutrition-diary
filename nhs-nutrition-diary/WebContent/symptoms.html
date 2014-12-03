@@ -7,16 +7,24 @@
     	<link href="lib/jquery/jquery-ui.min.css" rel="stylesheet">
     	<link href="lib/bootstrap/bootstrap.min.css" rel="stylesheet"/>
   		<link href="css/standardPage.css" rel="stylesheet"/>
+  		<link href="css/timepicker.css" rel="stylesheet"/>
   		<script src="lib/jquery/jquery.js"></script>
   		<script src="lib/jquery/jquery-ui.min.js"></script>
     	<script src="lib/bootstrap/bootstrap.min.js"></script>
+    	<script src="scripts/timepicker.js"></script>
     	<script src="scripts/Navigator.js"></script>
   		<script src="scripts/listViewController.js"></script>
+  		
   		<script>
-        $(function() {
-        $( "#datepicker" ).datepicker();
-        });
+       	 $(function() {
+       	 $( "#datepicker" ).datepicker();
+       	 });
         </script>
+        
+		<script type="text/javascript">
+ 			 document.getElementById('#date').value = Date();
+		</script>
+ 
   
     	<title>Symptoms</title>
 	</head>
@@ -38,6 +46,9 @@
       		<form class="form-signup" role="form">
 	        	<div class="well" style="max-height: 400px;overflow: auto;">
 	        	<input type="text" class="date" id="datepicker"> 
+	        	  <input type="text" class="date" id="datetimepicker1"/>
+
+	        	 
 	            	<ul class="list-group checked-list-box" id="list">
 							                	
 	                </ul>
@@ -53,7 +64,13 @@
             $("input[name='demo3']").TouchSpin();
         </script>
         
-        
-        
+	<script>
+		$('#datetimepicker1').datetimepicker({
+		  datepicker:false,
+		  format:'H:i',
+		  step:15
+		});
+	</script>
+      
   </body>
 </html>

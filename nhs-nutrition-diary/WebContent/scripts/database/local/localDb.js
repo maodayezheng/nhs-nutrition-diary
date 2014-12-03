@@ -38,16 +38,99 @@ function LocalDbSingleton()
 	//below are all of the object's properties. The names of object stores are stored in variables to make re-factoring easier later. 
 	instance.dbName = 'appetiteLocalStore'; instance.db ='';
 	instance.version = 1; //indexedDB version number
+	this.foodListStore = 'foodListStore'; instance.userFoodListStore = 'userFoodListStore'; instance.symptomListStore = 'symptomListStore'; instance.userSymptomListStore = 'userSymptomListStore'; 
+	instance.foodManifestStore = 'foodManifestStore'; instance.symptomManifestStore = 'symptomManifestStore'; instance.weightManifestStore = 'weightManifestStore'; 
+	instance.requirementsManifestStore = 'requirementsManifestStore'; instance.syncToServerStore = 'syncToServerStore';
 	return instance;
 }
 
+/**
+ * Returns all objects in a object store which are contained within a given date interval.
+ * @param oStore   The object store the caller wishes to return results from.
+ * @param dateFrom The date from which the caller wishes to receive data from.
+ * @param dateTo   The date to which the caller wishes to receive data from.
+ */
 
-LocalDbSingleton.prototype.get = function(dateFrom, dateTo)
+LocalDbSingleton.prototype.get = function(oStore, dateFrom, dateTo)
 {
-	alert('GET LOCALDBSINGLETON');
-	alert('');
+	return [
+	    	    {
+	    		 	  "timestamp":"20140115",
+	    			  "calories":345,
+	    			  "protein":20,
+	    			  "fluid":100,
+	    			  "weight":80
+	    		},
+	    		{
+	    		 	  "timestamp":"20140116",
+	    			  "calories":500,
+	    			  "protein":30,
+	    			  "fluid":250,
+	    			  "weight":75
+	    		},
+	    		{
+	    		 	  "timestamp":"20140117",
+	    			  "calories":127,
+	    			  "protein":13,
+	    			  "fluid":400,
+	    			  "weight":78
+	    		},
+	    		{
+	    		 	  "timestamp":"20140118",
+	    			  "calories":470,
+	    			  "protein":66,
+	    			  "fluid":480,
+	    			  "weight":72
+	    		},
+	    		{
+	    		 	  "timestamp":"20140125",
+	    			  "calories":220,
+	    			  "protein":35,
+	    			  "fluid":300,
+	    			  "weight":68
+	    		}
+	    	];
+	    	
+	//alert('GET LOCALDBSINGLETON');
+	//alert('');
 }
 
+
+/*
+LocalDbSingleton.prototype.localDbAdd = function(oStore, arrayOfObjects) 
+{
+	var syncToServer = this.
+	var objectStore = db.transaction([oStore], "readwrite").objectStore(oStore);
+	var serverObjectStore = db.transaction([syncToServerTable], "readwrite").objectStore(syncToServerTable);
+	var dbAdditionRequest;
+	for (var i in arrayOfObjects) 
+    {
+		dbAdditionRequest =objectStore.add(arrayOfObjects[i]);
+		databaseJS.syncToServerArray[i]=arrayOfObjects[i];
+		databaseJS.syncToServerArray[i].storedIn = oStore; //adding this property makes it clear which objectStore each object was added to in the local database (useful for the sync with the server). 	
+    }
+	dbAdditionRequest.onerror = function(e) 
+	{
+	    console.log("Error",e.target.error.name);
+	}
+	dbAdditionRequest.onsuccess = function(e) 
+	{
+	    console.log("Woot! Added first object");
+	    
+	    if (recursion === undefined) //only run if third argument is not specified
+	    {
+	    	databaseAdd(syncToServerTable,arrayOfObjects,1);
+	    }    	    	
+	    else 
+	    {
+	    	for (var i=0; i<arrayOfObjects.length; i++) 
+	        {
+	    		databaseJS.syncToServerArray[i]=arrayOfObjects[i];
+	    		databaseJS.syncToServerArray[i].storedIn = oStore; //adding this property makes it clear which objectStore each object was added to in the local database (useful for the sync with the server). 		
+	        }
+		}    
+	}
+}*/
 
 
 /**
@@ -113,18 +196,17 @@ LocalDbSingleton.prototype.displayResults = function(result)
  */
 LocalDbSingleton.prototype.databaseOpen = function(callback)
 {
-    this.begin = Date.now(); 
+    this.begin = Date.now();
     var dbName = this.dbName, db = this.db, version = this.version; 
-    var foodListStore = 'foodListStore', userFoodListStore = 'userFoodListStore', symptomListStore = 'symptomListStore', userSymptomListStore = 'userSymptomListStore', foodManifestStore = 'foodManifestStore';
-    var symptomManifestStore = 'symptomManifestStore', weightManifestStore = 'weightManifestStore', requirementsManifestStore = 'requirementsManifestStore', syncToServerStore = 'syncToServerStore';
+    var foodListStore = this.foodListStore, userFoodListStore = this.userFoodListStore, symptomListStore = this.symptomListStore, userSymptomListStore = this.userSymptomListStore, foodManifestStore = this.foodManifestStore;
+    var symptomManifestStore = this.symptomManifestStore, weightManifestStore = this.weightManifestStore, requirementsManifestStore = this.requirementsManifestStore, syncToServerStore = this.syncToServerStore;
     
     var request = indexedDB.open(dbName, version);
 
     request.onupgradeneeded = function(event) //will run the first time the database is created or if the version has been updated.
     {
         db = event.target.result; 
-        event.target.transaction.onerror = databaseError;
-
+        event.target.transaction.onerror = LocalDbSingleton.prototype.databaseError;
         /* The following creates the Store/object store 'foodListStore' using the food-code as the primary key. It then creates indexes for
          * the food code and food name as lower case. Apart from the primary key all indexes can be repeated and so are non unique.*/
         if(!db.objectStoreNames.contains(foodListStore)) //this check is needed so that if the db version is incremented in the future, those users who already have the Store do not duplicate it.
@@ -193,15 +275,14 @@ LocalDbSingleton.prototype.databaseOpen = function(callback)
         };
         callback();
     };
-    request.onerror = databaseError;
+    request.onerror = LocalDbSingleton.prototype.databaseError;
 }
 
 /**
  * Function prints error to the console if the database encounters one. 
  * @param event
  */
-
-function databaseError(event)
+LocalDbSingleton.prototype.databaseError = function(event)
 {
     console.error('An IndexedDB error has occurred', event);
     console.log('Error name: '+e.target.error.name);

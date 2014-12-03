@@ -38,9 +38,10 @@ function LocalDbSingleton()
 	//below are all of the object's properties. The names of object stores are stored in variables to make re-factoring easier later. 
 	instance.dbName = 'appetiteLocalStore'; instance.db ='';
 	instance.version = 1; //indexedDB version number
-	this.foodListStore = 'foodListStore'; instance.userFoodListStore = 'userFoodListStore'; instance.symptomListStore = 'symptomListStore'; instance.userSymptomListStore = 'userSymptomListStore'; 
+	instance.foodListStore = 'foodListStore'; instance.userFoodListStore = 'userFoodListStore'; instance.symptomListStore = 'symptomListStore'; instance.userSymptomListStore = 'userSymptomListStore'; 
 	instance.foodManifestStore = 'foodManifestStore'; instance.symptomManifestStore = 'symptomManifestStore'; instance.weightManifestStore = 'weightManifestStore'; 
-	instance.requirementsManifestStore = 'requirementsManifestStore'; instance.syncToServerStore = 'syncToServerStore';
+	instance.requirementsManifestStore = 'requirementsManifestStore'; instance.syncToServerStore = 'syncToServerStore'; 
+	instance.syncToServerArray = []; //for the databaseAdd method.
 	return instance;
 }
 
@@ -95,42 +96,59 @@ LocalDbSingleton.prototype.get = function(oStore, dateFrom, dateTo)
 	//alert('');
 }
 
+/**This function places the objects contained in the array argument in the specified object store. It then recursively calls itself to place the same objects in the
+ * syncToServer object store. In the case of the recursive call each object is added with the additional property of what store they were initially added to.   
+ * @param oStore			This is the object store in the local indexedDB database you would like to add your JS objects to.
+ * @param arrayOfObjects	This is an array containing the objects you would like to add to the local database. 
+ */
 
-/*
 LocalDbSingleton.prototype.localDbAdd = function(oStore, arrayOfObjects) 
 {
-	var syncToServer = this.
+	var _this=this; //storing object reference for binding purposes.  
+	var syncToServerArray = []; var db = this.db;
 	var objectStore = db.transaction([oStore], "readwrite").objectStore(oStore);
-	var serverObjectStore = db.transaction([syncToServerTable], "readwrite").objectStore(syncToServerTable);
 	var dbAdditionRequest;
-	for (var i in arrayOfObjects) 
-    {
-		dbAdditionRequest =objectStore.add(arrayOfObjects[i]);
-		databaseJS.syncToServerArray[i]=arrayOfObjects[i];
-		databaseJS.syncToServerArray[i].storedIn = oStore; //adding this property makes it clear which objectStore each object was added to in the local database (useful for the sync with the server). 	
-    }
-	dbAdditionRequest.onerror = function(e) 
+
+	if (!(oStore===_this.syncToServerStore))
 	{
-	    console.log("Error",e.target.error.name);
+		for (var i in arrayOfObjects) 
+	    {
+			dbAdditionRequest = objectStore.add(arrayOfObjects[i]);
+			syncToServerArray[i]= arrayOfObjects[i];
+			syncToServerArray[i].storedIn = oStore; //adding this property makes it clear which objectStore each object was added to in the local database (useful for the sync with the server). 	
+	    }
+		dbAdditionRequest.onerror = function(e) 
+		{
+		    console.log("Error",e.target.error.name);
+		}
+		dbAdditionRequest.onsuccess = function(e) 
+		{
+		    console.log("Added first objects");
+		    _this.localDbAdd(_this.syncToServerStore,syncToServerArray); //recursive call. 
+		}
 	}
-	dbAdditionRequest.onsuccess = function(e) 
+	else 
 	{
-	    console.log("Woot! Added first object");
-	    
-	    if (recursion === undefined) //only run if third argument is not specified
+		console.log('made to recursive call');
+		for (var i in arrayOfObjects) 
 	    {
-	    	databaseAdd(syncToServerTable,arrayOfObjects,1);
-	    }    	    	
-	    else 
-	    {
-	    	for (var i=0; i<arrayOfObjects.length; i++) 
-	        {
-	    		databaseJS.syncToServerArray[i]=arrayOfObjects[i];
-	    		databaseJS.syncToServerArray[i].storedIn = oStore; //adding this property makes it clear which objectStore each object was added to in the local database (useful for the sync with the server). 		
-	        }
-		}    
+			dbAdditionRequest = objectStore.add(arrayOfObjects[i]); 	
+	    }
+		console.log('added the items');
+		
+		dbAdditionRequest.onerror = function(e) 
+		{
+		    console.log("Error",e.target.error.name);
+		}
+		dbAdditionRequest.onsuccess = function(e) 
+		{
+		    console.log("Added the recursive objects");
+		}
 	}
-}*/
+}
+
+
+
 
 
 /**
@@ -144,7 +162,7 @@ LocalDbSingleton.prototype.localDbAdd = function(oStore, arrayOfObjects)
  */
 LocalDbSingleton.prototype.databaseSearch = function(key, oStore, index, callback)
 {
-	var db = LocalDbSingleton.db;
+	var db = this.db;
 	var results = []; 
     var keywords= key.toLowerCase(); //The search terms should be lower case as search is case sensitive. 
 	console.log("Searching For "+keywords);
@@ -196,7 +214,8 @@ LocalDbSingleton.prototype.displayResults = function(result)
  */
 LocalDbSingleton.prototype.databaseOpen = function(callback)
 {
-    this.begin = Date.now();
+    var _this = this; //storing reference for use in by embedded functions as closure. 
+	this.begin = Date.now();
     var dbName = this.dbName, db = this.db, version = this.version; 
     var foodListStore = this.foodListStore, userFoodListStore = this.userFoodListStore, symptomListStore = this.symptomListStore, userSymptomListStore = this.userSymptomListStore, foodManifestStore = this.foodManifestStore;
     var symptomManifestStore = this.symptomManifestStore, weightManifestStore = this.weightManifestStore, requirementsManifestStore = this.requirementsManifestStore, syncToServerStore = this.syncToServerStore;
@@ -206,9 +225,8 @@ LocalDbSingleton.prototype.databaseOpen = function(callback)
     request.onupgradeneeded = function(event) //will run the first time the database is created or if the version has been updated.
     {
         db = event.target.result; 
-        event.target.transaction.onerror = LocalDbSingleton.prototype.databaseError;
-        /* The following creates the Store/object store 'foodListStore' using the food-code as the primary key. It then creates indexes for
-         * the food code and food name as lower case. Apart from the primary key all indexes can be repeated and so are non unique.*/
+        event.target.transaction.onerror = _this.databaseError;
+        
         if(!db.objectStoreNames.contains(foodListStore)) //this check is needed so that if the db version is incremented in the future, those users who already have the Store do not duplicate it.
         {
             var foodList = db.createObjectStore(foodListStore, { keyPath: 'FoodCode' });
@@ -268,14 +286,16 @@ LocalDbSingleton.prototype.databaseOpen = function(callback)
     };
     request.onsuccess = function(event)
     { 
-        LocalDbSingleton.db = event.target.result; 
-        LocalDbSingleton.db.onversionchange = function(event)
+        _this.db = event.target.result; 
+        console.log('request on success');
+        _this.db.onversionchange = function(event)
         {
-            event.target.close(); //close the database connection if successful (DELETE COMMENT AFTER TESTING)
+            console.log('atoneversioncahnge');
+        	event.target.close(); //close the database connection if successful (DELETE COMMENT AFTER TESTING)
         };
         callback();
     };
-    request.onerror = LocalDbSingleton.prototype.databaseError;
+    request.onerror = this.databaseError;
 }
 
 /**
@@ -311,6 +331,7 @@ LocalDbSingleton.prototype.databaseDelete = function()
 
 
 //BELOW CODE FOR TESTING. DELETE ONCE COMPLETEd. 
+var arrayToAdd = [{name: "one"},{name: "two"},{name: "three"},{name: "four"}]; //for testing. Delete after test. 
 var db1 = new LocalDbSingleton();
 db1.databaseOpen(function() 
 {
@@ -318,4 +339,5 @@ db1.databaseOpen(function()
 	var time = end-begin;
     console.log('It took '+time+' milliseconds to populate database');
     console.log('Database created and populated successfully.');
+    db1.localDbAdd('userFoodListStore', arrayToAdd);
 });

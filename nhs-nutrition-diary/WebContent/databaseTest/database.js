@@ -39,21 +39,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	//Using the JavaScript module pattern to contain global variables as per http://www.w3.org/wiki/JavaScript_best_practices
 	var databaseJS = function()
 	{
@@ -203,7 +188,7 @@
             if (cursor)
             {
                 results.push(cursor.value);
-                cursor.continue(); //Eclipse and other IDEs may report this as an error. It is NOT. continue() used like this is defined in the IndexedDB API and is explicitly used in examples from W3 and Mozilla.  
+                cursor['continue'](); //Eclipse and other IDEs may report this as an error. It is NOT. continue() used like this is defined in the IndexedDB API and is explicitly used in examples from W3 and Mozilla.  
             } else {
                 console.log("Got all results");
                 callback(results);

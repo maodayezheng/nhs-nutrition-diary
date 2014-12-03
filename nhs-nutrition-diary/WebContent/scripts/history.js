@@ -13,6 +13,9 @@ function makeGraph(presentedParameter) {
 }
 */
 
+var database = new LocalDbSingleton();
+database.get(null, null);
+
 function makeGraph(presentedParameter) {
 	d3.select("svg").text("");
 	
@@ -113,8 +116,7 @@ function makeGraph(presentedParameter) {
 	  .attr('stroke-width', 2)
 	  .attr('fill', 'none');
 	
-	d3.select('svg').attr("width", "100%").attr("height", "100%");
-	
+	d3.select('svg').attr("width", "100%").attr("height", 500);
 }
 
 
@@ -150,7 +152,7 @@ function retrieveData() {
 		},
 		{
 		 	  "timestamp":"20140125",
-			  "calories":220,
+			  "calories":1000,
 			  "protein":35,
 			  "fluid":300,
 			  "weight":68

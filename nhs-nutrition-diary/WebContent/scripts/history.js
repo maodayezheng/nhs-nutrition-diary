@@ -18,6 +18,11 @@ function makeGraph(presentedParameter) {
 	d3.select("svg").text("");
 	
 	var database = new LocalDbSingleton();
+	
+	//TODO get from data
+	//TODO get to date
+	//TODO validate dates (to later than from, format, etc.)
+	
 	var jsonInput = database.get(null, null);
 	
 	var parseDate = d3.time.format("%Y%m%d").parse;

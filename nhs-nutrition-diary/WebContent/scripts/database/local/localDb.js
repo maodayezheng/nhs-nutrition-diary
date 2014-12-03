@@ -52,6 +52,7 @@ function LocalDbSingleton()
  */
 LocalDbSingleton.prototype.databaseSearch = function(key, oStore, index, callback)
 {
+	var db = LocalDbSingleton.db;
 	var results = []; 
     var keywords= key.toLowerCase(); //The search terms should be lower case as search is case sensitive. 
 	console.log("Searching For "+keywords);
@@ -73,7 +74,27 @@ LocalDbSingleton.prototype.databaseSearch = function(key, oStore, index, callbac
     };
 }
 
+/**
+ * This function is intended to be a callback to the asynchronous databaseSearch function. It displays the results of the search in a table by 
+ * appending HTML to a predefined div. 
+ * @param result This is an array containing the results from the databaseSearch method. 
+ */
+function displayResults(result)
+{
+    var results = result;
+    document.getElementById("tableOfResults").innerHTML = '';
+    console.log("in display result");
+    var resultsTable='<table class="resultsTable" align="center"> <tr> <th>Food Name</th> <th>Quantity (g/ml)</th>  <th>Calories (kcal)</th> ' +
+                    '<th>Protein (g)</th> <th>Water Fluid (ml)</th></tr>'; //column labels for the table
+    for (var i=0; i<results.length; i++)
+    {
+        resultsTable += '<tr> <td>'+results[i].FoodName+'</td> <td>'+results[i].EdibleProportion+'</td> <td>'+results[i]["Energy.kcal"]+'</td> ' +
+                        '<td>'+results[i]["Protein.g"]+'</td> <td>'+results[i]["Water.g"]+'</td> </tr>'; //add a table row for each result
+        document.getElementById("tableOfResults").innerHTML = resultsTable;
 
+    }
+    resultsTable =+'</table>';
+}
 
 
 
@@ -84,7 +105,7 @@ LocalDbSingleton.prototype.databaseSearch = function(key, oStore, index, callbac
 LocalDbSingleton.prototype.databaseOpen = function(callback)
 {
     this.begin = Date.now(); 
-    var dbName = this.dbName, db = this.db, version = this.version;
+    var dbName = this.dbName, db = this.db, version = this.version; 
     var foodListStore = 'foodListStore', userFoodListStore = 'userFoodListStore', symptomListStore = 'symptomListStore', userSymptomListStore = 'userSymptomListStore', foodManifestStore = 'foodManifestStore';
     var symptomManifestStore = 'symptomManifestStore', weightManifestStore = 'weightManifestStore', requirementsManifestStore = 'requirementsManifestStore', syncToServerStore = 'syncToServerStore';
     
@@ -92,7 +113,7 @@ LocalDbSingleton.prototype.databaseOpen = function(callback)
 
     request.onupgradeneeded = function(event) //will run the first time the database is created or if the version has been updated.
     {
-        db = event.target.result;
+        db = event.target.result; 
         event.target.transaction.onerror = databaseError;
 
         /* The following creates the Store/object store 'foodListStore' using the food-code as the primary key. It then creates indexes for
@@ -155,9 +176,10 @@ LocalDbSingleton.prototype.databaseOpen = function(callback)
     };
     request.onsuccess = function(event)
     {
-        this.db = event.target.result;
-
-        this.db.onversionchange = function(event)
+        this.db = event.target.result; console.log(this.db); 
+        LocalDbSingleton.db = event.target.result; console.log(LocalDbSingleton.db);
+        
+        db.onversionchange = function(event)
         {
             event.target.close(); //close the database connection if successful (DELETE COMMENT AFTER TESTING)
         };

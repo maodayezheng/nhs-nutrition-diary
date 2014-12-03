@@ -1,12 +1,19 @@
-//$(document).ready(function() {
-//	$("#datepicker").datepicker();
-//});
+$(document).ready(function() {
+	$("#datepicker").datepicker();
+});
 
-function showDate() {
+/*function showDate() {
 	document.getElementById("datepicker").datepicker();
-}
+}*/
 
-function makeGraph(presented) {
+/* currently not needed
+function makeGraph(presentedParameter) {
+	var graph = new Graph(presentedParameter);
+	graph.create();
+}
+*/
+
+function makeGraph(presentedParameter) {
 	d3.select("svg").text("");
 	
 	var jsonInput = retrieveData();
@@ -34,23 +41,23 @@ function makeGraph(presented) {
     	
     	yRange = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([
             d3.min(jsonInput, function(d) {
-            	if(presented == "Calories (kcal)")
+            	if(presentedParameter == "Calories (kcal)")
             		return d.calories;
-            	else if(presented == "Protein (g)")
+            	else if(presentedParameter == "Protein (g)")
             		return d.protein;
-            	else if(presented == "Fluid (ml)")
+            	else if(presentedParameter == "Fluid (ml)")
             		return d.fluid;
-            	else if(presented == "Weight (kg)")
+            	else if(presentedParameter == "Weight (kg)")
             		return d.weight;
             }),
             d3.max(jsonInput, function(d) {
-            	if(presented == "Calories (kcal)")
+            	if(presentedParameter == "Calories (kcal)")
             		return d.calories;
-            	else if(presented == "Protein (g)")
+            	else if(presentedParameter == "Protein (g)")
             		return d.protein;
-            	else if(presented == "Fluid (ml)")
+            	else if(presentedParameter == "Fluid (ml)")
             		return d.fluid;
-            	else if(presented == "Weight (kg)")
+            	else if(presentedParameter == "Weight (kg)")
             		return d.weight;
 			})
         ]),
@@ -82,20 +89,20 @@ function makeGraph(presented) {
     	.attr("dy", ".71em")
     	.attr("x", -20)
     	.style("text-anchor", "end")
-    	.text(presented);
+    	.text(presentedParameter);
 	
 	var lineFunc = d3.svg.line()
 	  .x(function(d) {
 	    return xRange(parseDate(d.timestamp));
 	  })
 	  .y(function(d) {
-		  if(presented == "Calories (kcal)")
+		  if(presentedParameter == "Calories (kcal)")
 			  return yRange(d.calories);
-      	else if(presented == "Protein (g)")
+      	else if(presentedParameter == "Protein (g)")
 			  return yRange(d.protein);
-      	else if(presented == "Fluid (ml)")
+      	else if(presentedParameter == "Fluid (ml)")
 			  return yRange(d.fluid);
-      	else if(presented == "Weight (kg)")
+      	else if(presentedParameter == "Weight (kg)")
 			  return yRange(d.weight);
 	  })
 	  .interpolate('linear');
@@ -105,7 +112,11 @@ function makeGraph(presented) {
 	  .attr('stroke', 'blue')
 	  .attr('stroke-width', 2)
 	  .attr('fill', 'none');
+	
+	d3.select('svg').attr("width", "100%").attr("height", "100%");
+	
 }
+
 
 function retrieveData() {
 	var data = [

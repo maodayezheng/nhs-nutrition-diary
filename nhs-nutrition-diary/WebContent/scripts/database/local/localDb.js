@@ -37,7 +37,7 @@ function LocalDbSingleton()
 	instance.constructor = LocalDbSingleton; //reset the constructor pointer
 	//below are all of the object's properties. The names of object stores are stored in variables to make re-factoring easier later. 
 	instance.dbName = 'appetiteLocalStore'; instance.db ='';
-	instance.version =1; //indexedDB version number
+	instance.version = 1; //indexedDB version number
 	return instance;
 }
 
@@ -79,7 +79,7 @@ LocalDbSingleton.prototype.databaseSearch = function(key, oStore, index, callbac
  * appending HTML to a predefined div. 
  * @param result This is an array containing the results from the databaseSearch method. 
  */
-function displayResults(result)
+LocalDbSingleton.prototype.displayResults = function(result)
 {
     var results = result;
     document.getElementById("tableOfResults").innerHTML = '';
@@ -118,7 +118,7 @@ LocalDbSingleton.prototype.databaseOpen = function(callback)
 
         /* The following creates the Store/object store 'foodListStore' using the food-code as the primary key. It then creates indexes for
          * the food code and food name as lower case. Apart from the primary key all indexes can be repeated and so are non unique.*/
-        if(!db.objectStoreNames.contains(this.foodListStore)) //this check is needed so that if the db version is incremented in the future, those users who already have the Store do not duplicate it.
+        if(!db.objectStoreNames.contains(foodListStore)) //this check is needed so that if the db version is incremented in the future, those users who already have the Store do not duplicate it.
         {
             var foodList = db.createObjectStore(foodListStore, { keyPath: 'FoodCode' });
             foodList.createIndex("FoodCode", "FoodCode", { unique: true });
@@ -150,7 +150,8 @@ LocalDbSingleton.prototype.databaseOpen = function(callback)
         }
         if(!db.objectStoreNames.contains(foodManifestStore)) //Store 5
         {
-            //var foodManifest = db.createObjectStore(foodManifest, { keyPath: 'FoodCode' });
+            //TODO update
+        	//var foodManifest = db.createObjectStore(foodManifest, { keyPath: 'FoodCode' });
             //foodManifest.createIndex("Date", "Date", { unique: false }); //Adding this index so as to allow fast retrieval/addition to the object store by date.
 
         }
@@ -175,11 +176,9 @@ LocalDbSingleton.prototype.databaseOpen = function(callback)
         } 
     };
     request.onsuccess = function(event)
-    {
-        this.db = event.target.result; console.log(this.db); 
-        LocalDbSingleton.db = event.target.result; console.log(LocalDbSingleton.db);
-        
-        db.onversionchange = function(event)
+    { 
+        LocalDbSingleton.db = event.target.result; 
+        LocalDbSingleton.db.onversionchange = function(event)
         {
             event.target.close(); //close the database connection if successful (DELETE COMMENT AFTER TESTING)
         };
@@ -225,9 +224,8 @@ LocalDbSingleton.prototype.databaseDelete = function()
 var db1 = new LocalDbSingleton();
 db1.databaseOpen(function() 
 {
-	var begin = db1.begin, end = parseInt(Date.now());
+	var begin = db1.begin, end = Date.now();
 	var time = end-begin;
     console.log('It took '+time+' milliseconds to populate database');
     console.log('Database created and populated successfully.');
-	console.log('at callback');
 });

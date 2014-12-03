@@ -45,6 +45,8 @@ function LocalDbSingleton()
 	return instance;
 }
 
+
+//////////////////////////////////////This function contains dummy data for testing at the moment. To be implemented in the future. 
 /**
  * Returns all objects in a object store which are contained within a given date interval.
  * @param oStore   The object store the caller wishes to return results from.
@@ -92,16 +94,31 @@ LocalDbSingleton.prototype.get = function(oStore, dateFrom, dateTo)
 	    		}
 	    	];
 	    	
-	//alert('GET LOCALDBSINGLETON');
-	//alert('');
 }
+
+
+//TODO Decide on how to create a uniqueID for each entry in the manifests and user tables. 
+//TODO Change the raw JSON food data so it is not a global but enclosed within a function. Do the same with the symptom List.
+//TODO Finalise the add function (can only be done once unique ID is sorted).
+//TODO Create and finalise a delete element function. 
+//TODO Add add property (see comment in localDBAdd function for loop).  
+//TODO Finish this TODO list. 
+
+
+
+
+
+
+
+
+
+
 
 /**This function places the objects contained in the array argument in the specified object store. It then recursively calls itself to place the same objects in the
  * syncToServer object store. In the case of the recursive call each object is added with the additional property of what store they were initially added to.   
  * @param oStore			This is the object store in the local indexedDB database you would like to add your JS objects to.
  * @param arrayOfObjects	This is an array containing the objects you would like to add to the local database. 
  */
-
 LocalDbSingleton.prototype.localDbAdd = function(oStore, arrayOfObjects) 
 {
 	var _this=this; //storing object reference for binding purposes.  
@@ -116,6 +133,7 @@ LocalDbSingleton.prototype.localDbAdd = function(oStore, arrayOfObjects)
 			dbAdditionRequest = objectStore.add(arrayOfObjects[i]);
 			syncToServerArray[i]= arrayOfObjects[i];
 			syncToServerArray[i].storedIn = oStore; //adding this property makes it clear which objectStore each object was added to in the local database (useful for the sync with the server). 	
+			//ADD ADD property which states that these objects have been added (delete property should be in delete function). Also edit property for other function. 
 	    }
 		dbAdditionRequest.onerror = function(e) 
 		{
@@ -146,8 +164,6 @@ LocalDbSingleton.prototype.localDbAdd = function(oStore, arrayOfObjects)
 		}
 	}
 }
-
-
 
 
 
@@ -207,10 +223,10 @@ LocalDbSingleton.prototype.displayResults = function(result)
 }
 
 
-
 /**
  * The first time this function is called (or if the version number is incremented) the 'onupgradeneeded' event handler will run and the 
  * object stores will be created. Indexes are then made to make it easier to search the database.
+ * @param callback	Function you wish to call once this asynchronous method completes. e.g. dispayResults. 
  */
 LocalDbSingleton.prototype.databaseOpen = function(callback)
 {
@@ -260,8 +276,8 @@ LocalDbSingleton.prototype.databaseOpen = function(callback)
         if(!db.objectStoreNames.contains(foodManifestStore)) //Store 5
         {
             //TODO update
-        	//var foodManifest = db.createObjectStore(foodManifest, { keyPath: 'FoodCode' });
-            //foodManifest.createIndex("Date", "Date", { unique: false }); //Adding this index so as to allow fast retrieval/addition to the object store by date.
+        	var foodManifest = db.createObjectStore(foodManifest, { keyPath: 'FoodCode' });
+            foodManifest.createIndex("Date", "Date", { unique: false }); //Adding this index so as to allow fast retrieval/addition to the object store by date.
 
         }
         if(!db.objectStoreNames.contains(symptomManifestStore)) //Store 6

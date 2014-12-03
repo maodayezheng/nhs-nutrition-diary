@@ -41,6 +41,14 @@ function LocalDbSingleton()
 	return instance;
 }
 
+
+LocalDbSingleton.prototype.get = function(dateFrom, dateTo)
+{
+	alert('GET LOCALDBSINGLETON');
+}
+
+
+
 /**
  * This function is used to search any object store in the database. You provide the key you are searching for, the object store you want to search in and the index
  * you are searching through - all as strings.  

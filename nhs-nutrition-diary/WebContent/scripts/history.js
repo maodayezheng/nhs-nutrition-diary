@@ -1,18 +1,9 @@
-//$(document).ready(function() {
-//	$("#datepicker").datepicker();
-//});
-
-/*function showDate() {
-	document.getElementById("datepicker").datepicker();
-}*/
-
 /* currently not needed
 function makeGraph(presentedParameter) {
 	var graph = new Graph(presentedParameter);
 	graph.create();
 }
 */
-
 
 function makeGraph(presentedParameter) {
 	d3.select("svg").text("");

@@ -15,10 +15,6 @@
     	<script src="scripts/util/dateTimePicker.js"></script>
     	<script src="scripts/Navigator.js"></script>
   		<script src="scripts/listViewController.js"></script>
-  		
-
- 
-  
     	<title>Symptoms</title>
 	</head>
   	
@@ -38,15 +34,10 @@
     	<div class="container">
       		<form class="form-signup" role="form">
 	        	<div class="well" style="max-height: 400px;overflow: auto;">
-	        	<input type="text" class="date" id="datepicker"> 
-	        	  <input type="text" class="date" id="datetimepicker1"/>
-
-	        	 
-	            	<ul class="list-group checked-list-box" id="list">
-							                	
-	                </ul>
+	        		<input type="text" class="date" id="datepicker"> 
+	        	  	<input type="text" class="date" id="datetimepicker1">
+	            	<ul class="list-group checked-list-box" id="list"></ul>
 	            </div>
-	      		<!-- http://bootsnipp.com/snippets/featured/checked-list-group -->
 			</form>
 			<button id="btn_symptoms_to_symptomNotInList" class="btn btn-lg btn-primary btn-block" onclick="Navigator.prototype.navigate(this.id)">Symptom not in list</button>
 			<button class="btn btn-lg btn-primary btn-block" type="submit">Submit symptoms</button>

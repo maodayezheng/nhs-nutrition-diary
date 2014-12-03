@@ -4,13 +4,20 @@
     	<meta content="charset=utf-8"/>
     	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+    	<link href="css/jquery-ui.min.css" rel="stylesheet">
     	<link href="lib/bootstrap/bootstrap.min.css" rel="stylesheet"/>
   		<link href="css/standardPage.css" rel="stylesheet"/>
+  		<script src="lib/jquery/jquery.js"></script>
+  		<script src="lib/jquery/jquery-ui.min.js"></script>
     	<script src="lib/bootstrap/bootstrap.min.js"></script>
-		<script src="lib/jquery/jquery-2.1.1.min.js"></script>
-		<script src="scripts/symptoms.js"></script>
     	<script src="scripts/Navigator.js"></script>
-  		
+  		<script src="scripts/listViewController.js"></script>
+  		<script>
+        $(function() {
+        $( "#datepicker" ).datepicker();
+        });
+        </script>
+  
     	<title>Symptoms</title>
 	</head>
   	
@@ -30,6 +37,7 @@
     	<div class="container">
       		<form class="form-signup" role="form">
 	        	<div class="well" style="max-height: 400px;overflow: auto;">
+	        	<input type="text" class="date" id="datepicker"> 
 	            	<ul class="list-group checked-list-box" id="list">
 							                	
 	                </ul>
@@ -44,5 +52,8 @@
         <script>
             $("input[name='demo3']").TouchSpin();
         </script>
+        
+        
+        
   </body>
 </html>

@@ -1,5 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
 	<head>
     	<meta content="charset=utf-8"/>
     	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -15,6 +15,9 @@
     	<script src="scripts/util/dateTimePicker.js"></script>
     	<script src="scripts/Navigator.js"></script>
   		<script src="scripts/listViewController.js"></script>
+
+  		<script src="scripts/symptoms.js"></script>
+ 
     	<title>Symptoms</title>
 	</head>
   	
@@ -23,9 +26,7 @@
   			<div class="container-fluid">
     			<div class="collapse navbar-collapse">
   					<h3 class="nav-title">Symptoms
-    					<button class="btn btn-default btn-lg" type="button" style="margin-left:15px;border-radius: 6px; ">
-    						<span class="glyphicon glyphicon-calendar"></span>
-    					</button>
+  
   					</h3>
 				</div>
   			</div>
@@ -34,9 +35,13 @@
     	<div class="container">
       		<form class="form-signup" role="form">
 	        	<div class="well" style="max-height: 400px;overflow: auto;">
-	        		<input type="text" class="date" id="datepicker"> 
-	        	  	<input type="text" class="date" id="datetimepicker1">
-	            	<ul class="list-group checked-list-box" id="list"></ul>
+
+	        	date: <input type="text" class="date" id="datepicker"> 
+	        	 time: <input type="text" class="time" id="datetimepicker1"/>      	 
+	            	<ul class="list-group checked-list-box" id="list">
+							                	
+	                </ul>
+
 	            </div>
 			</form>
 			<button id="btn_symptoms_to_symptomNotInList" class="btn btn-lg btn-primary btn-block" onclick="Navigator.prototype.navigate(this.id)">Symptom not in list</button>

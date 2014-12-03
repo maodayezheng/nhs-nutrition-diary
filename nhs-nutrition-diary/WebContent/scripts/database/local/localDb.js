@@ -45,6 +45,7 @@ function LocalDbSingleton()
 LocalDbSingleton.prototype.get = function(dateFrom, dateTo)
 {
 	alert('GET LOCALDBSINGLETON');
+	alert('');
 }
 
 

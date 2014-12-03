@@ -1,34 +1,4 @@
-//please import this file if you need 
-//-------demo-----------
-/* the demo below show how to use the function in this file
 
-  $(document).ready(function(){
-
-	
-  	$('#test').append(createDeleteButton());// create a delete Button
- 	$('#test').append(createControlButton('addButton'));//create a add Button
-  	$('#test').append(createControlButton('reduceButton'));// create a reduce Button
-  	$('#test').append(createAccountButton());// create a account Button
- 	 
-  	var items = [button,button,button,button];//delcare the items in control panel first
- 	$('#test').addControlPanel(items);// create a control panel
-
-   $(document).on('click','[type=add]',function(){
- 		var controlledElement = $(this).siblings('selector');
-
- 		});
-
-  $(document).on('click','[type=reduce]',function(){
- 	var controlledElement = $(this).siblings('selector');
- 		});
-
- $(document).on('click','[type=delete]',function(){
-	var deleteItem = $(this).closest('selector');
-	 $(document).remove(deleteItem);
- 		});
-
-
-  });*/
 
 jQuery.fn.extend({
 
@@ -133,24 +103,22 @@ function createBasicLi(){
 	})));
 	
 	li.addItemToIconPos = function(item){
-		console.log("add icon to list");
-		var position = $(this).find('.iconPosition');
 		
+		var position = $(this).find('.iconPosition');
 		position.append(item);	
 	};
 	
 	li.addItemToContentPos = function(item){
-		console.log("add content to list");
+		
 		var position = $(this).find('.contentPostion');
 		position.text(item);
 	};
 	
 	li.addItemToControlPanelPos = function(item){
-		console.log("add panel to list");
 		var position = $(this).find('.controlPanelPosition');
 		position.append(item);
 	}
-	
+
 	return li;
 	}
 

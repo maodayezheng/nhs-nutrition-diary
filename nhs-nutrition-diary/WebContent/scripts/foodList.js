@@ -6,6 +6,9 @@ $(document).ready(function(){
 	
 		var data =["apple","banana","chicken","beef","peal"];
 		$('#list').generateList(data);
+		$('#search').autocomplete({
+			source:data
+		});
 });
 
 
@@ -29,6 +32,5 @@ jQuery.fn.extend({
 			list.append(li);
 		})
 	}
-	
 	
 });

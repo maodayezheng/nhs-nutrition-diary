@@ -7,9 +7,10 @@
     	<link href="lib/bootstrap/bootstrap.min.css" rel="stylesheet">
     	<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css" />
     	<script src="lib/jquery/jquery-2.1.1.min.js"></script>
-		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+		<script src="lib/jquery/jquery-ui-1.8.11.min.js"></script>
     	<script src="lib/bootstrap/bootstrap.min.js"></script>
-    	<script src="scripts/listViewController.js"></script>
+    	
+    	<link rel="stylesheet" href="css/standardPage.css">
     	<script src="scripts/utiltyItems.js"></script>
     	<script src="scripts/foodList.js"></script>
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -49,7 +50,9 @@
     	<div class="container">
     		<div class="search-field">
       			<div class="input-group input-group-lg">
-  					<input type="text" class="form-control" data-provide="typeahead" placeholder="Enter food" data-source='["beef"]' id="search">
+  					<input type="text" data-toggle="dropdown" class="form-control"  placeholder="Enter food" id="search">
+  					<ul class="dropdown-menu" id="searchResultList">
+           		 </ul>
   					<span class="input-group-btn">
     					<button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
 	    				<button class="btn btn-default" type="button"><span class="glyphicon glyphicon-calendar"></span></button>
@@ -70,7 +73,7 @@
 			<div class="panel panel-default">
   				<div class="panel-heading">Selected food<span style="float:right"><input type="checkbox"> Save as meal</span></div>
 				<div class="panel-body">
-					<ul class="list-group" id="list">
+					<ul class="list-group scrollable-menu" role="menu" id="list">
 						
 					</ul>
 				</div>

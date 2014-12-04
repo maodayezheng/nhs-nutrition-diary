@@ -256,7 +256,8 @@ LocalDbSingleton.prototype.databaseOpen = function(callback)
         if(!db.objectStoreNames.contains(userFoodListStore)) //Store 2. Will contain any custom food created by the user.
         {
             var userFoodList = db.createObjectStore(userFoodListStore, { keyPath: 'EntryNumber', autoIncrement: true }); //key should be combination of user uniqueID, food-ID, and Store auto-generated key.
-            userFoodList.createIndex("Date", "Date", { unique: false });
+            userFoodList.createIndex('Date', 'Date', { unique: false });
+            userFoodList.createIndex('userFoodListId', 'userFoodListId', { unique: true });
         }
         if(!db.objectStoreNames.contains(symptomListStore)) //Store 3. Contains the symptoms given by the staff at Guy's
         {

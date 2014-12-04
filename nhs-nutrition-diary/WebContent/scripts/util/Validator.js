@@ -1,6 +1,6 @@
 function Validator() {}
 
-Validator.prototype.isDate(date) {
+Validator.prototype.isDate = function(date) {
 	alert("isDate");
 	return true;
 	/*
@@ -30,7 +30,7 @@ Validator.prototype.isDate(date) {
 	
 }
 
-Validator.prototype.validateDates(from, to) {
+Validator.prototype.validateDates = function(from, to) {
 	alert("validateDates");
 	if(!isDate(from) || !isDate(to)) {
 		return false;

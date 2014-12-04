@@ -95,6 +95,9 @@ LocalDbSingleton.prototype.get = function(oStore, dateFrom, dateTo)
 	    	];
 	    	
 }
+////////////////////////////////////////////End of testing code block
+
+
 
 
 //TODO Decide on how to create a uniqueID for each entry in the manifests and user tables. 
@@ -103,15 +106,6 @@ LocalDbSingleton.prototype.get = function(oStore, dateFrom, dateTo)
 //TODO Create and finalise a delete element function. 
 //TODO Add add property (see comment in localDBAdd function for loop).  
 //TODO Finish this TODO list. 
-
-
-
-
-
-
-
-
-
 
 
 /**This function places the objects contained in the array argument in the specified object store. It then recursively calls itself to place the same objects in the
@@ -164,7 +158,6 @@ LocalDbSingleton.prototype.localDbAdd = function(oStore, arrayOfObjects)
 		}
 	}
 }
-
 
 
 /**
@@ -346,7 +339,7 @@ LocalDbSingleton.prototype.databaseDelete = function()
 }
 
 
-//BELOW CODE FOR TESTING. DELETE ONCE COMPLETEd. 
+////////////////////////////////////////////////////////BELOW CODE FOR TESTING. DELETE ONCE COMPLETEd. 
 var arrayToAdd = [{name: "one"},{name: "two"},{name: "three"},{name: "four"}]; //for testing. Delete after test. 
 var db1 = new LocalDbSingleton();
 db1.databaseOpen(function() 
@@ -357,3 +350,4 @@ db1.databaseOpen(function()
     console.log('Database created and populated successfully.');
     db1.localDbAdd('userFoodListStore', arrayToAdd);
 });
+/////////////////////////////////////////////////// End of testing block

@@ -105,30 +105,7 @@
     	}
     }
     
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+ 
     /*
      * dbInitialise is the callback function defined for specific use with databaseOpen. It outputs the time in milliseconds that was taken to 
      * open/populate the database. 

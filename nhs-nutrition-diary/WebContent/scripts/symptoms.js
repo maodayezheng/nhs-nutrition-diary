@@ -101,4 +101,6 @@ $(document).ready(function () {
 	$("#symptomList").empty();
 	var symptom = '<li class="list-group-item"> Illness </li>';
 	$("#symptomList").append(symptom);*/
+	
+
 });

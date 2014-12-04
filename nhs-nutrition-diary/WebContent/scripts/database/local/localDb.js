@@ -38,7 +38,7 @@ function LocalDbSingleton()
 	instance.constructor = LocalDbSingleton; //reset the constructor pointer
 	//below are all of the object's properties. The names of object stores are stored in variables to make re-factoring easier later. 
 	instance.dbName = 'appetiteLocalStore'; instance.db ='';
-	instance.version = 1; //indexedDB version number
+	instance.version = 0; //indexedDB version number
 	instance.userStore = 'userStore', instance.foodListStore = 'foodListStore'; instance.userFoodListStore = 'userFoodListStore'; instance.symptomListStore = 'symptomListStore'; 
 	instance.userSymptomListStore = 'userSymptomListStore'; instance.foodManifestStore = 'foodManifestStore'; instance.symptomManifestStore = 'symptomManifestStore'; 
 	instance.weightManifestStore = 'weightManifestStore'; instance.requirementsManifestStore = 'requirementsManifestStore'; instance.syncToServerStore = 'syncToServerStore'; 
@@ -229,14 +229,15 @@ LocalDbSingleton.prototype.databaseOpen = function(vsion /*version*/, callback)
 	var requirementsManifestStore = this.requirementsManifestStore, syncToServerStore = this.syncToServerStore;
     this.begin = Date.now();
     var version = this.version, db =this.db;   
-    
-    var request1 = indexedDB.open(dbName,version);
+    console.log(version);
+    var request1 = indexedDB.open(dbName);
     request1.onerror = _this.databaseError;
     request1.onupgradeneeded = function(event) //This request is to create the object stores. 
     {
         console.log('in request1 onupgradeneeded');
     	db = event.target.result; _this.db=db;
         db.onerror = _this.databaseError;
+        _this.version++;
         if(!db.objectStoreNames.contains(userStore)) //Store 1. Will contain the unique id of the user.  
         {
             console.log('@ Store 1');
@@ -293,29 +294,32 @@ LocalDbSingleton.prototype.databaseOpen = function(vsion /*version*/, callback)
     request1.onsuccess = function(event) 
     { 
     	console.log('request one success'); 
-	    db = event.target.result; _this.db=db;
-		var dataTransaction = db.transaction([foodListStore,symptomListStore], "readwrite");
-    	var fls = dataTransaction.objectStore(foodListStore); 
-    	var sls = dataTransaction.objectStore(symptomListStore);
-    	
-    	var foodDataObject = new FoodDataSingleton();
-    	console.log("Starting to populate the foodListStore.");
-        for (var i in foodDataObject.foodData) 
-        {
-           foodDataObject.foodData[i].FoodNamelc = foodDataObject.foodData[i]["FoodName"].toLowerCase();
-           fls.add(foodDataObject.foodData[i]);
-        }
-        console.log(foodListStore+" Initialisation Complete!");
-    	
-        var symptomListObject = new SymptomListSingleton(); //instantiate the symptomListSingleton to put the symptoms in the store.
-        console.log("Starting to populate the symptomListStore.");
-        for (var i in symptomListObject.symptomList)
-        {
-     	   sls.add(symptomListObject.symptomList[i]);
-        }
-        console.log(symptomListStore+" Initialisation Complete!");
-    
-    	//db.close(); 
+	    console.log(_this.version);
+    	db = event.target.result; _this.db=db;
+    	if (_this.version)
+    	{
+    		var dataTransaction = db.transaction([foodListStore,symptomListStore], "readwrite");
+	    	var fls = dataTransaction.objectStore(foodListStore); 
+	    	var sls = dataTransaction.objectStore(symptomListStore);
+	    	
+	    	var foodDataObject = new FoodDataSingleton();
+	    	console.log("Starting to populate the foodListStore.");
+	        for (var i in foodDataObject.foodData) 
+	        {
+	           foodDataObject.foodData[i].FoodNamelc = foodDataObject.foodData[i]["FoodName"].toLowerCase();
+	           fls.add(foodDataObject.foodData[i]);
+	        }
+	        console.log(foodListStore+" Initialisation Complete!");
+	    	
+	        var symptomListObject = new SymptomListSingleton(); //instantiate the symptomListSingleton to put the symptoms in the store.
+	        console.log("Starting to populate the symptomListStore.");
+	        for (var i in symptomListObject.symptomList)
+	        {
+	     	   sls.add(symptomListObject.symptomList[i]);
+	        }
+	        console.log(symptomListStore+" Initialisation Complete!");
+    	}
+    	 
     	
     	callback(); 
     };
@@ -369,8 +373,8 @@ db1.databaseOpen(null, function()
 {
 	var begin = db1.begin, end = Date.now();
 	var time = end-begin;
-    console.log('It took '+time+' milliseconds to create the object stores and populate the database');
-    //db1.localDbAdd('userFoodListStore', arrayToAdd);
+    console.log('It took '+time+' milliseconds to create the open the database');
+    db1.localDbAdd('userFoodListStore', arrayToAdd);
 });
 
 /////////////////////////////////////////////////// End of testing block

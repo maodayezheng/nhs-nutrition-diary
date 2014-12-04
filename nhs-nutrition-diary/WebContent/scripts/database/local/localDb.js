@@ -221,24 +221,26 @@ LocalDbSingleton.prototype.displayResults = function(result)
  * object stores will be created. Indexes are then made to make it easier to search the database.
  * @param callback	Function you wish to call once this asynchronous method completes. e.g. dispayResults. 
  */
-
-LocalDbSingleton.prototype.databaseOpen = function(callback)
+LocalDbSingleton.prototype.databaseOpen = function(vsion /*version*/, callback)
 {
 	//storing references to the LocalDbSingleton object's properties. 
-	var _this = this, dbName = this.dbName, db = this.db, version = this.version, userStore=this.userStore, foodListStore = this.foodListStore, userFoodListStore = this.userFoodListStore, symptomListStore = this.symptomListStore;
+	var _this = this, dbName = this.dbName, userStore=this.userStore, foodListStore = this.foodListStore, userFoodListStore = this.userFoodListStore, symptomListStore = this.symptomListStore;
 	var userSymptomListStore = this.userSymptomListStore, foodManifestStore = this.foodManifestStore, symptomManifestStore = this.symptomManifestStore, weightManifestStore = this.weightManifestStore;
 	var requirementsManifestStore = this.requirementsManifestStore, syncToServerStore = this.syncToServerStore;
     this.begin = Date.now();
+    var version = this.version, db =this.db;   
     
-    var request1 = indexedDB.open(dbName, version);
+    var request1 = indexedDB.open(dbName,version);
+    request1.onerror = _this.databaseError;
     request1.onupgradeneeded = function(event) //This request is to create the object stores. 
     {
-        db = event.target.result; 
-        event.target.transaction.onerror = _this.databaseError;
-        
+        console.log('in request1 onupgradeneeded');
+    	db = event.target.result; _this.db=db;
+        db.onerror = _this.databaseError;
         if(!db.objectStoreNames.contains(userStore)) //Store 1. Will contain the unique id of the user.  
         {
-            var userDataStore = db.createObjectStore(userStore, { keyPath: 'ID' });
+            console.log('@ Store 1');
+        	var userDataStore = db.createObjectStore(userStore, { keyPath: 'ID' });
         }
         if(!db.objectStoreNames.contains(foodListStore)) //Store 2. Will contain the food data provided by the open source FDA UK website. 
         {
@@ -284,14 +286,93 @@ LocalDbSingleton.prototype.databaseOpen = function(callback)
         }
         if(!db.objectStoreNames.contains(syncToServerStore)) //Store 10
         {
-            var syncToServer = db.createObjectStore(syncToServerStore, { keyPath: 'EntryNumber', autoIncrement: true });
+        	console.log('@ Store 10');
+        	var syncToServer = db.createObjectStore(syncToServerStore, { keyPath: 'EntryNumber', autoIncrement: true });
         } 
     };
-    request1.onsuccess = function(event)
+    request1.onsuccess = function(event) 
     { 
+    	console.log('request one success'); 
+	    db = event.target.result; _this.db=db;
+		var dataTransaction = db.transaction([foodListStore,symptomListStore], "readwrite");
+    	var fls = dataTransaction.objectStore(foodListStore); 
+    	var sls = dataTransaction.objectStore(symptomListStore);
+    	
+    	var foodDataObject = new FoodDataSingleton();
+    	console.log("Starting to populate the foodListStore.");
+        for (var i in foodDataObject.foodData) 
+        {
+           foodDataObject.foodData[i].FoodNamelc = foodDataObject.foodData[i]["FoodName"].toLowerCase();
+           fls.add(foodDataObject.foodData[i]);
+        }
+        console.log(foodListStore+" Initialisation Complete!");
+    	
+        var symptomListObject = new SymptomListSingleton(); //instantiate the symptomListSingleton to put the symptoms in the store.
+        console.log("Starting to populate the symptomListStore.");
+        for (var i in symptomListObject.symptomList)
+        {
+     	   sls.add(symptomListObject.symptomList[i]);
+        }
+        console.log(symptomListStore+" Initialisation Complete!");
+    
+    	//db.close(); 
+    	
+    	callback(); 
+    };
+    
+    request1.onversionchange = function(event)
+    {
+        console.log('at request1 oneversioncahnge');
+      	event.target.close(); //close the database connection if successful (DELETE COMMENT AFTER TESTING)
+    };
+}
+    
+
+/*
+	var dataTransaction = db.transaction([foodListStore,symptomListStore], "readwrite");
+	var fls = dataTransaction.objectStore(foodListStore); 
+	var sls = dataTransaction.objectStore(symptomListStore);
+	
+	var foodDataObject = new FoodDataSingleton();
+	console.log("Starting to populate the foodListStore.");
+    for (var i in foodDataObject.foodData) 
+    {
+       foodDataObject.foodData[i].FoodNamelc = foodDataObject.foodData[i]["FoodName"].toLowerCase();
+       fls.add(foodDataObject.foodData[i]);
+    }
+    console.log(foodListStore+" Initialisation Complete!");
+	
+    var symptomListObject = new SymptomListSingleton(); //instantiate the symptomListSingleton to put the symptoms in the store.
+    console.log("Starting to populate the symptomListStore.");
+    for (var i in symptomListObject.symptomList)
+    {
+ 	   sls.add(symptomListObject.symptomList[i]);
+    }
+    console.log(symptomListStore+" Initialisation Complete!");
+    */
+    
+
+    
+    
+    
+    
+    
+   
+    
+  /*  
+    //CONTINUE FROM HERE
     	console.log('request1 success');
         var db = event.target.result; _this.db=db;
     	var request2 = indexedDB.open(_this.dbName, _this.version+1);
+    	
+    	/*TRY IMPLEMENT THIS TRANSACTION IN PREVIOUS CODE
+    	//TEST IF THIS WORKS OUTSIDE OF FUNCTION
+    	_this.db.onversionchange = function(event)
+    	{
+    	   	    console.log('atoneversioncahnge closing the db');
+    	   		event.target.close(); //close the database connection if successful (DELETE COMMENT AFTER TESTING)
+    	};
+    	
     	
         request1.result.onversionchange = function(event) 
         {
@@ -320,15 +401,14 @@ LocalDbSingleton.prototype.databaseOpen = function(callback)
             dataTransaction.oncomplete = function(event)
             {
             	console.log('after transaction');        		
-            	event.target.result.close();
+            	db.close();
             }
-            
         	//callback();
         }
       
     };
 }
-
+*/
 /*
 function CreateObjectStore(dbName, storeName) {
     var request = indexedDB.open(dbName);
@@ -360,7 +440,7 @@ function CreateObjectStore(dbName, storeName) {
 LocalDbSingleton.prototype.databaseError = function(event)
 {
     console.error('An IndexedDB error has occurred', event);
-    console.log('Error name: '+e.target.error.name);
+    console.log('Error name: '+event.target.error.name);
 }
 
 /**
@@ -368,7 +448,8 @@ LocalDbSingleton.prototype.databaseError = function(event)
  */
 LocalDbSingleton.prototype.databaseDelete = function()
 {
-    var req = indexedDB.deleteDatabase(this.dbName);
+	var db= this.db; db.close(); 
+	var req = indexedDB.deleteDatabase(this.dbName);
     var dbName = this.dbName;
     req.onsuccess = function ()
     {
@@ -388,12 +469,12 @@ LocalDbSingleton.prototype.databaseDelete = function()
 ////////////////////////////////////////////////////////BELOW CODE FOR TESTING. DELETE ONCE COMPLETEd. 
 var arrayToAdd = [{name: "one"},{name: "two"},{name: "three"},{name: "four"}]; //for testing. Delete after test. 
 var db1 = new LocalDbSingleton();
-db1.databaseOpen(function() 
+db1.databaseOpen(null, function()
 {
 	var begin = db1.begin, end = Date.now();
 	var time = end-begin;
-    console.log('It took '+time+' milliseconds to populate database');
-    console.log('Database created and populated successfully.');
+    console.log('It took '+time+' milliseconds to create the object stores and populate the database');
     //db1.localDbAdd('userFoodListStore', arrayToAdd);
 });
+
 /////////////////////////////////////////////////// End of testing block

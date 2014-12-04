@@ -1,7 +1,7 @@
 function Validator() {}
 
 Validator.prototype.isDate = function(date) {
-	alert("isDate");
+	//TODO check if date is in format 'mm/dd/yyyy'
 	return true;
 	/*
 	if((date != "Invalid Date") && (isNaN(date))) {
@@ -30,9 +30,8 @@ Validator.prototype.isDate = function(date) {
 	
 }
 
-Validator.prototype.validateDates = function(from, to) {
-	alert("validateDates");
-	if(!isDate(from) || !isDate(to)) {
+Validator.prototype.datesAreValid = function(from, to) {
+	if(!this.isDate(from) || !this.isDate(to)) {
 		return false;
 	}
 

@@ -9,11 +9,10 @@ function getDates() {
 	var from = document.getElementById("datepickerFrom").value;
 	var to = document.getElementById("datepickerTo").value;
 	
-	alert("beforeValidator");
 	//TODO problem is that Validator cannot be found
 	var validator = new Validator();
 	alert("beforeValidation");
-	if(!validator.validateDates(from, to)) {
+	if(!validator.datesAreValid(from, to)) {
 		alert('Dates not valid!');
 		return false;
 	}

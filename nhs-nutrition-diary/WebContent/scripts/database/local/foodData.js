@@ -1,6 +1,6 @@
 /**
  * Created by Vikram Bakshi on 27/11/2014.
- * Purpose: This .js file's purpose is to contain the raw foodData in JSON form which will be stored in the foodListTable in the user's local indexedDB database.
+ * Purpose: This .js file's purpose is to contain the raw foodData in JSON form which will be stored in the foodListStore in the user's local indexedDB database.
  *
  */
 

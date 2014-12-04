@@ -1,15 +1,16 @@
 /**
  * Created by Vikram Bakshi on 02/12/2014.
  * This .js file creates a database which is stored locally by the user. The database defines the following object stores:
- * 1) foodListStore - This contains all of the foods available from the FSA database along with nutrition values. When a user searches for a food they will consult this object store.
- * 2) userFoodListStore - Will contain any custom foods created by the user.
- * 3) symptomListStore - This contains all of the symptoms which are pre-build into the application (provided by the staff at Guys and St Thomas' NHS Trust).
- * 4) userSymptomListStore - Will contain any custom symptoms created by the user.
- * 5) foodManifest - Will contain data entered by the user relating to the foods/fluids they have consumed.
- * 6) symptomManifest - Will contain data entered by the user relating to the symptoms they have suffered.
- * 7) weightManifest - Will contain data entered by the user relating to their weight.
- * 8) requirementsManifest - This will contain the requirements (calories, protein in grams, etc.) of the user. Requirements can change depending on the weight entry and activity level of the user.
- * 9) syncToServer - This Store will log the entries made in any of manifests and will send them to the server so it can accurately reflect any changes.
+ * 1) userStore - Contains user details - NHS number/hospital number etc. 
+ * 2) foodListStore - This contains all of the foods available from the FSA database along with nutrition values. When a user searches for a food they will consult this object store.
+ * 3) userFoodListStore - Will contain any custom foods created by the user.
+ * 4) symptomListStore - This contains all of the symptoms which are pre-build into the application (provided by the staff at Guys and St Thomas' NHS Trust).
+ * 5) userSymptomListStore - Will contain any custom symptoms created by the user.
+ * 6) foodManifest - Will contain data entered by the user relating to the foods/fluids they have consumed.
+ * 7) symptomManifest - Will contain data entered by the user relating to the symptoms they have suffered.
+ * 8) weightManifest - Will contain data entered by the user relating to their weight.
+ * 9) requirementsManifest - This will contain the requirements (calories, protein in grams, etc.) of the user. Requirements can change depending on the weight entry and activity level of the user.
+ * 10) syncToServer - This Store will log the entries made in any of manifests and will send them to the server so it can accurately reflect any changes.
  *                   After the server updates this Store's entries will be cleared. An internet connection is required for this.
  *
  * Resources used: https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API/Using_IndexedDB - Mozilla tutorial for IndexedDB
@@ -100,7 +101,7 @@ LocalDbSingleton.prototype.get = function(oStore, dateFrom, dateTo)
 
 
 
-//TODO Decide on how to create a uniqueID for each entry in the manifests and user tables. 
+//TODO Decide on how to create a uniqueID for each entry in the manifests and user tables. //Think it is done. 
 //TODO Change the raw JSON food data so it is not a global but enclosed within a function. Do the same with the symptom List.
 //TODO Finalise the add function (can only be done once unique ID is sorted).
 //TODO Create and finalise a delete element function. 
@@ -126,8 +127,7 @@ LocalDbSingleton.prototype.localDbAdd = function(oStore, arrayOfObjects)
 	    {
 			dbAdditionRequest = objectStore.add(arrayOfObjects[i]);
 			syncToServerArray[i]= arrayOfObjects[i];
-			syncToServerArray[i].storedIn = oStore; //adding this property makes it clear which objectStore each object was added to in the local database (useful for the sync with the server). 	
-			//ADD ADD property which states that these objects have been added (delete property should be in delete function). Also edit property for other function. 
+			syncToServerArray[i].details = 'getTheUniqueId'+'-'+'ADD'+'-'+oStore; //uniqueID-ADD-Ostore delimitted by'-' stored as a property for each object. 
 	    }
 		dbAdditionRequest.onerror = function(e) 
 		{
@@ -225,7 +225,7 @@ LocalDbSingleton.prototype.databaseOpen = function(callback)
 {
     var _this = this; //storing reference for use in by embedded functions as closure. 
 	this.begin = Date.now();
-    var dbName = this.dbName, db = this.db, version = this.version; 
+	var dbName = this.dbName, db = this.db, version = this.version; 
     var foodListStore = this.foodListStore, userFoodListStore = this.userFoodListStore, symptomListStore = this.symptomListStore, userSymptomListStore = this.userSymptomListStore, foodManifestStore = this.foodManifestStore;
     var symptomManifestStore = this.symptomManifestStore, weightManifestStore = this.weightManifestStore, requirementsManifestStore = this.requirementsManifestStore, syncToServerStore = this.syncToServerStore;
     
@@ -255,13 +255,27 @@ LocalDbSingleton.prototype.databaseOpen = function(callback)
         }
         if(!db.objectStoreNames.contains(userFoodListStore)) //Store 2. Will contain any custom food created by the user.
         {
-            var userFoodList = db.createObjectStore(userFoodListStore, { keyPath: 'EntryNumber', autoIncrement: true }); //key should be combination of user uniqueID, food-ID, and Store auto-generated key.
+            var userFoodList = db.createObjectStore(userFoodListStore, {keyPath: 'EntryNumber', autoIncrement: true }); 
             userFoodList.createIndex('Date', 'Date', { unique: false });
             userFoodList.createIndex('userFoodListId', 'userFoodListId', { unique: true });
         }
         if(!db.objectStoreNames.contains(symptomListStore)) //Store 3. Contains the symptoms given by the staff at Guy's
         {
-           var symptomList = db.createObjectStore(symptomListStore, { keyPath: 'FoodCode' });
+           var symptomList = db.createObjectStore(symptomListStore, {keyPath: 'id', autoIncrement: true });
+           symptomList.createIndex('Symptom', 'Symptom', {unique: true});
+           symptomList.transaction.oncomplete = function(event)
+           {
+               var symptomDataStore = db.transaction(symptomListStore, "readwrite").objectStore(symptomListStore); 
+               console.log("Starting to populate the symptomListStore."); 
+               var symptomListObject = new SymptomListSingleton(); //instantiate the symptomListSingleton to put the symptoms in the store.
+               for (var i in symptomListObject.symptomList)
+               {
+            	   console.log(symptomListObject.symptomList[i]);
+            	   //symptomListObject.symptomList[i]['EntryNumber']= '';
+            	   symptomDataStore.add(symptomListObject.symptomList[i]);
+               }
+               console.log(symptomListStore+" Initialisation Complete!");
+           }  
         }
         if(!db.objectStoreNames.contains(userSymptomListStore)) //Store 4. Will contain any custom created symptoms by the user.
         {
@@ -270,7 +284,7 @@ LocalDbSingleton.prototype.databaseOpen = function(callback)
         if(!db.objectStoreNames.contains(foodManifestStore)) //Store 5
         {
             //TODO update
-        	var foodManifest = db.createObjectStore(foodManifest, { keyPath: 'FoodCode' });
+        	var foodManifest = db.createObjectStore(foodManifestStore, { keyPath: 'FoodCode' });
             foodManifest.createIndex("Date", "Date", { unique: false }); //Adding this index so as to allow fast retrieval/addition to the object store by date.
 
         }
@@ -307,6 +321,46 @@ LocalDbSingleton.prototype.databaseOpen = function(callback)
     };
     request.onerror = this.databaseError;
 }
+
+
+
+
+function CreateObjectStore(dbName, storeName) {
+    var request = indexedDB.open(dbName);
+    request.onsuccess = function (e){
+        var database = e.target.result;
+        var version =  parseInt(database.version);
+        database.close();
+        var secondRequest = indexedDB.open(dbName, version+1);
+        secondRequest.onupgradeneeded = function (e) {
+            var database = e.target.result;
+            var objectStore = database.createObjectStore(storeName, {
+                keyPath: 'id'
+            });
+        };
+        secondRequest.onsuccess = function (e) {
+            e.target.result.close();
+        }
+    }
+}
+/*
+first -> create object stores
+second-> populate food store
+third -> populate symptom list 
+
+
+*/
+
+
+
+
+
+
+/**
+ * Function adds given input to selected object store
+ */
+
+
 
 /**
  * Function prints error to the console if the database encounters one. 

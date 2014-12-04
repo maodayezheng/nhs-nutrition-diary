@@ -220,118 +220,7 @@ LocalDbSingleton.prototype.displayResults = function(result)
  * The first time this function is called (or if the version number is incremented) the 'onupgradeneeded' event handler will run and the 
  * object stores will be created. Indexes are then made to make it easier to search the database.
  * @param callback	Function you wish to call once this asynchronous method completes. e.g. dispayResults. 
- 
-LocalDbSingleton.prototype.databaseOpen = function(callback)
-{
-    var _this = this; //storing reference for use in by embedded functions as closure. 
-	this.begin = Date.now();
-	var dbName = this.dbName, db = this.db, version = this.version; 
-    var foodListStore = this.foodListStore, userFoodListStore = this.userFoodListStore, symptomListStore = this.symptomListStore, userSymptomListStore = this.userSymptomListStore, foodManifestStore = this.foodManifestStore;
-    var symptomManifestStore = this.symptomManifestStore, weightManifestStore = this.weightManifestStore, requirementsManifestStore = this.requirementsManifestStore, syncToServerStore = this.syncToServerStore;
-    
-    var request = indexedDB.open(dbName, version);
-
-    request.onupgradeneeded = function(event) //will run the first time the database is created or if the version has been updated.
-    {
-        db = event.target.result; 
-        event.target.transaction.onerror = _this.databaseError;
-        
-        if(!db.objectStoreNames.contains(foodListStore)) //this check is needed so that if the db version is incremented in the future, those users who already have the Store do not duplicate it.
-        {
-            var foodList = db.createObjectStore(foodListStore, { keyPath: 'FoodCode' });
-            foodList.createIndex("FoodCode", "FoodCode", { unique: true });
-            foodList.createIndex("FoodNamelc", "FoodNamelc", { unique: false });
-            foodList.transaction.oncomplete = function(event)
-            {
-                var foodDataStore = db.transaction(foodListStore, "readwrite").objectStore(foodListStore); //begin transaction.
-                console.log("Starting to populate the foodListStore.");
-                for (var i in foodData) 
-                {
-                   foodData[i].FoodNamelc = foodData[i]["FoodName"].toLowerCase();
-                   foodDataStore.add(foodData[i]);
-                }
-                console.log(foodListStore+" Initialisation Complete!");
-            }
-        }
-        if(!db.objectStoreNames.contains(userFoodListStore)) //Store 2. Will contain any custom food created by the user.
-        {
-            var userFoodList = db.createObjectStore(userFoodListStore, {keyPath: 'EntryNumber', autoIncrement: true }); 
-            userFoodList.createIndex('Date', 'Date', { unique: false });
-            userFoodList.createIndex('userFoodListId', 'userFoodListId', { unique: true });
-        }
-        if(!db.objectStoreNames.contains(symptomListStore)) //Store 3. Contains the symptoms given by the staff at Guy's
-        {
-           var symptomList = db.createObjectStore(symptomListStore, {keyPath: 'id', autoIncrement: true });
-           symptomList.createIndex('Symptom', 'Symptom', {unique: true});
-           symptomList.transaction.oncomplete = function(event)
-           {
-               var symptomDataStore = db.transaction(symptomListStore, "readwrite").objectStore(symptomListStore); 
-               console.log("Starting to populate the symptomListStore."); 
-               var symptomListObject = new SymptomListSingleton(); //instantiate the symptomListSingleton to put the symptoms in the store.
-               for (var i in symptomListObject.symptomList)
-               {
-            	   console.log(symptomListObject.symptomList[i]);
-            	   //symptomListObject.symptomList[i]['EntryNumber']= '';
-            	   symptomDataStore.add(symptomListObject.symptomList[i]);
-               }
-               console.log(symptomListStore+" Initialisation Complete!");
-           }  
-        }
-        if(!db.objectStoreNames.contains(userSymptomListStore)) //Store 4. Will contain any custom created symptoms by the user.
-        {
-           var userSymptomList = db.createObjectStore(userSymptomListStore, { keyPath: 'Date' });
-        }
-        if(!db.objectStoreNames.contains(foodManifestStore)) //Store 5
-        {
-            //TODO update
-        	var foodManifest = db.createObjectStore(foodManifestStore, { keyPath: 'FoodCode' });
-            foodManifest.createIndex("Date", "Date", { unique: false }); //Adding this index so as to allow fast retrieval/addition to the object store by date.
-
-        }
-        if(!db.objectStoreNames.contains(symptomManifestStore)) //Store 6
-        {
-          //  var symptomManifest = db.createObjectStore(foodManifestStore, { keyPath: 'FoodCode' });
-            //symptomManifestStore.createIndex("Date", "Date", { unique: false }); //Adding this index so as to allow fast retrieval/addition to the object store by date.
-        }
-        if(!db.objectStoreNames.contains(weightManifestStore)) //Store 7
-        {
-          //  var weightManifest = db.createObjectStore(weightManifestStore, { keyPath: 'FoodCode' });
-            //weightManifestStore.createIndex("Date", "Date", { unique: false }); //Adding this index so as to allow fast retrieval/addition to the object store by date.
-        }
-        if(!db.objectStoreNames.contains(requirementsManifestStore)) //Store 8
-        {
-          //  var requirementsManifest = db.createObjectStore(requirementsManifestStore, { keyPath: 'FoodCode' });
-          //requirementsManifestStore.createIndex("Date", "Date", { unique: false }); //Adding this index so as to allow fast retrieval/addition to the object store by date.
-        }
-        if(!db.objectStoreNames.contains(syncToServerStore)) //Store 9
-        {
-          var syncToServer = db.createObjectStore(syncToServerStore, { keyPath: 'EntryNumber', autoIncrement: true });
-        } 
-    };
-    request.onsuccess = function(event)
-    { 
-        _this.db = event.target.result; 
-        console.log('request on success');
-        _this.db.onversionchange = function(event)
-        {
-            console.log('atoneversioncahnge');
-        	event.target.close(); //close the database connection if successful (DELETE COMMENT AFTER TESTING)
-        };
-        callback();
-    };
-    request.onerror = this.databaseError;
-}
-*/
-
-
-
-/*
-first -> create object stores
-second-> populate food store
-third -> populate symptom list 
-
-
-*/
+ */
 
 LocalDbSingleton.prototype.databaseOpen = function(callback)
 {
@@ -404,14 +293,6 @@ LocalDbSingleton.prototype.databaseOpen = function(callback)
         var db = event.target.result; _this.db=db;
     	var request2 = indexedDB.open(_this.dbName, _this.version+1);
     	
-    	/*
-    	_this.db.onversionchange = function(event)
-    	{
-    	    console.log('atoneversioncahnge closing the db');
-    		event.target.close(); //close the database connection if successful (DELETE COMMENT AFTER TESTING)
-    	};*/
-    	
-    	
         request1.result.onversionchange = function(event) 
         {
         	console.log('in on version change');
@@ -419,25 +300,32 @@ LocalDbSingleton.prototype.databaseOpen = function(callback)
         	var fls = dataTransaction.objectStore(foodListStore); 
         	var sls = dataTransaction.objectStore(symptomListStore);
         	
+        	var foodDataObject = new FoodDataSingleton();
         	console.log("Starting to populate the foodListStore.");
-            for (var i in foodData) 
+            for (var i in foodDataObject.foodData) 
             {
-               foodData[i].FoodNamelc = foodData[i]["FoodName"].toLowerCase();
-               fls.add(foodData[i]);
+               foodDataObject.foodData[i].FoodNamelc = foodDataObject.foodData[i]["FoodName"].toLowerCase();
+               fls.add(foodDataObject.foodData[i]);
             }
             console.log(foodListStore+" Initialisation Complete!");
         	
             var symptomListObject = new SymptomListSingleton(); //instantiate the symptomListSingleton to put the symptoms in the store.
+            console.log("Starting to populate the symptomListStore.");
             for (var i in symptomListObject.symptomList)
             {
-         	   console.log(symptomListObject.symptomList[i]);
          	   sls.add(symptomListObject.symptomList[i]);
             }
             console.log(symptomListStore+" Initialisation Complete!");
-        	console.log('after transaction');        		
-        	event.target.close();
+        	
+            dataTransaction.oncomplete = function(event)
+            {
+            	console.log('after transaction');        		
+            	event.target.result.close();
+            }
+            
+        	//callback();
         }
-      //callback();
+      
     };
 }
 

@@ -8,7 +8,8 @@ function toggleVisualisation() {
 	if($('#graphSelector').is(':checked')) {
 		makeGraph(presentedParameter, dateFrom, dateTo);
 	} else if($('#tableSelector').is(':checked')) {
-		//TODO call make table
+		var table = new Table();
+		table.drawTable();
 	} else if($('#summarySelector').is(':checked')) {
 		//TODO call make summary
 	}

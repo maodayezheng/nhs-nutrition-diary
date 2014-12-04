@@ -17,7 +17,7 @@ function getDates() {
 		alert('Dates not valid!');
 		return false;
 	}
-	alert("afterValidation");
+alert("afterValidation");
 alert('Dates are valid!');
 	
 	return new Array(from, to);
@@ -28,7 +28,7 @@ function makeGraph(presentedParameter) {
 
 	var dates = getDates();
 
-	if(dates[0] == false || dates[1] == false) {
+	if(dates == false) {
 		return false;
 	}
 	

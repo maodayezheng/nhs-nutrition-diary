@@ -13,6 +13,7 @@
     	<link rel="stylesheet" href="css/standardPage.css">
     	<script src="scripts/utiltyItems.js"></script>
     	<script src="scripts/foodList.js"></script>
+    	<script src="scripts/database/local/foodData.js"></script>
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     	<!--[if lt IE 9]>
@@ -57,15 +58,15 @@
 	    				<button class="btn btn-default" type="button"><span class="glyphicon glyphicon-calendar"></span></button>
   					</span>
 				</div>
-		    	<!-- <div class="btn-group btn-group-justified" style="padding-top:10px;" role="group" aria-label="...">
+		    	 <div class="btn-group btn-group-justified" style="padding-top:10px;" role="group" aria-label="...">
   					<div class="btn-group" role="group">
-    					<button type="button" class="btn btn-default">Create new food</button>
+    					<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modalInfo" id="newFood">Create new food</button>
   					</div>
   					<div class="btn-group" role="group">
-    					<button type="button" class="btn btn-default">Frequent  <span class="badge">10</span></button>
+    					<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modalInfo" id="frequentFood">Frequent  <span class="badge" id="frequentConter"></span></button>
 					</div>
   					<div class="btn-group" role="group">
-    					<button type="button" class="btn btn-default">My meal  <span class="badge">5</span></button>
+    					<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modalInfo" id="myMeal">My meal  <span class="badge" id="mealCounter"></span></button>
   					</div>
  				</div>
 			</div>
@@ -78,10 +79,46 @@
 				</div>
 			</div>
 			<div class="panel panel-default">
-				<div class="panel-heading">Nutritional breakdown</div>
-  				<div class="panel-body">Breakdown</div>
+				<div class="panel-heading collapsed" href="#breakDown" aria-expanded="flase" data-toggle="collapse" aria-controls="breakDown">Nutritional breakdown</div>
+  				<div class="panel-body panel-collapse collapse" role="tabpanel" id="breakDown" >
+  				<table class="table">
+  				<thead>
+  				<tr>
+  				<th>Calories(kcal)</th>
+  				<th>Protien(g)</th>
+  				<th>Fluid(ml)</th>
+  				</tr>
+  				</thead>
+  				<tbody>
+  				<tr>
+  				<td id="calories"></td>
+  				<td id="protien"></td>
+  				<td id="fluid"></td>
+  				</tr>
+  				</tbody>
+  				
+  				</table>
+  				
+  				</div>
 			</div>
 		    <div><button type="button" class="btn btn-lg btn-success btn-block">Submit</button> </div>  
-    	</div> -->
+    	</div>
+    	<!-- modal information  -->
+    	<div class="modal fade" id="modalInfo" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="modalTitle"></h4>
+      </div>
+      <div class="modal-body" id="modalBody">
+      
+    <input type="text" required>  
+      <input type="submit" class="btn btn-success">
+      </div>
+      
+    </div>
+  </div>
+</div>
   	</body>
 </html>

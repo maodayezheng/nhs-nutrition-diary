@@ -4,12 +4,27 @@
 
 $(document).ready(function(){
 	
-		var data =["apple","banana","chicken","beef","peal"];
-		$('#list').generateList(data);
+		
 		$('#search').autocomplete({
-			source:data,
+			source:foodData,
 			minLength: 2,
 		});
+		$('#myMeal').click(function(){
+			
+			$('modalBody')
+		});
+	$('#newFood').click(function(){
+			
+		
+			
+		});
+	
+	$('#frequentFood').click(function(){
+		
+		
+		
+	})
+		
 });
 
 

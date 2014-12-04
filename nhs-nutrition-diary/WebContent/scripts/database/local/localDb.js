@@ -39,9 +39,9 @@ function LocalDbSingleton()
 	//below are all of the object's properties. The names of object stores are stored in variables to make re-factoring easier later. 
 	instance.dbName = 'appetiteLocalStore'; instance.db ='';
 	instance.version = 1; //indexedDB version number
-	instance.foodListStore = 'foodListStore'; instance.userFoodListStore = 'userFoodListStore'; instance.symptomListStore = 'symptomListStore'; instance.userSymptomListStore = 'userSymptomListStore'; 
-	instance.foodManifestStore = 'foodManifestStore'; instance.symptomManifestStore = 'symptomManifestStore'; instance.weightManifestStore = 'weightManifestStore'; 
-	instance.requirementsManifestStore = 'requirementsManifestStore'; instance.syncToServerStore = 'syncToServerStore'; 
+	instance.userStore = 'userStore', instance.foodListStore = 'foodListStore'; instance.userFoodListStore = 'userFoodListStore'; instance.symptomListStore = 'symptomListStore'; 
+	instance.userSymptomListStore = 'userSymptomListStore'; instance.foodManifestStore = 'foodManifestStore'; instance.symptomManifestStore = 'symptomManifestStore'; 
+	instance.weightManifestStore = 'weightManifestStore'; instance.requirementsManifestStore = 'requirementsManifestStore'; instance.syncToServerStore = 'syncToServerStore'; 
 	instance.syncToServerArray = []; //for the databaseAdd method.
 	return instance;
 }
@@ -220,7 +220,7 @@ LocalDbSingleton.prototype.displayResults = function(result)
  * The first time this function is called (or if the version number is incremented) the 'onupgradeneeded' event handler will run and the 
  * object stores will be created. Indexes are then made to make it easier to search the database.
  * @param callback	Function you wish to call once this asynchronous method completes. e.g. dispayResults. 
- */
+ 
 LocalDbSingleton.prototype.databaseOpen = function(callback)
 {
     var _this = this; //storing reference for use in by embedded functions as closure. 
@@ -321,10 +321,127 @@ LocalDbSingleton.prototype.databaseOpen = function(callback)
     };
     request.onerror = this.databaseError;
 }
+*/
 
 
 
+/*
+first -> create object stores
+second-> populate food store
+third -> populate symptom list 
 
+
+*/
+
+LocalDbSingleton.prototype.databaseOpen = function(callback)
+{
+	//storing references to the LocalDbSingleton object's properties. 
+	var _this = this, dbName = this.dbName, db = this.db, version = this.version, userStore=this.userStore, foodListStore = this.foodListStore, userFoodListStore = this.userFoodListStore, symptomListStore = this.symptomListStore;
+	var userSymptomListStore = this.userSymptomListStore, foodManifestStore = this.foodManifestStore, symptomManifestStore = this.symptomManifestStore, weightManifestStore = this.weightManifestStore;
+	var requirementsManifestStore = this.requirementsManifestStore, syncToServerStore = this.syncToServerStore;
+    this.begin = Date.now();
+    
+    var request1 = indexedDB.open(dbName, version);
+    request1.onupgradeneeded = function(event) //This request is to create the object stores. 
+    {
+        db = event.target.result; 
+        event.target.transaction.onerror = _this.databaseError;
+        
+        if(!db.objectStoreNames.contains(userStore)) //Store 1. Will contain the unique id of the user.  
+        {
+            var userDataStore = db.createObjectStore(userStore, { keyPath: 'ID' });
+        }
+        if(!db.objectStoreNames.contains(foodListStore)) //Store 2. Will contain the food data provided by the open source FDA UK website. 
+        {
+            var foodList = db.createObjectStore(foodListStore, { keyPath: 'FoodCode' });
+            foodList.createIndex("FoodCode", "FoodCode", { unique: true });
+            foodList.createIndex("FoodNamelc", "FoodNamelc", { unique: false });
+        }
+        if(!db.objectStoreNames.contains(userFoodListStore)) //Store 3. Will contain any custom food created by the user.
+        {
+            var userFoodList = db.createObjectStore(userFoodListStore, {keyPath: 'EntryNumber', autoIncrement: true }); 
+            userFoodList.createIndex('Date', 'Date', { unique: false });
+            userFoodList.createIndex('userFoodListId', 'userFoodListId', { unique: true });
+        }
+        if(!db.objectStoreNames.contains(symptomListStore)) //Store 4. Contains the symptoms given by the staff at Guy's
+        {
+           var symptomList = db.createObjectStore(symptomListStore, {keyPath: 'id', autoIncrement: true });
+           symptomList.createIndex('Symptom', 'Symptom', {unique: true});
+        }
+        if(!db.objectStoreNames.contains(userSymptomListStore)) //Store 5. Will contain any custom created symptoms by the user.
+        {
+           var userSymptomList = db.createObjectStore(userSymptomListStore, { keyPath: 'id', autoIncrement: true });
+           userSymptomList.createIndex('Symptom', 'Symptom', {unique: true});
+        }
+        if(!db.objectStoreNames.contains(foodManifestStore)) //Store 6
+        {
+        	var foodManifest = db.createObjectStore(foodManifestStore, { keyPath: 'FoodCode' });
+            foodManifest.createIndex("Date", "Date", { unique: false }); //Adding this index so as to allow fast retrieval/addition to the object store by date.
+        }
+        if(!db.objectStoreNames.contains(symptomManifestStore)) //Store 7
+        {
+            var symptomManifest = db.createObjectStore(symptomManifestStore, { keyPath: 'FoodCode' });
+            symptomManifest.createIndex("Date", "Date", { unique: false }); //Adding this index so as to allow fast retrieval/addition to the object store by date.
+        }
+        if(!db.objectStoreNames.contains(weightManifestStore)) //Store 8
+        {
+            var weightManifest = db.createObjectStore(weightManifestStore, { keyPath: 'FoodCode' });
+            weightManifest.createIndex("Date", "Date", { unique: false }); //Adding this index so as to allow fast retrieval/addition to the object store by date.
+        }
+        if(!db.objectStoreNames.contains(requirementsManifestStore)) //Store 9
+        {
+            var requirementsManifest = db.createObjectStore(requirementsManifestStore, { keyPath: 'FoodCode' });
+            requirementsManifest.createIndex("Date", "Date", { unique: false }); //Adding this index so as to allow fast retrieval/addition to the object store by date.
+        }
+        if(!db.objectStoreNames.contains(syncToServerStore)) //Store 10
+        {
+            var syncToServer = db.createObjectStore(syncToServerStore, { keyPath: 'EntryNumber', autoIncrement: true });
+        } 
+    };
+    request1.onsuccess = function(event)
+    { 
+    	console.log('request1 success');
+        var db = event.target.result; _this.db=db;
+    	var request2 = indexedDB.open(_this.dbName, _this.version+1);
+    	
+    	/*
+    	_this.db.onversionchange = function(event)
+    	{
+    	    console.log('atoneversioncahnge closing the db');
+    		event.target.close(); //close the database connection if successful (DELETE COMMENT AFTER TESTING)
+    	};*/
+    	
+    	
+        request1.result.onversionchange = function(event) 
+        {
+        	console.log('in on version change');
+        	var dataTransaction = db.transaction([foodListStore,symptomListStore], "readwrite");
+        	var fls = dataTransaction.objectStore(foodListStore); 
+        	var sls = dataTransaction.objectStore(symptomListStore);
+        	
+        	console.log("Starting to populate the foodListStore.");
+            for (var i in foodData) 
+            {
+               foodData[i].FoodNamelc = foodData[i]["FoodName"].toLowerCase();
+               fls.add(foodData[i]);
+            }
+            console.log(foodListStore+" Initialisation Complete!");
+        	
+            var symptomListObject = new SymptomListSingleton(); //instantiate the symptomListSingleton to put the symptoms in the store.
+            for (var i in symptomListObject.symptomList)
+            {
+         	   console.log(symptomListObject.symptomList[i]);
+         	   sls.add(symptomListObject.symptomList[i]);
+            }
+            console.log(symptomListStore+" Initialisation Complete!");
+        	console.log('after transaction');        		
+        	event.target.close();
+        }
+      //callback();
+    };
+}
+
+/*
 function CreateObjectStore(dbName, storeName) {
     var request = indexedDB.open(dbName);
     request.onsuccess = function (e){
@@ -343,22 +460,8 @@ function CreateObjectStore(dbName, storeName) {
         }
     }
 }
-/*
-first -> create object stores
-second-> populate food store
-third -> populate symptom list 
-
-
 */
 
-
-
-
-
-
-/**
- * Function adds given input to selected object store
- */
 
 
 
@@ -403,6 +506,6 @@ db1.databaseOpen(function()
 	var time = end-begin;
     console.log('It took '+time+' milliseconds to populate database');
     console.log('Database created and populated successfully.');
-    db1.localDbAdd('userFoodListStore', arrayToAdd);
+    //db1.localDbAdd('userFoodListStore', arrayToAdd);
 });
 /////////////////////////////////////////////////// End of testing block

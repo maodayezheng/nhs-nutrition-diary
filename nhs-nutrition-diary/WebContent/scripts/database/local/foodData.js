@@ -1,8 +1,13 @@
 /**
  * Created by Vikram Bakshi on 27/11/2014.
  * Purpose: This .js file's purpose is to contain the raw foodData in JSON form which will be stored in the foodListStore in the user's local indexedDB database.
- *
+ * The data is stored as the property of a singleton object 'foodDataSingleton'. 
  */
+
+
+
+
+
 
 const foodData =  //raw data to be added to the database
     [

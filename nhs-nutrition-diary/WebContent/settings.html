@@ -8,6 +8,7 @@
   		<link href="css/standardPage.css" rel="stylesheet">
 		<script src="lib/jquery/jquery-2.1.1.min.js"></script>
 		<script src="lib/bootstrap/bootstrap.min.js"></script>
+		<script src="scripts/incrementButton.js"></script>
     	<title>Settings</title>
 	</head>
 
@@ -25,36 +26,41 @@
 			<div class="panel-body">
 				<ul class="list-group">
 					<li class="list-group-item">
-						<span>Calories per day (kcal)</span>
-						<div class="btn-group btn-group-xs" role="group" aria-label="..." style="float:right">
-    						<button type="button" class="btn btn-primary">-</button>
-  							<button type="button" class="btn btn-default btn" disabled="">500</button>
-  							<button type="button" class="btn btn-default btn">+</button>
-						</div>
+						
+    <form id='myform' method='POST' action='#'>
+  		<span><p id="requirementsText">Calories per day (kcal)</p>
+		<input type='button' value='-' class='qtyminus' field='quantity' />
+		<input type='text' name='quantity' value='0' class='qty' />
+   		<input type='button' value='+' class='qtyplus' field='quantity' /></span>
+</form>
+						
 					</li>
 					<li class="list-group-item">
-  						<span>Protein per day(g)</span>
-  						<div class="btn-group btn-group-xs" role="group" aria-label="..." style="float:right">
-      						<button type="button" class="btn btn-primary">-</button>
-  							<button type="button" class="btn btn-default btn" disabled="">30.0</button>
-  							<button type="button" class="btn btn-default btn">+</button>
-						</div>
+  						
+    <form id='myform' method='POST' action='#'>
+  		<span><p id="requirementsText">Protein per day (p)</p>
+    	<input type='button' value='-' class='qtyminus' field='quantity' />
+    	<input type='text' name='quantity' value='0' class='qty' />
+    	<input type='button' value='+' class='qtyplus' field='quantity' /></span>
+</form>
 					</li>
 					<li class="list-group-item">
-  						<span>Fluid per day (ml)</span>
-						<div class="btn-group btn-group-xs" role="group" aria-label="..." style="float:right">
-      						<button type="button" class="btn btn-primary">-</button>
-  							<button type="button" class="btn btn-default btn" disabled="">500</button>
-  							<button type="button" class="btn btn-default btn">+</button>
-  						</div>
+
+	<form id='myform' method='POST' action='#'>
+		<span><p id="requirementsText">fluid per day (ml)</p>
+    	<input type='button' value='-' class='qtyminus' field='quantity' />
+    	<input type='text' name='quantity' value='0' class='qty' />
+    	<input type='button' value='+' class='qtyplus' field='quantity' /></span>
+</form>
   					</li>
 					<li class="list-group-item">
-  						<span>Activity level</span>
-						<div class="btn-group btn-group-xs" role="group" aria-label="..." style="float:right">
-      						<button type="button" class="btn btn-primary">-</button>
-  							<button type="button" class="btn btn-default btn" disabled="">1.4</button>
-  							<button type="button" class="btn btn-default btn">+</button>
-						</div>
+  				
+	<form id='myform' method='POST' action='#'>
+		<span><p id="requirementsText">Activity level </p>
+	    <input type='button' value='-' class='qtyminus' field='quantity' />
+	    <input type='text' name='quantity' value='0' class='qty' />
+	    <input type='button' value='+' class='qtyplus' field='quantity' /></span>
+</form>
 					</li>
 				</ul>
      			<button class="btn btn-lg btn-primary btn-block" type="submit">Save changes</button>

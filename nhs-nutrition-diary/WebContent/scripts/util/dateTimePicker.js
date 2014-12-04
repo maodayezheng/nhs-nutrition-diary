@@ -1,9 +1,9 @@
  $(function() {
     $( ".date" ).datepicker();
        
-	$('#datetimepicker1').datetimepicker({
+	$('.time').datetimepicker({
 		  datepicker:false,
 		  format:'H:i',
-		  step:15
+		  step:30
 		});
  });

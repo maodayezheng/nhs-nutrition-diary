@@ -17,7 +17,7 @@ $(document).ready(function () {
 
 	var classes = "list-group-item";
 	
-	$("#list").initList(data,classes);
+
 		
     $('.list-group.checked-list-box .list-group-item').each(function () {
         // Settings
@@ -97,4 +97,8 @@ $(document).ready(function () {
 	$('#rated').click(function(){
 	    $('.drop-scoring').slideToggle('slow');
 	});
+	/* $("#list").initList(data,classes);
+	$("#symptomList").empty();
+	var symptom = '<li class="list-group-item"> Illness </li>';
+	$("#symptomList").append(symptom);*/
 });

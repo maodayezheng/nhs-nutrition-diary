@@ -4,13 +4,14 @@
     	<meta content="charset=utf-8"/>
     	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     	<meta name="viewport" content="width=device-width, initial-scale=1"/>
-    	<link href="lib/jquery/jquery-ui.min.css" rel="stylesheet">
+    	<link href="lib/jquery/jquery-ui-1.11.2.min.css" rel="stylesheet">
     	<link href="lib/bootstrap/bootstrap.min.css" rel="stylesheet"/>
   		<link href="css/standardPage.css" rel="stylesheet"/>
   		<link href="css/timepicker.css" rel="stylesheet"/>
+  		<script src="scripts/symptoms.js"></script>
   		<script src="lib/jquery/jquery.js"></script>
-  		<script src="lib/jquery/jquery-ui.min.js"></script>
-    	<script src="lib/bootstrap/bootstrap.min.js"></script>
+  		<script src="lib/jquery/jquery-ui-1.11.2.min.js"></script>
+    	<script src="lib/bootstrap/bootstrap.min.js"></script>    	
     	<script src="scripts/timepicker.js"></script>
     	<script src="scripts/util/dateTimePicker.js"></script>
     	<script src="scripts/Navigator.js"></script>
@@ -38,9 +39,15 @@
 
 	        	date: <input type="text" class="date" id="datepicker"> 
 	        	 time: <input type="text" class="time" id="datetimepicker1"/>      	 
-	            	<ul class="list-group checked-list-box" id="list">
+	            	<ul class="list-group checked-list-box" id="symptomList"><br>
+	            	<li class="list-group-item">Nausea</li>
+	            	<li class="list-group-item">Stomach Pain</li>
+	            	<li class="list-group-item">Headache</li>
+	            	<li class="list-group-item">Cramps</li>
+	            	
+	            	
 							                	
-	                </ul>
+	                </ul> 
 
 	            </div>
 			</form>

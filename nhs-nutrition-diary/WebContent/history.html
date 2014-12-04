@@ -13,6 +13,7 @@
   		<script src="scripts/timepicker.js"></script>
 		<script src="lib/d3/d3.min.js" charset="utf-8"></script>
 		<script src="lib/bootstrap/bootstrap.min.js"></script>
+		<script src="scripts/historyViewer.js"></script>
     	<script src="scripts/util/dateTimePicker.js"></script>
 		<script src="scripts/Navigator.js"></script>
 		<script src="scripts/util/Validator.js"></script>
@@ -53,12 +54,37 @@
 			</div>
 	   		<div class="row clearfix">
 	    		<div class="col-md-12 column">
+	    			
+	    			<div class="btn-group btn-group-justified" style="padding-top:10px;" role="group" aria-label="...">
+  						<div class="btn-group" role="group">
+    						<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modalInfo" id="graphSelector">Graph</button>
+  						</div>
+  						<div class="btn-group" role="group">
+    						<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modalInfo" id="tableSelector">Table<span class="badge" id="tableSelectorSpan"></span></button>
+						</div>
+  						<div class="btn-group" role="group">
+    						<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modalInfo" id="summarySelector">Summary<span class="badge" id="summarySelectorSpan"></span></button>
+  						</div>
+ 					</div>
+	    			
+	    			<!-- div class="btn-group btn-group-justified" id="presentationFormat" style="padding-top:10px;" role="group" aria-label="..." data-toggle="buttons">
+						<label class="btn btn-primary active">
+				    		<input type="radio" name="options" id="graphSelector" class="btn btn-default" autocomplete="off" onclick="toggleVisualisation()" checked>Graph
+				  		</label>
+						<label class="btn btn-primary">
+					    	<input type="radio" name="options" id="tableSelector" class="btn btn-default" autocomplete="off" onclick="toggleVisualisation()">Table
+						</label>
+				  		<label class="btn btn-primary">
+					    	<input type="radio" name="options" id="summarySelector" class="btn btn-default" autocomplete="off" onclick="toggleVisualisation()">Summary
+				 		</label>
+					</div-->
+	    			
 	    			<div class="panel panel-default" style="margin-top:40px">
 						<div class="panel-heading">Select</div>
 	    				<div class="panel-body">
 						    <div class="goal-progress"> 
 	    						<form id="parameters">
-									<select name="foodComponents" onchange="makeGraph(this.form.foodComponents.options[this.form.foodComponents.selectedIndex].value)">
+									<select id="foodComponents" name="foodComponents" onchange="makeGraph(this.form.foodComponents.options[this.form.foodComponents.selectedIndex].value)">
 										<option id="calories_dropdown" value="Calories (kcal)">Calories</option>
 										<option id="protein_dropdown" value="Protein (g)">Protein</option>
 										<option id="fluid_dropdown" value="Fluid (ml)">Fluid</option>

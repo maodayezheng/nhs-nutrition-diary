@@ -29,9 +29,9 @@
 						
     <form id='myform' method='POST' action='#'>
   		<span><p id="requirementsText">Calories per day (kcal)</p>
-		<input type='button' value='-' class='qtyminus' field='quantity' />
-		<input type='text' name='quantity' value='0' class='qty' />
-   		<input type='button' value='+' class='qtyplus' field='quantity' /></span>
+		<input type='button' value='-' class='qtyMinusCal' field='quantity' />
+		<input type='text' name='quantity' id="cals" value='0' class='qty' />
+   		<input type='button' value='+' class='qtyPlusCal' field='quantity' /></span>
 </form>
 						
 					</li>
@@ -39,27 +39,27 @@
   						
     <form id='myform' method='POST' action='#'>
   		<span><p id="requirementsText">Protein per day (p)</p>
-    	<input type='button' value='-' class='qtyminus' field='quantity' />
-    	<input type='text' name='quantity' value='0' class='qty' />
-    	<input type='button' value='+' class='qtyplus' field='quantity' /></span>
+    	<input type='button' value='-' class='qtyMinusProt' field='quantity' />
+    	<input type='text' name='quantity' id="protein" value='0' class='qty' />
+    	<input type='button' value='+' class='qtyPlusProt' field='quantity' /></span>
 </form>
 					</li>
 					<li class="list-group-item">
 
 	<form id='myform' method='POST' action='#'>
 		<span><p id="requirementsText">fluid per day (ml)</p>
-    	<input type='button' value='-' class='qtyminus' field='quantity' />
-    	<input type='text' name='quantity' value='0' class='qty' />
-    	<input type='button' value='+' class='qtyplus' field='quantity' /></span>
+    	<input type='button' value='-' class='qtyMinusFluid' field='quantity' />
+    	<input type='text' name='quantity' id="fluid" value='0' class='qty' />
+    	<input type='button' value='+' class='qtyPlusFluid' field='quantity' /></span>
 </form>
   					</li>
 					<li class="list-group-item">
   				
 	<form id='myform' method='POST' action='#'>
 		<span><p id="requirementsText">Activity level </p>
-	    <input type='button' value='-' class='qtyminus' field='quantity' />
-	    <input type='text' name='quantity' value='0' class='qty' />
-	    <input type='button' value='+' class='qtyplus' field='quantity' /></span>
+	    <input type='button' value='-' class='qtyMinusActivity' field='quantity' />
+	    <input type='text' name='quantity' id="activity" value='0' class='qty' />
+	    <input type='button' value='+' class='qtyPlusActivity' field='quantity' /></span>
 </form>
 					</li>
 				</ul>

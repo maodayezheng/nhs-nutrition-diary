@@ -1,22 +1,82 @@
 jQuery(document).ready(function(){
-    $('.qtyplus').click(function(e){
+    $('.qtyPlusCal').click(function(e){
         e.preventDefault();
         fieldName = $(this).attr('field');
-        var currentVal = parseInt($('input[name='+fieldName+']').val());
+        var currentVal = parseInt($('#cals').val());
         if (!isNaN(currentVal)) {
-            $('input[name='+fieldName+']').val(currentVal + 1);
+            $('#cals').val(currentVal + 25);
         } else {
-            $('input[name='+fieldName+']').val(0);
+            $('#cals').val(0);
         }
     });
-    $(".qtyminus").click(function(e) {
+    $(".qtyMinusCal").click(function(e) {
         e.preventDefault();
         fieldName = $(this).attr('field');
-        var currentVal = parseInt($('input[name='+fieldName+']').val());
-        if (!isNaN(currentVal) && currentVal > 0) {
-            $('input[name='+fieldName+']').val(currentVal - 1);
+        var currentVal = parseInt($('#cals').val());
+        if (!isNaN(currentVal)) {
+            $('#cals').val(currentVal - 25);
         } else {
-            $('input[name='+fieldName+']').val(0);
+            $('#cals').val(0);
+        }
+    });
+    $('.qtyPlusProt').click(function(e){
+        e.preventDefault();
+        fieldName = $(this).attr('field');
+        var currentVal = parseInt($('#protein').val());
+        if (!isNaN(currentVal)) {
+            $('#protein').val(currentVal + 1);
+        } else {
+            $('#protein').val(0);
+        }
+    });
+    $(".qtyMinusProt").click(function(e) {
+        e.preventDefault();
+        fieldName = $(this).attr('field');
+        var currentVal = parseInt($('#protein').val());
+        if (!isNaN(currentVal)) {
+            $('#protein').val(currentVal - 1);
+        } else {
+            $('#protein').val(0);
+        }
+    });
+    $('.qtyPlusFluid').click(function(e){
+        e.preventDefault();
+        fieldName = $(this).attr('field');
+        var currentVal = parseInt($('#fluid').val());
+        if (!isNaN(currentVal)) {
+            $('#fluid').val(currentVal + 50);
+        } else {
+            $('#fluid').val(0);
+        }
+    });
+    $(".qtyMinusFluid").click(function(e) {
+        e.preventDefault();
+        fieldName = $(this).attr('field');
+        var currentVal = parseInt($('#fluid').val());
+        if (!isNaN(currentVal)) {
+            $('#fluid').val(currentVal - 50);
+        } else {
+            $('#fluis').val(0);
+        }
+    });
+    $('.qtyPlusActivity').click(function(e){
+        e.preventDefault();
+        fieldName = $(this).attr('field');
+        var currentVal = parseInt($('#activity').val());
+        if (!isNaN(currentVal)) {
+            $('#activity').val(currentVal + 0.1);
+        } else {
+            $('#activity').val(0);
+        }
+    });
+    $(".qtyMinusActivity").click(function(e) {
+        e.preventDefault();
+        fieldName = $(this).attr('field');
+        var currentVal = parseInt($('#activity').val());
+        if (!isNaN(currentVal)) {
+            $('#activity').val(currentVal - 0.1);
+        } else {
+            $('#activity').val(0);
         }
     });
 });

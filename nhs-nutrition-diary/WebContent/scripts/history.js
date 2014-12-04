@@ -5,16 +5,35 @@ function makeGraph(presentedParameter) {
 }
 */
 
+function getDates() {
+	var from = document.getElementById("datepickerFrom").value;
+	var to = document.getElementById("datepickerTo").value;
+	
+	alert("beforeValidator");
+	//TODO problem is that Validator cannot be found
+	var validator = new Validator();
+	alert("beforeValidation");
+	if(!validator.validateDates(from, to)) {
+		alert('Dates not valid!');
+		return false;
+	}
+	alert("afterValidation");
+alert('Dates are valid!');
+	
+	return new Array(from, to);
+}
+
 function makeGraph(presentedParameter) {
 	d3.select("svg").text("");
+
+	var dates = getDates();
+
+	if(dates[0] == false || dates[1] == false) {
+		return false;
+	}
 	
 	var database = new LocalDbSingleton();
-	
-	//TODO get from data
-	//TODO get to date
-	//TODO validate dates (to later than from, format, etc.)
-	
-	var jsonInput = database.get(null, null);
+	var jsonInput = database.get(dates[0], dates[1]);
 	
 	var parseDate = d3.time.format("%Y%m%d").parse;
 	

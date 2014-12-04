@@ -5,42 +5,17 @@ function makeGraph(presentedParameter) {
 }
 */
 
-function fillEmptyDates() {
-	if(document.getElementById("datepickerFrom").value == "") {
-		document.getElementById("datepickerFrom").value = new Date().dateFormat('m/d/Y');
-	}
-	
-	if(document.getElementById("datepickerTo").value == "") {
-		document.getElementById("datepickerTo").value = new Date().dateFormat('m/d/Y');
-	}
-}
-
-function getDates() {
-	var from = document.getElementById("datepickerFrom").value;
-	var to = document.getElementById("datepickerTo").value;
+function makeGraph(presentedParameter, dateFrom, dateTo) {
+	d3.select("svg").text("");
 	
 	var validator = new Validator();
-	if(!validator.datesAreValid(from, to)) {
+	if(!validator.datesAreValid(dateFrom, dateTo)) {
 		alert("Dates are not valid. Either wrong format or to is older than from.");
 		return false;
 	}
 	
-	return new Array(from, to);
-}
-
-function makeGraph(presentedParameter) {
-	d3.select("svg").text("");
-	
-	fillEmptyDates();
-	
-	var dates = getDates();
-
-	if(dates == false) {
-		return false;
-	}
-	
 	var database = new LocalDbSingleton();
-	var jsonInput = database.get(dates[0], dates[1]);
+	var jsonInput = database.get(dateFrom, dateTo);
 	
 	var parseDate = d3.time.format("%Y%m%d").parse;
 	

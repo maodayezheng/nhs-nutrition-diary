@@ -56,26 +56,14 @@
 	   		<div class="row clearfix">
 	    		<div class="col-md-12 column">
 	    			
-	    			<!-- div class="btn-group btn-group-justified" style="padding-top:10px;" role="group" aria-label="...">
-  						<label class="btn-group" role="group">
-    						<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modalInfo" id="graphSelector">Graph</button>
-  						</label>
-  						<div class="btn-group" role="group">
-    						<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modalInfo" id="tableSelector">Table<span class="badge" id="tableSelectorSpan"></span></button>
-						</div>
-  						<div class="btn-group" role="group">
-    						<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modalInfo" id="summarySelector">Summary<span class="badge" id="summarySelectorSpan"></span></button>
-  						</div>
- 					</div-->
-	    			
 	    			<div class="btn-group btn-group-justified" id="presentationFormat" style="padding-top:10px;" role="group" aria-label="..." data-toggle="buttons">
-						<label class="btn btn-primary active" onclick="toggleVisualisation()">
+						<label id="graphSelectorLabel" class="btn btn-primary active" onclick="toggleVisualisationButton(this.id)">
 				    		<input type="radio" name="options" id="graphSelector" class="btn btn-default" autocomplete="off" checked>Graph
 				  		</label>
-						<label class="btn btn-primary" onclick="toggleVisualisation()">
+						<label id="tableSelectorLabel" class="btn btn-primary" onclick="toggleVisualisationButton(this.id)">
 					    	<input type="radio" name="options" id="tableSelector" class="btn btn-default" autocomplete="off">Table
 						</label>
-				  		<label class="btn btn-primary" onclick="toggleVisualisation()">
+				  		<label id="summarySelectorLabel" class="btn btn-primary" onclick="toggleVisualisationButton(this.id)">
 					    	<input type="radio" name="options" id="summarySelector" class="btn btn-default" autocomplete="off">Summary
 				 		</label>
 					</div>

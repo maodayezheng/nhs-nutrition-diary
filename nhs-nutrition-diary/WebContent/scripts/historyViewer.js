@@ -15,6 +15,23 @@ function toggleVisualisation() {
 	}
 }
 
+function toggleVisualisationButton(id) {
+	fillEmptyDates();
+	
+	var presentedParameter = $('#foodComponents').val();
+	var dateFrom = $('#datepickerFrom').val();
+	var dateTo = $('#datepickerTo').val();
+	
+	if(id == 'graphSelectorLabel') {
+		makeGraph(presentedParameter, dateFrom, dateTo);
+	} else if (id == 'tableSelectorLabel') {
+		var table = new Table();
+		table.drawTable();
+	} else if (id == 'summarySelectorLabel') {
+		//TODO call make summary
+	}
+}
+
 function fillEmptyDates() {
 	if(document.getElementById("datepickerFrom").value == "") {
 		document.getElementById("datepickerFrom").value = new Date().dateFormat('m/d/Y');

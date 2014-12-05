@@ -3,19 +3,16 @@ function Navigator() {}
 Navigator.prototype.navigate = function(origin) {
 	var nextPage = null;
 	
-	if(origin == "btn_home_to_food")
-		nextPage = 'food.html';
-	else if(origin == "btn_home_to_symptoms")
-		nextPage = 'symptoms.html';
-	else if(origin == "btn_home_to_history")
-		nextPage = 'history.html';
-	else if(origin == "btn_home_to_weight")
-		nextPage = 'weight.html';
-	else if (origin == "listEl_home_to_settings")
-		nextPage = 'settings.html';
-		
-	else if(origin == "btn_symptoms_to_symptomNotInList")
-		nextPage = 'symptomNotInList.html';
+	switch(origin)
+	{
+		case "btn_home_to_food": nextPage = 'food.html'; alert('in switch'); break;
+		case "btn_home_to_symptoms": nextPage = 'symptoms.html'; break;
+		case "btn_home_to_history": nextPage = 'history.html'; break
+		case "btn_home_to_weight": nextPage = 'weight.html'; break;
+		case "listEl_home_to_settings": nextPage = 'settings.html'; break;
+		case "btn_symptoms_to_symptomNotInList": nextPage = 'symptomNotInList.html'; break;
+		default: console.log('hyperlink not in switch statement');
+	}
 	
 	window.location.href = nextPage;
 }

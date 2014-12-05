@@ -107,7 +107,26 @@ LocalDbSingleton.prototype.get = function(oStore, dateFrom, dateTo)
 //TODO Create and finalise a delete element function. 
 //TODO Create and finalise an edit element property. 
 //TODO Add add property (see comment in localDBAdd function for loop).  //DONE
+//TODO Already changed dbInit - create dbOpen which has a callback function as its argument. On request success then do the callback. 
 //TODO Finish this TODO list. 
+
+LocalDbSingleton.prototype.databaseOpen = function(callback, arg1, arg2)
+{ 
+	var _this = this; //storing reference to calling object (this) for binding. 
+	console.log('_this 1'); console.log(_this);
+	var openReq = indexedDB.open(this.dbName);
+	openReq.onerror = this.databaseError;
+	openReq.onsuccess = function(event)
+	{
+		var db = event.target.result; 
+		_this.db = db;
+		console.log('db=event.target.result and _this.db=db'); console.log(db); console.log(_this.db);
+		console.log('_this 2'); console.log(_this);
+		console.log('successfully opened db');
+		callback(arg1,arg2,_this); //send the reference to the object to the callback function to bind it. 
+	}
+}
+
 
 
 /**This function places the objects contained in the array argument in the specified object store. It then recursively calls itself to place the same objects in the
@@ -115,10 +134,12 @@ LocalDbSingleton.prototype.get = function(oStore, dateFrom, dateTo)
  * @param oStore			This is the object store in the local indexedDB database you would like to add your JS objects to.
  * @param arrayOfObjects	This is an array containing the objects you would like to add to the local database. 
  */
-LocalDbSingleton.prototype.localDbAdd = function(oStore, arrayOfObjects) 
+LocalDbSingleton.prototype.localDbAdd = function(oStore, arrayOfObjects, objectRef) 
 {
-	var _this=this; //storing object reference for binding purposes.  
-	var syncToServerArray = []; var db = this.db;
+	var _this=objectRef; //storing object reference for binding purposes.
+	var db = _this.db; console.log(db);
+	  
+	var syncToServerArray = []; 
 	var objectStore = db.transaction([oStore], "readwrite").objectStore(oStore);
 	var dbAdditionRequest;
 
@@ -137,7 +158,7 @@ LocalDbSingleton.prototype.localDbAdd = function(oStore, arrayOfObjects)
 		dbAdditionRequest.onsuccess = function(e) 
 		{
 		    console.log("Added first objects");
-		    _this.localDbAdd(_this.syncToServerStore,syncToServerArray); //recursive call so array of objects gets added to the synToServerStore as well. 
+		    LocalDbSingleton.prototype.localDbAdd(_this.syncToServerStore,syncToServerArray,_this); //recursive call so array of objects gets added to the synToServerStore as well. 
 		}
 	}
 	else 
@@ -217,12 +238,15 @@ LocalDbSingleton.prototype.displayResults = function(result)
 }
 
 
+
+
 /**
- * The first time this function is called (or if the version number is incremented) the 'onupgradeneeded' event handler will run and the 
- * object stores will be created. Indexes are then made to make it easier to search the database.
- * @param callback	Function you wish to call once this asynchronous method completes. e.g. dispayResults. 
+ * This function initialises the local database by creating the object stores and populating two of them - the foodListStore and the symptomListStore.
+ * They are populated with food data from the UK FDA's free database and the symptom list provided by the NHS staff involved with the project respectively. 
+ * Indexes are also created on the object stores to make it easier to query the database later.
+ * @param callback	Function you wish to call once this asynchronous method completes.  
  */
-LocalDbSingleton.prototype.databaseOpen = function(vsion /*version*/, callback)
+LocalDbSingleton.prototype.databaseInit = function(callback)
 {
 	//storing references to the LocalDbSingleton object's properties. 
 	var _this = this, dbName = this.dbName, userStore=this.userStore, foodListStore = this.foodListStore, userFoodListStore = this.userFoodListStore, symptomListStore = this.symptomListStore;
@@ -320,19 +344,16 @@ LocalDbSingleton.prototype.databaseOpen = function(vsion /*version*/, callback)
 	        }
 	        console.log(symptomListStore+" Initialisation Complete!");
     	}
-    	//db.close(); 
-    	
     	callback(); 
     };
     
     request1.onversionchange = function(event)
     {
         console.log('at request1 oneversioncahnge');
-      	event.target.close(); //close the database connection if successful (DELETE COMMENT AFTER TESTING)
+      	//event.target.close(); //close the database connection if successful (DELETE COMMENT AFTER TESTING)
     };
 }
     
-
 
 /**
  * Function prints error to the console if the database encounters one. 
@@ -349,7 +370,7 @@ LocalDbSingleton.prototype.databaseError = function(event)
  */
 LocalDbSingleton.prototype.databaseDelete = function()
 {
-	var db= this.db; db.close(); 
+	var db= this.db; db.close(); //will only work if the property db of the LocalDbSingleton has been set in a previous call. 
 	var req = indexedDB.deleteDatabase(this.dbName);
     var dbName = this.dbName;
     req.onsuccess = function ()
@@ -370,12 +391,12 @@ LocalDbSingleton.prototype.databaseDelete = function()
 ////////////////////////////////////////////////////////BELOW CODE FOR TESTING. DELETE ONCE COMPLETEd. 
 var arrayToAdd = [{name: "one"},{name: "two"},{name: "three"},{name: "four"}]; //for testing. Delete after test. 
 var db1 = new LocalDbSingleton();
-db1.databaseOpen(null, function()
+/*db1.databaseInit(function()
 {
 	var begin = db1.begin, end = Date.now();
 	var time = end-begin;
     console.log('It took '+time+' milliseconds to populate the database');
-    db1.localDbAdd('userFoodListStore', arrayToAdd);
-});
-
+    //db1.localDbAdd('userFoodListStore', arrayToAdd);
+});*/
+db1.databaseOpen(LocalDbSingleton.prototype.localDbAdd, 'userFoodListStore', arrayToAdd);
 /////////////////////////////////////////////////// End of testing block

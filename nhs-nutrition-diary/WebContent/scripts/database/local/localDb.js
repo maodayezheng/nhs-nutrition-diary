@@ -20,33 +20,6 @@
  * 
  */
 
-/**
- * Constructor for the LocalDbSingleton which implements the singleton pattern. This is to make sure only one LocalDbSingleton instantiation takes place and any further
- * use of the 'new' keywords results in a reference to the singleton. Implementation based on code from 'JavaScript Patterns' by Stoyan Stefanov 
- * ISBN #978-0596806750 p.145.
- */
-function LocalDbSingleton() 
-{
-	var instance; //cached instance
-	
-	LocalDbSingleton = function LocalDbSingleton() // rewritten constructor 
-	{
-		return instance;
-	};
-	LocalDbSingleton.prototype = this; // carry over the prototype properties
-	instance = new LocalDbSingleton(); //the instance
-	instance.constructor = LocalDbSingleton; //reset the constructor pointer
-	//below are all of the object's properties. The names of object stores are stored in variables to make re-factoring easier later. 
-	instance.dbName = 'appetiteLocalStore'; instance.db ='';
-	instance.version = 0; //indexedDB version number
-	instance.userStore = 'userStore', instance.foodListStore = 'foodListStore'; instance.userFoodListStore = 'userFoodListStore'; instance.symptomListStore = 'symptomListStore'; 
-	instance.userSymptomListStore = 'userSymptomListStore'; instance.foodManifestStore = 'foodManifestStore'; instance.symptomManifestStore = 'symptomManifestStore'; 
-	instance.weightManifestStore = 'weightManifestStore'; instance.requirementsManifestStore = 'requirementsManifestStore'; instance.syncToServerStore = 'syncToServerStore'; 
-	instance.syncToServerArray = []; //for the databaseAdd method.
-	return instance;
-}
-
-
 //////////////////////////////////////This function contains dummy data for testing at the moment. To be implemented in the future. 
 /**
  * Returns all objects in a object store which are contained within a given date interval.
@@ -110,6 +83,42 @@ LocalDbSingleton.prototype.get = function(oStore, dateFrom, dateTo)
 //TODO Already changed dbInit - create dbOpen which has a callback function as its argument. On request success then do the callback. 
 //TODO Finish this TODO list. 
 
+
+
+
+/**
+ * Constructor for the LocalDbSingleton which implements the singleton pattern. This is to make sure only one LocalDbSingleton instantiation takes place and any further
+ * use of the 'new' keywords results in a reference to the singleton. Implementation based on code from 'JavaScript Patterns' by Stoyan Stefanov 
+ * ISBN #978-0596806750 p.145.
+ */
+function LocalDbSingleton() 
+{
+	var instance; //cached instance
+	
+	LocalDbSingleton = function LocalDbSingleton() // rewritten constructor 
+	{
+		return instance;
+	};
+	LocalDbSingleton.prototype = this; // carry over the prototype properties
+	instance = new LocalDbSingleton(); //the instance
+	instance.constructor = LocalDbSingleton; //reset the constructor pointer
+	//below are all of the object's properties. The names of object stores are stored in variables to make re-factoring easier later. 
+	instance.dbName = 'appetiteLocalStore'; instance.db ='';
+	instance.version = 0; //indexedDB version number
+	instance.userStore = 'userStore', instance.foodListStore = 'foodListStore'; instance.userFoodListStore = 'userFoodListStore'; instance.symptomListStore = 'symptomListStore'; 
+	instance.userSymptomListStore = 'userSymptomListStore'; instance.foodManifestStore = 'foodManifestStore'; instance.symptomManifestStore = 'symptomManifestStore'; 
+	instance.weightManifestStore = 'weightManifestStore'; instance.requirementsManifestStore = 'requirementsManifestStore'; instance.syncToServerStore = 'syncToServerStore'; 
+	instance.syncToServerArray = []; //for the databaseAdd method.
+	return instance;
+}
+
+
+
+/**
+ * This function is the starting point for adding/deleting/editing any entry to the database. It opens a connection to the database
+ * and then calls back whatever you passed to it in the arguments. For example if you want to add an array of objects to the database you would write:
+ * var db1 = new LocalDbSingleton(); db1.databaseOpen(LocalDbSingleton.prototype.localDbAdd, 'userFoodListStore', arrayToAdd);
+ */
 LocalDbSingleton.prototype.databaseOpen = function(callback, arg1, arg2)
 { 
 	var _this = this; //storing reference to calling object (this) for binding. 
@@ -127,8 +136,6 @@ LocalDbSingleton.prototype.databaseOpen = function(callback, arg1, arg2)
 	}
 }
 
-
-
 /**This function places the objects contained in the array argument in the specified object store. It then recursively calls itself to place the same objects in the
  * syncToServer object store. In the case of the recursive call each object is added with the additional property of what store they were initially added to.   
  * @param oStore			This is the object store in the local indexedDB database you would like to add your JS objects to.
@@ -136,7 +143,7 @@ LocalDbSingleton.prototype.databaseOpen = function(callback, arg1, arg2)
  */
 LocalDbSingleton.prototype.localDbAdd = function(oStore, arrayOfObjects, objectRef) 
 {
-	var _this=objectRef; //storing object reference for binding purposes.
+	var _this= objectRef; //storing object reference for binding purposes.
 	var db = _this.db; console.log(db);
 	  
 	var syncToServerArray = []; 
@@ -180,7 +187,6 @@ LocalDbSingleton.prototype.localDbAdd = function(oStore, arrayOfObjects, objectR
 		}
 	}
 }
-
 
 /**
  * This function is used to search any object store in the database. You provide the key you are searching for, the object store you want to search in and the index
@@ -236,9 +242,6 @@ LocalDbSingleton.prototype.displayResults = function(result)
     }
     resultsTable =+'</table>';
 }
-
-
-
 
 /**
  * This function initialises the local database by creating the object stores and populating two of them - the foodListStore and the symptomListStore.
@@ -350,10 +353,8 @@ LocalDbSingleton.prototype.databaseInit = function(callback)
     request1.onversionchange = function(event)
     {
         console.log('at request1 oneversioncahnge');
-      	//event.target.close(); //close the database connection if successful (DELETE COMMENT AFTER TESTING)
     };
 }
-    
 
 /**
  * Function prints error to the console if the database encounters one. 
@@ -386,7 +387,6 @@ LocalDbSingleton.prototype.databaseDelete = function()
         console.log("Couldn't delete database due to the operation being blocked"); //occurs usually if a connection to the DB is still open.
     };
 }
-
 
 ////////////////////////////////////////////////////////BELOW CODE FOR TESTING. DELETE ONCE COMPLETEd. 
 var arrayToAdd = [{name: "one"},{name: "two"},{name: "three"},{name: "four"}]; //for testing. Delete after test. 

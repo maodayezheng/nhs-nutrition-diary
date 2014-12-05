@@ -11,13 +11,13 @@
   		<script src="lib/jquery/jquery.js"></script>
   		<script src="lib/jquery/jquery-ui-1.11.2.min.js"></script>
     	<script src="lib/bootstrap/bootstrap.min.js"></script>
-    	<script src="lib/"></script>
+    	<script src="lib/knockout/Knockout-v2.2.0.js"></script>
     	    	
     	<script src="scripts/timepicker.js"></script>
     	<script src="scripts/util/dateTimePicker.js"></script>
     	<script src="scripts/Navigator.js"></script>
   		<script src="scripts/database/local/symptomJSON.js"></script>
-  		<script src="scripts/"></script>
+  		<script src="scripts/dataCombinator.js"></script>
   		<script src="scripts/symptoms.js"></script>
  		
     	<title>Symptoms</title>
@@ -40,10 +40,8 @@
 
 	        	date: <input type="text" class="date" id="datepicker"/> 
 	        	 time: <input type="text" class="time" id="datetimepicker1"/>      	 
-	            	<ul class="list-group checked-list-box" id="symptomList">
-	            	
-	            	
-	            	
+	            	<ul class="list-group checked-list-box" id="symptomList" data-bind="foreach:selections">
+	            	<li class="list-group-item" data-bind="text:Symptom">
 	            	<!-- <li class="list-group-item">Nausea</li>
 	            	<li class="list-group-item" id="rated">Stomach Pain</li>
 	            	<p class="drop-scoring">please rate the pain from 1-5 <br>

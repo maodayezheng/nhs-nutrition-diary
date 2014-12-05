@@ -4,7 +4,7 @@
 
 $(document).ready(function(){
 	
-	var data =['John','barry','robert'];
+	var data =[{name:"banana",portion:1},{name:"apple",portion:3},{name:"beef",portion:4}];
 	$('#list').	generateList(data);
 	
 		$('#search').autocomplete({
@@ -40,16 +40,14 @@ jQuery.fn.extend({
 		$.each(data,function(index){
 			
 			var li =createBasicLi();
-			li.data('data',data[index]);
 			
 			var deleteButton = createDeleteButton('li');
-			var accountButton = createAccountButton('1');
-			var reduceButton = createReduceButton();
-			var increaseButton = createIncreaseButton();
+			var accountButton = createAccountButton(data[index]);
+			var reduceButton = createReduceButton(data[index]);
+			var increaseButton = createIncreaseButton(data[index]);
 			var controlPanel = createControlPanel();
 			controlPanel.addItems([reduceButton,accountButton,increaseButton]);
 			li.addItemToIconPos(deleteButton);
-			li.addItemToContentPos(data[index]);
 			li.addItemToControlPanelPos(controlPanel);
 			list.append(li);
 		

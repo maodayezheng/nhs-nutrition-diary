@@ -2,7 +2,7 @@ function Table() {}
 
 Table.prototype.drawTable = function(presentedParameter, dateFrom, dateTo) {
 	$('#summary').html("");
-	d3.select("svg").html("");
+	d3.select('#graph').attr("width", 0).attr("height", 0);
 	
 	var validator = new Validator();
 	if(!validator.datesAreValid(dateFrom, dateTo)) {

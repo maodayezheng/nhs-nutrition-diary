@@ -229,7 +229,7 @@ LocalDbSingleton.prototype.displayResults = function(result)
                     '<th>Protein (g)</th> <th>Water Fluid (ml)</th></tr>'; //column labels for the table
     for (var i=0; i<results.length; i++)
     {
-        resultsTable += '<tr> <td>'+results[i].FoodName+'</td> <td>'+results[i].EdibleProportion+'</td> <td>'+results[i]["Energy.kcal"]+'</td> ' +
+        resultsTable += '<tr> <td>'+results[i].Label+'</td> <td>'+results[i].EdibleProportion+'</td> <td>'+results[i]["Energy.kcal"]+'</td> ' +
                         '<td>'+results[i]["Protein.g"]+'</td> <td>'+results[i]["Water.g"]+'</td> </tr>'; //add a table row for each result
         document.getElementById("tableOfResults").innerHTML = resultsTable;
 
@@ -272,7 +272,7 @@ LocalDbSingleton.prototype.databaseInit = function(callback)
         {
             var foodList = db.createObjectStore(foodListStore, { keyPath: 'FoodCode' });
             foodList.createIndex("FoodCode", "FoodCode", { unique: true });
-            foodList.createIndex("FoodNamelc", "FoodNamelc", { unique: false });
+            foodList.createIndex("Label", "Label", { unique: false });
         }
         if(!db.objectStoreNames.contains(userFoodListStore)) //Store 3. Will contain any custom food created by the user.
         {
@@ -331,7 +331,7 @@ LocalDbSingleton.prototype.databaseInit = function(callback)
 	    	console.log("Starting to populate the foodListStore.");
 	        for (var i in foodDataObject.foodData) 
 	        {
-	           foodDataObject.foodData[i].FoodNamelc = foodDataObject.foodData[i]["FoodName"].toLowerCase();
+	           foodDataObject.foodData[i].FoodNamelc = foodDataObject.foodData[i]["Label"].toLowerCase();
 	           fls.add(foodDataObject.foodData[i]);
 	        }
 	        console.log(foodListStore+" Initialisation Complete!");

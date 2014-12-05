@@ -97,10 +97,10 @@ $(document).ready(function () {
 	$('#rated').click(function(){
 	    $('.drop-scoring').slideToggle('slow');
 	});
-	/* $("#list").initList(data,classes);
-	$("#symptomList").empty();
-	var symptom = '<li class="list-group-item"> Illness </li>';
-	$("#symptomList").append(symptom);*/
+	// $("#list").initList(data,classes);
+//	$("#symptomList").empty();
+	//var symptom = '<li class="list-group-item"> Illness </li>';
+//	$("#symptomList").append(symptom);
 	
 
 });

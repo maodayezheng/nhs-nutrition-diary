@@ -4,9 +4,10 @@
 
 $(document).ready(function(){
 	
-		
+	var data =['John','barry','robert'];
+	$('#list').	generateList(data);
+	
 		$('#search').autocomplete({
-			source:foodData,
 			minLength: 2,
 		});
 		$('#myMeal').click(function(){
@@ -16,14 +17,16 @@ $(document).ready(function(){
 	$('#newFood').click(function(){
 			
 		
-			
 		});
 	
 	$('#frequentFood').click(function(){
 		
-		
-		
 	})
+	
+	$('#deleteButton').click(function(){
+		console.log(this.index);
+		
+	});
 		
 });
 
@@ -35,7 +38,10 @@ jQuery.fn.extend({
 		var list = $(this);
 		list.empty();
 		$.each(data,function(index){
+			
 			var li =createBasicLi();
+			li.data('data',data[index]);
+			
 			var deleteButton = createDeleteButton('li');
 			var accountButton = createAccountButton('1');
 			var reduceButton = createReduceButton();
@@ -46,6 +52,7 @@ jQuery.fn.extend({
 			li.addItemToContentPos(data[index]);
 			li.addItemToControlPanelPos(controlPanel);
 			list.append(li);
+		
 		})
 	}
 	

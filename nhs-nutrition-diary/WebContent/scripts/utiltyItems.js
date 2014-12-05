@@ -12,6 +12,8 @@ jQuery.fn.extend({
 });
 
 
+
+
 // constructor of deleteButton target is the delete target
 function createDeleteButton(target){
 	var deleteButton = $('<button>',{
@@ -103,7 +105,6 @@ function createBasicLi(){
 	})));
 	
 	li.addItemToIconPos = function(item){
-		
 		var position = $(this).find('.iconPosition');
 		position.append(item);	
 	};
@@ -121,8 +122,6 @@ function createBasicLi(){
 
 	return li;
 	}
-
-
 
 
 

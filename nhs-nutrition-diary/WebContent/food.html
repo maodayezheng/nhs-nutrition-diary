@@ -14,6 +14,7 @@
     	<script src="scripts/utiltyItems.js"></script>
     	<script src="scripts/foodList.js"></script>
     	<script src="scripts/database/local/foodData.js"></script>
+    	<script src="scripts/dataWidgets.js"></script>
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     	<!--[if lt IE 9]>
@@ -60,7 +61,7 @@
 				</div>
 		    	 <div class="btn-group btn-group-justified" style="padding-top:10px;" role="group" aria-label="...">
   					<div class="btn-group" role="group">
-    					<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modalInfo" id="newFood">Create new food</button>
+    					<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modalInfo" id="newFood">new food</button>
   					</div>
   					<div class="btn-group" role="group">
     					<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modalInfo" id="frequentFood">Frequent  <span class="badge" id="frequentConter"></span></button>
@@ -112,9 +113,10 @@
         <h4 class="modal-title" id="modalTitle"></h4>
       </div>
       <div class="modal-body" id="modalBody">
-      
+     <div> 
     <input type="text" required>  
-      <input type="submit" class="btn btn-success">
+    </div>
+      <button type="submit" class="btn btn-success" id="submitButton">submit</button>
       </div>
       
     </div>

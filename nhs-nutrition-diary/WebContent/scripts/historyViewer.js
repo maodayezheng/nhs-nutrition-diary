@@ -34,10 +34,10 @@ function toggleVisualisationButton(id) {
 
 function fillEmptyDates() {
 	if(document.getElementById("datepickerFrom").value == "") {
-		document.getElementById("datepickerFrom").value = new Date().dateFormat('m/d/Y');
+		document.getElementById("datepickerFrom").value = new Date().dateFormat('d/m/Y');
 	}
 	
 	if(document.getElementById("datepickerTo").value == "") {
-		document.getElementById("datepickerTo").value = new Date().dateFormat('m/d/Y');
+		document.getElementById("datepickerTo").value = new Date().dateFormat('d/m/Y');
 	}
 }

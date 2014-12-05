@@ -3,9 +3,8 @@ function Table() {}
 Table.prototype.drawTable = function() {
 	d3.select("svg").text("");
 	
-	$(document).ready(function() {
-		$('#table')
-			.TidyTable({
+	//$(document).ready(function() {
+		$('#table').TidyTable({
 				columnTitles: ['Column A', 'Column B', 'Column C', 'Column D', 'Column E'],
 				columnValues: [
 					['1', '1A', '1B', '1C', '1D', '1E'],
@@ -14,8 +13,8 @@ Table.prototype.drawTable = function() {
 					['4', '4A', '4B', '4C', '4D', '4E'],
 					['5', '5A', '5B', '5C', '5D', '5E']
 				]
-			});
-	});
+		});
+	//});
 	
 //	$('#table').TidyTable(options, data [columnTitles, columnValues, menuOptions, postProcess]);
 	

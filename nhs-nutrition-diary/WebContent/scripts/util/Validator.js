@@ -3,11 +3,11 @@ function Validator() {}
 Validator.prototype.dateSplit = function(date) {
 	var dateSplit = date.split('/');
 	
-	var month = parseInt(dateSplit[0]);
-	var day = parseInt(dateSplit[1]);
+	var day = parseInt(dateSplit[0]);
+	var month = parseInt(dateSplit[1]);
 	var year = parseInt(dateSplit[2]);
 	
-	return new Array(month, day, year);
+	return new Array(day, month, year);
 }
 
 Validator.prototype.dateFromOlderThanTo = function(from, to) {
@@ -17,9 +17,9 @@ Validator.prototype.dateFromOlderThanTo = function(from, to) {
 	
 	if(toSplit[2] < fromSplit[2]) {
 		return false;
-	} else if (toSplit[2] == fromSplit[2] && toSplit[0] < fromSplit[0]) {
+	} else if (toSplit[2] == fromSplit[2] && toSplit[1] < fromSplit[1]) {
 		return false;
-	} else if (toSplit[2] == fromSplit[2] && toSplit[0] == fromSplit[0] && toSplit[1] < fromSplit[1]) {
+	} else if (toSplit[2] == fromSplit[2] && toSplit[1] == fromSplit[1] && toSplit[0] < fromSplit[0]) {
 		return false;
 	} else {
 		return true;
@@ -38,19 +38,19 @@ Validator.prototype.isValidDate = function(date) {
 	}
 	
 	if(dateSplit[2] <= 0
-			|| dateSplit[0] < 1
-			|| dateSplit[0] > 12
 			|| dateSplit[1] < 1
-			|| dateSplit[1] > 31) {
+			|| dateSplit[1] > 12
+			|| dateSplit[0] < 1
+			|| dateSplit[0] > 31) {
 		return false
 	}
 	
-	if(dateSplit[0] == 2 && (dateSplit[1] > 29)) {
+	if(dateSplit[1] == 2 && (dateSplit[0] > 29)) {
 		return false;
 	}
 	
-	if(dateSplit[1] == 31 && ((dateSplit[0] != 1) || (dateSplit[0] != 3) || (dateSplit[0] != 5) || (dateSplit[0] != 7)
-			|| (dateSplit[0] != 8) || (dateSplit[0] != 10) || (dateSplit[0] != 12))) {
+	if(dateSplit[0] == 31 && ((dateSplit[1] != 1) || (dateSplit[1] != 3) || (dateSplit[1] != 5) || (dateSplit[1] != 7)
+			|| (dateSplit[1] != 8) || (dateSplit[1] != 10) || (dateSplit[1] != 12))) {
 		return false;
 	}
 	

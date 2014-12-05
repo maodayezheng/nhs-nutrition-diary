@@ -1,23 +1,11 @@
 $(document).ready(function () {
-	var data = ["Mouth sores",
-    "Taste changes",
-    "Difficulty swallowing",
-    "Loss of appetite",
-    "Acid reflux",
-    "Nausea",
-    "Vomiting",
-    "Dumping syndrome",
-    "Abdominal pain with eating",
-    "Abdominal pain after eating",
-    "Blaoting",
-    "Loose stools",
-    "Pale/oily/difficult to flush stools",
-    "Bowels opened over 4 times a day",
-    "Constipation"];
 
-	var classes = "list-group-item";
+	var symptoms = new SymptomListSingleton().symptomList;
 	
 
+	
+	
+	
 		
     $('.list-group.checked-list-box .list-group-item').each(function () {
         // Settings
@@ -99,10 +87,7 @@ $(document).ready(function () {
 	    
 	    
 	});
-	// $("#list").initList(data,classes);
-//	$("#symptomList").empty();
-	//var symptom = '<li class="list-group-item"> Illness </li>';
-//	$("#symptomList").append(symptom);
+
 	
 	
 	$("#saveWeight").click(function(){

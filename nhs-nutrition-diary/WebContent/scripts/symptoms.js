@@ -3,10 +3,6 @@ $(document).ready(function () {
 	var symptoms = new SymptomListSingleton().symptomList;
 	ko.applyBindings(new selectionViewModel(symptoms));
 
-	
-	
-	
-		
     $('.list-group.checked-list-box .list-group-item').each(function () {
         // Settings
         var $widget = $(this),
@@ -55,7 +51,6 @@ $(document).ready(function () {
             }
         }
 
-        // Initialization
         function init() {
             
             if ($widget.data('checked') == true) {
@@ -84,16 +79,10 @@ $(document).ready(function () {
 
 	$('#rated').click(function(){
 	    $('.drop-scoring').slideToggle('slow');
-	    
-	    
 	});
 
-	
-	
 	$("#saveWeight").click(function(){
 		$('p').html("#currentWeight");
 		//$("#currentweight").val("#number");
 	});
-	
-
 });

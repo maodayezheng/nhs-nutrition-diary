@@ -303,7 +303,6 @@
     	$("#searchTerms").on("keyup", function(e)
             {
               var value = $(this).val();
-              console.log("in$searchTerms");
               if (value.length>2)
               {
                 databaseSearch(value, foodListTable, 'FoodNamelc',displayResults);

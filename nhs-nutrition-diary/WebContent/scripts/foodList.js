@@ -4,11 +4,12 @@
 
 $(document).ready(function(){
 	
-	var data =[{name:"banana",portion:1},{name:"apple",portion:3},{name:"beef",portion:4}];
-	$('#list').	generateList(data);
+	var data =new FoodDataSingleton().foodData;
+	console.log(data[1].label);
 	
 		$('#search').autocomplete({
 			minLength: 2,
+			source:data
 		});
 		$('#myMeal').click(function(){
 			
@@ -29,8 +30,6 @@ $(document).ready(function(){
 	});
 		
 });
-
-
 
 jQuery.fn.extend({
 		

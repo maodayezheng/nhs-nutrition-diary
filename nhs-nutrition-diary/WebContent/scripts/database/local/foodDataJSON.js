@@ -21,7 +21,7 @@ function FoodDataSingleton()
 		    [
 		        {
 		            "FoodCode": "16-250",
-		            "FoodName": "Abalone, canned in brine, drained",
+		            "label": "Abalone, canned in brine, drained",
 		            "EdibleProportion": "N",
 		            "Water.g": "65.1",
 		            "Protein.g": "24.8",
@@ -34,7 +34,7 @@ function FoodDataSingleton()
 		        },
 		        {
 		            "FoodCode": "13-145",
-		            "FoodName": "Ackee, canned, drained",
+		            "label": "Ackee, canned, drained",
 		            "EdibleProportion": "N",
 		            "Water.g": "76.7",
 		            "Protein.g": "2.9",

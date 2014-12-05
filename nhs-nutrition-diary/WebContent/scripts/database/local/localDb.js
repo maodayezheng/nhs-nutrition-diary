@@ -319,7 +319,7 @@ LocalDbSingleton.prototype.databaseOpen = function(vsion /*version*/, callback)
 	        }
 	        console.log(symptomListStore+" Initialisation Complete!");
     	}
-    	 
+    	//db.close(); 
     	
     	callback(); 
     };
@@ -373,7 +373,7 @@ db1.databaseOpen(null, function()
 {
 	var begin = db1.begin, end = Date.now();
 	var time = end-begin;
-    console.log('It took '+time+' milliseconds to create the open the database');
+    console.log('It took '+time+' milliseconds to populate the database');
     db1.localDbAdd('userFoodListStore', arrayToAdd);
 });
 

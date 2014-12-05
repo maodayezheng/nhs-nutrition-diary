@@ -102,10 +102,11 @@ LocalDbSingleton.prototype.get = function(oStore, dateFrom, dateTo)
 
 
 //TODO Decide on how to create a uniqueID for each entry in the manifests and user tables. //Think it is done. 
-//TODO Change the raw JSON food data so it is not a global but enclosed within a function. Do the same with the symptom List.
-//TODO Finalise the add function (can only be done once unique ID is sorted).
+//TODO Change the raw JSON food data so it is not a global but enclosed within a function. Do the same with the symptom List. //DONE
+//TODO Finalise the add function (can only be done once unique ID is sorted). //Just need to sort unique ID. 
 //TODO Create and finalise a delete element function. 
-//TODO Add add property (see comment in localDBAdd function for loop).  
+//TODO Create and finalise an edit element property. 
+//TODO Add add property (see comment in localDBAdd function for loop).  //DONE
 //TODO Finish this TODO list. 
 
 
@@ -136,7 +137,7 @@ LocalDbSingleton.prototype.localDbAdd = function(oStore, arrayOfObjects)
 		dbAdditionRequest.onsuccess = function(e) 
 		{
 		    console.log("Added first objects");
-		    _this.localDbAdd(_this.syncToServerStore,syncToServerArray); //recursive call. 
+		    _this.localDbAdd(_this.syncToServerStore,syncToServerArray); //recursive call so array of objects gets added to the synToServerStore as well. 
 		}
 	}
 	else 

@@ -5,15 +5,16 @@
 $(document).ready(function(){
 	
 	var data =new FoodDataSingleton().foodData;
-	console.log(data[1].label);
+	
 	
 		$('#search').autocomplete({
-			minLength: 2,
-			source:data
+			source:data,
+			minLength: 2
+			
 		});
 		$('#myMeal').click(function(){
 			
-			$('modalBody')
+			
 		});
 	$('#newFood').click(function(){
 			

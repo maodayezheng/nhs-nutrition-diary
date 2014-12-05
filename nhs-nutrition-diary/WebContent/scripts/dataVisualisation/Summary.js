@@ -3,7 +3,7 @@ function Summary() {}
 Summary.prototype.makeSummary = function(presentedParameter, dateFrom, dateTo) {
 	
 	$('#table').html("");
-	d3.select("svg").html("");
+	d3.select('#graph').attr("width", 0).attr("height", 0);
 	
 	var validator = new Validator();
 	if(!validator.datesAreValid(dateFrom, dateTo)) {

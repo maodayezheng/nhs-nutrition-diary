@@ -27,7 +27,7 @@ function toggleVisualisationButton(id) {
 		makeGraph(presentedParameter, dateFrom, dateTo);
 	} else if (id == 'tableSelectorLabel') {
 		var table = new Table();
-		table.drawTable();
+		table.drawTable(presentedParameter, dateFrom, dateTo);
 	} else if (id == 'summarySelectorLabel') {
 		var summary = new Summary();
 		summary.makeSummary(presentedParameter, dateFrom, dateTo);

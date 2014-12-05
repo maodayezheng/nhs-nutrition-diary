@@ -1,14 +1,14 @@
 function makeGraph(presentedParameter, dateFrom, dateTo) {
 	
+	$('#table').html("");
+	$('#summary').html("");
+	d3.select("svg").text("");
+	
 	var validator = new Validator();
 	if(!validator.datesAreValid(dateFrom, dateTo)) {
 		alert("Dates are not valid. Either wrong format or to is older than from.");
 		return false;
 	}
-	
-	$('#table').html("");
-	$('#summary').html("");
-	d3.select("svg").text("");
 	
 	var database = new LocalDbSingleton();
 	var jsonInput = database.get(dateFrom, dateTo);

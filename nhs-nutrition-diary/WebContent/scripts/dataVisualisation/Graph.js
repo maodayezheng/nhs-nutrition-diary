@@ -1,5 +1,4 @@
 function makeGraph(presentedParameter, dateFrom, dateTo) {
-	d3.select("svg").text("");
 	
 	var validator = new Validator();
 	if(!validator.datesAreValid(dateFrom, dateTo)) {
@@ -7,12 +6,16 @@ function makeGraph(presentedParameter, dateFrom, dateTo) {
 		return false;
 	}
 	
+	$('#table').html("");
+	$('#summary').html("");
+	d3.select("svg").text("");
+	
 	var database = new LocalDbSingleton();
 	var jsonInput = database.get(dateFrom, dateTo);
 	
 	var parseDate = d3.time.format("%Y%m%d").parse;
 	
-	var vis = d3.select("#visualisation"),
+	var vis = d3.select("#graph"),
     	WIDTH = 800,
     	HEIGHT = 300,
     	MARGINS = {
@@ -128,7 +131,7 @@ Graph.prototype.create = function() {
 	
 	var parseDate = d3.time.format("%Y%m%d").parse;
 	
-	var vis = d3.select("#visualisation"),
+	var vis = d3.select("#graph"),
     	WIDTH = 800,
     	HEIGHT = 300,
     	MARGINS = {

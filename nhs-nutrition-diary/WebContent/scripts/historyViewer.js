@@ -9,9 +9,10 @@ function toggleVisualisation() {
 		makeGraph(presentedParameter, dateFrom, dateTo);
 	} else if($('#tableSelector').is(':checked')) {
 		var table = new Table();
-		table.drawTable();
+		table.drawTable(presentedParameter, dateFrom, dateTo);
 	} else if($('#summarySelector').is(':checked')) {
-		//TODO call make summary
+		var summary = new Summary();
+		summary.makeSummary(presentedParameter, dateFrom, dateTo);
 	}
 }
 
@@ -28,7 +29,8 @@ function toggleVisualisationButton(id) {
 		var table = new Table();
 		table.drawTable();
 	} else if (id == 'summarySelectorLabel') {
-		//TODO call make summary
+		var summary = new Summary();
+		summary.makeSummary(presentedParameter, dateFrom, dateTo);
 	}
 }
 

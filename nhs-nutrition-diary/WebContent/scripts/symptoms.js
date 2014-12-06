@@ -67,15 +67,20 @@ $(document).ready(function () {
         init();
     });
     
-    $('#get-checked-data').on('click', function(event) {
-        event.preventDefault(); 
-        var checkedItems = {}, counter = 0;
-        $("#check-list-box li.active").each(function(idx, li) {
-            checkedItems[counter] = $(li).text();
-            counter++;
-        });
-        $('#display-json').html(JSON.stringify(checkedItems, null, '\t'));
-    });
+   // $('#get-checked-data').on('click', function(event) {
+       // event.preventDefault(); 
+
+   $(".test").click(function(){
+       var checkedItems = {}, counter = 0;
+       $("#symptomList li.active").each(function(idx, li) {
+           checkedItems[counter] = $(li).text();
+           counter++;
+       });
+       console.log(checkedItems);
+       alert(JSON.stringify(checkedItems));
+   });
+       // $('#display-json').html(JSON.stringify(checkedItems, null, '\t'));
+  //  });
 
 	$('li').click(function(){
 		var drop =$(this).children('.drop-scoring');

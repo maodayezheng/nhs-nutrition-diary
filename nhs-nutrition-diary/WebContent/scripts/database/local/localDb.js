@@ -78,6 +78,8 @@ LocalDbSingleton.prototype.get = function(oStore, dateFrom, dateTo)
 //TODO Finalise the add function (can only be done once unique ID is sorted). //Just need to sort unique ID. 
 //TODO Create and finalise a delete element function. 
 //TODO Create and finalise an edit element property. 
+//TODO Create and finish a get function.
+//TODO Create a summation function. 
 //TODO Finish this TODO list. 
 
 

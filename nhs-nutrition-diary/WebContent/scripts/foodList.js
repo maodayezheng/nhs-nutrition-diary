@@ -5,9 +5,7 @@
 $(document).ready(function(){
 	
 	var data =new FoodDataSingleton().foodData;
-	
-	
-		$('#search').autocomplete({
+			$('#search').autocomplete({
 			source:data,
 			minLength: 2
 			

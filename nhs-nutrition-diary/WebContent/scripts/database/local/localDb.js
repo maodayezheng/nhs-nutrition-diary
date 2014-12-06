@@ -68,7 +68,7 @@ function LocalDbSingleton()
  * and then calls back whatever you passed to it in the arguments. For example if you want to add an array of objects to the database you would write:
  * var db1 = new LocalDbSingleton(); db1.databaseOpen(LocalDbSingleton.prototype.localDbAdd, 'userFoodListStore', arrayToAdd);
  */
-LocalDbSingleton.prototype.databaseOpen = function(callback, arg1, arg2)
+LocalDbSingleton.prototype.databaseOpen = function(callback, arg1, arg2, arg3, arg4)
 { 
 	var _this = this; //storing reference to calling object (this) for binding. 
 	//console.log('_this 1'); console.log(_this); //for debugging
@@ -79,7 +79,16 @@ LocalDbSingleton.prototype.databaseOpen = function(callback, arg1, arg2)
 		var db = event.target.result; 
 		_this.db = db;
 		//console.log('successfully opened db'); //for debugging
-		callback(arg1,arg2,_this); //send the _this reference to the callback function to bind it. 
+		console.log('before switch');
+		switch (callback)
+		{
+			case LocalDbSingleton.prototype.localDbAdd: callback(arg1,arg2,_this); break; //arguments -> oStore, arrayOfObjects, objectRef
+			case LocalDbSingleton.prototype.localDbGet: callback(arg1, arg2 , arg3 , _this); break; //arguments -> oStore, dateFrom, dateTo, objectRef, callback
+			default: console.log('default in switch in database open');
+		}
+		
+		
+		
 	}
 }
 
@@ -113,7 +122,7 @@ LocalDbSingleton.prototype.get = function(oStore, dateFrom, dateTo, objectRef) /
  * @param dateFrom The date from which the caller wishes to receive data from. It should be an array [day, month, year] e.g. [19,01,2012] (19th Jan 2012).
  * @param dateTo   The date to which the caller wishes to receive data from. It should be an array [day, month, year] e.g. [12,06,2014] (12th June 2014).
  */
-LocalDbSingleton.prototype.localDbGet = function(oStore, dateFrom, dateTo, objectRef)
+LocalDbSingleton.prototype.localDbGet = function(oStore, dateFrom, dateTo, objectRef, callback)
 {
 	var _this = objectRef;
 	var db = _this.db; 
@@ -122,12 +131,10 @@ LocalDbSingleton.prototype.localDbGet = function(oStore, dateFrom, dateTo, objec
 	var toDate = new Date(dateTo[2], dateTo[1]-1, dateTo[0], 0,0,0,0); //format for date object: new Date(year, month (indexed from 0), day, hours, minutes, seconds, milliseconds)
 	var range;
 	
-	if(fromDate == "" && toDate == "") return; //nothing to show here
-	
 	var transaction = db.transaction([oStore], "readonly").objectStore(oStore);
 	var index = transaction.index("Date");
 	
-    if(fromDate != "" && toDate != "") // fromDate<= x<= toDate
+    if(fromDate != "" && toDate != "") // fromDate<= x<= toDate where x is an object
     {
 		range = IDBKeyRange.bound(fromDate, toDate);
 	} else if(fromDate == "") // x<= toDate
@@ -138,9 +145,9 @@ LocalDbSingleton.prototype.localDbGet = function(oStore, dateFrom, dateTo, objec
 		range = IDBKeyRange.lowerBound(fromDate);
 	}
 	var results = [], count =0;
-	index.openCursor(range).onsuccess = function(e) 
+	index.openCursor(range).onsuccess = function(event) 
 	{
-		var cursor = e.target.result;
+		var cursor = event.target.result;
 		if(cursor) 
 		{
 			count++;
@@ -149,7 +156,7 @@ LocalDbSingleton.prototype.localDbGet = function(oStore, dateFrom, dateTo, objec
 		} else
 		{
 			console.log("Returned "+count +"results");
-			return results; 
+			console.log(results);  
 		}
 	}
 }
@@ -428,6 +435,6 @@ db1.databaseInit(function()
     //db1.localDbAdd('userFoodListStore', arrayToAdd);
 });
 //db1.databaseOpen(LocalDbSingleton.prototype.localDbAdd, 'userFoodListStore', arrayToAdd);
-
+//db1.databaseOpen(LocalDbSingleton.prototype.localDbGet, 'symptomManifestStore', ["01","12","2014"],["04","12","2014"] );
 
 /////////////////////////////////////////////////// End of testing block

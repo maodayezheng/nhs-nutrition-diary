@@ -16,7 +16,7 @@ SubmitController.prototype.submitSymptoms = function() {
 	var userDate = document.getElementById('datepicker').value.split('/'), userTime = document.getElementById('datetimepicker1').value.split(':');
 	if (userDate==''||userTime=='') {alert('Please select a valid date and time'); return;}
 	var date = new Date(userDate[2], userDate[1]-1, userDate[0], userTime[0], userTime[1], 0, 0); //format for date object: new Date(year, month (indexed from 0), day, hours, minutes, seconds, milliseconds) 
-
+	console.log(userDate);
 	//dummy data to play with	
 	var symptomSubmitTestData = [{"Symptom": "Mouth Sores"}, {"Symptom":"Headache", "Rating": 5}    
 	                             ];

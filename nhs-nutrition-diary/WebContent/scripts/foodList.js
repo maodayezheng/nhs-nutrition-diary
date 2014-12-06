@@ -76,10 +76,29 @@ function submitData(){
 	children.each(function(index,item){
 		var obj = $(item);
 		submitData.push(obj.data('food'));
-		
 	})
 	return submitData;
 }
+
+function updateNutritionBreakDown(){
+	var children = $('#list').children('li');
+	var protien =0;
+	var calories = 0;
+	var fluid = 0;
+	children.each(function(index,item){
+		var obj = $(item);
+		var food = obj.data('food');
+		var portion = food['portion'];
+		protien += portion*parseInt(food['Protein.g']); 
+		fluid += portion*parseInt(food['Water.g']);
+		calories +=portion*parseInt(food['Energy.kcal']);
+	});
+	
+	$('#calories').text(calories);
+	$('#protien').text(protien);
+	$('#fluid').text(fluid);
+}
+
 
 
 function displaySelection(selection){
@@ -87,14 +106,18 @@ function displaySelection(selection){
 		var li = new createBasicLi(selection);
 		var controlPanel = new createControlPanel();
 		var deleteButton = new createDeleteButton('li');
+		deleteButton.bind('click',updateNutritionBreakDown);
 		var reduceButton = new createReduceButton(selection);
+		reduceButton.bind('click',updateNutritionBreakDown);
 		var accountButton = new createAccountButton(selection);
 		var increaseButton = new createIncreaseButton(selection);
+		increaseButton.bind('click',updateNutritionBreakDown);
 		controlPanel.addItems([reduceButton,accountButton,increaseButton]);
 		li.addItemToLeft(deleteButton);
 		li.addItemToLeft(selection.label);
 		li.addItemToRight(controlPanel);
 		$('#list').append(li);
+		updateNutritionBreakDown();
 }
 
 $(function(){

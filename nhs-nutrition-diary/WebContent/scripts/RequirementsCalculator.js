@@ -16,15 +16,15 @@ RequirementsCalculator.prototype.calcCaloriesFemale = function() {
 	var age = $("#age").val();
 	var weight = $("#weight").val();
 	
-	if(this.age < 17) {
+	if(age < 17) {
 		return weight * 13.4 + 692;
-	} else if(age > 17 && age < 30) {
+	} else if(age >= 17 && age < 30) {
 		return weight * 14.8 + 487;
-	} else if(age > 29 && age < 60) {
+	} else if(age >= 30 && age < 60) {
 		return weight * 8.3 + 846;
-	} else if(age > 59 && age < 75) {
+	} else if(age >= 60 && age < 75) {
 		return weight * 9.8 + 687;
-	} else if(age > 74) {
+	} else if(age >= 75) {
 		return weight * 8.3 + 624;
 	}
 }
@@ -35,13 +35,13 @@ RequirementsCalculator.prototype.calcCaloriesMale = function() {
 	
 	if(age < 17) {
 		return weight * 17.7 + 657;
-	} else if(age > 17 && age < 30) {
+	} else if(age >= 17 && age < 30) {
 		return weight * 15.1 + 692;
-	} else if(age > 29 && age < 60) {
+	} else if(age >= 30 && age < 60) {
 		return weight * 11.5 + 873;
-	} else if(age > 59 && age < 75) {
+	} else if(age >= 60 && age < 75) {
 		return weight * 11.9 + 700;
-	} else if(age > 74) {
+	} else if(age >= 75) {
 		return weight * 8.3 + 820;
 	}
 }

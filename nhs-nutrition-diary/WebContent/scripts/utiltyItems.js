@@ -45,10 +45,10 @@ function createIncreaseButton(food){
 		"class":"btn btn-default btn",
 		"name":"increaseButton",
 		"text":"+"
-	}).data('food',food).bind('click',function(){
+	}).data(food).bind('click',function(){
 
 		var accountButton = $(this).siblings('[name=accountButton]');
-		var food = $(this).data('food');
+		var food = $(this).data();
 		food.portion = food.portion +1;
 		accountButton.text(food.portion);
 
@@ -64,9 +64,9 @@ function createReduceButton(food){
 		"name":"reduceButton",
 		"text":"-"		
 
-	}).data('food',food).bind('click',function(){
+	}).data(food).bind('click',function(){
 		var accountButton = $(this).siblings('[name=accountButton]');
-		var food = $(this).data('food');
+		var food = $(this).data();
 		food.portion = food.portion -1;
 		 
 		if (food.portion <1){
@@ -94,10 +94,10 @@ function createAccountButton(food){
 
 
 // constructor of basic <li> DOM in our project
-function createBasicLi(){
+function createBasicLi(food){
 	var li = $('<li>',{
 		"class":"list-group-item",
-	}).append($('<div>',{
+	}).data(food).append($('<div>',{
 		"class":"row",
 	}).append($('<div>',{
 		"class":"col-md-6 left"

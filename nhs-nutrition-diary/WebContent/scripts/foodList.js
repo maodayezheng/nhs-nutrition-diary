@@ -5,12 +5,11 @@
 $(document).ready(function(){
 	
 	var data =new FoodDataSingleton().foodData;
-	var selectedFood = [];
+	
 	var customMeals =["John Sandwich","Virk Super Sandwich","Robert Germany Sandwich","Bowen Dumpling"];
 	var frequentFood = ["beef","apple","beer"];
 	
 			$('#search').autocomplete({
-				
 			source:function (request, response) {
 				
             var term = $.ui.autocomplete.escapeRegex(request.term)
@@ -27,11 +26,16 @@ $(document).ready(function(){
             response(startsWith.concat(contains));
         },
 			select:function(event,ui){
-				
 				var selection = ui.item;
+				
 				selection["portion"] = 1;
+				if(!compareWithCurrentSelections(selection)){
 				displaySelection(selection);
 				
+				}else{
+					// notify the user this food already in list
+					
+				}
 			},
 			minLength: 3,
 			
@@ -47,13 +51,40 @@ $(document).ready(function(){
 	
 	$('#frequentFood').click(function(){
 		
+		
 	})
 		
 });
 
+function compareWithCurrentSelections(selection){
+	var present = false;
+	var children = $('#list').children('li');
+		
+		children.each(function(index,item){
+			var obj= $(item);
+			var currentSelection = obj.data();
+			if(currentSelection.label === selection.label){
+				present = true;
+			}
+		});
+	return present;
+}
+
+function submitData(){
+	var submitData =[];
+	var children = $('#list').children('li');
+	children.each(function(index,item){
+		var obj = $(item);
+		submitData.push(obj.data());
+		
+	})
+	return submitData;
+}
+
+
 function displaySelection(selection){
 	
-		var li = new createBasicLi();
+		var li = new createBasicLi(selection);
 		var controlPanel = new createControlPanel();
 		var deleteButton = new createDeleteButton('li');
 		var reduceButton = new createReduceButton(selection);

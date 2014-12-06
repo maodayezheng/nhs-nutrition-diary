@@ -252,14 +252,15 @@ LocalDbSingleton.prototype.databaseInit = function(callback)
 	var _this = this, dbName = this.dbName, userStore=this.userStore, foodListStore = this.foodListStore, userFoodListStore = this.userFoodListStore, symptomListStore = this.symptomListStore;
 	var userSymptomListStore = this.userSymptomListStore, foodManifestStore = this.foodManifestStore, symptomManifestStore = this.symptomManifestStore, weightManifestStore = this.weightManifestStore;
 	var requirementsManifestStore = this.requirementsManifestStore, syncToServerStore = this.syncToServerStore;
-    this.begin = Date.now();
-    var version = this.version, db =this.db;   
-    console.log(version);
+    this.begin = Date.now(); var version = this.version, db =this.db;   
+    
     var request1 = indexedDB.open(dbName);
+    var addData = false; //used to decide whether to populate the object stores with the food and symptom data.  
     request1.onerror = _this.databaseError;
     request1.onupgradeneeded = function(event) //This request is to create the object stores. 
     {
         console.log('in request1 onupgradeneeded');
+        addData = true;
     	db = event.target.result; _this.db=db;
         db.onerror = _this.databaseError;
         _this.version++;
@@ -287,27 +288,27 @@ LocalDbSingleton.prototype.databaseInit = function(callback)
         }
         if(!db.objectStoreNames.contains(userSymptomListStore)) //Store 5. Will contain any custom created symptoms by the user.
         {
-           var userSymptomList = db.createObjectStore(userSymptomListStore, { keyPath: 'id', autoIncrement: true });
+           var userSymptomList = db.createObjectStore(userSymptomListStore, { keyPath: 'EntryNumber', autoIncrement: true });
            userSymptomList.createIndex('Symptom', 'Symptom', {unique: true});
         }
         if(!db.objectStoreNames.contains(foodManifestStore)) //Store 6
         {
-        	var foodManifest = db.createObjectStore(foodManifestStore, { keyPath: 'FoodCode' });
+        	var foodManifest = db.createObjectStore(foodManifestStore, { keyPath: 'EntryNumber' });
             foodManifest.createIndex("Date", "Date", { unique: false }); //Adding this index so as to allow fast retrieval/addition to the object store by date.
         }
         if(!db.objectStoreNames.contains(symptomManifestStore)) //Store 7
         {
-            var symptomManifest = db.createObjectStore(symptomManifestStore, { keyPath: 'FoodCode' });
+            var symptomManifest = db.createObjectStore(symptomManifestStore, { keyPath: 'EntryNumber', autoIncrement: true });
             symptomManifest.createIndex("Date", "Date", { unique: false }); //Adding this index so as to allow fast retrieval/addition to the object store by date.
         }
         if(!db.objectStoreNames.contains(weightManifestStore)) //Store 8
         {
-            var weightManifest = db.createObjectStore(weightManifestStore, { keyPath: 'FoodCode' });
+            var weightManifest = db.createObjectStore(weightManifestStore, { keyPath: 'EntryNumber', autoIncrement: true });
             weightManifest.createIndex("Date", "Date", { unique: false }); //Adding this index so as to allow fast retrieval/addition to the object store by date.
         }
         if(!db.objectStoreNames.contains(requirementsManifestStore)) //Store 9
         {
-            var requirementsManifest = db.createObjectStore(requirementsManifestStore, { keyPath: 'FoodCode' });
+            var requirementsManifest = db.createObjectStore(requirementsManifestStore, { keyPath: 'EntryNumber', autoIncrement: true });
             requirementsManifest.createIndex("Date", "Date", { unique: false }); //Adding this index so as to allow fast retrieval/addition to the object store by date.
         }
         if(!db.objectStoreNames.contains(syncToServerStore)) //Store 10
@@ -319,23 +320,23 @@ LocalDbSingleton.prototype.databaseInit = function(callback)
     request1.onsuccess = function(event) 
     { 
     	console.log('request one success'); 
-	    console.log(_this.version);
     	db = event.target.result; _this.db=db;
-    	if (_this.version)
-    	{
+    	console.log('addData: '+addData);
+    	if (addData)
+    	{	
     		var dataTransaction = db.transaction([foodListStore,symptomListStore], "readwrite");
-	    	var fls = dataTransaction.objectStore(foodListStore); 
+    		var fls = dataTransaction.objectStore(foodListStore); 
 	    	var sls = dataTransaction.objectStore(symptomListStore);
 	    	
 	    	var foodDataObject = new FoodDataSingleton();
 	    	console.log("Starting to populate the foodListStore.");
 	        for (var i in foodDataObject.foodData) 
 	        {
-	           foodDataObject.foodData[i].FoodNamelc = foodDataObject.foodData[i]["Label"].toLowerCase();
+	           foodDataObject.foodData[i].FoodNamelc = foodDataObject.foodData[i]["label"].toLowerCase();
 	           fls.add(foodDataObject.foodData[i]);
 	        }
 	        console.log(foodListStore+" Initialisation Complete!");
-	    	
+	        
 	        var symptomListObject = new SymptomListSingleton(); //instantiate the symptomListSingleton to put the symptoms in the store.
 	        console.log("Starting to populate the symptomListStore.");
 	        for (var i in symptomListObject.symptomList)
@@ -387,13 +388,13 @@ LocalDbSingleton.prototype.databaseDelete = function()
 
 ////////////////////////////////////////////////////////BELOW CODE FOR TESTING. DELETE ONCE COMPLETEd. 
 //var arrayToAdd = [{name: "one"},{name: "two"},{name: "three"},{name: "four"}]; //for testing. Delete after test. 
-//var db1 = new LocalDbSingleton();
-/*db1.databaseInit(function()
+var db1 = new LocalDbSingleton();
+db1.databaseInit(function()
 {
 	var begin = db1.begin, end = Date.now();
 	var time = end-begin;
     console.log('It took '+time+' milliseconds to populate the database');
     //db1.localDbAdd('userFoodListStore', arrayToAdd);
-});*/
+});
 //db1.databaseOpen(LocalDbSingleton.prototype.localDbAdd, 'userFoodListStore', arrayToAdd);
 /////////////////////////////////////////////////// End of testing block

@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
 	var symptoms = new SymptomListSingleton().symptomList;
-	ko.applyBindings(new selectionViewModel(symptoms));
+	ko.applyBindings(new symptomsListView(symptoms));
 
     $('.list-group.checked-list-box .list-group-item').each(function () {
         // Settings

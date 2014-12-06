@@ -6,7 +6,21 @@ $(document).ready(function(){
 	
 	var data =new FoodDataSingleton().foodData;
 			$('#search').autocomplete({
-			source:data,
+			source:function (request, response) {
+            var term = $.ui.autocomplete.escapeRegex(request.term)
+                , startsWithMatcher = new RegExp("^" + term, "i")
+                , startsWith = $.grep(data, function(value) {
+                    return startsWithMatcher.test(value.label || value.value || value);
+                })
+                , containsMatcher = new RegExp(term, "i")
+                , contains = $.grep(data, function (value) {
+                    return $.inArray(value, startsWith) < 0 && 
+                        containsMatcher.test(value.label || value.value || value);
+                });
+            
+            response(startsWith.concat(contains));
+        },
+
 			minLength: 2
 			
 		});
@@ -30,26 +44,19 @@ $(document).ready(function(){
 		
 });
 
-jQuery.fn.extend({
+
+
+
+$(function(){
+	/*$.ui.autocomplete.prototype._renderMenu =function(ul,items){
 		
-	generateList:function(data){
-		var list = $(this);
-		list.empty();
-		$.each(data,function(index){
-			
-			var li =createBasicLi();
-			
-			var deleteButton = createDeleteButton('li');
-			var accountButton = createAccountButton(data[index]);
-			var reduceButton = createReduceButton(data[index]);
-			var increaseButton = createIncreaseButton(data[index]);
-			var controlPanel = createControlPanel();
-			controlPanel.addItems([reduceButton,accountButton,increaseButton]);
-			li.addItemToIconPos(deleteButton);
-			li.addItemToControlPanelPos(controlPanel);
-			list.append(li);
 		
-		})
-	}
+		console.log(items);
+		
+	}*/
 	
-});
+	
+	
+	
+	
+})

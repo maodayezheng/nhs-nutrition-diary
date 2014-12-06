@@ -1,4 +1,7 @@
-function RequirementsCalculator() {}
+function RequirementsCalculator() {
+	//TODO get weight from database
+	//TODO get age from database
+}
 
 RequirementsCalculator.prototype.calcCalories = function() {
 	//TODO check if user is female: currently true
@@ -13,7 +16,7 @@ RequirementsCalculator.prototype.calcCaloriesFemale = function() {
 	var age = $("#age").val();
 	var weight = $("#weight").val();
 	
-	if(age < 17) {
+	if(this.age < 17) {
 		return weight * 13.4 + 692;
 	} else if(age > 17 && age < 30) {
 		return weight * 14.8 + 487;

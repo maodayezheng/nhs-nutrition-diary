@@ -3,7 +3,7 @@ $(document).ready(function () {
 	var symptoms = new SymptomListSingleton().symptomList;
 	ko.applyBindings(new symptomsListView(symptoms));
 
-    $('.list-group.checked-list-box .list-group-item').each(function () {
+   $('.list-group.checked-list-box .list-group-item').each(function () {
         // Settings
         var $widget = $(this),
             $checkbox = $('<input type="checkbox" class="hidden"/>'),
@@ -77,8 +77,12 @@ $(document).ready(function () {
         $('#display-json').html(JSON.stringify(checkedItems, null, '\t'));
     });
 
-	$('#rated').click(function(){
-	    $('.drop-scoring').slideToggle('slow');
+	$('li').click(function(){
+		var drop =$(this).children('.drop-scoring');
+		console.log(drop);
+		if(drop !==null){
+	    drop.slideToggle('slow');
+	    }
 	});
 
 	$("#saveWeight").click(function(){
@@ -89,15 +93,28 @@ $(document).ready(function () {
 
 //---- method to combine data with DOMs----
 
-function symptomsListView(data){
-		
+ko.bindingHandlers.ratingScore ={
+		init:function(element,valueAccessor){
+			if(valueAccessor()){
+			$(element).addClass("drop-scoring");
+			for(var i=1;i<6;i++){
+				$('<button>',{
+					"text":i
+				}).appendTo(element);
+			}
+			}
+		},
+		update:function(element,valueAccessor){
+			
+		}
+};
+
+
+
+function symptomsListView(symptoms){
 		var self = this;
-		this.rate = 
-		self.selections = ko.observableArray(data);
+		this.symptoms =symptoms;
 		self.ratingSection = ko.computed(function(){
-			
-			
-			
 		},this);
 		
 }

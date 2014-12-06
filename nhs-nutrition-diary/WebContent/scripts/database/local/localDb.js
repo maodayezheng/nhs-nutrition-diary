@@ -389,12 +389,12 @@ LocalDbSingleton.prototype.databaseDelete = function()
 ////////////////////////////////////////////////////////BELOW CODE FOR TESTING. DELETE ONCE COMPLETEd. 
 //var arrayToAdd = [{name: "one"},{name: "two"},{name: "three"},{name: "four"}]; //for testing. Delete after test. 
 var db1 = new LocalDbSingleton();
-db1.databaseInit(function()
+/*db1.databaseInit(function()
 {
 	var begin = db1.begin, end = Date.now();
 	var time = end-begin;
     console.log('It took '+time+' milliseconds to populate the database');
     //db1.localDbAdd('userFoodListStore', arrayToAdd);
-});
+});*/
 //db1.databaseOpen(LocalDbSingleton.prototype.localDbAdd, 'userFoodListStore', arrayToAdd);
 /////////////////////////////////////////////////// End of testing block

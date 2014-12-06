@@ -86,3 +86,18 @@ $(document).ready(function () {
 		//$("#currentweight").val("#number");
 	});
 });
+
+//---- method to combine data with DOMs----
+
+function symptomsListView(data){
+		
+		var self = this;
+		this.rate = 
+		self.selections = ko.observableArray(data);
+		self.ratingSection = ko.computed(function(){
+			
+			
+			
+		},this);
+		
+}

@@ -4,6 +4,7 @@
     	<meta charset="utf-8">
     	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     	<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script src="scripts/SubmitController.js"></script>
 		<script src="lib/jquery/jquery.js"></script>
 		<script src="lib/jquery/jquery-ui-1.11.2.min.js"></script>
 		<script src="scripts/OnLoad.js"></script>
@@ -66,16 +67,16 @@
         			<form id='myform' method='POST' action='#'>
 		
     	<input type='button' value='-' class='qtyMinusFluid' field='quantity' />
-    	<input type='text' name='quantity' id="setNewWeight" value='0' class='qty' />
+    	<input type='text' name='quantity' id="newWeight" value='0' class='qty' />
     	<input type='button' value='+' class='qtyPlusFluid' field='quantity' />
 </form>
 
 				<!--<script>
-				$("#setNewWeight").val() = currentWeight;
+				$("#newWeight").val() = currentWeight;
 				</script>-->
 
     			</div>
-    			<button class="btn btn-lg btn-primary btn-block" id="saveWeight" type="submit">Save</button>
+    			<button class="btn btn-lg btn-primary btn-block" id="btn_submit_weight" onclick="SubmitController.prototype.submit(this.id)">Save</button>
     			<p></p>
     			<p></p>
     			<p></p>

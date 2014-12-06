@@ -4,12 +4,17 @@
     	<meta charset="utf-8">
     	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     	<meta name="viewport" content="width=device-width, initial-scale=1">
-		<script src="lib/jquery/jquery-2.1.1.min.js"></script>
+		<script src="lib/jquery/jquery.js"></script>
+		<script src="lib/jquery/jquery-ui-1.11.2.min.js"></script>
+		<script src="scripts/util/dateTimePicker.js"></script>
     	<script src="lib/bootstrap/bootstrap.min.js"></script>
     	<script src="scripts/symptoms.js"></script>
     	<title>Weight</title>
+    	<link href="lib/jquery/jquery-ui-1.11.2.min.css" rel="stylesheet">
 		<link href="lib/bootstrap/bootstrap.min.css" rel="stylesheet">
+		<link href="css/timepicker.css" rel="stylesheet"/>
   		<link href="css/weight.css" rel="stylesheet">
+  		<link href="css/standardPage.css" rel="stylesheet">
 	</head>
 	
 	<body>
@@ -17,7 +22,8 @@
 			<div class="container-fluid">
 				<div class="collapse navbar-collapse">
   					<h3 class="nav-title">Weight
-    					<button class="btn btn-default btn-lg" type="button" style="margin-left:15px;border-radius: 6px; "><span class="glyphicon glyphicon-calendar"></span></button>
+    					
+  					
   					</h3>
 				</div>
   			</div>
@@ -51,21 +57,25 @@
       			</form>
     		</div>
 
-			<form id="html5Form" class="form-horizontal"
-    			data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
-    			data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
-    			data-bv-feedbackicons-validating="glyphicon glyphicon-refresh">
+
 
 			    <div class="form-group">
-      				<label class="col-md-3 control-label">Current Weight is: </label>
-      				<label class="col-md-3 control-label" id="currentWeight">75kg</label>
-        			<label class="col-md-3 control-label">New weight:</label>
+      				<label >Current Weight is: </label>
+    				<label  id="currentWeight">75kg</label><br>
+      				<label > Select date you weighed yourself<input type="text" class="date" id="datepicker"/> </label><br>
+        			<label >New Weight:</label>
         			
-        			<div class="col-md-3 inputContainer">
-            			<input class="form-control" id="number" step="any"
-                			type="number" placeholder="kg" 
-                			data-bv-integer-message="The value is not a number" />
-        			</div>
+        			<form id='myform' method='POST' action='#'>
+		
+    	<input type='button' value='-' class='qtyMinusFluid' field='quantity' />
+    	<input type='text' name='quantity' id="setNewWeight" value='0' class='qty' />
+    	<input type='button' value='+' class='qtyPlusFluid' field='quantity' />
+</form>
+
+				<!--<script>
+				$("#setNewWeight").val() = currentWeight;
+				</script>-->
+
     			</div>
     			<button class="btn btn-lg btn-primary btn-block" id="saveWeight" type="submit">Save</button>
     			<p></p>

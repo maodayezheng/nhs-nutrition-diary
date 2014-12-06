@@ -65,8 +65,7 @@ function createReduceButton(food){
 		"name":"reduceButton",
 		"text":"-"		
 
-	}).data('food',food)
-	.bind('click',function(){
+	}).bind('click',function(){
 		var accountButton = $(this).siblings('[name=accountButton]');
 		var food = $(this).data('food');
 		 food.portion = food.portion - 1;
@@ -107,16 +106,15 @@ function createBasicLi(){
 		"class":"col-md-6 right"
 	})));
 	
-	li.addItemToIconPos = function(item){
+	li.addItemToLeft = function(item){
 		var position = $(this).find('.left');
 		position.append(item);	
 	};
 	
-	li.addItemToControlPanelPos = function(item){
+	li.addItemToRight = function(item){
 		var position = $(this).find('.right');
 		position.append(item);
 	}
-
 	return li;
 	}
 

@@ -11,7 +11,7 @@ OnLoad.prototype.load = function(pageName) {
 		} break;
 		
 		case 'weight': {
-			//TODO update current weight
+			this.updateWeight();
 		} break;
 		
 		default: console.log('pageName does not exist.');
@@ -38,4 +38,10 @@ OnLoad.prototype.updateTodaysBalance = function() {
 	var fluidProgress = (fluidCurrent/fluidRequirement) * 100;
 	$('#progressBar_fluid').css('width', '' + fluidProgress + '%');
 	$('#progressBar_fluid').html('' + fluidCurrent + '/' + fluidRequirement + ' ml');
+}
+
+OnLoad.prototype.updateWeight = function() {
+	//TODO replace hard-coded value with db getter
+	var weight = 100;
+	$('#currentWeight').html('' + weight + ' kg');
 }

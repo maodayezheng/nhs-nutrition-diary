@@ -2,18 +2,9 @@ function OnLoad() {}
 
 OnLoad.prototype.load = function(pageName) {
 	switch(pageName) {
-		case 'index': {
-			this.updateTodaysBalance();
-		} break;
-		
-		case 'history': {
-			toggleHistoryVisualisation();
-		} break;
-		
-		case 'weight': {
-			this.updateWeight();
-		} break;
-		
+		case 'index': this.updateTodaysBalance(); break;
+		case 'history': toggleHistoryVisualisation(); break;
+		case 'weight': this.updateWeight(); break;
 		default: console.log('pageName does not exist.');
 	}
 }

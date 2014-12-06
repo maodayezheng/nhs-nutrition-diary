@@ -62,7 +62,7 @@ function compareWithCurrentSelections(selection){
 		
 		children.each(function(index,item){
 			var obj= $(item);
-			var currentSelection = obj.data();
+			var currentSelection = obj.data('food');
 			if(currentSelection.label === selection.label){
 				present = true;
 			}
@@ -75,7 +75,7 @@ function submitData(){
 	var children = $('#list').children('li');
 	children.each(function(index,item){
 		var obj = $(item);
-		submitData.push(obj.data());
+		submitData.push(obj.data('food'));
 		
 	})
 	return submitData;

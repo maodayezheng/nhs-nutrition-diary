@@ -45,10 +45,10 @@ function createIncreaseButton(food){
 		"class":"btn btn-default btn",
 		"name":"increaseButton",
 		"text":"+"
-	}).data(food).bind('click',function(){
+	}).data('food',food).bind('click',function(){
 
 		var accountButton = $(this).siblings('[name=accountButton]');
-		var food = $(this).data();
+		var food = $(this).data('food');
 		food.portion = food.portion +1;
 		accountButton.text(food.portion);
 
@@ -64,15 +64,15 @@ function createReduceButton(food){
 		"name":"reduceButton",
 		"text":"-"		
 
-	}).data(food).bind('click',function(){
+	}).data('food',food).bind('click',function(){
 		var accountButton = $(this).siblings('[name=accountButton]');
-		var food = $(this).data();
+		var food = $(this).data('food');
 		food.portion = food.portion -1;
 		 
 		if (food.portion <1){
 			food.portion = 1;
 		}
-		console.log(food);
+		
 		accountButton.text(food.portion);
 	});
 	
@@ -97,7 +97,7 @@ function createAccountButton(food){
 function createBasicLi(food){
 	var li = $('<li>',{
 		"class":"list-group-item",
-	}).data(food).append($('<div>',{
+	}).data('food',food).append($('<div>',{
 		"class":"row",
 	}).append($('<div>',{
 		"class":"col-md-6 left"

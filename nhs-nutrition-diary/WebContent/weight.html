@@ -62,14 +62,13 @@
       				<label>Current Weight is: </label>
     				<label id="currentWeight"></label><br>
       				<label>Select date you weighed yourself<input type="text" class="date" id="datepicker"/> </label><br>
-        			<label>New Weight:</label>
         			
-        			<form id='myform' method='POST' action='#'>
-		
-    	<input type='button' value='-' class='qtyMinusFluid' field='quantity' />
-    	<input type='text' name='quantity' id="newWeight" value='0' class='qty' />
-    	<input type='button' value='+' class='qtyPlusFluid' field='quantity' />
-</form>
+        			<form id="newWeightSetter">
+        				<label>New Weight:</label>
+    					<input type='button' value='-' class='qtyMinusFluid' field='quantity' />
+    					<input type='text' name='quantity' id="newWeight" value='0' class='qty' />
+    					<input type='button' value='+' class='qtyPlusFluid' field='quantity' />
+					</form>
 
 				<!--<script>
 				$("#newWeight").val() = currentWeight;

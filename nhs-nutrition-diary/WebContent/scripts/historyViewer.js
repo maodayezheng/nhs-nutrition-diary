@@ -1,4 +1,4 @@
-function toggleVisualisation() {
+function toggleHistoryVisualisation() {
 	fillEmptyDates();
 	
 	var presentedParameter = $('#foodComponents').val();
@@ -16,7 +16,7 @@ function toggleVisualisation() {
 	}
 }
 
-function toggleVisualisationButton(id) {
+function toggleHistoryVisualisationButton(id) {
 	fillEmptyDates();
 	
 	var presentedParameter = $('#foodComponents').val();

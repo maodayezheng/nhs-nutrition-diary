@@ -61,7 +61,7 @@ LocalDbSingleton.prototype.get = function(oStore, dateFrom, dateTo)
 	    		},
 	    		{
 	    		 	  "timestamp":"20140125",
-	    			  "calories":220,
+	    			  "calories":500,
 	    			  "protein":35,
 	    			  "fluid":300,
 	    			  "weight":68

@@ -6,6 +6,7 @@
     	<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link href="lib/bootstrap/bootstrap.min.css" rel="stylesheet">
 		<link href="css/standardPage.css" rel="stylesheet">
+    	<script src="scripts/OnLoad.js"></script>
     	<script src="lib/jquery/jquery-2.1.1.min.js"></script>
     	<script src="lib/bootstrap/bootstrap.min.js"></script>
     	<script src="scripts/Navigator.js"></script>
@@ -18,7 +19,7 @@
     	<title>Appetite</title>
   	</head>
 	
-	<body>
+	<body onload="OnLoad.prototype.load('index')">
 		<nav class="navbar navbar-default" role="navigation">
   			<div class="container-fluid">
     			<!-- Brand and toggle get grouped for better mobile display -->
@@ -52,24 +53,24 @@
 	   		<div class="row clearfix">
 	    		<div class="col-md-12 column">
 	    			<div class="panel panel-default" style="margin-top:40px">
-						<div class="panel-heading">Goals</div>
+						<div class="panel-heading"><b>Today's balance</b></div>
 	    				<div class="panel-body">
 						    <div class="goal-progress"> 
-	    						<div style="float:left">Cal:</div>
+	    						<div style="float:left">Calories:</div>
 	      						<div class="progress">
-	        						<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width:50%">1000/2000 kcal</div>
+	        						<div id="progressBar_calories" class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
 	      						</div>
 	    					</div>
 							<div class="goal-progress"> 
 						    	<div style="float:left">Protein:</div>
 	      						<div class="progress">
-		        					<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width:50%">10/30 g</div>
+		        					<div id="progressBar_protein" class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
 	    					  	</div>
 	    					</div>
 						    <div class="goal-progress"> 
 	    						<div style="float:left">Fluid:</div>
 	      						<div class="progress">
-	        						<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width:50%">1000/2000 ml</div>
+	        						<div id="progressBar_fluid" class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
 	      						</div>
 	    					</div>
 	     				</div>

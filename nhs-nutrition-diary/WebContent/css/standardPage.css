@@ -75,7 +75,7 @@ body{
 
 input.time {
     font-size: 13px;
-    padding: 3px;
+    padding: 3px;;
     background: #fff;
     border: 1px solid #aac;
     width: 115px;
@@ -106,3 +106,10 @@ input.date {
 }
 input.qtyplus { width:25px; height:25px;}
 input.qtyminus { width:25px; height:25px;}
+
+#graphImage{
+	background-color: white;
+}
+#weightImage{
+	background-color: white;
+}

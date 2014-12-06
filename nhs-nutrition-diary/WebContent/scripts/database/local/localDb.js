@@ -75,12 +75,9 @@ LocalDbSingleton.prototype.get = function(oStore, dateFrom, dateTo)
 
 
 //TODO Decide on how to create a uniqueID for each entry in the manifests and user tables. //Think it is done. 
-//TODO Change the raw JSON food data so it is not a global but enclosed within a function. Do the same with the symptom List. //DONE
 //TODO Finalise the add function (can only be done once unique ID is sorted). //Just need to sort unique ID. 
 //TODO Create and finalise a delete element function. 
 //TODO Create and finalise an edit element property. 
-//TODO Add add property (see comment in localDBAdd function for loop).  //DONE
-//TODO Already changed dbInit - create dbOpen which has a callback function as its argument. On request success then do the callback. 
 //TODO Finish this TODO list. 
 
 

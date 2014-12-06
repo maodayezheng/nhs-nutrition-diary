@@ -12,8 +12,6 @@ SubmitController.prototype.submitSymptoms = function() {
 	console.log('Submit button clicked. Transaction is prepared.');
 	//TODO retrieve data that needs to be sent to server
 	
-	alert($('#symptomList').first().text());
-	
 	//var arrayToAdd = [{name: "one"},{name: "two"},{name: "three"},{name: "four"}];
 	
 	//TODO submit data

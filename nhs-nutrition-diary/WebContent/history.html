@@ -7,6 +7,7 @@
     	<link href="lib/jquery/jquery-ui-1.11.2.min.css" rel="stylesheet">
 		<link href="lib/bootstrap/bootstrap.min.css" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="css/graphs.css"/>
+		<link rel="stylesheet" type="text/css" href="css/standardPage.css"/>
 		<link href="css/timepicker.css" rel="stylesheet"/>
 		<script src="lib/jquery/jquery-2.1.1.min.js"></script>
   		<script src="lib/jquery/jquery-ui-1.11.2.min.js"></script>
@@ -62,7 +63,6 @@
 			</div>
 	   		<div class="row clearfix">
 	    		<div class="col-md-12 column">
-	    			
 	    			<div class="btn-group btn-group-justified" id="presentationFormat" style="padding-top:10px;" role="group" aria-label="..." data-toggle="buttons">
 						<label id="graphSelectorLabel" class="btn btn-primary active" onclick="toggleHistoryVisualisationButton(this.id)">
 							<input type="radio" name="options" id="graphSelector" class="btn btn-default" autocomplete="off" checked>Graph
@@ -75,11 +75,10 @@
 				 		</label>
 					</div>
 	    			
-	    			<div class="panel panel-default" style="margin-top:40px">
-						<div class="panel-heading">Select</div>
+	    			<div class="panel panel-default" style="margin-top:30px">
 	    				<div class="panel-body">
 						    <div class="goal-progress"> 
-	    						<form id="parameters">
+	    						<form id="parameters">Select 
 									<select id="foodComponents" name="foodComponents" onchange="toggleHistoryVisualisation()">
 										<option id="calories_dropdown" value="Calories (kcal)">Calories</option>
 										<option id="protein_dropdown" value="Protein (g)">Protein</option>
@@ -89,24 +88,25 @@
 								</form>
 	    					</div>
 	     				</div>
-	     			</div>
-				</div>
-			</div>
-     	
-     		<div class="row">
-				<div class="col-md-12 column">
-     				<div id="datepicker_div">
-						<p>
-							From: <input type="text" class="date" id="datepickerFrom" onchange="toggleHistoryVisualisation()"> 
-							To: <input type="text" class="date" id="datepickerTo" onchange="toggleHistoryVisualisation()">
-						</p>
-     				<div id="historyVisualisation">
-						<svg id="graph"></svg>
-						<div id="table"></div>
-						<div id="summary"></div>
 					</div>
-     			</div>
-     		</div>
+				</div>
+     	
+	     		<div class="row">
+					<div class="col-md-12 column">
+	     				<div id="datepicker_div">
+							<p>
+								From: <input type="text" class="date" id="datepickerFrom" onchange="toggleHistoryVisualisation()"> 
+								To: <input type="text" class="date" id="datepickerTo" onchange="toggleHistoryVisualisation()">
+							</p>
+						</div>
+	     				<div id="historyVisualisation">
+							<svg id="graph"></svg>
+							<div id="table"></div>
+							<div id="summary"></div>
+						</div>
+	     			</div>
+	     		</div>
+			</div>
 		</div>
   	</body>
 </html>

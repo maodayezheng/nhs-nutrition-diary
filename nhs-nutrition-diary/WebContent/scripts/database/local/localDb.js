@@ -20,56 +20,6 @@
  * 
  */
 
-//////////////////////////////////////This function contains dummy data for testing at the moment. To be implemented in the future. 
-/**
- * Returns all objects in a object store which are contained within a given date interval.
- * @param oStore   The object store the caller wishes to return results from.
- * @param dateFrom The date from which the caller wishes to receive data from.
- * @param dateTo   The date to which the caller wishes to receive data from.
- */
-
-LocalDbSingleton.prototype.get = function(oStore, dateFrom, dateTo)
-{
-	return [
-	    	    {
-	    		 	  "timestamp":"20140115",
-	    			  "calories":345,
-	    			  "protein":20,
-	    			  "fluid":100,
-	    			  "weight":80
-	    		},
-	    		{
-	    		 	  "timestamp":"20140116",
-	    			  "calories":500,
-	    			  "protein":30,
-	    			  "fluid":250,
-	    			  "weight":75
-	    		},
-	    		{
-	    		 	  "timestamp":"20140117",
-	    			  "calories":127,
-	    			  "protein":13,
-	    			  "fluid":400,
-	    			  "weight":78
-	    		},
-	    		{
-	    		 	  "timestamp":"20140118",
-	    			  "calories":470,
-	    			  "protein":66,
-	    			  "fluid":480,
-	    			  "weight":72
-	    		},
-	    		{
-	    		 	  "timestamp":"20140125",
-	    			  "calories":500,
-	    			  "protein":35,
-	    			  "fluid":300,
-	    			  "weight":68
-	    		}
-	    	];
-	    	
-}
-////////////////////////////////////////////End of testing code block
 
 
 
@@ -133,6 +83,78 @@ LocalDbSingleton.prototype.databaseOpen = function(callback, arg1, arg2)
 	}
 }
 
+//////////////////////////////////////This function contains dummy data for testing at the moment. To be implemented in the future. 
+LocalDbSingleton.prototype.get = function(oStore, dateFrom, dateTo, objectRef) //code modelled on example given here: http://www.raymondcamden.com/2013/6/6/IndexedDB-and-Date-Example
+{
+	return [
+	    	    {
+	    		 	  "timestamp":"20140115", "calories":345, "protein":20, "fluid":100, "weight":80
+	    		},
+	    		{
+	    		 	  "timestamp":"20140116", "calories":500, "protein":30, "fluid":250, "weight":75
+	    		},
+	    		{
+	    		 	  "timestamp":"20140117", "calories":127, "protein":13, "fluid":400, "weight":78
+	    		},
+	    		{
+	    		 	  "timestamp":"20140118", "calories":470, "protein":66, "fluid":480, "weight":72
+	    		},
+	    		{
+	    		 	  "timestamp":"20140125", "calories":500, "protein":35, "fluid":300, "weight":68
+	    		}
+	    	];
+	
+}
+////////////////////////////////////////////End of testing code block
+
+/**
+ * Returns all objects in a object store which are contained within a given date interval.
+ * @param oStore   The object store the caller wishes to return results from.
+ * @param dateFrom The date from which the caller wishes to receive data from. It should be an array [day, month, year] e.g. [19,01,2012] (19th Jan 2012).
+ * @param dateTo   The date to which the caller wishes to receive data from. It should be an array [day, month, year] e.g. [12,06,2014] (12th June 2014).
+ */
+LocalDbSingleton.prototype.localDbGet = function(oStore, dateFrom, dateTo, objectRef)
+{
+	var _this = objectRef;
+	var db = _this.db; 
+	
+	var fromDate = new Date(dateFrom[2], dateFrom[1]-1, dateFrom[0], 0,0,0,0); //format for date object: new Date(year, month (indexed from 0), day, hours, minutes, seconds, milliseconds)
+	var toDate = new Date(dateTo[2], dateTo[1]-1, dateTo[0], 0,0,0,0); //format for date object: new Date(year, month (indexed from 0), day, hours, minutes, seconds, milliseconds)
+	var range;
+	
+	if(fromDate == "" && toDate == "") return; //nothing to show here
+	
+	var transaction = db.transaction([oStore], "readonly").objectStore(oStore);
+	var index = transaction.index("Date");
+	
+    if(fromDate != "" && toDate != "") // fromDate<= x<= toDate
+    {
+		range = IDBKeyRange.bound(fromDate, toDate);
+	} else if(fromDate == "") // x<= toDate
+	{
+		range = IDBKeyRange.upperBound(toDate);
+	} else //x>= fromDate
+	{
+		range = IDBKeyRange.lowerBound(fromDate);
+	}
+	var results = [], count =0;
+	index.openCursor(range).onsuccess = function(e) 
+	{
+		var cursor = e.target.result;
+		if(cursor) 
+		{
+			count++;
+			results.push(cursor.value);
+			cursor['continue'](); 
+		} else
+		{
+			console.log("Returned "+count +"results");
+			return results; 
+		}
+	}
+}
+
+
 /**This function places the objects contained in the array argument in the specified object store. It then recursively calls itself to place the same objects in the
  * syncToServer object store. In the case of the recursive call each object is added with the additional property of what store they were initially added to.   
  * @param oStore			This is the object store in the local indexedDB database you would like to add your JS objects to.
@@ -140,7 +162,7 @@ LocalDbSingleton.prototype.databaseOpen = function(callback, arg1, arg2)
  */
 LocalDbSingleton.prototype.localDbAdd = function(oStore, arrayOfObjects, objectRef) 
 {
-	var _this= objectRef; //storing object reference for binding purposes.
+	var _this = objectRef; //storing object reference for binding purposes.
 	var db = _this.db; //console.log(db); //for debugging
 	  
 	var syncToServerArray = []; 
@@ -397,19 +419,15 @@ var testFoodData =
 		"Carbohydrate.g": "48.5", "Energy.kcal": "270", "Energy.kJ": "1144", "Starch.g": "28.6"}
 ];
 
-
 var db1 = new LocalDbSingleton();
-/*db1.databaseInit(function()
+db1.databaseInit(function()
 {
 	var begin = db1.begin, end = Date.now();
 	var time = end-begin;
     console.log('It took '+time+' milliseconds to populate the database');
     //db1.localDbAdd('userFoodListStore', arrayToAdd);
-});*/
+});
 //db1.databaseOpen(LocalDbSingleton.prototype.localDbAdd, 'userFoodListStore', arrayToAdd);
-var now = new Date(); 
-console.log(now); 
-
 
 
 /////////////////////////////////////////////////// End of testing block

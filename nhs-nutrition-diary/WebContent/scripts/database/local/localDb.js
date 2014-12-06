@@ -390,6 +390,16 @@ LocalDbSingleton.prototype.databaseDelete = function()
 
 ////////////////////////////////////////////////////////BELOW CODE FOR TESTING. DELETE ONCE COMPLETEd. 
 //var arrayToAdd = [{name: "one"},{name: "two"},{name: "three"},{name: "four"}]; //for testing. Delete after test. 
+var testFoodData = 
+	[
+    {"Date": Date.now(), "Time": "00:05:01", "FoodCode": "16-250", "label": "Abalone, canned in brine, drained", "EdibleProportion": "N", "Water.g": "65.1",
+	"Protein.g": "24.8", "Fat.g": "2.0", "Carbohydrate.g": "Tr", "Energy.kcal": "117", "Energy.kJ": "496", "Starch.g": "Tr" }, 
+	
+	{"Date": Date.now(), "Time": "time now", "FoodCode": "11-485", "label": "All-Bran", "EdibleProportion": "1.00", "Water.g": "3.0", "Protein.g": "13.0", "Fat.g": "4.0",
+		"Carbohydrate.g": "48.5", "Energy.kcal": "270", "Energy.kJ": "1144", "Starch.g": "28.6"}
+];
+
+
 var db1 = new LocalDbSingleton();
 /*db1.databaseInit(function()
 {
@@ -399,4 +409,9 @@ var db1 = new LocalDbSingleton();
     //db1.localDbAdd('userFoodListStore', arrayToAdd);
 });*/
 //db1.databaseOpen(LocalDbSingleton.prototype.localDbAdd, 'userFoodListStore', arrayToAdd);
+var now = new Date(); 
+console.log(now); 
+
+
+
 /////////////////////////////////////////////////// End of testing block

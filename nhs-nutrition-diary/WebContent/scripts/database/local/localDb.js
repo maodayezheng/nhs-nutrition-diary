@@ -121,17 +121,15 @@ function LocalDbSingleton()
 LocalDbSingleton.prototype.databaseOpen = function(callback, arg1, arg2)
 { 
 	var _this = this; //storing reference to calling object (this) for binding. 
-	console.log('_this 1'); console.log(_this);
+	//console.log('_this 1'); console.log(_this); //for debugging
 	var openReq = indexedDB.open(this.dbName);
 	openReq.onerror = this.databaseError;
 	openReq.onsuccess = function(event)
 	{
 		var db = event.target.result; 
 		_this.db = db;
-		console.log('db=event.target.result and _this.db=db'); console.log(db); console.log(_this.db);
-		console.log('_this 2'); console.log(_this);
-		console.log('successfully opened db');
-		callback(arg1,arg2,_this); //send the reference to the object to the callback function to bind it. 
+		//console.log('successfully opened db'); //for debugging
+		callback(arg1,arg2,_this); //send the _this reference to the callback function to bind it. 
 	}
 }
 
@@ -143,7 +141,7 @@ LocalDbSingleton.prototype.databaseOpen = function(callback, arg1, arg2)
 LocalDbSingleton.prototype.localDbAdd = function(oStore, arrayOfObjects, objectRef) 
 {
 	var _this= objectRef; //storing object reference for binding purposes.
-	var db = _this.db; console.log(db);
+	var db = _this.db; //console.log(db); //for debugging
 	  
 	var syncToServerArray = []; 
 	var objectStore = db.transaction([oStore], "readwrite").objectStore(oStore);
@@ -163,18 +161,18 @@ LocalDbSingleton.prototype.localDbAdd = function(oStore, arrayOfObjects, objectR
 		}
 		dbAdditionRequest.onsuccess = function(e) 
 		{
-		    console.log("Added first objects");
+		    console.log("Added objects to "+oStore);
 		    LocalDbSingleton.prototype.localDbAdd(_this.syncToServerStore,syncToServerArray,_this); //recursive call so array of objects gets added to the synToServerStore as well. 
 		}
 	}
 	else 
 	{
-		console.log('made to recursive call');
+		//console.log('made to recursive call'); //for debugging
 		for (var i in arrayOfObjects) 
 	    {
 			dbAdditionRequest = objectStore.add(arrayOfObjects[i]); 	
 	    }
-		console.log('added the items');
+		console.log('added the recursive call items'); //for debugging
 		
 		dbAdditionRequest.onerror = function(e) 
 		{

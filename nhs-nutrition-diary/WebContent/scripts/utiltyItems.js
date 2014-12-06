@@ -50,7 +50,6 @@ function createIncreaseButton(food){
 		var accountButton = $(this).siblings('[name=accountButton]');
 		var food = $(this).data('food');
 		food.portion = food.portion +1;
-		console.log(food);
 		accountButton.text(food.portion);
 
 	});
@@ -65,10 +64,10 @@ function createReduceButton(food){
 		"name":"reduceButton",
 		"text":"-"		
 
-	}).bind('click',function(){
+	}).data('food',food).bind('click',function(){
 		var accountButton = $(this).siblings('[name=accountButton]');
 		var food = $(this).data('food');
-		 food.portion = food.portion - 1;
+		food.portion = food.portion -1;
 		 
 		if (food.portion <1){
 			food.portion = 1;

@@ -43,11 +43,6 @@ $(document).ready(function(){
 	$('#frequentFood').click(function(){
 		
 	})
-	
-	$('#deleteButton').click(function(){
-		console.log(this.index);
-		
-	});
 		
 });
 

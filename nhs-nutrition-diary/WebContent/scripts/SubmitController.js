@@ -10,12 +10,18 @@ SubmitController.prototype.submit = function(submitter) {
 
 SubmitController.prototype.submitSymptoms = function() {
 	console.log('Submit button clicked. Transaction is prepared.');
-
-	var database = new LocalDbSingleton();
 	//TODO retrieve data that needs to be sent to server
-	var arrayToAdd = [{name: "one"},{name: "two"},{name: "three"},{name: "four"}];
+	
+	//alert($('#symptomList li.selected label').text());//.attr('text'));
+	
+	//alert($('#symptomList').toArray().value);
+	//alert($('#symptomList li').eq($(this).val()-1).text());
+	//alert($('#symptomList').each(symptoms));//.attr('value'));
+	//var arrayToAdd = [{name: "one"},{name: "two"},{name: "three"},{name: "four"}];
+	
 	//TODO submit data
-	database.databaseOpen(LocalDbSingleton.prototype.localDbAdd, 'symptomManifestStore', arrayToAdd); //example code to add an array of objects to the specified object store (arg2)
+//	var database = new LocalDbSingleton();
+//	database.databaseOpen(LocalDbSingleton.prototype.localDbAdd, 'symptomManifestStore', arrayToAdd); //example code to add an array of objects to the specified object store (arg2)
 }
 
 SubmitController.prototype.submitWeight = function() {

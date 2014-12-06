@@ -74,6 +74,8 @@ $(document).ready(function () {
        var checkedItems = {}, counter = 0;
        $("#symptomList li.active").each(function(idx, li) {
            checkedItems[counter] = $(li).text();
+           console.log("generating JSON");
+           console.log($(li).text());
            counter++;
        });
        console.log(checkedItems);

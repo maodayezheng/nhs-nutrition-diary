@@ -6,10 +6,13 @@ $(document).ready(function(){
 	
 	var data =new FoodDataSingleton().foodData;
 	var selectedFood = [];
+	var customMeals =["John Sandwich","Virk Super Sandwich","Robert Germany Sandwich","Bowen Dumpling"];
+	var frequentFood = ["beef","apple","beer"];
 	
 			$('#search').autocomplete({
 				
 			source:function (request, response) {
+				
             var term = $.ui.autocomplete.escapeRegex(request.term)
                 , startsWithMatcher = new RegExp("^" + term, "i")
                 , startsWith = $.grep(data, function(value) {
@@ -20,9 +23,11 @@ $(document).ready(function(){
                     return $.inArray(value, startsWith) < 0 && 
                         containsMatcher.test(value.label || value.value || value);
                 });
+            
             response(startsWith.concat(contains));
         },
 			select:function(event,ui){
+				
 				var selection = ui.item;
 				selection["portion"] = 1;
 				displaySelection(selection);
@@ -60,10 +65,6 @@ function displaySelection(selection){
 		li.addItemToRight(controlPanel);
 		$('#list').append(li);
 }
-
-
-
-
 
 $(function(){
 	/*$.ui.autocomplete.prototype._renderMenu =function(ul,items){

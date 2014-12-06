@@ -5,7 +5,7 @@ Navigator.prototype.navigate = function(origin) {
 	
 	switch(origin)
 	{
-		case "btn_home_to_food": nextPage = 'food.html'; alert('in switch'); break;
+		case "btn_home_to_food": nextPage = 'food.html'; break;
 		case "btn_home_to_symptoms": nextPage = 'symptoms.html'; break;
 		case "btn_home_to_history": nextPage = 'history.html'; break
 		case "btn_home_to_weight": nextPage = 'weight.html'; break;

@@ -115,18 +115,17 @@ LocalDbSingleton.prototype.get = function(oStore, dateFrom, dateTo, objectRef) /
 /**
  * Returns all objects in a object store which are contained within a given date interval.
  * @param oStore   The object store the caller wishes to return results from.
- * @param dateFrom The date from which the caller wishes to receive data from. It should be an array [day, month, year] e.g. [19,01,2012] (19th Jan 2012).
- * @param dateTo   The date to which the caller wishes to receive data from. It should be an array [day, month, year] e.g. [12,06,2014] (12th June 2014).
+ * @param dateFrom The date from which the caller wishes to receive data from. It should be passed as a DD/MM/YYYY string.
+ * @param dateTo   The date to which the caller wishes to receive data from. It should be passed as a DD/MM/YYYY string.
  */
 LocalDbSingleton.prototype.localDbGet = function(oStore, dateFrom, dateTo, objectRef, callback)
 {
-	var _this = objectRef;
-	var db = _this.db; 
+	var _this = objectRef, db = _this.db; 
+	var splitDateFrom = dateFrom.split('/'), splitDateTo = date.To.split('/'); 
 	
-	var fromDate = new Date(dateFrom[2], dateFrom[1]-1, dateFrom[0], 0,0,0,0); //format for date object: new Date(year, month (indexed from 0), day, hours, minutes, seconds, milliseconds)
-	var toDate = new Date(dateTo[2], dateTo[1]-1, parseInt(dateTo[0])+1, 0,0,0,0); //format for date object: new Date(year, month (indexed from 0), day, hours, minutes, seconds, milliseconds)
-	console.log(dateFrom); console.log(fromDate);
-	//console.log(dateTo); console.log(toDate);// for debugging.  
+	var fromDate = new Date(splitDateFrom[2], splitDateFrom[1]-1, splitDateFrom[0], 0,0,0,0); //format for date object: new Date(year, month (indexed from 0), day, hours, minutes, seconds, milliseconds)
+	var toDate = new Date(splitDateTo[2], splitDateTo[1]-1, parseInt(splitDateTo[0])+1, 0,0,0,0); 
+	
 	var range;
 	
 	var transaction = db.transaction([oStore], "readonly").objectStore(oStore);

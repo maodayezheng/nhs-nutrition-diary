@@ -6,11 +6,8 @@ function manageGraph(presentedParameter, dateFrom, dateTo) {
 		return false;
 	}
 	
-	var dateFromDb = dateFrom.split('/');
-	var dateToDb = dateTo.split('/');
-	
 	var database = new LocalDbSingleton();
-	var data = database.databaseOpen(LocalDbSingleton.prototype.localDbGet, 'foodManifestStore', dateFromDb, dateToDb);
+	var data = database.databaseOpen(LocalDbSingleton.prototype.localDbGet, 'foodManifestStore', dateFrom, dateTo);
 	
 	makeGraph(presentedParameter, dateFrom, dateTo, data);
 }

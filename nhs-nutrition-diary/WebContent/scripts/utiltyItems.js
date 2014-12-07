@@ -46,12 +46,10 @@ function createIncreaseButton(food){
 		"name":"increaseButton",
 		"text":"+"
 	}).data('food',food).bind('click',function(){
-
 		var accountButton = $(this).siblings('[name=accountButton]');
 		var food = $(this).data('food');
 		food.portion = food.portion +1;
 		accountButton.text(food.portion);
-
 	});
 	return increaseButton;
 	}

@@ -5,9 +5,8 @@
 $(document).ready(function(){
 	
 	var data =new FoodDataSingleton().foodData;
-	
 	var customMeals =["John Sandwich","Virk Super Sandwich","Robert Germany Sandwich","Bowen Dumpling"];
-	var frequentFood = ["beef","apple","beer"];
+	var frequentFood = [data[3],data[100],data[90],data[102]];
 	
 			$('#search').autocomplete({
 			source:function (request, response) {
@@ -27,8 +26,6 @@ $(document).ready(function(){
         },
 			select:function(event,ui){
 				var selection = ui.item;
-				
-				selection["portion"] = 1;
 				if(!compareWithCurrentSelections(selection)){
 				displaySelection(selection);
 				
@@ -50,16 +47,17 @@ $(document).ready(function(){
 		});
 	
 	$('#frequentFood').click(function(){
-		
+		$('.modal-title').text("Frequent Food");
+		loadFrequentFoodView(frequentFood);
 		
 	})
 		
 });
 
 function compareWithCurrentSelections(selection){
+	
 	var present = false;
 	var children = $('#list').children('li');
-		
 		children.each(function(index,item){
 			var obj= $(item);
 			var currentSelection = obj.data('food');
@@ -99,10 +97,37 @@ function updateNutritionBreakDown(){
 	$('#fluid').text(fluid);
 }
 
+function loadNewFoodView(){
+	$('.modal-body').append()
+	
+	
+}
 
+function loadFrequentFoodView(data){
+	$('.modal-body').empty();
+	var list = $('<ul>',{
+		"class":"list-group",
+		"role":"menu"
+	});
+	$.each(data,function(index){
+		var li =$('<li>',{
+			"class":"list-group-item",
+			"text":data[index].label	
+		}).data('food',data[index]).bind('click',function(){
+			displaySelection(data[index]);
+		});
+		li.appendTo(list);
+	})
+	
+	$('.modal-body').append(list);
+}
+
+function loadCustomMealView(data){
+	
+}
 
 function displaySelection(selection){
-	
+			selection["portion"] = 1;
 		var li = new createBasicLi(selection);
 		var controlPanel = new createControlPanel();
 		var deleteButton = new createDeleteButton('li');

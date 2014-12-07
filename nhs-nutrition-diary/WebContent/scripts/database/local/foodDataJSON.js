@@ -20,30 +20,6 @@ function FoodDataSingleton()
 	instance.foodData = 
 		[
 	      {
-	        "FoodCode": "16-250",
-	        "label": "Abalone, canned in brine, drained",
-	        "EdibleProportion": "N",
-	        "Water.g": "65.1",
-	        "Protein.g": "24.8",
-	        "Fat.g": "2.0",
-	        "Carbohydrate.g": "Tr",
-	        "Energy.kcal": "117",
-	        "Energy.kJ": "496",
-	        "Starch.g": "Tr"
-	      },
-	      {
-	        "FoodCode": "13-145",
-	        "label": "Ackee, canned, drained",
-	        "EdibleProportion": "N",
-	        "Water.g": "76.7",
-	        "Protein.g": "2.9",
-	        "Fat.g": "15.2",
-	        "Carbohydrate.g": "0.8",
-	        "Energy.kcal": "151",
-	        "Energy.kJ": "625",
-	        "Starch.g": "Tr"
-	      },
-	      {
 	        "FoodCode": "13-042",
 	        "label": "Aduki beans, dried, boiled in unsalted water",
 	        "EdibleProportion": "1.00",
@@ -752,17 +728,6 @@ function FoodDataSingleton()
 	        "Starch.g": "0.0"
 	      },
 	      {
-	        "FoodCode": "12-044",
-	        "label": "Aptamil",
-	        "Water.g": "3.2",
-	        "Protein.g": "12.7",
-	        "Fat.g": "29.3",
-	        "Carbohydrate.g": "56.4",
-	        "Energy.kcal": "526",
-	        "Energy.kJ": "2190",
-	        "Starch.g": "0.0"
-	      },
-	      {
 	        "FoodCode": "12-198",
 	        "label": "Arctic roll",
 	        "EdibleProportion": "1.00",
@@ -797,17 +762,6 @@ function FoodDataSingleton()
 	        "Energy.kcal": "107",
 	        "Energy.kJ": "448",
 	        "Starch.g": "N"
-	      },
-	      {
-	        "FoodCode": "11-001",
-	        "label": "Arrowroot",
-	        "Water.g": "12.2",
-	        "Protein.g": "0.4",
-	        "Fat.g": "0.1",
-	        "Carbohydrate.g": "94.0",
-	        "Energy.kcal": "355",
-	        "Energy.kJ": "1515",
-	        "Starch.g": "94.0"
 	      },
 	      {
 	        "FoodCode": "13-155",
@@ -868,17 +822,6 @@ function FoodDataSingleton()
 	        "Energy.kcal": "N",
 	        "Energy.kJ": "N",
 	        "Starch.g": "N"
-	      },
-	      {
-	        "FoodCode": "11-230",
-	        "label": "Asian pastries",
-	        "Water.g": "6.9",
-	        "Protein.g": "6.3",
-	        "Fat.g": "39.1",
-	        "Carbohydrate.g": "43.0",
-	        "Energy.kcal": "538",
-	        "Energy.kJ": "2242",
-	        "Starch.g": "20.4"
 	      },
 	      {
 	        "FoodCode": "13-442",
@@ -1085,18 +1028,6 @@ function FoodDataSingleton()
 	        "Starch.g": "Tr"
 	      },
 	      {
-	        "FoodCode": "16-001",
-	        "label": "Ayr, raw",
-	        "EdibleProportion": "N",
-	        "Water.g": "78.1",
-	        "Protein.g": "15.9",
-	        "Fat.g": "1.3",
-	        "Carbohydrate.g": "0.0",
-	        "Energy.kcal": "75",
-	        "Energy.kJ": "318",
-	        "Starch.g": "0.0"
-	      },
-	      {
 	        "FoodCode": "14-043",
 	        "label": "Babaco",
 	        "EdibleProportion": "0.98",
@@ -1107,39 +1038,6 @@ function FoodDataSingleton()
 	        "Energy.kcal": "17",
 	        "Energy.kJ": "72",
 	        "Starch.g": "0.0"
-	      },
-	      {
-	        "FoodCode": "11-158",
-	        "label": "Baby cereals, rice-based",
-	        "Water.g": "4.9",
-	        "Protein.g": "10.9",
-	        "Fat.g": "4.8",
-	        "Carbohydrate.g": "79.6",
-	        "Energy.kcal": "386",
-	        "Energy.kJ": "1639",
-	        "Starch.g": "73.3"
-	      },
-	      {
-	        "FoodCode": "11-159",
-	        "label": "Baby cereals, various cereal-based",
-	        "Water.g": "5.4",
-	        "Protein.g": "11.4",
-	        "Fat.g": "9.1",
-	        "Carbohydrate.g": "72.4",
-	        "Energy.kcal": "399",
-	        "Energy.kJ": "1689",
-	        "Starch.g": "48.9"
-	      },
-	      {
-	        "FoodCode": "11-160",
-	        "label": "Baby cereals, wheat-based",
-	        "Water.g": "4.2",
-	        "Protein.g": "18.8",
-	        "Fat.g": "5.8",
-	        "Carbohydrate.g": "70.3",
-	        "Energy.kcal": "391",
-	        "Energy.kJ": "1658",
-	        "Starch.g": "60.5"
 	      },
 	      {
 	        "FoodCode": "17-404",
@@ -1514,18 +1412,6 @@ function FoodDataSingleton()
 	        "Starch.g": "N"
 	      },
 	      {
-	        "FoodCode": "16-169",
-	        "label": "Bacha, raw",
-	        "EdibleProportion": "N",
-	        "Water.g": "68.8",
-	        "Protein.g": "18.1",
-	        "Fat.g": "5.6",
-	        "Carbohydrate.g": "0.0",
-	        "Energy.kcal": "123",
-	        "Energy.kJ": "515",
-	        "Starch.g": "0.0"
-	      },
-	      {
 	        "FoodCode": "19-019",
 	        "label": "Bacon loin steaks, grilled",
 	        "EdibleProportion": "1.00",
@@ -1874,11 +1760,6 @@ function FoodDataSingleton()
 	        "Starch.g": "21.0"
 	      },
 	      {
-	        "FoodCode": "11-426",
-	        "label": "Bakewell tart, individual",
-	        "Fat.g": "18.4"
-	      },
-	      {
 	        "FoodCode": "17-355",
 	        "label": "Baking powder",
 	        "EdibleProportion": "1.00",
@@ -2107,39 +1988,6 @@ function FoodDataSingleton()
 	        "Starch.g": "0.0"
 	      },
 	      {
-	        "FoodCode": "11-003",
-	        "label": "Barley, pearl, boiled",
-	        "Water.g": "69.6",
-	        "Protein.g": "2.7",
-	        "Fat.g": "0.6",
-	        "Carbohydrate.g": "27.6",
-	        "Energy.kcal": "120",
-	        "Energy.kJ": "510",
-	        "Starch.g": "27.6"
-	      },
-	      {
-	        "FoodCode": "11-002",
-	        "label": "Barley, pearl, raw",
-	        "Water.g": "10.6",
-	        "Protein.g": "7.9",
-	        "Fat.g": "1.7",
-	        "Carbohydrate.g": "83.6",
-	        "Energy.kcal": "360",
-	        "Energy.kJ": "1535",
-	        "Starch.g": "83.6"
-	      },
-	      {
-	        "FoodCode": "11-004",
-	        "label": "Barley, whole grain, raw",
-	        "Water.g": "11.7",
-	        "Protein.g": "10.6",
-	        "Fat.g": "2.1",
-	        "Carbohydrate.g": "64.0",
-	        "Energy.kcal": "301",
-	        "Energy.kJ": "1282",
-	        "Starch.g": "62.2"
-	      },
-	      {
 	        "FoodCode": "13-805",
 	        "label": "Basil, dried, ground",
 	        "EdibleProportion": "1.00",
@@ -2162,18 +2010,6 @@ function FoodDataSingleton()
 	        "Energy.kcal": "40",
 	        "Energy.kJ": "169",
 	        "Starch.g": "Tr"
-	      },
-	      {
-	        "FoodCode": "16-002",
-	        "label": "Bass, Sea, raw",
-	        "EdibleProportion": "N",
-	        "Water.g": "78.6",
-	        "Protein.g": "19.3",
-	        "Fat.g": "2.5",
-	        "Carbohydrate.g": "0.0",
-	        "Energy.kcal": "100",
-	        "Energy.kJ": "421",
-	        "Starch.g": "0.0"
 	      },
 	      {
 	        "FoodCode": "11-574",
@@ -2630,11 +2466,6 @@ function FoodDataSingleton()
 	        "Energy.kcal": "93",
 	        "Energy.kJ": "389",
 	        "Starch.g": "2.3"
-	      },
-	      {
-	        "FoodCode": "19-305",
-	        "label": "Beef stir-fried with green peppers in black bean sauce, takeaway",
-	        "Fat.g": "5.6"
 	      },
 	      {
 	        "FoodCode": "19-376",
@@ -4005,18 +3836,6 @@ function FoodDataSingleton()
 	        "Starch.g": "0.6"
 	      },
 	      {
-	        "FoodCode": "16-003",
-	        "label": "Bele, raw",
-	        "EdibleProportion": "N",
-	        "Water.g": "79.9",
-	        "Protein.g": "15.3",
-	        "Fat.g": "0.7",
-	        "Carbohydrate.g": "0.0",
-	        "Energy.kcal": "67",
-	        "Energy.kJ": "284",
-	        "Starch.g": "0.0"
-	      },
-	      {
 	        "FoodCode": "13-807",
 	        "label": "Betel leaves, fresh",
 	        "EdibleProportion": "0.99",
@@ -4569,11 +4388,6 @@ function FoodDataSingleton()
 	        "Starch.g": "0.0"
 	      },
 	      {
-	        "FoodCode": "15-357",
-	        "label": "biryani, vegetable, takeaway",
-	        "Fat.g": "7.0"
-	      },
-	      {
 	        "FoodCode": "11-635",
 	        "label": "Biscuits, homemade, creaming method",
 	        "EdibleProportion": "1.00",
@@ -4838,11 +4652,6 @@ function FoodDataSingleton()
 	        "Starch.g": "Tr"
 	      },
 	      {
-	        "FoodCode": "17-434",
-	        "label": "Blackcurrant seed oil",
-	        "Fat.g": "99.9"
-	      },
-	      {
 	        "FoodCode": "14-056",
 	        "label": "Blackcurrants, canned in juice",
 	        "EdibleProportion": "1.00",
@@ -4987,18 +4796,6 @@ function FoodDataSingleton()
 	        "Starch.g": "0.0"
 	      },
 	      {
-	        "FoodCode": "16-004",
-	        "label": "Boal, raw",
-	        "EdibleProportion": "N",
-	        "Water.g": "73.0",
-	        "Protein.g": "15.4",
-	        "Fat.g": "2.7",
-	        "Carbohydrate.g": "0.0",
-	        "Energy.kcal": "86",
-	        "Energy.kJ": "362",
-	        "Starch.g": "0.0"
-	      },
-	      {
 	        "FoodCode": "17-101",
 	        "label": "Boiled sweets",
 	        "EdibleProportion": "1.00",
@@ -5045,11 +4842,6 @@ function FoodDataSingleton()
 	        "Energy.kcal": "503",
 	        "Energy.kJ": "2099",
 	        "Starch.g": "32.8"
-	      },
-	      {
-	        "FoodCode": "17-435",
-	        "label": "Borage oil",
-	        "Fat.g": "99.9"
 	      },
 	      {
 	        "FoodCode": "17-597",
@@ -5292,38 +5084,6 @@ function FoodDataSingleton()
 	        "Starch.g": "9.9"
 	      },
 	      {
-	        "FoodCode": "11-398",
-	        "label": "Bread, softgrain",
-	        "Fat.g": "1.4"
-	      },
-	      {
-	        "FoodCode": "11-399",
-	        "label": "Bread, speciality, white",
-	        "Fat.g": "4.2"
-	      },
-	      {
-	        "FoodCode": "11-068",
-	        "label": "Breadcrumbs, homemade",
-	        "Water.g": "9.7",
-	        "Protein.g": "11.6",
-	        "Fat.g": "1.9",
-	        "Carbohydrate.g": "77.5",
-	        "Energy.kcal": "354",
-	        "Energy.kJ": "1508",
-	        "Starch.g": "74.9"
-	      },
-	      {
-	        "FoodCode": "11-069",
-	        "label": "Breadcrumbs, manufactured",
-	        "Water.g": "6.8",
-	        "Protein.g": "10.1",
-	        "Fat.g": "2.1",
-	        "Carbohydrate.g": "78.5",
-	        "Energy.kcal": "354",
-	        "Energy.kJ": "1505",
-	        "Starch.g": "73.5"
-	      },
-	      {
 	        "FoodCode": "13-168",
 	        "label": "Breadfruit, boiled in unsalted water",
 	        "EdibleProportion": "1.00",
@@ -5417,18 +5177,6 @@ function FoodDataSingleton()
 	        "Carbohydrate.g": "4.4",
 	        "Energy.kcal": "72",
 	        "Energy.kJ": "299",
-	        "Starch.g": "0.0"
-	      },
-	      {
-	        "FoodCode": "16-006",
-	        "label": "Bream, Sea, raw",
-	        "EdibleProportion": "N",
-	        "Water.g": "77.7",
-	        "Protein.g": "17.5",
-	        "Fat.g": "2.9",
-	        "Carbohydrate.g": "0.0",
-	        "Energy.kcal": "96",
-	        "Energy.kJ": "405",
 	        "Starch.g": "0.0"
 	      },
 	      {
@@ -5852,17 +5600,6 @@ function FoodDataSingleton()
 	        "Starch.g": "8.4"
 	      },
 	      {
-	        "FoodCode": "11-006",
-	        "label": "Buckwheat",
-	        "Water.g": "13.2",
-	        "Protein.g": "8.1",
-	        "Fat.g": "1.5",
-	        "Carbohydrate.g": "84.9",
-	        "Energy.kcal": "364",
-	        "Energy.kJ": "1522",
-	        "Starch.g": "84.5"
-	      },
-	      {
 	        "FoodCode": "17-534",
 	        "label": "Build-up powder, shake",
 	        "EdibleProportion": "1.00",
@@ -5885,28 +5622,6 @@ function FoodDataSingleton()
 	        "Energy.kcal": "377",
 	        "Energy.kJ": "1596",
 	        "Starch.g": "24.0"
-	      },
-	      {
-	        "FoodCode": "11-007",
-	        "label": "Bulgur wheat",
-	        "Water.g": "9.3",
-	        "Protein.g": "9.7",
-	        "Fat.g": "1.7",
-	        "Carbohydrate.g": "76.3",
-	        "Energy.kcal": "353",
-	        "Energy.kJ": "1478",
-	        "Starch.g": "N"
-	      },
-	      {
-	        "FoodCode": "11-231",
-	        "label": "Burfi",
-	        "Water.g": "16.3",
-	        "Protein.g": "11.6",
-	        "Fat.g": "19.9",
-	        "Carbohydrate.g": "17.7",
-	        "Energy.kcal": "292",
-	        "Energy.kJ": "1217",
-	        "Starch.g": "16.5"
 	      },
 	      {
 	        "FoodCode": "17-485",
@@ -5966,28 +5681,6 @@ function FoodDataSingleton()
 	        "Carbohydrate.g": "Tr",
 	        "Energy.kcal": "745",
 	        "Energy.kJ": "3061",
-	        "Starch.g": "0.0"
-	      },
-	      {
-	        "FoodCode": "12-022",
-	        "label": "Buttermilk",
-	        "Water.g": "90.4",
-	        "Protein.g": "3.4",
-	        "Fat.g": "0.5",
-	        "Carbohydrate.g": "5.0",
-	        "Energy.kcal": "37",
-	        "Energy.kJ": "157",
-	        "Starch.g": "0.0"
-	      },
-	      {
-	        "FoodCode": "12-023",
-	        "label": "Buttermilk powder",
-	        "Water.g": "3.0",
-	        "Protein.g": "34.1",
-	        "Fat.g": "5.1",
-	        "Carbohydrate.g": "51.0",
-	        "Energy.kcal": "373",
-	        "Energy.kJ": "1584",
 	        "Starch.g": "0.0"
 	      },
 	      {
@@ -6207,17 +5900,6 @@ function FoodDataSingleton()
 	        "Starch.g": "0.1"
 	      },
 	      {
-	        "FoodCode": "11-191",
-	        "label": "Cake mix",
-	        "Water.g": "5.3",
-	        "Protein.g": "4.7",
-	        "Fat.g": "2.5",
-	        "Carbohydrate.g": "77.2",
-	        "Energy.kcal": "331",
-	        "Energy.kJ": "1408",
-	        "Starch.g": "35.6"
-	      },
-	      {
 	        "FoodCode": "11-525",
 	        "label": "Cake mix, made up",
 	        "EdibleProportion": "1.00",
@@ -6252,28 +5934,6 @@ function FoodDataSingleton()
 	        "Energy.kcal": "73",
 	        "Energy.kJ": "302",
 	        "Starch.g": "0.2"
-	      },
-	      {
-	        "FoodCode": "12-080",
-	        "label": "Cambridge Diet powder",
-	        "Water.g": "3.5",
-	        "Protein.g": "36.6",
-	        "Fat.g": "7.0",
-	        "Carbohydrate.g": "38.4",
-	        "Energy.kcal": "353",
-	        "Energy.kJ": "1496",
-	        "Starch.g": "0.0"
-	      },
-	      {
-	        "FoodCode": "12-081",
-	        "label": "Cambridge Diet powder, made up with water",
-	        "Water.g": "87.0",
-	        "Protein.g": "5.9",
-	        "Fat.g": "1.1",
-	        "Carbohydrate.g": "6.1",
-	        "Energy.kcal": "56",
-	        "Energy.kJ": "239",
-	        "Starch.g": "0.0"
 	      },
 	      {
 	        "FoodCode": "19-184",
@@ -6694,18 +6354,6 @@ function FoodDataSingleton()
 	        "Energy.kcal": "52",
 	        "Energy.kJ": "221",
 	        "Starch.g": "5.5"
-	      },
-	      {
-	        "FoodCode": "16-007",
-	        "label": "Catfish, raw",
-	        "EdibleProportion": "N",
-	        "Water.g": "80.1",
-	        "Protein.g": "17.6",
-	        "Fat.g": "2.8",
-	        "Carbohydrate.g": "0.0",
-	        "Energy.kcal": "96",
-	        "Energy.kJ": "403",
-	        "Starch.g": "0.0"
 	      },
 	      {
 	        "FoodCode": "16-008",
@@ -7140,11 +6788,6 @@ function FoodDataSingleton()
 	        "Starch.g": "10.8"
 	      },
 	      {
-	        "FoodCode": "11-428",
-	        "label": "Cheese nachos, takeaway",
-	        "Fat.g": "18.1"
-	      },
-	      {
 	        "FoodCode": "11-650",
 	        "label": "Cheese pastry",
 	        "EdibleProportion": "1.00",
@@ -7167,22 +6810,6 @@ function FoodDataSingleton()
 	        "Energy.kcal": "185",
 	        "Energy.kJ": "773",
 	        "Starch.g": "8.6"
-	      },
-	      {
-	        "FoodCode": "11-404",
-	        "label": "Cheese sandwich biscuits",
-	        "Fat.g": "35.3"
-	      },
-	      {
-	        "FoodCode": "12-271",
-	        "label": "Cheese sauce packet mix",
-	        "Water.g": "3.9",
-	        "Protein.g": "19.3",
-	        "Fat.g": "19.7",
-	        "Carbohydrate.g": "40.9",
-	        "Energy.kcal": "408",
-	        "Energy.kJ": "1711",
-	        "Starch.g": "35.3"
 	      },
 	      {
 	        "FoodCode": "17-522",
@@ -7257,28 +6884,6 @@ function FoodDataSingleton()
 	        "Starch.g": "3.9"
 	      },
 	      {
-	        "FoodCode": "12-143",
-	        "label": "Cheese spread, flavoured",
-	        "Water.g": "56.8",
-	        "Protein.g": "14.2",
-	        "Fat.g": "20.5",
-	        "Carbohydrate.g": "4.4",
-	        "Energy.kcal": "258",
-	        "Energy.kJ": "1070",
-	        "Starch.g": "0.0"
-	      },
-	      {
-	        "FoodCode": "12-144",
-	        "label": "Cheese spread, lactic",
-	        "Water.g": "52.2",
-	        "Protein.g": "17.7",
-	        "Fat.g": "24.5",
-	        "Carbohydrate.g": "1.8",
-	        "Energy.kcal": "298",
-	        "Energy.kJ": "1236",
-	        "Starch.g": "0.0"
-	      },
-	      {
 	        "FoodCode": "12-349",
 	        "label": "Cheese spread, plain",
 	        "EdibleProportion": "1.00",
@@ -7315,17 +6920,6 @@ function FoodDataSingleton()
 	        "Starch.g": "0.0"
 	      },
 	      {
-	        "FoodCode": "12-132",
-	        "label": "Cheese, Caerphilly",
-	        "Water.g": "41.8",
-	        "Protein.g": "23.2",
-	        "Fat.g": "31.3",
-	        "Carbohydrate.g": "0.1",
-	        "Energy.kcal": "375",
-	        "Energy.kJ": "1554",
-	        "Starch.g": "0.0"
-	      },
-	      {
 	        "FoodCode": "12-345",
 	        "label": "Cheese, Camembert",
 	        "EdibleProportion": "1.00",
@@ -7350,39 +6944,6 @@ function FoodDataSingleton()
 	        "Starch.g": "0.0"
 	      },
 	      {
-	        "FoodCode": "12-135",
-	        "label": "Cheese, Cheddar, Australian",
-	        "Water.g": "36.1",
-	        "Protein.g": "24.9",
-	        "Fat.g": "34.3",
-	        "Carbohydrate.g": "0.1",
-	        "Energy.kcal": "409",
-	        "Energy.kJ": "1694",
-	        "Starch.g": "0.0"
-	      },
-	      {
-	        "FoodCode": "12-134",
-	        "label": "Cheese, Cheddar, average",
-	        "Water.g": "36.0",
-	        "Protein.g": "25.5",
-	        "Fat.g": "34.4",
-	        "Carbohydrate.g": "0.1",
-	        "Energy.kcal": "412",
-	        "Energy.kJ": "1708",
-	        "Starch.g": "0.0"
-	      },
-	      {
-	        "FoodCode": "12-136",
-	        "label": "Cheese, Cheddar, Canadian",
-	        "Water.g": "34.3",
-	        "Protein.g": "26.2",
-	        "Fat.g": "35.3",
-	        "Carbohydrate.g": "0.1",
-	        "Energy.kcal": "423",
-	        "Energy.kJ": "1753",
-	        "Starch.g": "0.0"
-	      },
-	      {
 	        "FoodCode": "12-346",
 	        "label": "Cheese, cheddar, English",
 	        "EdibleProportion": "1.00",
@@ -7395,28 +6956,6 @@ function FoodDataSingleton()
 	        "Starch.g": "0.0"
 	      },
 	      {
-	        "FoodCode": "12-138",
-	        "label": "Cheese, Cheddar, Irish",
-	        "Water.g": "37.0",
-	        "Protein.g": "25.1",
-	        "Fat.g": "33.8",
-	        "Carbohydrate.g": "0.1",
-	        "Energy.kcal": "405",
-	        "Energy.kJ": "1679",
-	        "Starch.g": "0.0"
-	      },
-	      {
-	        "FoodCode": "12-139",
-	        "label": "Cheese, Cheddar, New Zealand",
-	        "Water.g": "34.1",
-	        "Protein.g": "26.3",
-	        "Fat.g": "35.4",
-	        "Carbohydrate.g": "0.1",
-	        "Energy.kcal": "424",
-	        "Energy.kJ": "1759",
-	        "Starch.g": "0.0"
-	      },
-	      {
 	        "FoodCode": "12-347",
 	        "label": "Cheese, Cheddar, vegetarian",
 	        "EdibleProportion": "1.00",
@@ -7426,28 +6965,6 @@ function FoodDataSingleton()
 	        "Carbohydrate.g": "Tr",
 	        "Energy.kcal": "390",
 	        "Energy.kJ": "1618",
-	        "Starch.g": "0.0"
-	      },
-	      {
-	        "FoodCode": "12-145",
-	        "label": "Cheese, Cheshire",
-	        "Water.g": "40.6",
-	        "Protein.g": "24.0",
-	        "Fat.g": "31.4",
-	        "Carbohydrate.g": "0.1",
-	        "Energy.kcal": "379",
-	        "Energy.kJ": "1571",
-	        "Starch.g": "0.0"
-	      },
-	      {
-	        "FoodCode": "12-146",
-	        "label": "Cheese, Cheshire-type, reduced fat",
-	        "Water.g": "46.9",
-	        "Protein.g": "32.7",
-	        "Fat.g": "15.3",
-	        "Carbohydrate.g": "Tr",
-	        "Energy.kcal": "269",
-	        "Energy.kJ": "1122",
 	        "Starch.g": "0.0"
 	      },
 	      {
@@ -7499,28 +7016,6 @@ function FoodDataSingleton()
 	        "Starch.g": "0.0"
 	      },
 	      {
-	        "FoodCode": "12-152",
-	        "label": "Cheese, Derby",
-	        "Water.g": "38.0",
-	        "Protein.g": "24.2",
-	        "Fat.g": "33.9",
-	        "Carbohydrate.g": "0.1",
-	        "Energy.kcal": "402",
-	        "Energy.kJ": "1667",
-	        "Starch.g": "0.0"
-	      },
-	      {
-	        "FoodCode": "12-153",
-	        "label": "Cheese, Double Gloucester",
-	        "Water.g": "37.3",
-	        "Protein.g": "24.6",
-	        "Fat.g": "34.0",
-	        "Carbohydrate.g": "0.1",
-	        "Energy.kcal": "405",
-	        "Energy.kJ": "1678",
-	        "Starch.g": "0.0"
-	      },
-	      {
 	        "FoodCode": "12-355",
 	        "label": "Cheese, Edam",
 	        "EdibleProportion": "1.00",
@@ -7530,28 +7025,6 @@ function FoodDataSingleton()
 	        "Carbohydrate.g": "Tr",
 	        "Energy.kcal": "341",
 	        "Energy.kJ": "1416",
-	        "Starch.g": "0.0"
-	      },
-	      {
-	        "FoodCode": "12-155",
-	        "label": "Cheese, Edam-type, reduced fat",
-	        "Water.g": "48.2",
-	        "Protein.g": "32.6",
-	        "Fat.g": "10.9",
-	        "Carbohydrate.g": "Tr",
-	        "Energy.kcal": "229",
-	        "Energy.kJ": "957",
-	        "Starch.g": "0.0"
-	      },
-	      {
-	        "FoodCode": "12-156",
-	        "label": "Cheese, Emmental",
-	        "Water.g": "35.7",
-	        "Protein.g": "28.7",
-	        "Fat.g": "29.7",
-	        "Carbohydrate.g": "Tr",
-	        "Energy.kcal": "382",
-	        "Energy.kJ": "1587",
 	        "Starch.g": "0.0"
 	      },
 	      {
@@ -7591,17 +7064,6 @@ function FoodDataSingleton()
 	        "Starch.g": "0.0"
 	      },
 	      {
-	        "FoodCode": "12-164",
-	        "label": "Cheese, Gruyere",
-	        "Water.g": "35.0",
-	        "Protein.g": "27.2",
-	        "Fat.g": "33.3",
-	        "Carbohydrate.g": "Tr",
-	        "Energy.kcal": "409",
-	        "Energy.kJ": "1695",
-	        "Starch.g": "0.0"
-	      },
-	      {
 	        "FoodCode": "12-359",
 	        "label": "Cheese, hard, average",
 	        "EdibleProportion": "1.00",
@@ -7611,28 +7073,6 @@ function FoodDataSingleton()
 	        "Carbohydrate.g": "0.1",
 	        "Energy.kcal": "411",
 	        "Energy.kJ": "1702",
-	        "Starch.g": "0.0"
-	      },
-	      {
-	        "FoodCode": "12-166",
-	        "label": "Cheese, Lancashire",
-	        "Water.g": "41.7",
-	        "Protein.g": "23.3",
-	        "Fat.g": "31.0",
-	        "Carbohydrate.g": "0.1",
-	        "Energy.kcal": "373",
-	        "Energy.kJ": "1545",
-	        "Starch.g": "0.0"
-	      },
-	      {
-	        "FoodCode": "12-167",
-	        "label": "Cheese, Leicester",
-	        "Water.g": "37.5",
-	        "Protein.g": "24.3",
-	        "Fat.g": "33.7",
-	        "Carbohydrate.g": "0.1",
-	        "Energy.kcal": "401",
-	        "Energy.kJ": "1662",
 	        "Starch.g": "0.0"
 	      },
 	      {
@@ -7684,72 +7124,6 @@ function FoodDataSingleton()
 	        "Starch.g": "0.0"
 	      },
 	      {
-	        "FoodCode": "12-173",
-	        "label": "Cheese, processed, smoked",
-	        "Water.g": "47.4",
-	        "Protein.g": "20.5",
-	        "Fat.g": "24.5",
-	        "Carbohydrate.g": "0.2",
-	        "Energy.kcal": "303",
-	        "Energy.kJ": "1258",
-	        "Starch.g": "0.0"
-	      },
-	      {
-	        "FoodCode": "12-175",
-	        "label": "Cheese, Red Windsor",
-	        "Water.g": "37.3",
-	        "Protein.g": "24.4",
-	        "Fat.g": "33.7",
-	        "Carbohydrate.g": "Tr",
-	        "Energy.kcal": "401",
-	        "Energy.kJ": "1662",
-	        "Starch.g": "0.0"
-	      },
-	      {
-	        "FoodCode": "12-176",
-	        "label": "Cheese, Ricotta",
-	        "Water.g": "72.1",
-	        "Protein.g": "9.4",
-	        "Fat.g": "11.0",
-	        "Carbohydrate.g": "2.0",
-	        "Energy.kcal": "144",
-	        "Energy.kJ": "599",
-	        "Starch.g": "Tr"
-	      },
-	      {
-	        "FoodCode": "12-177",
-	        "label": "Cheese, Roquefort",
-	        "Water.g": "41.3",
-	        "Protein.g": "19.7",
-	        "Fat.g": "32.9",
-	        "Carbohydrate.g": "Tr",
-	        "Energy.kcal": "375",
-	        "Energy.kJ": "1552",
-	        "Starch.g": "0.0"
-	      },
-	      {
-	        "FoodCode": "12-178",
-	        "label": "Cheese, Sage Derby",
-	        "Water.g": "38.0",
-	        "Protein.g": "24.2",
-	        "Fat.g": "33.9",
-	        "Carbohydrate.g": "0.1",
-	        "Energy.kcal": "402",
-	        "Energy.kJ": "1667",
-	        "Starch.g": "0.0"
-	      },
-	      {
-	        "FoodCode": "12-179",
-	        "label": "Cheese, soya",
-	        "Water.g": "47.7",
-	        "Protein.g": "18.3",
-	        "Fat.g": "27.3",
-	        "Carbohydrate.g": "Tr",
-	        "Energy.kcal": "319",
-	        "Energy.kJ": "1321",
-	        "Starch.g": "Tr"
-	      },
-	      {
 	        "FoodCode": "12-364",
 	        "label": "Cheese, spreadable, soft white, full fat",
 	        "EdibleProportion": "1.00",
@@ -7795,28 +7169,6 @@ function FoodDataSingleton()
 	        "Carbohydrate.g": "0.1",
 	        "Energy.kcal": "410",
 	        "Energy.kJ": "1698",
-	        "Starch.g": "0.0"
-	      },
-	      {
-	        "FoodCode": "12-181",
-	        "label": "Cheese, Stilton, white",
-	        "Water.g": "45.8",
-	        "Protein.g": "19.9",
-	        "Fat.g": "31.3",
-	        "Carbohydrate.g": "0.1",
-	        "Energy.kcal": "362",
-	        "Energy.kJ": "1498",
-	        "Starch.g": "0.0"
-	      },
-	      {
-	        "FoodCode": "12-182",
-	        "label": "Cheese, Wensleydale",
-	        "Water.g": "41.5",
-	        "Protein.g": "23.3",
-	        "Fat.g": "31.5",
-	        "Carbohydrate.g": "0.1",
-	        "Energy.kcal": "377",
-	        "Energy.kJ": "1563",
 	        "Starch.g": "0.0"
 	      },
 	      {
@@ -8096,17 +7448,6 @@ function FoodDataSingleton()
 	        "Starch.g": "31.6"
 	      },
 	      {
-	        "FoodCode": "11-337",
-	        "label": "Chevra and chana chur",
-	        "Water.g": "3.8",
-	        "Protein.g": "15.8",
-	        "Fat.g": "39.2",
-	        "Carbohydrate.g": "32.8",
-	        "Energy.kcal": "539",
-	        "Energy.kJ": "2244",
-	        "Starch.g": "29.4"
-	      },
-	      {
 	        "FoodCode": "17-104",
 	        "label": "Chew sweets",
 	        "EdibleProportion": "1.00",
@@ -8287,11 +7628,6 @@ function FoodDataSingleton()
 	        "Starch.g": "0.9"
 	      },
 	      {
-	        "FoodCode": "19-298",
-	        "label": "Chicken chop suey, takeaway",
-	        "Fat.g": "4.7"
-	      },
-	      {
 	        "FoodCode": "19-321",
 	        "label": "Chicken chow mein, takeaway",
 	        "EdibleProportion": "1.00",
@@ -8388,11 +7724,6 @@ function FoodDataSingleton()
 	        "Starch.g": "1.2"
 	      },
 	      {
-	        "FoodCode": "19-299",
-	        "label": "Chicken fried rice, takeaway",
-	        "Fat.g": "6.0"
-	      },
-	      {
 	        "FoodCode": "19-122",
 	        "label": "Chicken goujons, chilled/frozen, baked",
 	        "EdibleProportion": "1.00",
@@ -8487,11 +7818,6 @@ function FoodDataSingleton()
 	        "Energy.kcal": "127",
 	        "Energy.kJ": "530",
 	        "Starch.g": "1.4"
-	      },
-	      {
-	        "FoodCode": "19-300",
-	        "label": "Chicken korma, takeaway",
-	        "Fat.g": "14.6"
 	      },
 	      {
 	        "FoodCode": "17-253",
@@ -8650,11 +7976,6 @@ function FoodDataSingleton()
 	        "Starch.g": "0.6"
 	      },
 	      {
-	        "FoodCode": "19-296",
-	        "label": "Chicken tikka, chilled, reheated",
-	        "Fat.g": "9.8"
-	      },
-	      {
 	        "FoodCode": "19-387",
 	        "label": "Chicken vindaloo",
 	        "EdibleProportion": "1.00",
@@ -8701,11 +8022,6 @@ function FoodDataSingleton()
 	        "Energy.kcal": "179",
 	        "Energy.kJ": "745",
 	        "Starch.g": "0.3"
-	      },
-	      {
-	        "FoodCode": "19-302",
-	        "label": "Chicken with cashew nuts, takeaway",
-	        "Fat.g": "8.7"
 	      },
 	      {
 	        "FoodCode": "18-308",
@@ -8970,11 +8286,6 @@ function FoodDataSingleton()
 	        "Energy.kcal": "152",
 	        "Energy.kJ": "640",
 	        "Starch.g": "0.0"
-	      },
-	      {
-	        "FoodCode": "18-451",
-	        "label": "Chicken, fried, meat only, takeaway",
-	        "Fat.g": "9.7"
 	      },
 	      {
 	        "FoodCode": "18-314",
@@ -9505,40 +8816,6 @@ function FoodDataSingleton()
 	        "Starch.g": "N"
 	      },
 	      {
-	        "FoodCode": "11-194",
-	        "label": "Chinese cakes and biscuits",
-	        "Water.g": "19.8",
-	        "Protein.g": "6.7",
-	        "Fat.g": "21.5",
-	        "Carbohydrate.g": "51.9",
-	        "Energy.kcal": "415",
-	        "Energy.kJ": "1740",
-	        "Starch.g": "25.7"
-	      },
-	      {
-	        "FoodCode": "11-338",
-	        "label": "Chinese flaky pastries",
-	        "Water.g": "21.2",
-	        "Protein.g": "5.4",
-	        "Fat.g": "16.4",
-	        "Carbohydrate.g": "59.3",
-	        "Energy.kcal": "392",
-	        "Energy.kJ": "1647",
-	        "Starch.g": "29.2"
-	      },
-	      {
-	        "FoodCode": "16-010",
-	        "label": "Chinese salted fish, steamed",
-	        "EdibleProportion": "N",
-	        "Water.g": "47.6",
-	        "Protein.g": "33.9",
-	        "Fat.g": "2.2",
-	        "Carbohydrate.g": "0.0",
-	        "Energy.kcal": "155",
-	        "Energy.kJ": "658",
-	        "Starch.g": "0.0"
-	      },
-	      {
 	        "FoodCode": "13-024",
 	        "label": "Chips, crinkle cut, frozen, fried in corn oil",
 	        "EdibleProportion": "1.00",
@@ -9779,18 +9056,6 @@ function FoodDataSingleton()
 	        "Starch.g": "33.2"
 	      },
 	      {
-	        "FoodCode": "16-011",
-	        "label": "Chital, raw",
-	        "EdibleProportion": "N",
-	        "Water.g": "77.5",
-	        "Protein.g": "18.1",
-	        "Fat.g": "1.9",
-	        "Carbohydrate.g": "0.0",
-	        "Energy.kcal": "90",
-	        "Energy.kJ": "378",
-	        "Starch.g": "0.0"
-	      },
-	      {
 	        "FoodCode": "13-814",
 	        "label": "Chives, fresh",
 	        "EdibleProportion": "1.00",
@@ -9935,16 +9200,6 @@ function FoodDataSingleton()
 	        "Starch.g": "Tr"
 	      },
 	      {
-	        "FoodCode": "11-419",
-	        "label": "Chocolate covered marshmallow teacake",
-	        "Fat.g": "16.3"
-	      },
-	      {
-	        "FoodCode": "11-418",
-	        "label": "Chocolate cup cake",
-	        "Fat.g": "5.1"
-	      },
-	      {
 	        "FoodCode": "12-398",
 	        "label": "Chocolate dairy desserts",
 	        "EdibleProportion": "1.00",
@@ -10015,11 +9270,6 @@ function FoodDataSingleton()
 	        "Energy.kcal": "549",
 	        "Energy.kJ": "2294",
 	        "Starch.g": "1.9"
-	      },
-	      {
-	        "FoodCode": "17-453",
-	        "label": "Chocolate, couverture",
-	        "Fat.g": "37.4"
 	      },
 	      {
 	        "FoodCode": "17-087",
@@ -10296,18 +9546,6 @@ function FoodDataSingleton()
 	        "Energy.kcal": "N",
 	        "Energy.kJ": "N",
 	        "Starch.g": "N"
-	      },
-	      {
-	        "FoodCode": "16-251",
-	        "label": "Clams, canned in brine, drained",
-	        "EdibleProportion": "N",
-	        "Water.g": "69.9",
-	        "Protein.g": "16.0",
-	        "Fat.g": "0.6",
-	        "Carbohydrate.g": "1.9",
-	        "Energy.kcal": "77",
-	        "Energy.kJ": "325",
-	        "Starch.g": "Tr"
 	      },
 	      {
 	        "FoodCode": "14-291",
@@ -10874,21 +10112,6 @@ function FoodDataSingleton()
 	        "Starch.g": "Tr"
 	      },
 	      {
-	        "FoodCode": "12-887",
-	        "label": "Coffee compliment, low fat",
-	        "Fat.g": "16.1"
-	      },
-	      {
-	        "FoodCode": "12-888",
-	        "label": "Coffee whitener liquid, with skimmed milk and non milk fat",
-	        "Fat.g": "4.0"
-	      },
-	      {
-	        "FoodCode": "12-889",
-	        "label": "Coffee whitener with glucose syrup and vegetable fat",
-	        "Fat.g": "14.4"
-	      },
-	      {
 	        "FoodCode": "17-152",
 	        "label": "Coffee, infusion, average",
 	        "EdibleProportion": "1.00",
@@ -11309,18 +10532,6 @@ function FoodDataSingleton()
 	        "Starch.g": "0.0"
 	      },
 	      {
-	        "FoodCode": "16-035",
-	        "label": "Conger eel, raw",
-	        "EdibleProportion": "N",
-	        "Water.g": "73.2",
-	        "Protein.g": "18.1",
-	        "Fat.g": "4.6",
-	        "Carbohydrate.g": "0.0",
-	        "Energy.kcal": "114",
-	        "Energy.kJ": "478",
-	        "Starch.g": "0.0"
-	      },
-	      {
 	        "FoodCode": "17-255",
 	        "label": "Consomme",
 	        "EdibleProportion": "1.00",
@@ -11561,33 +10772,6 @@ function FoodDataSingleton()
 	        "Starch.g": "24.1"
 	      },
 	      {
-	        "FoodCode": "11-407",
-	        "label": "Cornish wafers",
-	        "Fat.g": "28.3"
-	      },
-	      {
-	        "FoodCode": "11-011",
-	        "label": "Cornmeal, sifted",
-	        "Water.g": "12.2",
-	        "Protein.g": "9.4",
-	        "Fat.g": "3.3",
-	        "Carbohydrate.g": "73.1",
-	        "Energy.kcal": "368",
-	        "Energy.kJ": "1540",
-	        "Starch.g": "N"
-	      },
-	      {
-	        "FoodCode": "11-012",
-	        "label": "Cornmeal, unsifted",
-	        "Water.g": "12.2",
-	        "Protein.g": "9.3",
-	        "Fat.g": "3.8",
-	        "Carbohydrate.g": "71.5",
-	        "Energy.kcal": "353",
-	        "Energy.kJ": "1477",
-	        "Starch.g": "N"
-	      },
-	      {
 	        "FoodCode": "19-339",
 	        "label": "Coronation chicken",
 	        "EdibleProportion": "1.00",
@@ -11756,28 +10940,6 @@ function FoodDataSingleton()
 	        "Starch.g": "0.1"
 	      },
 	      {
-	        "FoodCode": "11-339",
-	        "label": "Couscous",
-	        "Water.g": "40.0",
-	        "Protein.g": "5.7",
-	        "Fat.g": "1.0",
-	        "Carbohydrate.g": "51.3",
-	        "Energy.kcal": "227",
-	        "Energy.kJ": "950",
-	        "Starch.g": "N"
-	      },
-	      {
-	        "FoodCode": "12-052",
-	        "label": "Cow & Gate Plus",
-	        "Water.g": "2.1",
-	        "Protein.g": "14.5",
-	        "Fat.g": "26.3",
-	        "Carbohydrate.g": "56.2",
-	        "Energy.kcal": "505",
-	        "Energy.kJ": "2119",
-	        "Starch.g": "0.0"
-	      },
-	      {
 	        "FoodCode": "12-053",
 	        "label": "Cow & Gate Plus, reconstituted",
 	        "EdibleProportion": "1.00",
@@ -11787,17 +10949,6 @@ function FoodDataSingleton()
 	        "Carbohydrate.g": "7.1",
 	        "Energy.kcal": "63",
 	        "Energy.kJ": "265",
-	        "Starch.g": "0.0"
-	      },
-	      {
-	        "FoodCode": "12-046",
-	        "label": "Cow & Gate Premium",
-	        "Water.g": "1.6",
-	        "Protein.g": "11.2",
-	        "Fat.g": "29.5",
-	        "Carbohydrate.g": "58.0",
-	        "Energy.kcal": "528",
-	        "Energy.kJ": "2210",
 	        "Starch.g": "0.0"
 	      },
 	      {
@@ -11895,18 +11046,6 @@ function FoodDataSingleton()
 	        "Energy.kcal": "151",
 	        "Energy.kJ": "646",
 	        "Starch.g": "0.6"
-	      },
-	      {
-	        "FoodCode": "16-235",
-	        "label": "Crayfish, raw",
-	        "EdibleProportion": "N",
-	        "Water.g": "83.8",
-	        "Protein.g": "14.9",
-	        "Fat.g": "0.8",
-	        "Carbohydrate.g": "0.0",
-	        "Energy.kcal": "67",
-	        "Energy.kJ": "283",
-	        "Starch.g": "0.0"
 	      },
 	      {
 	        "FoodCode": "11-510",
@@ -12065,28 +11204,6 @@ function FoodDataSingleton()
 	        "Starch.g": "0.0"
 	      },
 	      {
-	        "FoodCode": "12-118",
-	        "label": "Cream, frozen, single",
-	        "Water.g": "72.9",
-	        "Protein.g": "3.1",
-	        "Fat.g": "20.0",
-	        "Carbohydrate.g": "4.0",
-	        "Energy.kcal": "207",
-	        "Energy.kJ": "856",
-	        "Starch.g": "0.0"
-	      },
-	      {
-	        "FoodCode": "12-119",
-	        "label": "Cream, frozen, whipping",
-	        "Water.g": "55.1",
-	        "Protein.g": "1.9",
-	        "Fat.g": "40.0",
-	        "Carbohydrate.g": "3.0",
-	        "Energy.kcal": "379",
-	        "Energy.kJ": "1560",
-	        "Starch.g": "0.0"
-	      },
-	      {
 	        "FoodCode": "12-120",
 	        "label": "Cream, sterilised, canned",
 	        "EdibleProportion": "1.00",
@@ -12096,39 +11213,6 @@ function FoodDataSingleton()
 	        "Carbohydrate.g": "3.7",
 	        "Energy.kcal": "239",
 	        "Energy.kJ": "985",
-	        "Starch.g": "0.0"
-	      },
-	      {
-	        "FoodCode": "12-121",
-	        "label": "Cream, UHT, half",
-	        "Water.g": "79.1",
-	        "Protein.g": "2.8",
-	        "Fat.g": "12.3",
-	        "Carbohydrate.g": "4.3",
-	        "Energy.kcal": "138",
-	        "Energy.kJ": "572",
-	        "Starch.g": "0.0"
-	      },
-	      {
-	        "FoodCode": "12-122",
-	        "label": "Cream, UHT, single",
-	        "Water.g": "73.9",
-	        "Protein.g": "2.6",
-	        "Fat.g": "19.0",
-	        "Carbohydrate.g": "4.0",
-	        "Energy.kcal": "196",
-	        "Energy.kJ": "811",
-	        "Starch.g": "0.0"
-	      },
-	      {
-	        "FoodCode": "12-123",
-	        "label": "Cream, UHT, whipping",
-	        "Water.g": "57.9",
-	        "Protein.g": "2.0",
-	        "Fat.g": "39.3",
-	        "Carbohydrate.g": "3.1",
-	        "Energy.kcal": "373",
-	        "Energy.kJ": "1539",
 	        "Starch.g": "0.0"
 	      },
 	      {
@@ -12226,16 +11310,6 @@ function FoodDataSingleton()
 	        "Energy.kcal": "373",
 	        "Energy.kJ": "1563",
 	        "Starch.g": "38.0"
-	      },
-	      {
-	        "FoodCode": "11-401",
-	        "label": "Croissants, savoury, retail",
-	        "Fat.g": "23.5"
-	      },
-	      {
-	        "FoodCode": "11-402",
-	        "label": "Croissants, sweet, retail",
-	        "Fat.g": "18.3"
 	      },
 	      {
 	        "FoodCode": "11-694",
@@ -12380,11 +11454,6 @@ function FoodDataSingleton()
 	        "Energy.kcal": "405",
 	        "Energy.kJ": "1721",
 	        "Starch.g": "53.9"
-	      },
-	      {
-	        "FoodCode": "11-403",
-	        "label": "Crunchy Oat Cereal",
-	        "Fat.g": "15.9"
 	      },
 	      {
 	        "FoodCode": "13-233",
@@ -13623,18 +12692,6 @@ function FoodDataSingleton()
 	        "Starch.g": "0.0"
 	      },
 	      {
-	        "FoodCode": "16-038",
-	        "label": "Dab, raw",
-	        "EdibleProportion": "N",
-	        "Water.g": "79.1",
-	        "Protein.g": "15.7",
-	        "Fat.g": "1.2",
-	        "Carbohydrate.g": "0.0",
-	        "Energy.kcal": "74",
-	        "Energy.kJ": "311",
-	        "Starch.g": "0.0"
-	      },
-	      {
 	        "FoodCode": "17-017",
 	        "label": "Dairy spread (40% fat)",
 	        "EdibleProportion": "1.00",
@@ -13971,18 +13028,6 @@ function FoodDataSingleton()
 	        "Starch.g": "24.4"
 	      },
 	      {
-	        "FoodCode": "16-039",
-	        "label": "Dover sole, raw",
-	        "EdibleProportion": "N",
-	        "Water.g": "80.0",
-	        "Protein.g": "18.1",
-	        "Fat.g": "1.8",
-	        "Carbohydrate.g": "0.0",
-	        "Energy.kcal": "89",
-	        "Energy.kJ": "374",
-	        "Starch.g": "0.0"
-	      },
-	      {
 	        "FoodCode": "17-176",
 	        "label": "Dr Pepper",
 	        "EdibleProportion": "1.00",
@@ -14127,11 +13172,6 @@ function FoodDataSingleton()
 	        "Starch.g": "0.0"
 	      },
 	      {
-	        "FoodCode": "17-450",
-	        "label": "Dressing, reduced calorie",
-	        "Fat.g": "11.2"
-	      },
-	      {
 	        "FoodCode": "17-306",
 	        "label": "Dressing, thousand island",
 	        "EdibleProportion": "1.00",
@@ -14154,11 +13194,6 @@ function FoodDataSingleton()
 	        "Energy.kcal": "195",
 	        "Energy.kJ": "810",
 	        "Starch.g": "0.0"
-	      },
-	      {
-	        "FoodCode": "17-451",
-	        "label": "Dressing, tofu",
-	        "Fat.g": "30.7"
 	      },
 	      {
 	        "FoodCode": "17-612",
@@ -14218,17 +13253,6 @@ function FoodDataSingleton()
 	        "Carbohydrate.g": "42.6",
 	        "Energy.kcal": "487",
 	        "Energy.kJ": "2038",
-	        "Starch.g": "0.0"
-	      },
-	      {
-	        "FoodCode": "12-032",
-	        "label": "Dried whole milk",
-	        "Water.g": "2.9",
-	        "Protein.g": "26.3",
-	        "Fat.g": "26.3",
-	        "Carbohydrate.g": "39.4",
-	        "Energy.kcal": "490",
-	        "Energy.kJ": "2051",
 	        "Starch.g": "0.0"
 	      },
 	      {
@@ -14640,17 +13664,6 @@ function FoodDataSingleton()
 	        "Starch.g": "0.0"
 	      },
 	      {
-	        "FoodCode": "12-807",
-	        "label": "Eggs, chicken, dried",
-	        "Water.g": "4.0",
-	        "Protein.g": "48.4",
-	        "Fat.g": "41.6",
-	        "Carbohydrate.g": "Tr",
-	        "Energy.kcal": "568",
-	        "Energy.kJ": "2362",
-	        "Starch.g": "0.0"
-	      },
-	      {
 	        "FoodCode": "12-919",
 	        "label": "Eggs, chicken, fried in vegetable oil",
 	        "EdibleProportion": "1.00",
@@ -14660,17 +13673,6 @@ function FoodDataSingleton()
 	        "Carbohydrate.g": "Tr",
 	        "Energy.kcal": "179",
 	        "Energy.kJ": "745",
-	        "Starch.g": "0.0"
-	      },
-	      {
-	        "FoodCode": "12-809",
-	        "label": "Eggs, chicken, fried, without fat",
-	        "Water.g": "70.6",
-	        "Protein.g": "15.0",
-	        "Fat.g": "12.7",
-	        "Carbohydrate.g": "Tr",
-	        "Energy.kcal": "174",
-	        "Energy.kJ": "725",
 	        "Starch.g": "0.0"
 	      },
 	      {
@@ -14698,17 +13700,6 @@ function FoodDataSingleton()
 	        "Starch.g": "0.0"
 	      },
 	      {
-	        "FoodCode": "12-812",
-	        "label": "Eggs, chicken, scrambled, without milk",
-	        "Water.g": "73.2",
-	        "Protein.g": "13.8",
-	        "Fat.g": "11.6",
-	        "Carbohydrate.g": "Tr",
-	        "Energy.kcal": "160",
-	        "Energy.kJ": "664",
-	        "Starch.g": "0.0"
-	      },
-	      {
 	        "FoodCode": "12-804",
 	        "label": "Eggs, chicken, white, raw",
 	        "EdibleProportion": "1.00",
@@ -14718,28 +13709,6 @@ function FoodDataSingleton()
 	        "Carbohydrate.g": "Tr",
 	        "Energy.kcal": "36",
 	        "Energy.kJ": "153",
-	        "Starch.g": "0.0"
-	      },
-	      {
-	        "FoodCode": "12-802",
-	        "label": "Eggs, chicken, whole, battery, raw",
-	        "Water.g": "74.9",
-	        "Protein.g": "12.7",
-	        "Fat.g": "10.7",
-	        "Carbohydrate.g": "Tr",
-	        "Energy.kcal": "147",
-	        "Energy.kJ": "612",
-	        "Starch.g": "0.0"
-	      },
-	      {
-	        "FoodCode": "12-803",
-	        "label": "Eggs, chicken, whole, free-range, raw",
-	        "Water.g": "75.2",
-	        "Protein.g": "12.4",
-	        "Fat.g": "10.9",
-	        "Carbohydrate.g": "Tr",
-	        "Energy.kcal": "143",
-	        "Energy.kJ": "596",
 	        "Starch.g": "0.0"
 	      },
 	      {
@@ -14767,17 +13736,6 @@ function FoodDataSingleton()
 	        "Starch.g": "0.0"
 	      },
 	      {
-	        "FoodCode": "12-814",
-	        "label": "Eggs, duck, boiled and salted",
-	        "Water.g": "62.0",
-	        "Protein.g": "14.6",
-	        "Fat.g": "15.5",
-	        "Carbohydrate.g": "Tr",
-	        "Energy.kcal": "198",
-	        "Energy.kJ": "822",
-	        "Starch.g": "0.0"
-	      },
-	      {
 	        "FoodCode": "12-920",
 	        "label": "Eggs, duck, whole, raw",
 	        "EdibleProportion": "1.00",
@@ -14799,17 +13757,6 @@ function FoodDataSingleton()
 	        "Carbohydrate.g": "Tr",
 	        "Energy.kcal": "151",
 	        "Energy.kJ": "630",
-	        "Starch.g": "0.0"
-	      },
-	      {
-	        "FoodCode": "12-816",
-	        "label": "Eggs, turkey, whole, raw",
-	        "Water.g": "72.5",
-	        "Protein.g": "13.7",
-	        "Fat.g": "12.2",
-	        "Carbohydrate.g": "Tr",
-	        "Energy.kcal": "165",
-	        "Energy.kJ": "684",
 	        "Starch.g": "0.0"
 	      },
 	      {
@@ -14859,11 +13806,6 @@ function FoodDataSingleton()
 	        "Energy.kcal": "292",
 	        "Energy.kJ": "1204",
 	        "Starch.g": "0.0"
-	      },
-	      {
-	        "FoodCode": "15-352",
-	        "label": "Enchiladas, vegetable, takeaway",
-	        "Fat.g": "7.1"
 	      },
 	      {
 	        "FoodCode": "13-240",
@@ -14962,39 +13904,6 @@ function FoodDataSingleton()
 	        "Starch.g": "14.8"
 	      },
 	      {
-	        "FoodCode": "12-048",
-	        "label": "Farley's Oster Milk",
-	        "Water.g": "3.1",
-	        "Protein.g": "11.5",
-	        "Fat.g": "30.2",
-	        "Carbohydrate.g": "57.8",
-	        "Energy.kcal": "535",
-	        "Energy.kJ": "2238",
-	        "Starch.g": "0.0"
-	      },
-	      {
-	        "FoodCode": "12-054",
-	        "label": "Farley's Oster Milk Two",
-	        "Water.g": "4.4",
-	        "Protein.g": "12.2",
-	        "Fat.g": "19.0",
-	        "Carbohydrate.g": "65.9",
-	        "Energy.kcal": "470",
-	        "Energy.kJ": "1964",
-	        "Starch.g": "Tr"
-	      },
-	      {
-	        "FoodCode": "12-055",
-	        "label": "Farley's Oster Milk Two, reconstituted",
-	        "Water.g": "87.2",
-	        "Protein.g": "1.6",
-	        "Fat.g": "2.9",
-	        "Carbohydrate.g": "8.9",
-	        "Energy.kcal": "66",
-	        "Energy.kJ": "279",
-	        "Starch.g": "Tr"
-	      },
-	      {
 	        "FoodCode": "12-049",
 	        "label": "Farley's Oster Milk, reconstituted",
 	        "EdibleProportion": "1.00",
@@ -15005,28 +13914,6 @@ function FoodDataSingleton()
 	        "Energy.kcal": "67",
 	        "Energy.kJ": "282",
 	        "Starch.g": "0.0"
-	      },
-	      {
-	        "FoodCode": "12-060",
-	        "label": "Farley's Oster Soy",
-	        "Water.g": "3.0",
-	        "Protein.g": "14.3",
-	        "Fat.g": "27.8",
-	        "Carbohydrate.g": "53.8",
-	        "Energy.kcal": "509",
-	        "Energy.kJ": "2133",
-	        "Starch.g": "Tr"
-	      },
-	      {
-	        "FoodCode": "12-061",
-	        "label": "Farley's Oster Soy, reconstituted",
-	        "Water.g": "87.2",
-	        "Protein.g": "1.9",
-	        "Fat.g": "3.8",
-	        "Carbohydrate.g": "7.1",
-	        "Energy.kcal": "67",
-	        "Energy.kJ": "282",
-	        "Starch.g": "Tr"
 	      },
 	      {
 	        "FoodCode": "17-553",
@@ -15137,11 +14024,6 @@ function FoodDataSingleton()
 	        "Starch.g": "0.0"
 	      },
 	      {
-	        "FoodCode": "17-460",
-	        "label": "Fat spread 70% fat, monounsaturated",
-	        "Fat.g": "70.0"
-	      },
-	      {
 	        "FoodCode": "14-090",
 	        "label": "Feijoa",
 	        "EdibleProportion": "0.51",
@@ -15212,11 +14094,6 @@ function FoodDataSingleton()
 	        "Energy.kcal": "N",
 	        "Energy.kJ": "N",
 	        "Starch.g": "N"
-	      },
-	      {
-	        "FoodCode": "11-409",
-	        "label": "Fig rolls",
-	        "Fat.g": "6.2"
 	      },
 	      {
 	        "FoodCode": "14-092",
@@ -15759,18 +14636,6 @@ function FoodDataSingleton()
 	        "Starch.g": "0.4"
 	      },
 	      {
-	        "FoodCode": "16-040",
-	        "label": "Flounder, raw",
-	        "EdibleProportion": "N",
-	        "Water.g": "81.2",
-	        "Protein.g": "16.4",
-	        "Fat.g": "1.8",
-	        "Carbohydrate.g": "0.0",
-	        "Energy.kcal": "82",
-	        "Energy.kJ": "345",
-	        "Starch.g": "0.0"
-	      },
-	      {
 	        "FoodCode": "16-041",
 	        "label": "Flounder, steamed",
 	        "EdibleProportion": "1.00",
@@ -15816,17 +14681,6 @@ function FoodDataSingleton()
 	        "Carbohydrate.g": "80.1",
 	        "Energy.kcal": "361",
 	        "Energy.kJ": "1534",
-	        "Starch.g": "Tr"
-	      },
-	      {
-	        "FoodCode": "12-062",
-	        "label": "Formula S Soya Food",
-	        "Water.g": "2.2",
-	        "Protein.g": "14.2",
-	        "Fat.g": "28.3",
-	        "Carbohydrate.g": "56.1",
-	        "Energy.kcal": "522",
-	        "Energy.kJ": "2186",
 	        "Starch.g": "Tr"
 	      },
 	      {
@@ -15902,11 +14756,6 @@ function FoodDataSingleton()
 	        "Starch.g": "0.6"
 	      },
 	      {
-	        "FoodCode": "12-908",
-	        "label": "Fromage frais, fruit, children's",
-	        "Fat.g": "4.8"
-	      },
-	      {
 	        "FoodCode": "12-369",
 	        "label": "Fromage frais, plain",
 	        "EdibleProportion": "1.00",
@@ -15967,11 +14816,6 @@ function FoodDataSingleton()
 	        "Starch.g": "0.7"
 	      },
 	      {
-	        "FoodCode": "11-410",
-	        "label": "Fruit biscuits",
-	        "Fat.g": "19.7"
-	      },
-	      {
 	        "FoodCode": "11-529",
 	        "label": "Fruit cake, plain, retail",
 	        "EdibleProportion": "1.00",
@@ -16006,17 +14850,6 @@ function FoodDataSingleton()
 	        "Energy.kcal": "350",
 	        "Energy.kJ": "1478",
 	        "Starch.g": "7.7"
-	      },
-	      {
-	        "FoodCode": "11-202",
-	        "label": "Fruit cake, rich, retail",
-	        "Water.g": "20.6",
-	        "Protein.g": "4.9",
-	        "Fat.g": "12.5",
-	        "Carbohydrate.g": "50.7",
-	        "Energy.kcal": "322",
-	        "Energy.kJ": "1357",
-	        "Starch.g": "11.9"
 	      },
 	      {
 	        "FoodCode": "11-579",
@@ -16137,11 +14970,6 @@ function FoodDataSingleton()
 	        "Energy.kcal": "163",
 	        "Energy.kJ": "683",
 	        "Starch.g": "4.1"
-	      },
-	      {
-	        "FoodCode": "12-913",
-	        "label": "Fruit fool, individual",
-	        "Fat.g": "10.9"
 	      },
 	      {
 	        "FoodCode": "17-107",
@@ -16417,17 +15245,6 @@ function FoodDataSingleton()
 	        "Carbohydrate.g": "45.2",
 	        "Energy.kcal": "379",
 	        "Energy.kJ": "1592",
-	        "Starch.g": "N"
-	      },
-	      {
-	        "FoodCode": "11-014",
-	        "label": "Gari",
-	        "Water.g": "12.6",
-	        "Protein.g": "1.0",
-	        "Fat.g": "1.1",
-	        "Carbohydrate.g": "82.7",
-	        "Energy.kcal": "351",
-	        "Energy.kJ": "1469",
 	        "Starch.g": "N"
 	      },
 	      {
@@ -16740,28 +15557,6 @@ function FoodDataSingleton()
 	        "Carbohydrate.g": "4.4",
 	        "Energy.kcal": "62",
 	        "Energy.kJ": "260",
-	        "Starch.g": "0.0"
-	      },
-	      {
-	        "FoodCode": "12-050",
-	        "label": "Gold Cap SMA",
-	        "Water.g": "1.9",
-	        "Protein.g": "12.2",
-	        "Fat.g": "28.1",
-	        "Carbohydrate.g": "56.2",
-	        "Energy.kcal": "512",
-	        "Energy.kJ": "2146",
-	        "Starch.g": "0.0"
-	      },
-	      {
-	        "FoodCode": "12-051",
-	        "label": "Gold Cap SMA, reconstituted",
-	        "Water.g": "87.6",
-	        "Protein.g": "1.5",
-	        "Fat.g": "3.6",
-	        "Carbohydrate.g": "7.0",
-	        "Energy.kcal": "64",
-	        "Energy.kJ": "267",
 	        "Starch.g": "0.0"
 	      },
 	      {
@@ -17111,17 +15906,6 @@ function FoodDataSingleton()
 	        "Energy.kcal": "20",
 	        "Energy.kJ": "86",
 	        "Starch.g": "0.0"
-	      },
-	      {
-	        "FoodCode": "11-135",
-	        "label": "Grapenuts",
-	        "Water.g": "3.5",
-	        "Protein.g": "10.5",
-	        "Fat.g": "0.5",
-	        "Carbohydrate.g": "79.9",
-	        "Energy.kcal": "346",
-	        "Energy.kJ": "1475",
-	        "Starch.g": "67.8"
 	      },
 	      {
 	        "FoodCode": "14-109",
@@ -17832,18 +16616,6 @@ function FoodDataSingleton()
 	        "Starch.g": "0.0"
 	      },
 	      {
-	        "FoodCode": "16-070",
-	        "label": "Hake, raw",
-	        "EdibleProportion": "N",
-	        "Water.g": "79.0",
-	        "Protein.g": "18.0",
-	        "Fat.g": "2.2",
-	        "Carbohydrate.g": "0.0",
-	        "Energy.kcal": "92",
-	        "Energy.kJ": "387",
-	        "Starch.g": "0.0"
-	      },
-	      {
 	        "FoodCode": "16-074",
 	        "label": "Halibut, grilled",
 	        "EdibleProportion": "1.00",
@@ -17892,29 +16664,6 @@ function FoodDataSingleton()
 	        "Starch.g": "0.0"
 	      },
 	      {
-	        "FoodCode": "16-073",
-	        "label": "Halibut, raw",
-	        "EdibleProportion": "N",
-	        "Water.g": "76.3",
-	        "Protein.g": "21.5",
-	        "Fat.g": "1.9",
-	        "Carbohydrate.g": "0.0",
-	        "Energy.kcal": "103",
-	        "Energy.kJ": "436",
-	        "Starch.g": "0.0"
-	      },
-	      {
-	        "FoodCode": "11-251",
-	        "label": "Halva",
-	        "Water.g": "2.4",
-	        "Protein.g": "14.8",
-	        "Fat.g": "31.9",
-	        "Carbohydrate.g": "54.2",
-	        "Energy.kcal": "615",
-	        "Energy.kJ": "2569",
-	        "Starch.g": "1.1"
-	      },
-	      {
 	        "FoodCode": "17-590",
 	        "label": "Halva, carrot",
 	        "EdibleProportion": "1.00",
@@ -17937,17 +16686,6 @@ function FoodDataSingleton()
 	        "Energy.kcal": "342",
 	        "Energy.kJ": "1436",
 	        "Starch.g": "11.4"
-	      },
-	      {
-	        "FoodCode": "11-252",
-	        "label": "Halwa",
-	        "Water.g": "16.4",
-	        "Protein.g": "1.8",
-	        "Fat.g": "13.2",
-	        "Carbohydrate.g": "68.0",
-	        "Energy.kcal": "381",
-	        "Energy.kJ": "1607",
-	        "Starch.g": "9.0"
 	      },
 	      {
 	        "FoodCode": "19-308",
@@ -18358,18 +17096,6 @@ function FoodDataSingleton()
 	        "Starch.g": "0.0"
 	      },
 	      {
-	        "FoodCode": "16-184",
-	        "label": "Hilsa, raw",
-	        "EdibleProportion": "N",
-	        "Water.g": "53.7",
-	        "Protein.g": "21.8",
-	        "Fat.g": "19.4",
-	        "Carbohydrate.g": "0.0",
-	        "Energy.kcal": "262",
-	        "Energy.kJ": "1088",
-	        "Starch.g": "0.0"
-	      },
-	      {
 	        "FoodCode": "16-079",
 	        "label": "Hoki, grilled",
 	        "EdibleProportion": "1.00",
@@ -18379,18 +17105,6 @@ function FoodDataSingleton()
 	        "Carbohydrate.g": "0.0",
 	        "Energy.kcal": "121",
 	        "Energy.kJ": "510",
-	        "Starch.g": "0.0"
-	      },
-	      {
-	        "FoodCode": "16-078",
-	        "label": "Hoki, raw",
-	        "EdibleProportion": "N",
-	        "Water.g": "80.4",
-	        "Protein.g": "16.9",
-	        "Fat.g": "1.9",
-	        "Carbohydrate.g": "0.0",
-	        "Energy.kcal": "85",
-	        "Energy.kJ": "358",
 	        "Starch.g": "0.0"
 	      },
 	      {
@@ -18404,17 +17118,6 @@ function FoodDataSingleton()
 	        "Energy.kcal": "717",
 	        "Energy.kJ": "2948",
 	        "Starch.g": "Tr"
-	      },
-	      {
-	        "FoodCode": "11-015",
-	        "label": "Hominy, raw",
-	        "Water.g": "12.0",
-	        "Protein.g": "8.7",
-	        "Fat.g": "0.8",
-	        "Carbohydrate.g": "77.7",
-	        "Energy.kcal": "362",
-	        "Energy.kJ": "1515",
-	        "Starch.g": "N"
 	      },
 	      {
 	        "FoodCode": "17-050",
@@ -19041,18 +17744,6 @@ function FoodDataSingleton()
 	        "Starch.g": "0.0"
 	      },
 	      {
-	        "FoodCode": "13-260",
-	        "label": "Jackfruit, canned, drained",
-	        "EdibleProportion": "N",
-	        "Water.g": "73.4",
-	        "Protein.g": "0.5",
-	        "Fat.g": "0.3",
-	        "Carbohydrate.g": "26.3",
-	        "Energy.kcal": "104",
-	        "Energy.kJ": "440",
-	        "Starch.g": "1.5"
-	      },
-	      {
 	        "FoodCode": "13-259",
 	        "label": "Jackfruit, raw",
 	        "EdibleProportion": "0.29",
@@ -19197,28 +17888,6 @@ function FoodDataSingleton()
 	        "Starch.g": "37.6"
 	      },
 	      {
-	        "FoodCode": "12-239",
-	        "label": "Jelly, made with semi-skimmed milk",
-	        "Water.g": "80.0",
-	        "Protein.g": "2.6",
-	        "Fat.g": "0.7",
-	        "Carbohydrate.g": "16.8",
-	        "Energy.kcal": "79",
-	        "Energy.kJ": "338",
-	        "Starch.g": "0.0"
-	      },
-	      {
-	        "FoodCode": "12-240",
-	        "label": "Jelly, made with skimmed milk",
-	        "Water.g": "80.6",
-	        "Protein.g": "2.6",
-	        "Fat.g": "Tr",
-	        "Carbohydrate.g": "16.8",
-	        "Energy.kcal": "73",
-	        "Energy.kJ": "314",
-	        "Starch.g": "0.0"
-	      },
-	      {
 	        "FoodCode": "12-237",
 	        "label": "Jelly, made with water",
 	        "EdibleProportion": "1.00",
@@ -19228,29 +17897,6 @@ function FoodDataSingleton()
 	        "Carbohydrate.g": "15.1",
 	        "Energy.kcal": "61",
 	        "Energy.kJ": "260",
-	        "Starch.g": "0.0"
-	      },
-	      {
-	        "FoodCode": "12-238",
-	        "label": "Jelly, made with whole milk",
-	        "Water.g": "79.1",
-	        "Protein.g": "2.6",
-	        "Fat.g": "1.7",
-	        "Carbohydrate.g": "16.7",
-	        "Energy.kcal": "88",
-	        "Energy.kJ": "373",
-	        "Starch.g": "0.0"
-	      },
-	      {
-	        "FoodCode": "16-080",
-	        "label": "John Dory, raw",
-	        "EdibleProportion": "N",
-	        "Water.g": "78.1",
-	        "Protein.g": "19.0",
-	        "Fat.g": "1.4",
-	        "Carbohydrate.g": "0.0",
-	        "Energy.kcal": "89",
-	        "Energy.kJ": "375",
 	        "Starch.g": "0.0"
 	      },
 	      {
@@ -19275,30 +17921,6 @@ function FoodDataSingleton()
 	        "Carbohydrate.g": "0.6",
 	        "Energy.kcal": "308",
 	        "Energy.kJ": "1278",
-	        "Starch.g": "0.0"
-	      },
-	      {
-	        "FoodCode": "16-081",
-	        "label": "Kalabasu, raw",
-	        "EdibleProportion": "N",
-	        "Water.g": "81.0",
-	        "Protein.g": "14.7",
-	        "Fat.g": "1.0",
-	        "Carbohydrate.g": "0.0",
-	        "Energy.kcal": "68",
-	        "Energy.kJ": "287",
-	        "Starch.g": "0.0"
-	      },
-	      {
-	        "FoodCode": "16-186",
-	        "label": "Katla, raw",
-	        "EdibleProportion": "N",
-	        "Water.g": "73.7",
-	        "Protein.g": "19.5",
-	        "Fat.g": "2.4",
-	        "Carbohydrate.g": "0.0",
-	        "Energy.kcal": "100",
-	        "Energy.kJ": "420",
 	        "Starch.g": "0.0"
 	      },
 	      {
@@ -19372,11 +17994,6 @@ function FoodDataSingleton()
 	        "Energy.kcal": "188",
 	        "Energy.kJ": "784",
 	        "Starch.g": "0.0"
-	      },
-	      {
-	        "FoodCode": "18-456",
-	        "label": "Kidney, lamb, grilled",
-	        "Fat.g": "4.6"
 	      },
 	      {
 	        "FoodCode": "18-402",
@@ -19607,11 +18224,6 @@ function FoodDataSingleton()
 	        "Starch.g": "0.1"
 	      },
 	      {
-	        "FoodCode": "11-411",
-	        "label": "Krackerwheat",
-	        "Fat.g": "30.0"
-	      },
-	      {
 	        "FoodCode": "12-450",
 	        "label": "Kulfi",
 	        "EdibleProportion": "1.00",
@@ -19790,11 +18402,6 @@ function FoodDataSingleton()
 	        "Energy.kcal": "149",
 	        "Energy.kJ": "624",
 	        "Starch.g": "0.3"
-	      },
-	      {
-	        "FoodCode": "19-306",
-	        "label": "Lamb rogan josh, takeaway",
-	        "Fat.g": "10.0"
 	      },
 	      {
 	        "FoodCode": "19-060",
@@ -20985,28 +19592,6 @@ function FoodDataSingleton()
 	        "Starch.g": "43.8"
 	      },
 	      {
-	        "FoodCode": "11-052",
-	        "label": "Lasagna, sheets, boiled",
-	        "Water.g": "75.7",
-	        "Protein.g": "3.0",
-	        "Fat.g": "0.6",
-	        "Carbohydrate.g": "22.0",
-	        "Energy.kcal": "100",
-	        "Energy.kJ": "424",
-	        "Starch.g": "21.5"
-	      },
-	      {
-	        "FoodCode": "11-051",
-	        "label": "Lasagna, sheets, raw",
-	        "Water.g": "9.7",
-	        "Protein.g": "11.9",
-	        "Fat.g": "2.0",
-	        "Carbohydrate.g": "74.8",
-	        "Energy.kcal": "346",
-	        "Energy.kJ": "1473",
-	        "Starch.g": "71.5"
-	      },
-	      {
 	        "FoodCode": "19-238",
 	        "label": "Lasagne, chilled/frozen, reheated",
 	        "EdibleProportion": "1.00",
@@ -21340,18 +19925,6 @@ function FoodDataSingleton()
 	        "Carbohydrate.g": "0.0",
 	        "Energy.kcal": "62",
 	        "Energy.kJ": "261",
-	        "Starch.g": "0.0"
-	      },
-	      {
-	        "FoodCode": "16-082",
-	        "label": "Lemon sole, raw",
-	        "EdibleProportion": "N",
-	        "Water.g": "81.2",
-	        "Protein.g": "17.4",
-	        "Fat.g": "1.5",
-	        "Carbohydrate.g": "0.0",
-	        "Energy.kcal": "83",
-	        "Energy.kJ": "351",
 	        "Starch.g": "0.0"
 	      },
 	      {
@@ -21775,18 +20348,6 @@ function FoodDataSingleton()
 	        "Starch.g": "0.0"
 	      },
 	      {
-	        "FoodCode": "16-091",
-	        "label": "Ling, raw",
-	        "EdibleProportion": "N",
-	        "Water.g": "79.3",
-	        "Protein.g": "18.8",
-	        "Fat.g": "0.7",
-	        "Carbohydrate.g": "0.0",
-	        "Energy.kcal": "82",
-	        "Energy.kJ": "346",
-	        "Starch.g": "0.0"
-	      },
-	      {
 	        "FoodCode": "17-244",
 	        "label": "Liqueurs, high strength",
 	        "EdibleProportion": "1.00",
@@ -22183,27 +20744,6 @@ function FoodDataSingleton()
 	        "Starch.g": "5.5"
 	      },
 	      {
-	        "FoodCode": "12-191",
-	        "label": "Low fat yogurt, muesli/nut",
-	        "Water.g": "76.5",
-	        "Protein.g": "5.0",
-	        "Fat.g": "2.2",
-	        "Carbohydrate.g": "19.2",
-	        "Energy.kcal": "112",
-	        "Energy.kJ": "474",
-	        "Starch.g": "1.2"
-	      },
-	      {
-	        "FoodCode": "12-905",
-	        "label": "Low fat yogurt, toffee",
-	        "Fat.g": "0.9"
-	      },
-	      {
-	        "FoodCode": "12-904",
-	        "label": "Low fat yogurt,hazelnut",
-	        "Fat.g": "1.5"
-	      },
-	      {
 	        "FoodCode": "17-543",
 	        "label": "Lucozade",
 	        "EdibleProportion": "1.00",
@@ -22298,17 +20838,6 @@ function FoodDataSingleton()
 	        "Energy.kcal": "162",
 	        "Energy.kJ": "677",
 	        "Starch.g": "9.7"
-	      },
-	      {
-	        "FoodCode": "12-276",
-	        "label": "Macaroni cheese, canned",
-	        "Water.g": "74.8",
-	        "Protein.g": "4.5",
-	        "Fat.g": "6.5",
-	        "Carbohydrate.g": "16.4",
-	        "Energy.kcal": "138",
-	        "Energy.kJ": "579",
-	        "Starch.g": "14.5"
 	      },
 	      {
 	        "FoodCode": "11-448",
@@ -22647,11 +21176,6 @@ function FoodDataSingleton()
 	        "Starch.g": "0.3"
 	      },
 	      {
-	        "FoodCode": "17-442",
-	        "label": "Margarine, catering",
-	        "Fat.g": "81.7"
-	      },
-	      {
 	        "FoodCode": "17-018",
 	        "label": "Margarine, hard, animal and vegetable fats",
 	        "EdibleProportion": "1.00",
@@ -22698,11 +21222,6 @@ function FoodDataSingleton()
 	        "Energy.kcal": "746",
 	        "Energy.kJ": "3067",
 	        "Starch.g": "0.0"
-	      },
-	      {
-	        "FoodCode": "17-432",
-	        "label": "Margarine, soya",
-	        "Fat.g": "82.7"
 	      },
 	      {
 	        "FoodCode": "13-835",
@@ -22861,17 +21380,6 @@ function FoodDataSingleton()
 	        "Starch.g": "0.0"
 	      },
 	      {
-	        "FoodCode": "11-343",
-	        "label": "Masur",
-	        "Water.g": "1.9",
-	        "Protein.g": "4.9",
-	        "Fat.g": "53.5",
-	        "Carbohydrate.g": "38.2",
-	        "Energy.kcal": "644",
-	        "Energy.kJ": "2674",
-	        "Starch.g": "5.3"
-	      },
-	      {
 	        "FoodCode": "13-280",
 	        "label": "Matoki, boiled in salted water",
 	        "EdibleProportion": "1.00",
@@ -22894,17 +21402,6 @@ function FoodDataSingleton()
 	        "Energy.kcal": "90",
 	        "Energy.kJ": "385",
 	        "Starch.g": "21.5"
-	      },
-	      {
-	        "FoodCode": "11-178",
-	        "label": "Matzos",
-	        "Water.g": "6.7",
-	        "Protein.g": "10.5",
-	        "Fat.g": "1.9",
-	        "Carbohydrate.g": "86.6",
-	        "Energy.kcal": "384",
-	        "Energy.kJ": "1634",
-	        "Starch.g": "82.4"
 	      },
 	      {
 	        "FoodCode": "17-570",
@@ -22953,17 +21450,6 @@ function FoodDataSingleton()
 	        "Energy.kcal": "73",
 	        "Energy.kJ": "303",
 	        "Starch.g": "0.1"
-	      },
-	      {
-	        "FoodCode": "11-344",
-	        "label": "Meat buns, Chinese",
-	        "Water.g": "40.4",
-	        "Protein.g": "8.8",
-	        "Fat.g": "9.5",
-	        "Carbohydrate.g": "38.4",
-	        "Energy.kcal": "265",
-	        "Energy.kJ": "1116",
-	        "Starch.g": "29.4"
 	      },
 	      {
 	        "FoodCode": "17-514",
@@ -23242,17 +21728,6 @@ function FoodDataSingleton()
 	        "Starch.g": "0.0"
 	      },
 	      {
-	        "FoodCode": "12-101",
-	        "label": "Microdiet powder",
-	        "Water.g": "N",
-	        "Protein.g": "42.0",
-	        "Fat.g": "3.0",
-	        "Carbohydrate.g": "35.0",
-	        "Energy.kcal": "330",
-	        "Energy.kJ": "1382",
-	        "Starch.g": "N"
-	      },
-	      {
 	        "FoodCode": "12-102",
 	        "label": "Microdiet powder, made up with water",
 	        "EdibleProportion": "1.00",
@@ -23419,50 +21894,6 @@ function FoodDataSingleton()
 	        "Energy.kcal": "445",
 	        "Energy.kJ": "1874",
 	        "Starch.g": "6.7"
-	      },
-	      {
-	        "FoodCode": "11-016",
-	        "label": "Millet flour",
-	        "Water.g": "13.3",
-	        "Protein.g": "5.8",
-	        "Fat.g": "1.7",
-	        "Carbohydrate.g": "75.4",
-	        "Energy.kcal": "354",
-	        "Energy.kJ": "1481",
-	        "Starch.g": "N"
-	      },
-	      {
-	        "FoodCode": "12-056",
-	        "label": "Milumil",
-	        "Water.g": "3.2",
-	        "Protein.g": "13.7",
-	        "Fat.g": "22.8",
-	        "Carbohydrate.g": "61.2",
-	        "Energy.kcal": "489",
-	        "Energy.kJ": "2056",
-	        "Starch.g": "8.0"
-	      },
-	      {
-	        "FoodCode": "12-057",
-	        "label": "Milumil, reconstituted",
-	        "Water.g": "86.3",
-	        "Protein.g": "1.9",
-	        "Fat.g": "3.1",
-	        "Carbohydrate.g": "8.6",
-	        "Energy.kcal": "69",
-	        "Energy.kJ": "290",
-	        "Starch.g": "1.1"
-	      },
-	      {
-	        "FoodCode": "12-045",
-	        "label": "Milupa, Aptamil, reconstituted",
-	        "Water.g": "87.2",
-	        "Protein.g": "1.7",
-	        "Fat.g": "3.6",
-	        "Carbohydrate.g": "7.5",
-	        "Energy.kcal": "69",
-	        "Energy.kJ": "290",
-	        "Starch.g": "0.0"
 	      },
 	      {
 	        "FoodCode": "11-591",
@@ -23849,29 +22280,6 @@ function FoodDataSingleton()
 	        "Starch.g": "0.0"
 	      },
 	      {
-	        "FoodCode": "16-092",
-	        "label": "Monkfish, raw",
-	        "EdibleProportion": "N",
-	        "Water.g": "83.3",
-	        "Protein.g": "15.7",
-	        "Fat.g": "0.4",
-	        "Carbohydrate.g": "0.0",
-	        "Energy.kcal": "66",
-	        "Energy.kJ": "282",
-	        "Starch.g": "0.0"
-	      },
-	      {
-	        "FoodCode": "11-122",
-	        "label": "Morning rolls",
-	        "Water.g": "30.5",
-	        "Protein.g": "10.4",
-	        "Fat.g": "3.1",
-	        "Carbohydrate.g": "53.3",
-	        "Energy.kcal": "269",
-	        "Energy.kJ": "1144",
-	        "Starch.g": "51.1"
-	      },
-	      {
 	        "FoodCode": "19-107",
 	        "label": "Mortadella",
 	        "EdibleProportion": "1.00",
@@ -23968,16 +22376,6 @@ function FoodDataSingleton()
 	        "Starch.g": "Tr"
 	      },
 	      {
-	        "FoodCode": "12-914",
-	        "label": "Mousse, reduced fat",
-	        "Fat.g": "3.7"
-	      },
-	      {
-	        "FoodCode": "11-369",
-	        "label": "Muesli",
-	        "Fat.g": "6.7"
-	      },
-	      {
 	        "FoodCode": "11-494",
 	        "label": "Muesli, swiss style",
 	        "EdibleProportion": "1.00",
@@ -23988,17 +22386,6 @@ function FoodDataSingleton()
 	        "Energy.kcal": "363",
 	        "Energy.kJ": "1540",
 	        "Starch.g": "46.0"
-	      },
-	      {
-	        "FoodCode": "11-138",
-	        "label": "Muesli, with extra fruit",
-	        "Water.g": "8.5",
-	        "Protein.g": "10.2",
-	        "Fat.g": "6.2",
-	        "Carbohydrate.g": "73.4",
-	        "Energy.kcal": "372",
-	        "Energy.kJ": "1577",
-	        "Starch.g": "51.1"
 	      },
 	      {
 	        "FoodCode": "11-495",
@@ -24457,18 +22844,6 @@ function FoodDataSingleton()
 	        "Starch.g": "N"
 	      },
 	      {
-	        "FoodCode": "13-296",
-	        "label": "Mushrooms, straw, canned, drained",
-	        "EdibleProportion": "N",
-	        "Water.g": "89.6",
-	        "Protein.g": "2.1",
-	        "Fat.g": "0.2",
-	        "Carbohydrate.g": "1.2",
-	        "Energy.kcal": "15",
-	        "Energy.kJ": "62",
-	        "Starch.g": "0.8"
-	      },
-	      {
 	        "FoodCode": "13-437",
 	        "label": "Mushy peas, canned, re-heated",
 	        "EdibleProportion": "1.00",
@@ -24551,18 +22926,6 @@ function FoodDataSingleton()
 	        "Energy.kcal": "17",
 	        "Energy.kJ": "73",
 	        "Starch.g": "1.4"
-	      },
-	      {
-	        "FoodCode": "13-298",
-	        "label": "Mustard leaves, raw",
-	        "EdibleProportion": "N",
-	        "Water.g": "91.3",
-	        "Protein.g": "2.5",
-	        "Fat.g": "0.3",
-	        "Carbohydrate.g": "3.6",
-	        "Energy.kcal": "27",
-	        "Energy.kJ": "115",
-	        "Starch.g": "2.8"
 	      },
 	      {
 	        "FoodCode": "17-362",
@@ -24913,11 +23276,6 @@ function FoodDataSingleton()
 	        "Starch.g": "0.0"
 	      },
 	      {
-	        "FoodCode": "12-897",
-	        "label": "Non-dairy cream, UHT, canned spray",
-	        "Fat.g": "22.2"
-	      },
-	      {
 	        "FoodCode": "11-056",
 	        "label": "Noodles, egg, boiled",
 	        "EdibleProportion": "1.00",
@@ -24952,39 +23310,6 @@ function FoodDataSingleton()
 	        "Energy.kcal": "391",
 	        "Energy.kJ": "1656",
 	        "Starch.g": "69.8"
-	      },
-	      {
-	        "FoodCode": "11-059",
-	        "label": "Noodles, plain, boiled",
-	        "Water.g": "82.2",
-	        "Protein.g": "2.4",
-	        "Fat.g": "0.4",
-	        "Carbohydrate.g": "13.0",
-	        "Energy.kcal": "62",
-	        "Energy.kJ": "264",
-	        "Starch.g": "12.8"
-	      },
-	      {
-	        "FoodCode": "11-058",
-	        "label": "Noodles, plain, raw",
-	        "Water.g": "10.6",
-	        "Protein.g": "11.7",
-	        "Fat.g": "6.2",
-	        "Carbohydrate.g": "76.1",
-	        "Energy.kcal": "388",
-	        "Energy.kJ": "1646",
-	        "Starch.g": "73.7"
-	      },
-	      {
-	        "FoodCode": "11-060",
-	        "label": "Noodles, rice, dried",
-	        "Water.g": "13.0",
-	        "Protein.g": "4.9",
-	        "Fat.g": "0.1",
-	        "Carbohydrate.g": "81.5",
-	        "Energy.kcal": "360",
-	        "Energy.kJ": "1506",
-	        "Starch.g": "N"
 	      },
 	      {
 	        "FoodCode": "17-592",
@@ -25203,11 +23528,6 @@ function FoodDataSingleton()
 	        "Starch.g": "39.7"
 	      },
 	      {
-	        "FoodCode": "11-413",
-	        "label": "Oat based biscuits, chocolate, half coated",
-	        "Fat.g": "23.8"
-	      },
-	      {
 	        "FoodCode": "11-489",
 	        "label": "Oat Bran Flakes, with raisins",
 	        "EdibleProportion": "1.00",
@@ -25254,17 +23574,6 @@ function FoodDataSingleton()
 	        "Energy.kcal": "375",
 	        "Energy.kJ": "1587",
 	        "Starch.g": "64.9"
-	      },
-	      {
-	        "FoodCode": "11-017",
-	        "label": "Oatmeal, raw",
-	        "Water.g": "8.9",
-	        "Protein.g": "12.4",
-	        "Fat.g": "8.7",
-	        "Carbohydrate.g": "72.8",
-	        "Energy.kcal": "401",
-	        "Energy.kJ": "1698",
-	        "Starch.g": "72.8"
 	      },
 	      {
 	        "FoodCode": "16-259",
@@ -25855,18 +24164,6 @@ function FoodDataSingleton()
 	        "Starch.g": "0.0"
 	      },
 	      {
-	        "FoodCode": "16-199",
-	        "label": "Orange roughy, raw",
-	        "EdibleProportion": "N",
-	        "Water.g": "75.9",
-	        "Protein.g": "14.7",
-	        "Fat.g": "7.0",
-	        "Carbohydrate.g": "0.0",
-	        "Energy.kcal": "126",
-	        "Energy.kJ": "527",
-	        "Starch.g": "0.0"
-	      },
-	      {
 	        "FoodCode": "14-298",
 	        "label": "Oranges",
 	        "EdibleProportion": "1.00",
@@ -25913,11 +24210,6 @@ function FoodDataSingleton()
 	        "Energy.kcal": "66",
 	        "Energy.kJ": "276",
 	        "Starch.g": "N"
-	      },
-	      {
-	        "FoodCode": "12-886",
-	        "label": "Organic semi-skimmed milk, pasteurised",
-	        "Fat.g": "1.8"
 	      },
 	      {
 	        "FoodCode": "17-129",
@@ -26374,29 +24666,6 @@ function FoodDataSingleton()
 	        "Energy.kcal": "302",
 	        "Energy.kJ": "1265",
 	        "Starch.g": "18.8"
-	      },
-	      {
-	        "FoodCode": "16-200",
-	        "label": "Pangas, raw",
-	        "EdibleProportion": "N",
-	        "Water.g": "72.3",
-	        "Protein.g": "14.2",
-	        "Fat.g": "10.8",
-	        "Carbohydrate.g": "0.0",
-	        "Energy.kcal": "154",
-	        "Energy.kJ": "641",
-	        "Starch.g": "0.0"
-	      },
-	      {
-	        "FoodCode": "11-087",
-	        "label": "Papadums, raw",
-	        "Water.g": "12.1",
-	        "Protein.g": "20.6",
-	        "Fat.g": "1.9",
-	        "Carbohydrate.g": "46.0",
-	        "Energy.kcal": "272",
-	        "Energy.kJ": "1157",
-	        "Starch.g": "46.0"
 	      },
 	      {
 	        "FoodCode": "13-311",
@@ -27645,11 +25914,6 @@ function FoodDataSingleton()
 	        "Energy.kcal": "49",
 	        "Energy.kJ": "206",
 	        "Starch.g": "Tr"
-	      },
-	      {
-	        "FoodCode": "18-454",
-	        "label": "Pheasant, casseroled, meat only",
-	        "Fat.g": "15.6"
 	      },
 	      {
 	        "FoodCode": "18-383",
@@ -30964,55 +29228,6 @@ function FoodDataSingleton()
 	        "Starch.g": "6.4"
 	      },
 	      {
-	        "FoodCode": "12-070",
-	        "label": "Progress",
-	        "Water.g": "2.5",
-	        "Protein.g": "20.0",
-	        "Fat.g": "17.7",
-	        "Carbohydrate.g": "54.4",
-	        "Energy.kcal": "443",
-	        "Energy.kJ": "1865",
-	        "Starch.g": "Tr"
-	      },
-	      {
-	        "FoodCode": "12-071",
-	        "label": "Progress, reconstituted",
-	        "Water.g": "85.8",
-	        "Protein.g": "2.8",
-	        "Fat.g": "2.5",
-	        "Carbohydrate.g": "7.6",
-	        "Energy.kcal": "62",
-	        "Energy.kJ": "262",
-	        "Starch.g": "Tr"
-	      },
-	      {
-	        "FoodCode": "12-064",
-	        "label": "Prosobee",
-	        "Water.g": "2.5",
-	        "Protein.g": "15.6",
-	        "Fat.g": "27.9",
-	        "Carbohydrate.g": "55.6",
-	        "Energy.kcal": "516",
-	        "Energy.kJ": "2187",
-	        "Starch.g": "Tr"
-	      },
-	      {
-	        "FoodCode": "12-065",
-	        "label": "Prosobee, reconstituted",
-	        "Water.g": "87.8",
-	        "Protein.g": "1.9",
-	        "Fat.g": "3.6",
-	        "Carbohydrate.g": "7.0",
-	        "Energy.kcal": "65",
-	        "Energy.kJ": "274",
-	        "Starch.g": "Tr"
-	      },
-	      {
-	        "FoodCode": "15-353",
-	        "label": "Protein substitute grill/burger, unbreaded, baked/grilled",
-	        "Fat.g": "10.5"
-	      },
-	      {
 	        "FoodCode": "14-289",
 	        "label": "Prune juice",
 	        "EdibleProportion": "1.00",
@@ -31229,17 +29444,6 @@ function FoodDataSingleton()
 	        "Starch.g": "48.4"
 	      },
 	      {
-	        "FoodCode": "12-174",
-	        "label": "Quark",
-	        "Water.g": "80.4",
-	        "Protein.g": "14.6",
-	        "Fat.g": "Tr",
-	        "Carbohydrate.g": "4.0",
-	        "Energy.kcal": "74",
-	        "Energy.kJ": "313",
-	        "Starch.g": "0.0"
-	      },
-	      {
 	        "FoodCode": "19-312",
 	        "label": "Quarterpounder with cheese, takeaway",
 	        "EdibleProportion": "1.00",
@@ -31420,11 +29624,6 @@ function FoodDataSingleton()
 	        "Starch.g": "0.0"
 	      },
 	      {
-	        "FoodCode": "18-466",
-	        "label": "Rabbit, stewed, meat and fat",
-	        "Fat.g": "3.4"
-	      },
-	      {
 	        "FoodCode": "18-388",
 	        "label": "Rabbit, stewed, meat only",
 	        "EdibleProportion": "1.00",
@@ -31495,18 +29694,6 @@ function FoodDataSingleton()
 	        "Energy.kcal": "363",
 	        "Energy.kJ": "1505",
 	        "Starch.g": "0.0"
-	      },
-	      {
-	        "FoodCode": "13-329",
-	        "label": "Raddiccio, raw",
-	        "EdibleProportion": "N",
-	        "Water.g": "92.9",
-	        "Protein.g": "1.4",
-	        "Fat.g": "0.2",
-	        "Carbohydrate.g": "1.7",
-	        "Energy.kcal": "14",
-	        "Energy.kJ": "58",
-	        "Starch.g": "Tr"
 	      },
 	      {
 	        "FoodCode": "13-332",
@@ -31785,28 +29972,6 @@ function FoodDataSingleton()
 	        "Starch.g": "12.9"
 	      },
 	      {
-	        "FoodCode": "11-038",
-	        "label": "Red rice, boiled",
-	        "Water.g": "78.8",
-	        "Protein.g": "1.8",
-	        "Fat.g": "0.4",
-	        "Carbohydrate.g": "18.5",
-	        "Energy.kcal": "80",
-	        "Energy.kJ": "341",
-	        "Starch.g": "N"
-	      },
-	      {
-	        "FoodCode": "11-037",
-	        "label": "Red rice, raw",
-	        "Water.g": "13.2",
-	        "Protein.g": "7.4",
-	        "Fat.g": "1.6",
-	        "Carbohydrate.g": "76.0",
-	        "Energy.kcal": "354",
-	        "Energy.kJ": "1481",
-	        "Starch.g": "N"
-	      },
-	      {
 	        "FoodCode": "16-127",
 	        "label": "Red snapper, fried in blended oil",
 	        "EdibleProportion": "1.00",
@@ -31949,11 +30114,6 @@ function FoodDataSingleton()
 	        "Energy.kcal": "281",
 	        "Energy.kJ": "1191",
 	        "Starch.g": "16.3"
-	      },
-	      {
-	        "FoodCode": "12-906",
-	        "label": "Reduced fat yogurt, frozen",
-	        "Fat.g": "2.0"
 	      },
 	      {
 	        "FoodCode": "15-572",
@@ -32146,22 +30306,6 @@ function FoodDataSingleton()
 	        "Energy.kcal": "369",
 	        "Energy.kJ": "1568",
 	        "Starch.g": "79.2"
-	      },
-	      {
-	        "FoodCode": "11-427",
-	        "label": "Rice desserts, with fruit, individual, chilled",
-	        "Fat.g": "2.2"
-	      },
-	      {
-	        "FoodCode": "11-021",
-	        "label": "Rice flour",
-	        "Water.g": "11.8",
-	        "Protein.g": "6.4",
-	        "Fat.g": "0.8",
-	        "Carbohydrate.g": "80.1",
-	        "Energy.kcal": "366",
-	        "Energy.kJ": "1531",
-	        "Starch.g": "80.1"
 	      },
 	      {
 	        "FoodCode": "11-207",
@@ -32476,18 +30620,6 @@ function FoodDataSingleton()
 	        "Starch.g": "9.6"
 	      },
 	      {
-	        "FoodCode": "16-133",
-	        "label": "Rock Salmon/Dogfish, raw",
-	        "EdibleProportion": "N",
-	        "Water.g": "68.3",
-	        "Protein.g": "16.6",
-	        "Fat.g": "9.7",
-	        "Carbohydrate.g": "0.0",
-	        "Energy.kcal": "154",
-	        "Energy.kJ": "641",
-	        "Starch.g": "0.0"
-	      },
-	      {
 	        "FoodCode": "16-301",
 	        "label": "Roe, cod, hard, coated in batter, fried",
 	        "EdibleProportion": "1.00",
@@ -32690,50 +30822,6 @@ function FoodDataSingleton()
 	        "Energy.kcal": "22",
 	        "Energy.kJ": "93",
 	        "Starch.g": "0.4"
-	      },
-	      {
-	        "FoodCode": "11-163",
-	        "label": "Rusks, flavoured",
-	        "Water.g": "7.1",
-	        "Protein.g": "6.8",
-	        "Fat.g": "9.0",
-	        "Carbohydrate.g": "78.1",
-	        "Energy.kcal": "401",
-	        "Energy.kJ": "1698",
-	        "Starch.g": "55.6"
-	      },
-	      {
-	        "FoodCode": "11-162",
-	        "label": "Rusks, low sugar",
-	        "Water.g": "5.5",
-	        "Protein.g": "8.6",
-	        "Fat.g": "9.7",
-	        "Carbohydrate.g": "77.8",
-	        "Energy.kcal": "414",
-	        "Energy.kJ": "1751",
-	        "Starch.g": "54.3"
-	      },
-	      {
-	        "FoodCode": "11-161",
-	        "label": "Rusks, plain",
-	        "Water.g": "5.0",
-	        "Protein.g": "6.5",
-	        "Fat.g": "7.9",
-	        "Carbohydrate.g": "82.8",
-	        "Energy.kcal": "408",
-	        "Energy.kJ": "1729",
-	        "Starch.g": "50.8"
-	      },
-	      {
-	        "FoodCode": "11-164",
-	        "label": "Rusks, wholemeal",
-	        "Water.g": "4.4",
-	        "Protein.g": "8.3",
-	        "Fat.g": "10.1",
-	        "Carbohydrate.g": "76.5",
-	        "Energy.kcal": "411",
-	        "Energy.kJ": "1739",
-	        "Starch.g": "51.4"
 	      },
 	      {
 	        "FoodCode": "11-091",
@@ -33636,11 +31724,6 @@ function FoodDataSingleton()
 	        "Starch.g": "2.7"
 	      },
 	      {
-	        "FoodCode": "19-293",
-	        "label": "Sausage roll, flaky pastry, cooked",
-	        "Fat.g": "29.0"
-	      },
-	      {
 	        "FoodCode": "19-067",
 	        "label": "Sausage rolls, flaky pastry, homemade",
 	        "EdibleProportion": "1.00",
@@ -34037,17 +32120,6 @@ function FoodDataSingleton()
 	        "Starch.g": "52.5"
 	      },
 	      {
-	        "FoodCode": "11-024",
-	        "label": "Semolina, raw",
-	        "Water.g": "14.0",
-	        "Protein.g": "10.7",
-	        "Fat.g": "1.8",
-	        "Carbohydrate.g": "77.5",
-	        "Energy.kcal": "350",
-	        "Energy.kJ": "1489",
-	        "Starch.g": "77.5"
-	      },
-	      {
 	        "FoodCode": "17-043",
 	        "label": "Sesame oil",
 	        "EdibleProportion": "1.00",
@@ -34058,11 +32130,6 @@ function FoodDataSingleton()
 	        "Energy.kcal": "898",
 	        "Energy.kJ": "3692",
 	        "Starch.g": "0.0"
-	      },
-	      {
-	        "FoodCode": "16-321",
-	        "label": "Sesame prawn toasts, takeaway",
-	        "Fat.g": "29.8"
 	      },
 	      {
 	        "FoodCode": "14-844",
@@ -34134,23 +32201,6 @@ function FoodDataSingleton()
 	        "Carbohydrate.g": "2.9",
 	        "Energy.kcal": "26",
 	        "Energy.kJ": "107",
-	        "Starch.g": "0.0"
-	      },
-	      {
-	        "FoodCode": "14-867",
-	        "label": "Shanghai nuts",
-	        "Fat.g": "34.8"
-	      },
-	      {
-	        "FoodCode": "16-142",
-	        "label": "Shark, raw",
-	        "EdibleProportion": "N",
-	        "Water.g": "74.8",
-	        "Protein.g": "23.0",
-	        "Fat.g": "1.1",
-	        "Carbohydrate.g": "0.0",
-	        "Energy.kcal": "102",
-	        "Energy.kJ": "432",
 	        "Starch.g": "0.0"
 	      },
 	      {
@@ -34322,11 +32372,6 @@ function FoodDataSingleton()
 	        "Starch.g": "47.6"
 	      },
 	      {
-	        "FoodCode": "11-415",
-	        "label": "Shortcake, chocolate, half coated",
-	        "Fat.g": "21.8"
-	      },
-	      {
 	        "FoodCode": "11-585",
 	        "label": "Shortcrust pastry, cooked",
 	        "EdibleProportion": "1.00",
@@ -34445,11 +32490,6 @@ function FoodDataSingleton()
 	        "Energy.kcal": "73",
 	        "Energy.kJ": "310",
 	        "Starch.g": "Tr"
-	      },
-	      {
-	        "FoodCode": "12-898",
-	        "label": "Simply Double dessert topping",
-	        "Fat.g": "28.2"
 	      },
 	      {
 	        "FoodCode": "16-144",
@@ -34572,18 +32612,6 @@ function FoodDataSingleton()
 	        "Starch.g": "4.1"
 	      },
 	      {
-	        "FoodCode": "16-143",
-	        "label": "Skate, raw",
-	        "EdibleProportion": "N",
-	        "Water.g": "80.7",
-	        "Protein.g": "15.1",
-	        "Fat.g": "0.4",
-	        "Carbohydrate.g": "0.0",
-	        "Energy.kcal": "64",
-	        "Energy.kJ": "272",
-	        "Starch.g": "0.0"
-	      },
-	      {
 	        "FoodCode": "12-306",
 	        "label": "Skimmed milk, average",
 	        "EdibleProportion": "1.00",
@@ -34656,17 +32684,6 @@ function FoodDataSingleton()
 	        "Starch.g": "0.0"
 	      },
 	      {
-	        "FoodCode": "12-059",
-	        "label": "SMA, White Cap, reconstituted",
-	        "Water.g": "87.5",
-	        "Protein.g": "1.5",
-	        "Fat.g": "3.6",
-	        "Carbohydrate.g": "6.9",
-	        "Energy.kcal": "63",
-	        "Energy.kJ": "265",
-	        "Starch.g": "0.0"
-	      },
-	      {
 	        "FoodCode": "50-085",
 	        "label": "Smacks",
 	        "EdibleProportion": "1.00",
@@ -34689,17 +32706,6 @@ function FoodDataSingleton()
 	        "Energy.kcal": "456",
 	        "Energy.kJ": "1922",
 	        "Starch.g": "3.1"
-	      },
-	      {
-	        "FoodCode": "12-129",
-	        "label": "Smatana",
-	        "Water.g": "N",
-	        "Protein.g": "4.7",
-	        "Fat.g": "10.0",
-	        "Carbohydrate.g": "5.6",
-	        "Energy.kcal": "130",
-	        "Energy.kJ": "540",
-	        "Starch.g": "0.0"
 	      },
 	      {
 	        "FoodCode": "17-549",
@@ -34834,11 +32840,6 @@ function FoodDataSingleton()
 	        "Starch.g": "4.8"
 	      },
 	      {
-	        "FoodCode": "12-899",
-	        "label": "Soya dessert topping",
-	        "Fat.g": "18.7"
-	      },
-	      {
 	        "FoodCode": "11-025",
 	        "label": "Soya flour, full fat",
 	        "EdibleProportion": "1.00",
@@ -34957,17 +32958,6 @@ function FoodDataSingleton()
 	        "Energy.kcal": "106",
 	        "Energy.kJ": "447",
 	        "Starch.g": "13.2"
-	      },
-	      {
-	        "FoodCode": "11-356",
-	        "label": "Spaghetti, canned in bolognese sauce",
-	        "Water.g": "79.1",
-	        "Protein.g": "3.3",
-	        "Fat.g": "3.0",
-	        "Carbohydrate.g": "12.2",
-	        "Energy.kcal": "86",
-	        "Energy.kJ": "362",
-	        "Starch.g": "9.7"
 	      },
 	      {
 	        "FoodCode": "11-357",
@@ -35184,11 +33174,6 @@ function FoodDataSingleton()
 	        "Energy.kcal": "479",
 	        "Energy.kJ": "1976",
 	        "Starch.g": "15.6"
-	      },
-	      {
-	        "FoodCode": "11-422",
-	        "label": "Sponge cake, butter cream, filling, retail",
-	        "Fat.g": "16.7"
 	      },
 	      {
 	        "FoodCode": "11-581",
@@ -35513,18 +33498,6 @@ function FoodDataSingleton()
 	        "Energy.kcal": "195",
 	        "Energy.kJ": "815",
 	        "Starch.g": "12.9"
-	      },
-	      {
-	        "FoodCode": "16-263",
-	        "label": "Squid, raw",
-	        "EdibleProportion": "N",
-	        "Water.g": "80.5",
-	        "Protein.g": "15.4",
-	        "Fat.g": "1.7",
-	        "Carbohydrate.g": "1.2",
-	        "Energy.kcal": "81",
-	        "Energy.kJ": "344",
-	        "Starch.g": "Tr"
 	      },
 	      {
 	        "FoodCode": "19-363",
@@ -36067,11 +34040,6 @@ function FoodDataSingleton()
 	        "Starch.g": "3.4"
 	      },
 	      {
-	        "FoodCode": "19-304",
-	        "label": "Sweet and sour pork, battered, takeaway",
-	        "Fat.g": "13.9"
-	      },
-	      {
 	        "FoodCode": "19-427",
 	        "label": "Sweet and sour pork, made with canned sweet and sour sauce",
 	        "EdibleProportion": "1.00",
@@ -36381,18 +34349,6 @@ function FoodDataSingleton()
 	        "Carbohydrate.g": "0.0",
 	        "Energy.kcal": "123",
 	        "Energy.kJ": "519",
-	        "Starch.g": "0.0"
-	      },
-	      {
-	        "FoodCode": "16-221",
-	        "label": "Swordfish, raw",
-	        "EdibleProportion": "N",
-	        "Water.g": "80.8",
-	        "Protein.g": "18.0",
-	        "Fat.g": "4.1",
-	        "Carbohydrate.g": "0.0",
-	        "Energy.kcal": "109",
-	        "Energy.kJ": "458",
 	        "Starch.g": "0.0"
 	      },
 	      {
@@ -36720,11 +34676,6 @@ function FoodDataSingleton()
 	        "Starch.g": "1.7"
 	      },
 	      {
-	        "FoodCode": "12-894",
-	        "label": "Tea whitener powder",
-	        "Fat.g": "14.8"
-	      },
-	      {
 	        "FoodCode": "17-165",
 	        "label": "Tea, black, infusion, average",
 	        "EdibleProportion": "1.00",
@@ -36843,17 +34794,6 @@ function FoodDataSingleton()
 	        "Energy.kcal": "8",
 	        "Energy.kJ": "34",
 	        "Starch.g": "0.0"
-	      },
-	      {
-	        "FoodCode": "11-273",
-	        "label": "Teacakes, fresh",
-	        "Water.g": "26.7",
-	        "Protein.g": "8.0",
-	        "Fat.g": "7.5",
-	        "Carbohydrate.g": "52.5",
-	        "Energy.kcal": "296",
-	        "Energy.kJ": "1253",
-	        "Starch.g": "37.7"
 	      },
 	      {
 	        "FoodCode": "11-545",
@@ -37456,11 +35396,6 @@ function FoodDataSingleton()
 	        "Starch.g": "0.0"
 	      },
 	      {
-	        "FoodCode": "12-878",
-	        "label": "Trifle, chocolate, individual ",
-	        "Fat.g": "15.4"
-	      },
-	      {
 	        "FoodCode": "12-250",
 	        "label": "Trifle, frozen",
 	        "EdibleProportion": "1.00",
@@ -37542,18 +35477,6 @@ function FoodDataSingleton()
 	        "Carbohydrate.g": "0.0",
 	        "Energy.kcal": "100",
 	        "Energy.kJ": "418",
-	        "Starch.g": "0.0"
-	      },
-	      {
-	        "FoodCode": "16-224",
-	        "label": "Trout, brown, raw",
-	        "EdibleProportion": "N",
-	        "Water.g": "74.1",
-	        "Protein.g": "19.4",
-	        "Fat.g": "3.8",
-	        "Carbohydrate.g": "0.0",
-	        "Energy.kcal": "112",
-	        "Energy.kJ": "470",
 	        "Starch.g": "0.0"
 	      },
 	      {
@@ -37713,18 +35636,6 @@ function FoodDataSingleton()
 	        "Starch.g": "0.0"
 	      },
 	      {
-	        "FoodCode": "16-155",
-	        "label": "Turbot, raw",
-	        "EdibleProportion": "N",
-	        "Water.g": "78.7",
-	        "Protein.g": "17.7",
-	        "Fat.g": "2.7",
-	        "Carbohydrate.g": "0.0",
-	        "Energy.kcal": "95",
-	        "Energy.kJ": "401",
-	        "Starch.g": "0.0"
-	      },
-	      {
 	        "FoodCode": "19-439",
 	        "label": "Turkey and pasta bake",
 	        "EdibleProportion": "1.00",
@@ -37771,11 +35682,6 @@ function FoodDataSingleton()
 	        "Energy.kcal": "166",
 	        "Energy.kJ": "696",
 	        "Starch.g": "4.7"
-	      },
-	      {
-	        "FoodCode": "19-295",
-	        "label": "Turkey sausages, raw",
-	        "Fat.g": "8.6"
 	      },
 	      {
 	        "FoodCode": "19-157",
@@ -38438,21 +36344,6 @@ function FoodDataSingleton()
 	        "Starch.g": "8.6"
 	      },
 	      {
-	        "FoodCode": "15-356",
-	        "label": "Vegetable balti, takeaway",
-	        "Fat.g": "8.1"
-	      },
-	      {
-	        "FoodCode": "15-355",
-	        "label": "Vegetable curry, Thai, takeaway",
-	        "Fat.g": "8.2"
-	      },
-	      {
-	        "FoodCode": "15-358",
-	        "label": "Vegetable grill/burger, in crumbs, baked/grilled",
-	        "Fat.g": "12.8"
-	      },
-	      {
 	        "FoodCode": "15-362",
 	        "label": "Vegetable kiev, baked",
 	        "EdibleProportion": "1.00",
@@ -38633,11 +36524,6 @@ function FoodDataSingleton()
 	        "Starch.g": "1.6"
 	      },
 	      {
-	        "FoodCode": "18-455",
-	        "label": "Venison, casseroled, meat only",
-	        "Fat.g": "3.7"
-	      },
-	      {
 	        "FoodCode": "18-390",
 	        "label": "Venison, raw",
 	        "EdibleProportion": "1.00",
@@ -38660,17 +36546,6 @@ function FoodDataSingleton()
 	        "Energy.kcal": "165",
 	        "Energy.kJ": "698",
 	        "Starch.g": "0.0"
-	      },
-	      {
-	        "FoodCode": "11-065",
-	        "label": "Vermicelli, raw",
-	        "Water.g": "11.7",
-	        "Protein.g": "8.7",
-	        "Fat.g": "0.4",
-	        "Carbohydrate.g": "78.3",
-	        "Energy.kcal": "355",
-	        "Energy.kJ": "1485",
-	        "Starch.g": "N"
 	      },
 	      {
 	        "FoodCode": "17-239",
@@ -38731,11 +36606,6 @@ function FoodDataSingleton()
 	        "Energy.kcal": "22",
 	        "Energy.kJ": "89",
 	        "Starch.g": "0.0"
-	      },
-	      {
-	        "FoodCode": "12-907",
-	        "label": "Virtually fat free/diet yogurt, fruit,twin pot",
-	        "Fat.g": "0.1"
 	      },
 	      {
 	        "FoodCode": "11-524",
@@ -38966,17 +36836,6 @@ function FoodDataSingleton()
 	        "Starch.g": "66.8"
 	      },
 	      {
-	        "FoodCode": "11-029",
-	        "label": "Wheat flour, patent",
-	        "Water.g": "14.1",
-	        "Protein.g": "10.8",
-	        "Fat.g": "1.3",
-	        "Carbohydrate.g": "78.0",
-	        "Energy.kcal": "347",
-	        "Energy.kJ": "1480",
-	        "Starch.g": "76.6"
-	      },
-	      {
 	        "FoodCode": "11-438",
 	        "label": "Wheat flour, white, breadmaking",
 	        "EdibleProportion": "1.00",
@@ -39085,39 +36944,6 @@ function FoodDataSingleton()
 	        "Starch.g": "Tr"
 	      },
 	      {
-	        "FoodCode": "12-035",
-	        "label": "Whey",
-	        "Water.g": "93.3",
-	        "Protein.g": "1.0",
-	        "Fat.g": "0.2",
-	        "Carbohydrate.g": "5.1",
-	        "Energy.kcal": "25",
-	        "Energy.kJ": "106",
-	        "Starch.g": "0.0"
-	      },
-	      {
-	        "FoodCode": "12-036",
-	        "label": "Whey, dried",
-	        "Water.g": "4.0",
-	        "Protein.g": "12.2",
-	        "Fat.g": "1.3",
-	        "Carbohydrate.g": "78.0",
-	        "Energy.kcal": "353",
-	        "Energy.kJ": "1503",
-	        "Starch.g": "0.0"
-	      },
-	      {
-	        "FoodCode": "11-099",
-	        "label": "White bread, average",
-	        "Water.g": "37.3",
-	        "Protein.g": "8.4",
-	        "Fat.g": "1.9",
-	        "Carbohydrate.g": "49.3",
-	        "Energy.kcal": "235",
-	        "Energy.kJ": "1002",
-	        "Starch.g": "46.7"
-	      },
-	      {
 	        "FoodCode": "11-466",
 	        "label": "White bread, Danish style",
 	        "EdibleProportion": "1.00",
@@ -39178,28 +37004,6 @@ function FoodDataSingleton()
 	        "Starch.g": "43.3"
 	      },
 	      {
-	        "FoodCode": "11-100",
-	        "label": "White bread, large, crusty",
-	        "Water.g": "35.6",
-	        "Protein.g": "8.8",
-	        "Fat.g": "2.0",
-	        "Carbohydrate.g": "50.5",
-	        "Energy.kcal": "243",
-	        "Energy.kJ": "1031",
-	        "Starch.g": "47.5"
-	      },
-	      {
-	        "FoodCode": "11-101",
-	        "label": "White bread, large, tin",
-	        "Water.g": "37.6",
-	        "Protein.g": "8.3",
-	        "Fat.g": "1.8",
-	        "Carbohydrate.g": "48.8",
-	        "Energy.kcal": "232",
-	        "Energy.kJ": "985",
-	        "Starch.g": "46.2"
-	      },
-	      {
 	        "FoodCode": "11-474",
 	        "label": "White bread, premium",
 	        "EdibleProportion": "1.00",
@@ -39210,28 +37014,6 @@ function FoodDataSingleton()
 	        "Energy.kcal": "230",
 	        "Energy.kJ": "978",
 	        "Starch.g": "44.4"
-	      },
-	      {
-	        "FoodCode": "11-108",
-	        "label": "White bread, Scottish batch, unwrapped",
-	        "Water.g": "36.5",
-	        "Protein.g": "8.7",
-	        "Fat.g": "1.3",
-	        "Carbohydrate.g": "51.1",
-	        "Energy.kcal": "238",
-	        "Energy.kJ": "1014",
-	        "Starch.g": "48.5"
-	      },
-	      {
-	        "FoodCode": "11-109",
-	        "label": "White bread, Scottish batch, wrapped",
-	        "Water.g": "38.8",
-	        "Protein.g": "8.6",
-	        "Fat.g": "1.2",
-	        "Carbohydrate.g": "48.6",
-	        "Energy.kcal": "227",
-	        "Energy.kJ": "968",
-	        "Starch.g": "46.1"
 	      },
 	      {
 	        "FoodCode": "11-468",
@@ -39258,17 +37040,6 @@ function FoodDataSingleton()
 	        "Starch.g": "52.1"
 	      },
 	      {
-	        "FoodCode": "11-110",
-	        "label": "White bread, Vienna",
-	        "Water.g": "32.6",
-	        "Protein.g": "9.3",
-	        "Fat.g": "3.3",
-	        "Carbohydrate.g": "52.2",
-	        "Energy.kcal": "263",
-	        "Energy.kJ": "1115",
-	        "Starch.g": "50.5"
-	      },
-	      {
 	        "FoodCode": "11-472",
 	        "label": "White bread, 'with added fibre'",
 	        "EdibleProportion": "1.00",
@@ -39291,17 +37062,6 @@ function FoodDataSingleton()
 	        "Energy.kcal": "273",
 	        "Energy.kJ": "1164",
 	        "Starch.g": "55.1"
-	      },
-	      {
-	        "FoodCode": "12-058",
-	        "label": "White Cap SMA",
-	        "Water.g": "1.7",
-	        "Protein.g": "12.2",
-	        "Fat.g": "28.1",
-	        "Carbohydrate.g": "55.8",
-	        "Energy.kcal": "511",
-	        "Energy.kJ": "2140",
-	        "Starch.g": "0.0"
 	      },
 	      {
 	        "FoodCode": "16-158",
@@ -39364,17 +37124,6 @@ function FoodDataSingleton()
 	        "Starch.g": "85.8"
 	      },
 	      {
-	        "FoodCode": "11-044",
-	        "label": "White rice, flaked, raw",
-	        "Water.g": "12.6",
-	        "Protein.g": "6.6",
-	        "Fat.g": "1.2",
-	        "Carbohydrate.g": "77.5",
-	        "Energy.kcal": "346",
-	        "Energy.kJ": "1448",
-	        "Starch.g": "N"
-	      },
-	      {
 	        "FoodCode": "11-610",
 	        "label": "White rice, fried",
 	        "EdibleProportion": "1.00",
@@ -39385,61 +37134,6 @@ function FoodDataSingleton()
 	        "Energy.kcal": "144",
 	        "Energy.kJ": "609",
 	        "Starch.g": "24.0"
-	      },
-	      {
-	        "FoodCode": "11-047",
-	        "label": "White rice, glutinous, boiled",
-	        "Water.g": "83.0",
-	        "Protein.g": "1.7",
-	        "Fat.g": "0.3",
-	        "Carbohydrate.g": "14.7",
-	        "Energy.kcal": "65",
-	        "Energy.kJ": "275",
-	        "Starch.g": "N"
-	      },
-	      {
-	        "FoodCode": "11-046",
-	        "label": "White rice, glutinous, raw",
-	        "Water.g": "13.9",
-	        "Protein.g": "8.4",
-	        "Fat.g": "1.6",
-	        "Carbohydrate.g": "74.9",
-	        "Energy.kcal": "359",
-	        "Energy.kJ": "1502",
-	        "Starch.g": "N"
-	      },
-	      {
-	        "FoodCode": "11-048",
-	        "label": "White rice, parboiled",
-	        "Water.g": "12.4",
-	        "Protein.g": "6.7",
-	        "Fat.g": "1.0",
-	        "Carbohydrate.g": "79.3",
-	        "Energy.kcal": "364",
-	        "Energy.kJ": "1523",
-	        "Starch.g": "79.3"
-	      },
-	      {
-	        "FoodCode": "11-050",
-	        "label": "White rice, polished, boiled",
-	        "Water.g": "69.9",
-	        "Protein.g": "2.2",
-	        "Fat.g": "0.3",
-	        "Carbohydrate.g": "29.6",
-	        "Energy.kcal": "123",
-	        "Energy.kJ": "522",
-	        "Starch.g": "29.6"
-	      },
-	      {
-	        "FoodCode": "11-049",
-	        "label": "White rice, polished, raw",
-	        "Water.g": "11.7",
-	        "Protein.g": "6.5",
-	        "Fat.g": "1.0",
-	        "Carbohydrate.g": "86.8",
-	        "Energy.kcal": "361",
-	        "Energy.kJ": "1536",
-	        "Starch.g": "86.8"
 	      },
 	      {
 	        "FoodCode": "11-482",
@@ -39464,17 +37158,6 @@ function FoodDataSingleton()
 	        "Energy.kcal": "254",
 	        "Energy.kJ": "1078",
 	        "Starch.g": "48.8"
-	      },
-	      {
-	        "FoodCode": "12-302",
-	        "label": "White sauce packet mix",
-	        "Water.g": "4.3",
-	        "Protein.g": "9.0",
-	        "Fat.g": "10.5",
-	        "Carbohydrate.g": "60.0",
-	        "Energy.kcal": "355",
-	        "Energy.kJ": "1501",
-	        "Starch.g": "53.8"
 	      },
 	      {
 	        "FoodCode": "17-576",
@@ -39885,28 +37568,6 @@ function FoodDataSingleton()
 	        "Starch.g": "0.0"
 	      },
 	      {
-	        "FoodCode": "12-187",
-	        "label": "Whole milk yogurt, goats",
-	        "Water.g": "88.7",
-	        "Protein.g": "3.5",
-	        "Fat.g": "3.8",
-	        "Carbohydrate.g": "3.9",
-	        "Energy.kcal": "63",
-	        "Energy.kJ": "263",
-	        "Starch.g": "0.0"
-	      },
-	      {
-	        "FoodCode": "12-186",
-	        "label": "Whole milk yogurt, 'organic'",
-	        "Water.g": "87.0",
-	        "Protein.g": "4.3",
-	        "Fat.g": "2.9",
-	        "Carbohydrate.g": "5.8",
-	        "Energy.kcal": "56",
-	        "Energy.kJ": "236",
-	        "Starch.g": "0.0"
-	      },
-	      {
 	        "FoodCode": "12-315",
 	        "label": "Whole milk, average",
 	        "EdibleProportion": "1.00",
@@ -40159,11 +37820,6 @@ function FoodDataSingleton()
 	        "Starch.g": "Tr"
 	      },
 	      {
-	        "FoodCode": "17-443",
-	        "label": "Wispa bar",
-	        "Fat.g": "34.2"
-	      },
-	      {
 	        "FoodCode": "17-340",
 	        "label": "Worcestershire sauce",
 	        "EdibleProportion": "1.00",
@@ -40174,28 +37830,6 @@ function FoodDataSingleton()
 	        "Energy.kcal": "65",
 	        "Energy.kJ": "276",
 	        "Starch.g": "0.8"
-	      },
-	      {
-	        "FoodCode": "12-066",
-	        "label": "Wysoy",
-	        "Water.g": "1.9",
-	        "Protein.g": "16.0",
-	        "Fat.g": "27.0",
-	        "Carbohydrate.g": "52.5",
-	        "Energy.kcal": "504",
-	        "Energy.kJ": "2111",
-	        "Starch.g": "Tr"
-	      },
-	      {
-	        "FoodCode": "12-067",
-	        "label": "Wysoy, reconstituted",
-	        "Water.g": "87.1",
-	        "Protein.g": "2.1",
-	        "Fat.g": "3.6",
-	        "Carbohydrate.g": "6.8",
-	        "Energy.kcal": "65",
-	        "Energy.kJ": "274",
-	        "Starch.g": "Tr"
 	      },
 	      {
 	        "FoodCode": "13-398",
@@ -40292,22 +37926,6 @@ function FoodDataSingleton()
 	        "Energy.kcal": "169",
 	        "Energy.kJ": "717",
 	        "Starch.g": "3.5"
-	      },
-	      {
-	        "FoodCode": "14-862",
-	        "label": "Yogurt coated nuts and raisins",
-	        "Fat.g": "39.5"
-	      },
-	      {
-	        "FoodCode": "12-197",
-	        "label": "Yogurt powder",
-	        "Water.g": "4.0",
-	        "Protein.g": "35.0",
-	        "Fat.g": "1.0",
-	        "Carbohydrate.g": "54.4",
-	        "Energy.kcal": "353",
-	        "Energy.kJ": "1502",
-	        "Starch.g": "0.0"
 	      },
 	      {
 	        "FoodCode": "12-193",

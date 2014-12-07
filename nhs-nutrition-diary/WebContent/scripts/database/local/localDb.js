@@ -128,7 +128,9 @@ LocalDbSingleton.prototype.localDbGet = function(oStore, dateFrom, dateTo, objec
 	var db = _this.db; 
 	
 	var fromDate = new Date(dateFrom[2], dateFrom[1]-1, dateFrom[0], 0,0,0,0); //format for date object: new Date(year, month (indexed from 0), day, hours, minutes, seconds, milliseconds)
-	var toDate = new Date(dateTo[2], dateTo[1]-1, dateTo[0], 0,0,0,0); //format for date object: new Date(year, month (indexed from 0), day, hours, minutes, seconds, milliseconds)
+	var toDate = new Date(dateTo[2], dateTo[1]-1, parseInt(dateTo[0])+1, 0,0,0,0); //format for date object: new Date(year, month (indexed from 0), day, hours, minutes, seconds, milliseconds)
+	console.log(dateFrom); console.log(fromDate);
+	//console.log(dateTo); console.log(toDate);// for debugging.  
 	var range;
 	
 	var transaction = db.transaction([oStore], "readonly").objectStore(oStore);
@@ -155,7 +157,7 @@ LocalDbSingleton.prototype.localDbGet = function(oStore, dateFrom, dateTo, objec
 			cursor['continue'](); 
 		} else
 		{
-			console.log("Returned "+count +"results");
+			console.log("Returned "+count+" results");
 			console.log(results);  
 		}
 	}

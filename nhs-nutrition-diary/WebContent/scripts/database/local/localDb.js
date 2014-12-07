@@ -66,7 +66,7 @@ function LocalDbSingleton()
  * and then calls back whatever you passed to it in the arguments. For example if you want to add an array of objects to the database you would write:
  * var db1 = new LocalDbSingleton(); db1.databaseOpen(LocalDbSingleton.prototype.localDbAdd, 'userFoodListStore', arrayToAdd);
  */
-LocalDbSingleton.prototype.databaseOpen = function(callback, arg1, arg2, arg3, arg4)
+LocalDbSingleton.prototype.databaseOpen = function(callback, arg1, arg2, arg3, arg4, arg5)
 { 
 	var _this = this; //storing reference to calling object (this) for binding. 
 	//console.log('_this 1'); console.log(_this); //for debugging
@@ -81,7 +81,7 @@ LocalDbSingleton.prototype.databaseOpen = function(callback, arg1, arg2, arg3, a
 		switch (callback)
 		{
 			case LocalDbSingleton.prototype.localDbAdd: callback(arg1,arg2,_this); break; //arguments -> oStore, arrayOfObjects, objectRef.
-			case LocalDbSingleton.prototype.localDbGet: callback(arg1, arg2 , arg3 , _this); break; //arguments -> oStore, dateFrom, dateTo, objectRef, callback.
+			case LocalDbSingleton.prototype.localDbGet: callback(arg1, arg2/*dateFrom*/ , arg3/*dateTo*/ , _this, arg4/*callback for localDbGet*/, arg5 /*presented parameter for the callback*/); break; //arguments -> oStore, dateFrom, dateTo, objectRef, callback.
 			case LocalDbSingleton.prototype.databaseDelete: callback(_this); break;  
 			default: console.log('default in switch in database open');
 		}
@@ -118,10 +118,10 @@ LocalDbSingleton.prototype.get = function(oStore, dateFrom, dateTo, objectRef) /
  * @param dateFrom The date from which the caller wishes to receive data from. It should be passed as a DD/MM/YYYY string.
  * @param dateTo   The date to which the caller wishes to receive data from. It should be passed as a DD/MM/YYYY string.
  */
-LocalDbSingleton.prototype.localDbGet = function(oStore, dateFrom, dateTo, objectRef, callback)
+LocalDbSingleton.prototype.localDbGet = function(oStore, dateFrom, dateTo, objectRef, callback, presentedParameter)
 {
 	var _this = objectRef, db = _this.db; 
-	var splitDateFrom = dateFrom.split('/'), splitDateTo = date.To.split('/'); 
+	var splitDateFrom = dateFrom.split('/'), splitDateTo = dateTo.split('/'); 
 	
 	var fromDate = new Date(splitDateFrom[2], splitDateFrom[1]-1, splitDateFrom[0], 0,0,0,0); //format for date object: new Date(year, month (indexed from 0), day, hours, minutes, seconds, milliseconds)
 	var toDate = new Date(splitDateTo[2], splitDateTo[1]-1, parseInt(splitDateTo[0])+1, 0,0,0,0); 
@@ -152,8 +152,9 @@ LocalDbSingleton.prototype.localDbGet = function(oStore, dateFrom, dateTo, objec
 			cursor['continue'](); 
 		} else
 		{
-			console.log("Returned "+count+" results");
-			console.log(results);  
+			console.log("Found "+count+" results");
+			console.log(results);
+			callback(presentedParameter, dateFrom, dateTo, results);
 		}
 	}
 }

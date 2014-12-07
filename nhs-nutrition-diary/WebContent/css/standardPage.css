@@ -40,7 +40,19 @@ body{
     overflow-x: hidden;
     padding-right: 5px;
 }
+.selection-list{
+	max-height:350px;
+	overflow-y:auto;
+}
+.selection-body{
+	height:420px;
 	
+	
+}
+.form-newFood > input,
+.form-newFood > button{
+	margin-top: 10px;	
+}
 
 @media (max-width:767px){
 	#remember-me{

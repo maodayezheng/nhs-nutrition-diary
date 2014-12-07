@@ -26,23 +26,20 @@ $(document).ready(function(){
         },
 			select:function(event,ui){
 				var selection = ui.item;
-				if(!compareWithCurrentSelections(selection)){
 				displaySelection(selection);
-				
-				}else{
-					// notify the user this food already in list
-					
-				}
 			},
 			minLength: 3,
 			
 		});
 		$('#myMeal').click(function(){
-			
+			$('.modal-title').text("My Meal");
+			loadCustomMealView(customMeals)
 			
 		});
 	$('#newFood').click(function(){
-			
+		
+			$('.modal-title').text("New Food");
+			loadNewFoodView();
 		
 		});
 	
@@ -57,7 +54,7 @@ $(document).ready(function(){
 function compareWithCurrentSelections(selection){
 	
 	var present = false;
-	var children = $('#list').children('li');
+	var children = $('.selection-list').children('li');
 		children.each(function(index,item){
 			var obj= $(item);
 			var currentSelection = obj.data('food');
@@ -70,7 +67,7 @@ function compareWithCurrentSelections(selection){
 
 function submitData(){
 	var submitData =[];
-	var children = $('#list').children('li');
+	var children = $('.selection-list').children('li');
 	children.each(function(index,item){
 		var obj = $(item);
 		submitData.push(obj.data('food'));
@@ -79,7 +76,7 @@ function submitData(){
 }
 
 function updateNutritionBreakDown(){
-	var children = $('#list').children('li');
+	var children = $('.selection-list').children('li');
 	var protien =0;
 	var calories = 0;
 	var fluid = 0;
@@ -97,10 +94,43 @@ function updateNutritionBreakDown(){
 	$('#fluid').text(fluid);
 }
 
-function loadNewFoodView(){
-	$('.modal-body').append()
+function loadNewFoodView(data){
 	
+	$('.modal-body').empty();
 	
+	var form = $('<form>',{
+		"class":"form-newFood",
+	}).appendTo('.modal-body');
+	
+	var nameField = $('<input>',{
+		"class":"form-control",
+		"type":"text",
+		"placeholder":"food name",
+	}).appendTo(form);
+	
+	var amountField = $('<input>',{
+		"class":"form-control",
+		"type":"text",
+		"placeholder":"amount"
+	}).appendTo(form);
+	
+	var protienField = $('<input>',{
+		"class":"form-control",
+		"type":"text",
+		"placeholder":"protien(g)"
+	}).appendTo(form);
+	
+	var carloriesField = $('<input>',{
+		"class":"form-control",
+		"type":"text",
+		"placeholder":"carlories(kcal)"
+	}).appendTo(form);
+	
+	var fluidField =$('<input>',{
+		"class":"form-control",
+		"type":"text",
+		"placeholder":"water(ml)"
+	}).appendTo(form);
 }
 
 function loadFrequentFoodView(data){
@@ -124,9 +154,29 @@ function loadFrequentFoodView(data){
 
 function loadCustomMealView(data){
 	
+	$('.modal-body').empty();
+	var list = $('<ul>',{
+		"class":"list-group",
+		"role":"menu"
+	});
+	$.each(data,function(index){
+		var li =$('<li>',{
+			"class":"list-group-item",
+			"text":data[index]	
+		}).data('food',data[index]).bind('click',function(){
+			//displaySelection(data[index]);
+		});
+		li.appendTo(list);
+	})
+	
+	$('.modal-body').append(list);
+	
+	
 }
 
 function displaySelection(selection){
+	
+	if(!compareWithCurrentSelections(selection)){
 			selection["portion"] = 1;
 		var li = new createBasicLi(selection);
 		var controlPanel = new createControlPanel();
@@ -141,8 +191,14 @@ function displaySelection(selection){
 		li.addItemToLeft(deleteButton);
 		li.addItemToLeft(selection.label);
 		li.addItemToRight(controlPanel);
-		$('#list').append(li);
+		$('.selection-list').append(li);
 		updateNutritionBreakDown();
+		}else{
+			
+			alert("Selection already in list");
+			
+			
+		}
 }
 
 $(function(){

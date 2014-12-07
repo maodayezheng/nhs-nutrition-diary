@@ -4,10 +4,11 @@
 
 $(document).ready(function(){
 	
+	// load data
 	var data =new FoodDataSingleton().foodData;
 	var customMeals =["John Sandwich","Virk Super Sandwich","Robert Germany Sandwich","Bowen Dumpling"];
 	var frequentFood = [data[3],data[100],data[90],data[102]];
-	
+	// search 
 			$('#search').autocomplete({
 			source:function (request, response) {
 				
@@ -31,25 +32,32 @@ $(document).ready(function(){
 			minLength: 3,
 			
 		});
+			
+	// click events		
 		$('#myMeal').click(function(){
 			$('.modal-title').text("My Meal");
 			loadCustomMealView(customMeals)
-			
 		});
-	$('#newFood').click(function(){
 		
+	$('#newFood').click(function(){
 			$('.modal-title').text("New Food");
 			loadNewFoodView();
-		
 		});
 	
 	$('#frequentFood').click(function(){
 		$('.modal-title').text("Frequent Food");
 		loadFrequentFoodView(frequentFood);
-		
+	});
+	
+	$('#submit-meal').click(function(){
+		var food = submitData();
+		var progress = getNutritionBreakDown();
+		window.location.href = 'index.html';
 	})
 		
 });
+
+
 
 function compareWithCurrentSelections(selection){
 	
@@ -57,7 +65,7 @@ function compareWithCurrentSelections(selection){
 	var children = $('.selection-list').children('li');
 		children.each(function(index,item){
 			var obj= $(item);
-			var currentSelection = obj.data('food');
+			var currentSelection = obj.data('data');
 			if(currentSelection.label === selection.label){
 				present = true;
 			}
@@ -65,15 +73,17 @@ function compareWithCurrentSelections(selection){
 	return present;
 }
 
+
 function submitData(){
 	var submitData =[];
 	var children = $('.selection-list').children('li');
 	children.each(function(index,item){
 		var obj = $(item);
-		submitData.push(obj.data('food'));
+		submitData.push(obj.data('data'));
 	})
 	return submitData;
 }
+
 
 function updateNutritionBreakDown(){
 	var children = $('.selection-list').children('li');
@@ -82,7 +92,8 @@ function updateNutritionBreakDown(){
 	var fluid = 0;
 	children.each(function(index,item){
 		var obj = $(item);
-		var food = obj.data('food');
+		var food = obj.data('data');
+		console.log(food);
 		var portion = food['portion'];
 		protien += portion*parseInt(food['Protein.g']); 
 		fluid += portion*parseInt(food['Water.g']);
@@ -93,6 +104,19 @@ function updateNutritionBreakDown(){
 	$('#protien').text(protien);
 	$('#fluid').text(fluid);
 }
+
+
+
+function getNutritionBreakDown(){
+	
+	var nutritionBreakDown={"calories":"","protien":"","fluid":""};
+	nutritionBreakDown["calories"] = $('#calories').text();
+	nutritionBreakDown["protien"] = $('#protien').text();
+	nutritionBreakDown["fluid"] = $('#fluid').text();
+	return [nutritionBreakDown];
+}
+
+
 
 function loadNewFoodView(data){
 	
@@ -133,7 +157,10 @@ function loadNewFoodView(data){
 	}).appendTo(form);
 }
 
+
+
 function loadFrequentFoodView(data){
+	
 	$('.modal-body').empty();
 	var list = $('<ul>',{
 		"class":"list-group",
@@ -143,7 +170,7 @@ function loadFrequentFoodView(data){
 		var li =$('<li>',{
 			"class":"list-group-item",
 			"text":data[index].label	
-		}).data('food',data[index]).bind('click',function(){
+		}).data('data',data[index]).bind('click',function(){
 			displaySelection(data[index]);
 		});
 		li.appendTo(list);
@@ -151,6 +178,8 @@ function loadFrequentFoodView(data){
 	
 	$('.modal-body').append(list);
 }
+
+
 
 function loadCustomMealView(data){
 	
@@ -163,7 +192,7 @@ function loadCustomMealView(data){
 		var li =$('<li>',{
 			"class":"list-group-item",
 			"text":data[index]	
-		}).data('food',data[index]).bind('click',function(){
+		}).data('data',data[index]).bind('click',function(){
 			//displaySelection(data[index]);
 		});
 		li.appendTo(list);
@@ -174,10 +203,13 @@ function loadCustomMealView(data){
 	
 }
 
+
+
 function displaySelection(selection){
 	
+	selection['portion'] = 1;
 	if(!compareWithCurrentSelections(selection)){
-			selection["portion"] = 1;
+			
 		var li = new createBasicLi(selection);
 		var controlPanel = new createControlPanel();
 		var deleteButton = new createDeleteButton('li');
@@ -194,13 +226,12 @@ function displaySelection(selection){
 		$('.selection-list').append(li);
 		updateNutritionBreakDown();
 		}else{
-			
 			alert("Selection already in list");
-			
-			
 		}
 }
 
+
+// render the search result here
 $(function(){
 	/*$.ui.autocomplete.prototype._renderMenu =function(ul,items){
 		

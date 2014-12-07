@@ -40,38 +40,38 @@ function createControlPanel(){
 
 
 // constructor of increaseButton
-function createIncreaseButton(food){
+function createIncreaseButton(data){
 	var increaseButton  = $('<button>',{
 		"class":"btn btn-default btn",
 		"name":"increaseButton",
 		"text":"+"
-	}).data('food',food).bind('click',function(){
+	}).data('data',data).bind('click',function(){
 		var accountButton = $(this).siblings('[name=accountButton]');
-		var food = $(this).data('food');
+		var food = $(this).data('data');
 		food.portion = food.portion +1;
-		accountButton.text(food.portion);
+		accountButton.text(data.portion);
 	});
 	return increaseButton;
 	}
 
 // constructor of reduce button
-function createReduceButton(food){	
+function createReduceButton(data){	
 	var reduceButton =$('<button>',{
 
 		"class":"btn btn-default btn",
 		"name":"reduceButton",
 		"text":"-"		
 
-	}).data('food',food).bind('click',function(){
+	}).data('data',data).bind('click',function(){
 		var accountButton = $(this).siblings('[name=accountButton]');
-		var food = $(this).data('food');
+		var food = $(this).data('data');
 		food.portion = food.portion -1;
 		 
 		if (food.portion <1){
 			food.portion = 1;
 		}
 		
-		accountButton.text(food.portion);
+		accountButton.text(data.portion);
 	});
 	
 	return reduceButton;
@@ -79,23 +79,23 @@ function createReduceButton(food){
 
 
 // constructor of account button 
-function createAccountButton(food){
+function createAccountButton(data){
 	
 	var accountButton  = $('<button>',{
 	"class":"btn btn-default btn",
 	"name":"accountButton",
 	"disabled":true,
-	"text":food.portion
+	"text":data.portion
 	});
 	return accountButton;
 }
 
 
 // constructor of basic <li> DOM in our project
-function createBasicLi(food){
+function createBasicLi(data){
 	var li = $('<li>',{
 		"class":"list-group-item",
-	}).data('food',food).append($('<div>',{
+	}).data('data',data).append($('<div>',{
 		"class":"row",
 	}).append($('<div>',{
 		"class":"col-md-6 left"

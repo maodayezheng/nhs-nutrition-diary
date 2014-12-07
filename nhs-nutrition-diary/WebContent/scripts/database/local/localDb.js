@@ -22,14 +22,12 @@
 
 
 
-
-
-//TODO Decide on how to create a uniqueID for each entry in the manifests and user tables. //Think it is done. 
-//TODO Finalise the add function (can only be done once unique ID is sorted). //Just need to sort unique ID. 
+//TODO Finish the localDBGet function so it returns a summation. Refer to paper for pseudo-code. 
 //TODO Create and finalise a delete element function. 
 //TODO Create and finalise an edit element property. 
 //TODO Create and finish a get function.
-//TODO Create a summation function. 
+//TODO Decide on how to create a uniqueID for each entry in the manifests and user tables. //Think it is done. 
+//TODO Finalise the add function (can only be done once unique ID is sorted). //Just need to sort unique ID. 
 //TODO Finish this TODO list. 
 
 
@@ -82,13 +80,11 @@ LocalDbSingleton.prototype.databaseOpen = function(callback, arg1, arg2, arg3, a
 		console.log('before switch');
 		switch (callback)
 		{
-			case LocalDbSingleton.prototype.localDbAdd: callback(arg1,arg2,_this); break; //arguments -> oStore, arrayOfObjects, objectRef
-			case LocalDbSingleton.prototype.localDbGet: callback(arg1, arg2 , arg3 , _this); break; //arguments -> oStore, dateFrom, dateTo, objectRef, callback
+			case LocalDbSingleton.prototype.localDbAdd: callback(arg1,arg2,_this); break; //arguments -> oStore, arrayOfObjects, objectRef.
+			case LocalDbSingleton.prototype.localDbGet: callback(arg1, arg2 , arg3 , _this); break; //arguments -> oStore, dateFrom, dateTo, objectRef, callback.
+			case LocalDbSingleton.prototype.databaseDelete: callback(_this); break;  
 			default: console.log('default in switch in database open');
 		}
-		
-		
-		
 	}
 }
 
@@ -398,11 +394,11 @@ LocalDbSingleton.prototype.databaseError = function(event)
 /**
  * Function is used to delete the indexedDB database from the local user's browser/hard drive. It's use is mainly for testing purposes.  
  */
-LocalDbSingleton.prototype.databaseDelete = function()
+LocalDbSingleton.prototype.databaseDelete = function(objectRef)
 {
-	var db= this.db; db.close(); //will only work if the property db of the LocalDbSingleton has been set in a previous call. 
+	var _this = objectRef, dbName = _this.dbName, db = _this.db;
+	db.close();  
 	var req = indexedDB.deleteDatabase(this.dbName);
-    var dbName = this.dbName;
     req.onsuccess = function ()
     {
         console.log("The "+dbName+ "database was deleted successfully");

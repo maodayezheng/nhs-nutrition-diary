@@ -259,7 +259,7 @@ LocalDbSingleton.prototype.displayResults = function(result)
                     '<th>Protein (g)</th> <th>Water Fluid (ml)</th></tr>'; //column labels for the table
     for (var i=0; i<results.length; i++)
     {
-        resultsTable += '<tr> <td>'+results[i].Label+'</td> <td>'+results[i].EdibleProportion+'</td> <td>'+results[i]["Energy.kcal"]+'</td> ' +
+        resultsTable += '<tr> <td>'+results[i].label+'</td> <td>'+results[i].EdibleProportion+'</td> <td>'+results[i]["Energy.kcal"]+'</td> ' +
                         '<td>'+results[i]["Protein.g"]+'</td> <td>'+results[i]["Water.g"]+'</td> </tr>'; //add a table row for each result
         document.getElementById("tableOfResults").innerHTML = resultsTable;
 
@@ -300,7 +300,7 @@ LocalDbSingleton.prototype.databaseInit = function(callback)
         {
             var foodList = db.createObjectStore(foodListStore, { keyPath: 'FoodCode' });
             foodList.createIndex("FoodCode", "FoodCode", { unique: true });
-            foodList.createIndex("Label", "Label", { unique: false });
+            foodList.createIndex("label", "label", { unique: false });
         }
         if(!db.objectStoreNames.contains(userFoodListStore)) //Store 3. Will contain any custom food created by the user.
         {
@@ -320,7 +320,7 @@ LocalDbSingleton.prototype.databaseInit = function(callback)
         }
         if(!db.objectStoreNames.contains(foodManifestStore)) //Store 6
         {
-        	var foodManifest = db.createObjectStore(foodManifestStore, { keyPath: 'EntryNumber' });
+        	var foodManifest = db.createObjectStore(foodManifestStore, { keyPath: 'EntryNumber', autoIncrement: true });
             foodManifest.createIndex("Date", "Date", { unique: false }); //Adding this index so as to allow fast retrieval/addition to the object store by date.
         }
         if(!db.objectStoreNames.contains(symptomManifestStore)) //Store 7
@@ -396,7 +396,7 @@ LocalDbSingleton.prototype.databaseError = function(event)
  */
 LocalDbSingleton.prototype.databaseDelete = function(objectRef)
 {
-	var _this = objectRef, dbName = _this.dbName, db = _this.db;
+	var _this = objectRef||this, dbName = _this.dbName, db = _this.db;
 	db.close();  
 	var req = indexedDB.deleteDatabase(this.dbName);
     req.onsuccess = function ()
@@ -430,7 +430,6 @@ db1.databaseInit(function()
 	var begin = db1.begin, end = Date.now();
 	var time = end-begin;
     console.log('It took '+time+' milliseconds to populate the database');
-    //db1.localDbAdd('userFoodListStore', arrayToAdd);
 });
 //db1.databaseOpen(LocalDbSingleton.prototype.localDbAdd, 'userFoodListStore', arrayToAdd);
 //db1.databaseOpen(LocalDbSingleton.prototype.localDbGet, 'symptomManifestStore', ["01","12","2014"],["04","12","2014"] );

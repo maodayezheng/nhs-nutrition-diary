@@ -6,7 +6,7 @@ function toggleHistoryVisualisation() {
 	var dateTo = $('#datepickerTo').val();
 	
 	if($('#graphSelector').is(':checked')) {
-		makeGraph(presentedParameter, dateFrom, dateTo);
+		manageGraph(presentedParameter, dateFrom, dateTo);
 	} else if($('#tableSelector').is(':checked')) {
 		var table = new Table();
 		table.drawTable(presentedParameter, dateFrom, dateTo);
@@ -24,7 +24,7 @@ function toggleHistoryVisualisationButton(id) {
 	var dateTo = $('#datepickerTo').val();
 	
 	if(id == 'graphSelectorLabel') {
-		makeGraph(presentedParameter, dateFrom, dateTo);
+		manageGraph(presentedParameter, dateFrom, dateTo);
 	} else if (id == 'tableSelectorLabel') {
 		var table = new Table();
 		table.drawTable(presentedParameter, dateFrom, dateTo);

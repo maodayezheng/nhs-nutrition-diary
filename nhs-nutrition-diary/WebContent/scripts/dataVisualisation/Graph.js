@@ -1,8 +1,4 @@
-function makeGraph(presentedParameter, dateFrom, dateTo) {
-	
-	$('#table').html("");
-	$('#summary').html("");
-	d3.select("svg").text("");
+function manageGraph(presentedParameter, dateFrom, dateTo) {
 	
 	var validator = new Validator();
 	if(!validator.datesAreValid(dateFrom, dateTo)) {
@@ -10,8 +6,19 @@ function makeGraph(presentedParameter, dateFrom, dateTo) {
 		return false;
 	}
 	
+	var dateFromDb = dateFrom.split('/');
+	var dateToDb = dateTo.split('/');
+	
 	var database = new LocalDbSingleton();
-	var jsonInput = database.get(dateFrom, dateTo);
+	var data = database.databaseOpen(LocalDbSingleton.prototype.localDbGet, 'foodManifestStore', dateFromDb, dateToDb);
+	
+	makeGraph(presentedParameter, dateFrom, dateTo, data);
+}
+
+function makeGraph(presentedParameter, dateFrom, dateTo, jsonInput) {
+	$('#table').html("");
+	$('#summary').html("");
+	d3.select("svg").text("");
 	
 	var parseDate = d3.time.format("%Y%m%d").parse;
 	

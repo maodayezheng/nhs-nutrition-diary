@@ -9,7 +9,7 @@ function toggleHistoryVisualisation() {
 		manageGraph(presentedParameter, dateFrom, dateTo);
 	} else if($('#tableSelector').is(':checked')) {
 		var table = new Table();
-		table.drawTable(presentedParameter, dateFrom, dateTo);
+		table.manageTable(presentedParameter, dateFrom, dateTo);
 	} else if($('#summarySelector').is(':checked')) {
 		var summary = new Summary();
 		summary.makeSummary(presentedParameter, dateFrom, dateTo);
@@ -27,7 +27,7 @@ function toggleHistoryVisualisationButton(id) {
 		manageGraph(presentedParameter, dateFrom, dateTo);
 	} else if (id == 'tableSelectorLabel') {
 		var table = new Table();
-		table.drawTable(presentedParameter, dateFrom, dateTo);
+		table.manageTable(presentedParameter, dateFrom, dateTo);
 	} else if (id == 'summarySelectorLabel') {
 		var summary = new Summary();
 		summary.makeSummary(presentedParameter, dateFrom, dateTo);

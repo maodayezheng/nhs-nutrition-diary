@@ -1,9 +1,6 @@
 function Table() {}
 
-Table.prototype.drawTable = function(presentedParameter, dateFrom, dateTo) {
-	$('#summary').html("");
-	d3.select('#graph').attr("width", 0).attr("height", 0);
-	
+Table.prototype.manageTable = function(presentedParameter, dateFrom, dateTo) {
 	var validator = new Validator();
 	if(!validator.datesAreValid(dateFrom, dateTo)) {
 		alert("Dates are not valid. Either wrong format or to is older than from.");
@@ -11,14 +8,37 @@ Table.prototype.drawTable = function(presentedParameter, dateFrom, dateTo) {
 	}
 	
 	var database = new LocalDbSingleton();
-	var jsonInput = database.get(dateFrom, dateTo);
+	var data = database.databaseOpen(LocalDbSingleton.prototype.localDbGet, 'foodManifestStore', dateFrom, dateTo, presentedParameter, drawTable);
+}
+
+Table.prototype.drawTable = function(presentedParameter, dateFrom, dateTo, jsonInput) {
+	
+	var colTitles;
+	
+	if(presentedParameter == "Calories (kcal)")
+		colTitles = ['calories', 'Column A', 'Column B', 'Column C', 'Column D', 'Column E'];
+	else if(presentedParameter == "Protein (g)")
+		colTitles = ['protein', 'Column A', 'Column B', 'Column C', 'Column D', 'Column E'];
+	else if(presentedParameter == "Fluid (ml)")
+		colTitles = ['fluid', 'Column A', 'Column B', 'Column C', 'Column D', 'Column E'];
+	else if(presentedParameter == "Weight (kg)")
+		colTitles = ['weight', 'Column A', 'Column B', 'Column C', 'Column D', 'Column E'];
+	
+	
+	
+	
+	
+	
+	
+	$('#summary').html("");
+	d3.select('#graph').attr("width", 0).attr("height", 0);
 	
 	var block = $('#table').TidyTable({
 		//enableCheckbox: true,
 		//enableMenu:     true
 	},
 	{
-		columnTitles: ['Number', 'Column A', 'Column B', 'Column C', 'Column D', 'Column E'],
+		columnTitles: colTitles,
 		columnValues: [
 			['1', '1A', '1B', '1C', '1D', '1E'],
 			['2', '2A', '2B', '2C', '2D', '2E'],

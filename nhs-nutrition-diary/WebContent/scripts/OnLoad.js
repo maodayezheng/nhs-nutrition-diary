@@ -35,5 +35,5 @@ OnLoad.prototype.updateWeight = function() {
 	//TODO replace hard-coded value with db getter
 	var weight = 100;
 	$('#currentWeight').html('' + weight + ' kg');
-	$('#newWeight').html('' + weight + ' kg');
+	$('#newWeight').val(weight);
 }

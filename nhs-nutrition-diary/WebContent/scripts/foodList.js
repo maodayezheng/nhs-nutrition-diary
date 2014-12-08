@@ -1,7 +1,3 @@
-/**
- * 
- */
-
 $(document).ready(function(){
 	
 	// load data
@@ -34,25 +30,25 @@ $(document).ready(function(){
 		});
 			
 	// click events		
-		$('#myMeal').click(function(){
-			$('.modal-title').text("My Meal");
+		$('#myMeals').click(function(){
+			$('.modal-title').text("My meals");
 			loadCustomMealView(customMeals)
 		});
 		
 	$('#newFood').click(function(){
-			$('.modal-title').text("New Food");
+			$('.modal-title').text("New food");
 			loadNewFoodView();
 		});
 	
 	$('#frequentFood').click(function(){
-		$('.modal-title').text("Frequent Food");
+		$('.modal-title').text("Frequent food");
 		loadFrequentFoodView(frequentFood);
 	});
 	
 	$('#submit-meal').click(function(){
 		var food = submitData();
 		var progress = getNutritionBreakDown();
-		window.location.href = 'index.html';
+		window.location.href = 'home.html';
 	})
 		
 });
@@ -87,7 +83,7 @@ function submitData(){
 
 function updateNutritionBreakDown(){
 	var children = $('.selection-list').children('li');
-	var protien =0;
+	var protein =0;
 	var calories = 0;
 	var fluid = 0;
 	children.each(function(index,item){
@@ -95,13 +91,13 @@ function updateNutritionBreakDown(){
 		var food = obj.data('data');
 		console.log(food);
 		var portion = food['portion'];
-		protien += portion*parseInt(food['Protein.g']); 
+		protein += portion*parseInt(food['Protein.g']); 
 		fluid += portion*parseInt(food['Water.g']);
 		calories +=portion*parseInt(food['Energy.kcal']);
 	});
 	
 	$('#calories').text(calories);
-	$('#protien').text(protien);
+	$('#protein').text(protein);
 	$('#fluid').text(fluid);
 }
 
@@ -109,9 +105,9 @@ function updateNutritionBreakDown(){
 
 function getNutritionBreakDown(){
 	
-	var nutritionBreakDown={"calories":"","protien":"","fluid":""};
+	var nutritionBreakDown={"calories":"","protein":"","fluid":""};
 	nutritionBreakDown["calories"] = $('#calories').text();
-	nutritionBreakDown["protien"] = $('#protien').text();
+	nutritionBreakDown["protein"] = $('#protein').text();
 	nutritionBreakDown["fluid"] = $('#fluid').text();
 	return [nutritionBreakDown];
 }
@@ -129,31 +125,31 @@ function loadNewFoodView(data){
 	var nameField = $('<input>',{
 		"class":"form-control",
 		"type":"text",
-		"placeholder":"food name",
+		"placeholder":"Food name",
 	}).appendTo(form);
 	
 	var amountField = $('<input>',{
 		"class":"form-control",
 		"type":"text",
-		"placeholder":"amount"
+		"placeholder":"Amount"
 	}).appendTo(form);
 	
 	var protienField = $('<input>',{
 		"class":"form-control",
 		"type":"text",
-		"placeholder":"protien(g)"
+		"placeholder":"Protein (g)"
 	}).appendTo(form);
 	
 	var carloriesField = $('<input>',{
 		"class":"form-control",
 		"type":"text",
-		"placeholder":"carlories(kcal)"
+		"placeholder":"Calories (kcal)"
 	}).appendTo(form);
 	
 	var fluidField =$('<input>',{
 		"class":"form-control",
 		"type":"text",
-		"placeholder":"water(ml)"
+		"placeholder":"Fluid (ml)"
 	}).appendTo(form);
 }
 

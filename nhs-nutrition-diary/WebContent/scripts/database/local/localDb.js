@@ -81,7 +81,7 @@ LocalDbSingleton.prototype.databaseOpen = function(callback, arg1, arg2, arg3, a
 		switch (callback)
 		{
 			case LocalDbSingleton.prototype.localDbAdd: callback(arg1,arg2,_this); break; //arguments -> oStore, arrayOfObjects, objectRef.
-			case LocalDbSingleton.prototype.localDbGet: callback(arg1, arg2 , arg3 , _this, arg4, callback2); break; //arguments -> oStore, dateFrom, dateTo, objectRef, callback.
+			case LocalDbSingleton.prototype.localDbGet: callback(arg1, arg2 , arg3 , _this, arg4, callback2); break; //arguments -> oStore, dateFrom, dateTo, objectRef, makeGraph, callback.
 			case LocalDbSingleton.prototype.databaseDelete: callback(_this); break;  
 			default: console.log('default in switch in database open');
 		}//function(oStore, dateFrom, dateTo, objectRef, callback)

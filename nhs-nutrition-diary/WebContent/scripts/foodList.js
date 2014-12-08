@@ -9,6 +9,7 @@ $(document).ready(function(){
 	var customMeals =["John Sandwich","Virk Super Sandwich","Robert Germany Sandwich","Bowen Dumpling"];
 	var frequentFood = [data[3],data[100],data[90],data[102]];
 	// search 
+	
 			$('#search').autocomplete({
 			source:function (request, response) {
 				
@@ -95,9 +96,10 @@ function updateNutritionBreakDown(){
 		var food = obj.data('data');
 		console.log(food);
 		var portion = food['portion'];
-		protein += portion*parseInt(food['Protein.g']); 
-		fluid += portion*parseInt(food['Water.g']);
-		calories +=portion*parseInt(food['Energy.kcal']);
+		
+		protein += portion*parseNutritionData(food['Protein.g']);
+		fluid += portion*parseNutritionData(food['Water.g']);
+		calories +=portion*parseNutritionData(food['Energy.kcal']);
 	});
 	
 	$('#calories').text(calories);
@@ -105,7 +107,11 @@ function updateNutritionBreakDown(){
 	$('#fluid').text(fluid);
 }
 
-
+function parseNutritionData(nutrition){
+	
+	return (nutrition ==="N")? 0:parseInt(nutrition);
+	
+}
 
 function getNutritionBreakDown(){
 	
@@ -221,7 +227,8 @@ function displaySelection(selection){
 		increaseButton.bind('click',updateNutritionBreakDown);
 		controlPanel.addItems([reduceButton,accountButton,increaseButton]);
 		li.addItemToLeft(deleteButton);
-		li.addItemToLeft(selection.label);
+		var displayContent = selection.label +" (" +parseInt(selection.EdibleProportion)*100 +" g)";
+		li.addItemToLeft(displayContent);
 		li.addItemToRight(controlPanel);
 		$('.selection-list').append(li);
 		updateNutritionBreakDown();
@@ -233,11 +240,9 @@ function displaySelection(selection){
 
 // render the search result here
 $(function(){
+	
 	/*$.ui.autocomplete.prototype._renderMenu =function(ul,items){
-		
-		
 		console.log(items);
-		
 	}*/
 	
 	//$.ui.autocomplete.prototype._renderItemData = function(){}

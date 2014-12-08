@@ -1,45 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>NHS Nutrion Diary</title>
-	<!--powered by Booststrap-->
-    <!-- Bootstrap -->
-    <link href="lib/bootstrap/bootstrap.min.css" rel="stylesheet">
-	<link href="css/standardPage.css" rel="stylesheet">
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-  </head>
-  <body>
- <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-  <div class="container-fluid">
-    <div class="collapse navbar-collapse">
-	<h2  class="nav-title">Nutrition Diary</h2>
-          </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
-    <div class="container">
-      <form class="form-signin" role="form">
-      <h3 class="form-signin-heading greeding">Welcome to NHS Nutrition Diary:</h3>
-      <label for="inputAccount" class="sr-only">Email address</label>
-      <input class="form-control" id="inputAccount" type="email" placeholder="enter your email"required>
-	  <label for="password" class="sr-only">Password</label>
-      <input class="form-control" id="password" type="password" placeholder="enter your password"required>      
-        <div class="checkbox" id="remember-me">
-        <label>
-        <input type="checkbox" value="remember-me">Remember me
-        </label>
-        </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-        <button class="btn btn-lg btn-success btn-block" type="submit">Sign up</button>
-      </form>
-    </div>
-  </body>
+	<head>
+    	<meta charset="utf-8">
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+    	<link href="lib/bootstrap/bootstrap.min.css" rel="stylesheet">
+		<link href="css/standardPage.css" rel="stylesheet">
+    	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    	<!--[if lt IE 9]>
+    		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+			<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+    	<title>Appetite</title>
+	</head>
+	<body>
+		<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+			<div class="container-fluid">
+    			<div class="collapse navbar-collapse">
+					<h2 class="nav-title">Appetite</h2>
+				</div>
+  			</div>
+		</nav>
+    	<div class="container">
+			<form class="form-signin" role="form">
+				<h3 class="form-signin-heading greeding">Welcome to NHS Nutrition Diary:</h3>
+      			<label for="inputAccount" class="sr-only">Email address</label>
+      			<input class="form-control" id="inputAccount" type="email" placeholder="enter your email"required>
+	  			<label for="password" class="sr-only">Password</label>
+      			<input class="form-control" id="password" type="password" placeholder="enter your password"required>      
+        		<div class="checkbox" id="remember-me">
+        			<label>
+        				<input type="checkbox" value="remember-me">Remember me
+        			</label>
+        		</div>
+        		<button id="btn_signin_to_home" class="btn btn-lg btn-primary btn-block">Sign in</button>
+        		<button id="btn_signup_to_details" class="btn btn-lg btn-success btn-block">Sign up</button>
+      		</form>
+    	</div>
+  	</body>
 </html>

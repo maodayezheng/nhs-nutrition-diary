@@ -13,6 +13,7 @@
   		<script src="lib/jquery/jquery-ui-1.11.2.min.js"></script>
     	<script src="lib/bootstrap/bootstrap.min.js"></script>
     	<script src="lib/knockout/Knockout-v2.2.0.js"></script>   	    	
+    	<script src="scripts/OnLoad.js"></script>
     	<script src="scripts/SubmitController.js"></script>
     	<script src="scripts/timepicker.js"></script>
     	<script src="scripts/util/dateTimePicker.js"></script>
@@ -40,7 +41,7 @@
   				
   				      				<div style="display: inline">
       				 <div class="form-group">
-      				<h1> Current: 72kg</h1>
+      				<label id="currentWeight"></label>
   				
   				<div class="row">
      
@@ -91,7 +92,7 @@
            placeholder="Date" />
 </div>
 <span><h5>New Weight</h5>
-<input class="col-sm-2" type="number" placeholder="72kg"></span>
+<input class="col-sm-2" id="newWeight" type="number"></span>
 
            
         </div>

@@ -7,7 +7,7 @@ function manageGraph(presentedParameter, dateFrom, dateTo) {
 	}
 	
 	var database = new LocalDbSingleton();
-	var data = database.databaseOpen(LocalDbSingleton.prototype.localDbGet, 'foodManifestStore', dateFrom, dateTo);
+	var data = database.databaseOpen(LocalDbSingleton.prototype.localDbGet, 'foodManifestStore', dateFrom, dateTo, presentedParamter, makeGraph);
 	
 	makeGraph(presentedParameter, dateFrom, dateTo, data);
 }

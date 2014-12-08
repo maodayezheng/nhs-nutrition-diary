@@ -36,8 +36,29 @@
     	<div class="container">
       		<form class="form-signup" role="form">
 	        	<div class="well" style="max-height: 400px;overflow: auto;">
-	        		Date: <input type="text" class="date" id="datepicker"> 
-	        	 	Time: <input type="text" class="time" id="datetimepicker1">      	 
+
+	      <form class="form-inline" role="form">  	 	
+<div style="display: inline">
+<div class="left-inner-addon ">
+    <i class="glyphicon glyphicon-calendar"></i>
+    <input type="text"
+           class="form-control date" 
+           placeholder="Date" />
+</div>
+<div class="left-inner-addon ">
+    <i class="glyphicon glyphicon-time"></i>
+    <input type="text"
+           class="form-control time " 
+           placeholder="Time" /><br>
+</div>
+</div>
+</form>
+
+
+
+
+
+
 	            	<ul class="list-group checked-list-box" id="symptomList" data-bind="foreach:symptoms">
 	            		<li class="list-group-item"><label data-bind="text:Symptom"></label><p data-bind="ratingScore:rate"></p></li>
 	            	<!-- <li class="list-group-item">Nausea</li>
@@ -55,9 +76,9 @@
 	                </ul> 
 	            </div>
 			</form>
-			<button class="test">Verificar Itens Escolhidos</button>
+	
 			<button id="btn_symptoms_to_symptomNotInList" class="btn btn-lg btn-primary btn-block" onclick="Navigator.prototype.navigate(this.id)">Symptom not in list</button>
-			<button id="btn_submit_symptoms" class="btn btn-lg btn-primary btn-block" onclick="SubmitController.prototype.submit(this.id)">Submit symptoms</button>
+			<button id="btn_submit_symptoms" class="btn btn-lg btn-primary btn-block test" onclick="SubmitController.prototype.submit(this.id)">Submit symptoms</button>
 		</div>    
 		
 		<div id="display-json"></div>

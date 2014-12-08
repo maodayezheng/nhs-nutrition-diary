@@ -7,6 +7,7 @@ Navigator.prototype.navigate = function(origin) {
 	{
 		case "btn_signin_to_home": nextPage = 'home.html'; break;
 		case "btn_signup_to_details": nextPage = 'signUpDetails.html'; break;
+		case "btn_signUpDetails_to_home": nextPage = 'home.html'; break;
 		case "btn_home_to_food": nextPage = 'food.html'; break;
 		case "btn_home_to_symptoms": nextPage = 'symptoms.html'; break;
 		case "btn_home_to_history": nextPage = 'history.html'; break

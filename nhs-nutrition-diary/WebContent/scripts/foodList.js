@@ -34,7 +34,7 @@ $(document).ready(function(){
 		});
 			
 	// click events		
-		$('#myMeal').click(function(){
+		$('#myMeals').click(function(){
 			$('.modal-title').text("My meals");
 			loadCustomMealView(customMeals)
 		});

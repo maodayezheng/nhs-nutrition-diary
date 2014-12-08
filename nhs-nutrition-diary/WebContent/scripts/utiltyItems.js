@@ -98,9 +98,9 @@ function createBasicLi(data){
 	}).data('data',data).append($('<div>',{
 		"class":"row",
 	}).append($('<div>',{
-		"class":"col-md-6 left"
+		"class":"col-md-10 left"
 	})).append($('<div>',{
-		"class":"col-md-6 right"
+		"class":"col-md-2 right"
 	})));
 	
 	li.addItemToLeft = function(item){

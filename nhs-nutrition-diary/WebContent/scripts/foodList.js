@@ -127,7 +127,6 @@ function getNutritionBreakDown(){
 function loadNewFoodView(data){
 	
 	$('.modal-body').empty();
-	
 	var form = $('<form>',{
 		"class":"form-newFood",
 	}).appendTo('.modal-body');

@@ -4,19 +4,24 @@
     	<meta charset="utf-8">
     	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     	<meta name="viewport" content="width=device-width, initial-scale=1">
-		<script src="scripts/SubmitController.js"></script>
-		<script src="lib/jquery/jquery.js"></script>
-		<script src="lib/jquery/jquery-ui-1.11.2.min.js"></script>
-		<script src="scripts/OnLoad.js"></script>
-		<script src="scripts/util/dateTimePicker.js"></script>
-    	<script src="lib/bootstrap/bootstrap.min.js"></script>
-    	<script src="scripts/symptoms.js"></script>
-    	<title>Weight</title>
     	<link href="lib/jquery/jquery-ui-1.11.2.min.css" rel="stylesheet">
 		<link href="lib/bootstrap/bootstrap.min.css" rel="stylesheet">
 		<link href="css/timepicker.css" rel="stylesheet"/>
   		<link href="css/weight.css" rel="stylesheet">
   		<link href="css/standardPage.css" rel="stylesheet">
+  		<script src="lib/jquery/jquery.js"></script>
+  		<script src="lib/jquery/jquery-ui-1.11.2.min.js"></script>
+    	<script src="lib/bootstrap/bootstrap.min.js"></script>
+    	<script src="lib/knockout/Knockout-v2.2.0.js"></script>   	    	
+    	<script src="scripts/SubmitController.js"></script>
+    	<script src="scripts/timepicker.js"></script>
+    	<script src="scripts/util/dateTimePicker.js"></script>
+    	<script src="scripts/Navigator.js"></script>
+    	<script src="scripts/database/local/localDb.js"></script>
+  		<script src="scripts/database/local/symptomJSON.js"></script>
+  		<script src="scripts/symptoms.js"></script>
+    	<title>Weight</title>
+
 	</head>
 	
 	<body onload="OnLoad.prototype.load('weight')">
@@ -27,10 +32,36 @@
 				</div>
   			</div>
 		</nav>
+		
 
 		<div class="container">
   			<div class="panel-body">
-  				<h4>It is recommend to enter your weight a maximum of once per week.</h4>
+  				<h4>It is recommended to enter your weight a maximum of once per week</h4>
+  				
+  				      				<div style="display: inline">
+      				 <div class="form-group">
+      				<h1> Current: 72kg</h1>
+  				
+  				<div class="row">
+     
+            <div class="panel panel-danger">
+                <div class="panel-heading clickable">
+                    <h3 class="panel-title">
+                        Do you have any fluidic swellings?</h3>
+                    <span class="pull-right "><i class="glyphicon glyphicon-arrow-down"></i></span>
+                </div>
+                <div class="panel-body">
+                   					<div class="well" style="max-height: 300px;overflow: auto;">
+            			<ul class="list-group checked-list-box">
+                  			<li class="list-group-item" id="swollenFeet">I have swollen feet.</li>
+                  			<li class="list-group-item" id="swollenLegs">I have swollen legs.</li>
+                  			<li class="list-group-item" id="swollenAbdomen">I have a swollen abdomen.</li>
+                		</ul>
+            		</div>
+      			
+    		</div>
+           
+        </div>
 
 				<style type="text/css">
 					/* Place the HTML 5 spinner at the default position */
@@ -43,32 +74,52 @@
 	    				right: -15px;
 					}
 				</style>
+				
+<!--  				<div style="display: inline">
+<div class="left-inner-addon ">
+    <i class="glyphicon glyphicon-calendar"></i>
+    <input type="text"
+           class="form-control date" 
+           placeholder="Date of new weight" />
+</div><br>-->
 
-				<form role="form">
-					<div class="well" style="max-height: 300px;overflow: auto;">
-            			<ul class="list-group checked-list-box">
-                  			<li class="list-group-item" id="swollenFeet">I have swollen feet.</li>
-                  			<li class="list-group-item" id="swollenLegs">I have swollen legs.</li>
-                  			<li class="list-group-item" id="swollenAbdomen">I have a swollen abdomen.</li>
-                  			<li class="list-group-item" id="swollenNone">I have none of the above.</li>
-                		</ul>
+	
+            		            <div class="panel panel-info">
+                <div class="panel-heading clickable">
+                    <h3 class="panel-title">
+                        Update Weight</h3>
+                    <span class="pull-right "><i class="glyphicon glyphicon-arrow-down"></i></span>
+                </div>
+                <div class="panel-body">
+<div class="left-inner-addon ">
+    <i class="glyphicon glyphicon-calendar"></i>
+    <input type="text"
+           class="form-control date" 
+           placeholder="Date" />
+</div>
+<span><h5>New Weight</h5>
+<input class="col-sm-1" type="number" placeholder="72kg"></span>
+                		
             		</div>
-      			</form>
+      			
     		</div>
+           
+        </div>
+    				
+    				
+    			<!--  	<div class="input-group spinner">
+    <input type="text" class="form-control" value="42">
+    <div class="input-group-btn-vertical">
+      <button class="btn btn-default"><i class="fa fa-caret-up"></i></button>
+      <button class="btn btn-default"><i class="fa fa-caret-down"></i></button>
+    </div>
+  </div><br>-->
 
 
+	    	 	
 
-			    <div class="form-group">
-      				<label>Current Weight is: </label>
-    				<label id="currentWeight"></label><br>
-      				<label>Select date you weighed yourself<input type="text" class="date" id="datepicker"/> </label><br>
-        			
-        			<form id="newWeightSetter">
-        				<label>New Weight:</label>
-    					<input type='button' value='-' class='qtyMinusFluid' field='quantity' />
-    					<input type='text' name='quantity' id="newWeight" value='0' class='qty' />
-    					<input type='button' value='+' class='qtyPlusFluid' field='quantity' />
-					</form>
+
+		   
 
 				<!--<script>
 				$("#newWeight").val() = currentWeight;
@@ -81,5 +132,6 @@
     			<p></p>
 			</form>
 		</div>
+</div>
 	</body>
 </html>

@@ -53,7 +53,10 @@ $(document).ready(function(){
 	$('#submit-meal').click(function(){
 		var food = submitData();
 		var progress = getNutritionBreakDown();
-		window.location.href = 'home.html';
+		var database = new LocalDbSingleton();
+		database.databaseOpen(LocalDbSingleton.prototype.localDbAdd, 'foodManifestStore', food);
+		
+		//window.location.href = 'home.html';
 	})
 		
 });

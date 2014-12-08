@@ -11,6 +11,8 @@ function manageGraph(presentedParameter, dateFrom, dateTo) {
 	
 }
 
+//TODO draw requirements as well
+
 function makeGraph(presentedParameter, dateFrom, dateTo, jsonInput) {
 	$('#table').html("");
 	$('#summary').html("");

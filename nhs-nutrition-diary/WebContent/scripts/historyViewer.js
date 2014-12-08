@@ -12,7 +12,7 @@ function toggleHistoryVisualisation() {
 		table.manageTable(presentedParameter, dateFrom, dateTo);
 	} else if($('#summarySelector').is(':checked')) {
 		var summary = new Summary();
-		summary.makeSummary(presentedParameter, dateFrom, dateTo);
+		summary.manageSummary(presentedParameter, dateFrom, dateTo);
 	}
 }
 
@@ -30,7 +30,7 @@ function toggleHistoryVisualisationButton(id) {
 		table.manageTable(presentedParameter, dateFrom, dateTo);
 	} else if (id == 'summarySelectorLabel') {
 		var summary = new Summary();
-		summary.makeSummary(presentedParameter, dateFrom, dateTo);
+		summary.manageSummary(presentedParameter, dateFrom, dateTo);
 	}
 }
 

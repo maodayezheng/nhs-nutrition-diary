@@ -3,10 +3,10 @@
  */
 
 
-var dummyGetResponse = 
+var dummyDataFoodManifestStore = 
 	[
 		{
-			  "Date": new Date(2014, 0, 15, 0, 0, 0, 0), "timestamp":"20140115", "calories":345, "protein":20, "fluid":100, "weight":80
+			"Date": new Date(2014, 0, 15, 0, 0, 0, 0), "timestamp":"20140115", "calories":345, "protein":20, "fluid":100, "weight":80
 		},
 		{ 
 			"Date": new Date(2014, 0, 16, 0, 0, 0, 0), "timestamp":"20140116", "calories":500, "protein":30, "fluid":250, "weight":75

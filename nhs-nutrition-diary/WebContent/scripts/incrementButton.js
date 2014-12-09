@@ -62,9 +62,9 @@ jQuery(document).ready(function(){
     $('.qtyPlusActivity').click(function(e){
         e.preventDefault();
         fieldName = $(this).attr('field');
-        var currentVal = parseInt($('#activity').val());
+        var currentVal = parseFloat($('#activity').val());
         if (!isNaN(currentVal)) {
-            $('#activity').val(currentVal + 0.1);
+            $('#activity').val(currentVal + 0.1).toFixed(2);
         } else {
             $('#activity').val(0);
         }
@@ -72,7 +72,7 @@ jQuery(document).ready(function(){
     $(".qtyMinusActivity").click(function(e) {
         e.preventDefault();
         fieldName = $(this).attr('field');
-        var currentVal = parseInt($('#activity').val());
+        var currentVal = parseFloat($('#activity').val());
         if (!isNaN(currentVal)) {
             $('#activity').val(currentVal - 0.1);
         } else {

@@ -86,7 +86,7 @@ LocalDbSingleton.prototype.databaseOpen = function(callback, arg1, arg2, arg3, a
 			default: console.log('default in switch in database open');
 		}//function(oStore, dateFrom, dateTo, objectRef, callback)
 	}
-}
+};
 
 //////////////////////////////////////This function contains dummy data for testing at the moment. To be implemented in the future. 
 LocalDbSingleton.prototype.get = function(oStore, dateFrom, dateTo, objectRef) //code modelled on example given here: http://www.raymondcamden.com/2013/6/6/IndexedDB-and-Date-Example
@@ -109,7 +109,7 @@ LocalDbSingleton.prototype.get = function(oStore, dateFrom, dateTo, objectRef) /
 	    		}
 	    	];
 	
-}
+};
 ////////////////////////////////////////////End of testing code block
 
 /**
@@ -157,7 +157,7 @@ LocalDbSingleton.prototype.localDbGet = function(oStore, dateFrom, dateTo, objec
 			callback(presentedParameter, dateFrom, dateTo, results);
 		}
 	}
-}
+};
 
 
 /**This function places the objects contained in the array argument in the specified object store. It then recursively calls itself to place the same objects in the
@@ -210,7 +210,7 @@ LocalDbSingleton.prototype.localDbAdd = function(oStore, arrayOfObjects, objectR
 		    console.log("Added the recursive objects");
 		}
 	}
-}
+};
 
 /**
  * This function is used to search any object store in the database. You provide the key you are searching for, the object store you want to search in and the index
@@ -243,7 +243,7 @@ LocalDbSingleton.prototype.databaseSearch = function(key, oStore, index, callbac
             callback(results);
         }
     };
-}
+};
 
 /**
  * This function is intended to be a callback to the asynchronous databaseSearch function. It displays the results of the search in a table by 
@@ -265,7 +265,7 @@ LocalDbSingleton.prototype.displayResults = function(result)
 
     }
     resultsTable =+'</table>';
-}
+};
 
 /**
  * This function initialises the local database by creating the object stores and populating two of them - the foodListStore and the symptomListStore.
@@ -379,7 +379,7 @@ LocalDbSingleton.prototype.databaseInit = function(callback)
     {
         console.log('at request1 oneversioncahnge');
     };
-}
+};
 
 /**
  * Function prints error to the console if the database encounters one. 
@@ -389,7 +389,7 @@ LocalDbSingleton.prototype.databaseError = function(event)
 {
     console.error('An IndexedDB error has occurred', event);
     console.log('Error name: '+event.target.error.name);
-}
+};
 
 /**
  * Function is used to delete the indexedDB database from the local user's browser/hard drive. It's use is mainly for testing purposes.  
@@ -411,7 +411,7 @@ LocalDbSingleton.prototype.databaseDelete = function(objectRef)
     {
         console.log("Couldn't delete database due to the operation being blocked"); //occurs usually if a connection to the DB is still open.
     };
-}
+};
 
 ////////////////////////////////////////////////////////BELOW CODE FOR TESTING. DELETE ONCE COMPLETEd. 
 //var arrayToAdd = [{name: "one"},{name: "two"},{name: "three"},{name: "four"}]; //for testing. Delete after test. 

@@ -59,4 +59,15 @@ h1 { text-align: center;
 #newWeight{
 	width:80px;
 }
-
+#currentProtein{
+	color:red;
+}
+#currentCals{
+	color:red;
+}
+#currentFluid{
+	color:red;
+}
+#currentActivity{
+	color:red;
+}

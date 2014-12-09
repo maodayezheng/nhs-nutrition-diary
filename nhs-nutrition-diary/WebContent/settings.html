@@ -6,65 +6,81 @@
     	<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link href="lib/bootstrap/bootstrap.min.css" rel="stylesheet">
   		<link href="css/standardPage.css" rel="stylesheet">
+  		<link href="css/weight.css" rel="stylesheet">
+		<script src="scripts/OnLoad.js"></script>
 		<script src="lib/jquery/jquery-2.1.1.min.js"></script>
 		<script src="lib/bootstrap/bootstrap.min.js"></script>
 		<script src="scripts/incrementButton.js"></script>
     	<title>Settings</title>
 	</head>
 
-	<body>
+	<body onload="OnLoad.prototype.load('settings')">
 		<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 			<div class="container-fluid">
-    			<div class="collapse navbar-collapse">
+				<div class="collapse navbar-collapse">
   					<h3 class="nav-title">Settings</h3>
-          		</div>
+				</div>
   			</div>
 		</nav>
-    	
-    	<div class="container">
-			<h2>Amend requirements (for dieticians only)</h2>
-			<div class="panel-body">
-				<ul class="list-group">
-					<li class="list-group-item">
-						
-    <form id='myform' method='POST' action='#'>
-  		<span><p id="requirementsText">Calories per day (kcal)</p>
-		<input type='button' value='-' class='qtyMinusCal' field='quantity' />
-		<input type='text' name='quantity' id="cals" value='0' class='qty' />
-   		<input type='button' value='+' class='qtyPlusCal' field='quantity' /></span>
-</form>
-						
-					</li>
-					<li class="list-group-item">
-  						
-    <form id='myform' method='POST' action='#'>
-  		<span><p id="requirementsText">Protein per day (g)</p>
-    	<input type='button' value='-' class='qtyMinusProt' field='quantity' />
-    	<input type='text' name='quantity' id="protein" value='0' class='qty' />
-    	<input type='button' value='+' class='qtyPlusProt' field='quantity' /></span>
-</form>
-					</li>
-					<li class="list-group-item">
+		
 
-	<form id='myform' method='POST' action='#'>
-		<span><p id="requirementsText">fluid per day (ml)</p>
-    	<input type='button' value='-' class='qtyMinusFluid' field='quantity' />
-    	<input type='text' name='quantity' id="fluid" value='0' class='qty' />
-    	<input type='button' value='+' class='qtyPlusFluid' field='quantity' /></span>
-</form>
-  					</li>
-					<li class="list-group-item">
-  				
-	<form id='myform' method='POST' action='#'>
-		<span><p id="requirementsText">Activity level </p>
-	    <input type='button' value='-' class='qtyMinusActivity' field='quantity' />
-	    <input type='text' name='quantity' id="activity" value='0' class='qty' />
-	    <input type='button' value='+' class='qtyPlusActivity' field='quantity' /></span>
-</form>
-					</li>
-				</ul>
+		
+		
+    	<div class="container">
+			<h2 style="text-align:center">Amend requirements (for dieticians only)</h2>
+			<div class="panel-body">
+			
+			    	<div class="whiteBackground"><br>
+			
+			<div class="container">
+				  <div class="row">
+						<label class="col-sm-5">Current calorie requirements: <span id="currentCals"></span> (kcal)</label>
+						<div class="col-sm-2">					
+						<input type='button' value='-' class='qtyMinusCal' field='quantity' />
+						<input type='text' name='quantity' id="cals" value='0' class='qty' />
+   						<input type='button' value='+' class='qtyPlusCal' field='quantity' /></span>
+						
+						</div>
+				  </div>
+			</div><br>
+			
+						<div class="container">
+				  <div class="row">
+						<label class="col-sm-5" >Current protein requirements: <span id="currentProtein"></span> (g)</label>
+						<div class="col-sm-2">					
+						<input type='button' value='-' class='qtyMinusProt' field='quantity' />
+						<input type='text' name='quantity' id="protein" value='0' class='qty' />
+   						<input type='button' value='+' class='qtyPlusProt' field='quantity' /></span>
+						
+						</div>
+				  </div>
+			</div><br>
+						<div class="container">
+				  <div class="row">
+						<label class="col-sm-5">Current fluid requirements: <span id="currentFluid"></span> (mls)</label>
+						<div class="col-sm-2">					
+						<input type='button' value='-' class='qtyMinusFluid' field='quantity' />
+						<input type='text' name='quantity' id="fluid" value='0' class='qty' />
+   						<input type='button' value='+' class='qtyPlusFluid' field='quantity' /></span>
+						
+						</div>
+				  </div>
+			</div><br>
+			
+						<div class="container">
+				  <div class="row">
+						<label class="col-sm-5">Activity Level: <span id="currentActivity"></span></label>
+						<div class="col-sm-2">					
+						<input type='button' value='-' class='qtyMinusActivity' field='quantity' />
+						<input type='text' name='quantity' id="activity" value='0' class='qty' />
+   						<input type='button' value='+' class='qtyPlusActivity' field='quantity' /></span>
+						
+						</div>
+				  </div>
+			</div><br>
+			</div>		</div>			
+			
      			<button class="btn btn-lg btn-primary btn-block" type="submit">Save changes</button>
 			</div>
-		</div>
 	</body>
 </html>

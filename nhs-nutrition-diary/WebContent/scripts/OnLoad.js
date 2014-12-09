@@ -5,6 +5,7 @@ OnLoad.prototype.load = function(pageName) {
 		case 'home': this.updateTodaysBalance(); break;
 		case 'history': toggleHistoryVisualisation(); break;
 		case 'weight': this.updateWeight(); break;
+		case 'settings': this.updateSettings(); break;
 		default: console.log('pageName does not exist.');
 	}
 }
@@ -36,4 +37,22 @@ OnLoad.prototype.updateWeight = function() {
 	var weight = 100;
 	$('#currentWeight').html('' + weight + ' kg');
 	$('#newWeight').val(weight);
+}
+
+OnLoad.prototype.updateSettings = function() {
+	//TODO replace hard-coded value with db getter
+	var caloriesRequirement = 2000;
+	var proteinRequirement = 45;
+	var fluidRequirement = 3150;
+	var activityLevel = 1;
+	
+	$('#cals').val(caloriesRequirement);
+	$('#currentCals').html(caloriesRequirement);
+	$('#protein').val(proteinRequirement);
+	$('#currentProtein').html(proteinRequirement);
+	$('#fluid').val(fluidRequirement);
+	$('#currentFluid').html(fluidRequirement);
+	$('#activity').val(activityLevel);
+	$('#currentActivity').html(activityLevel);
+	
 }

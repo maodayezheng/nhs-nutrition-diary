@@ -77,7 +77,7 @@ $(document).ready(function(){
 		
 		var dbEntry = new DbEntry('foodManifest');
 		console.log('made to line 58');
-		dbEntry.submit(test);
+		dbEntry.submit(food);
 
 
 		

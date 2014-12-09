@@ -9,12 +9,12 @@
 		echo "\n";
 		
 		$array = json_decode($rest_json, true);
-		echo $array[0]['timestamp']."\n";
-		echo $array[1]['timestamp']."\n";
-		echo $array[0]['Date']."\n";
-		echo $array[1]['Date']."\n";
-		echo $array[3]['protein']."\n";
-		echo $array[2]['calories']."\n";
+// 		echo $array[0]['timestamp']."\n";
+// 		echo $array[1]['timestamp']."\n";
+// 		echo $array[0]['Date']."\n";
+// 		echo $array[1]['Date']."\n";
+// 		echo $array[3]['protein']."\n";
+// 		echo $array[2]['calories']."\n";
 		
 		
 		if (isset($_POST['data1']))
@@ -30,5 +30,35 @@
 	catch (Exception $e)
 	{
 		echo "failed";
+	}
+	
+	setEntry($array);
+	
+	function setEntry($entry) {
+	
+		$servername = "localhost";
+		$username = "root";
+		$password = "";
+		$dbname = "appetite";
+		
+		$conn = new mysqli($servername, $username, $password, $dbname);
+		if ($conn->connect_error) {
+			die("Connection failed: " . $conn->connect_error);
+		}
+		
+		for($index = 0; $index < sizeof($entry); $index++) {
+			$foodName = "'" . $entry[$index]["label"] . "'";
+			
+			$sql = "INSERT INTO foodmanifest (date, time, foodname, units)
+					VALUES ('2014-12-09', '17:50', $foodName, 3)";
+			if ($conn->query($sql) === TRUE) {
+				echo "New record created successfully";
+			} else {
+				echo "Error: " . $sql . "<br>" . $conn->error;
+			}
+		}
+		
+		
+		$conn->close();
 	}
 ?>

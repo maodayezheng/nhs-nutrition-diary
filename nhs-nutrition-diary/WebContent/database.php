@@ -47,10 +47,14 @@
 		}
 		
 		for($index = 0; $index < sizeof($entry); $index++) {
+			$date = "'2014-12-09'";
+			$time = "'17:50'";
+			
 			$foodName = "'" . $entry[$index]["label"] . "'";
+			$unit = "'" . $entry[$index]["EdibleProportion"] . "'";
 			
 			$sql = "INSERT INTO foodmanifest (date, time, foodname, units)
-					VALUES ('2014-12-09', '17:50', $foodName, 3)";
+					VALUES ($date, $time, $foodName, $unit)";
 			if ($conn->query($sql) === TRUE) {
 				echo "New record created successfully";
 			} else {

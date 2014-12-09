@@ -20,31 +20,26 @@
   	</head>
 	
 	<body onload="OnLoad.prototype.load('home')">
-		<nav class="navbar navbar-default" role="navigation">
-  			<div class="container-fluid">
-    			<!-- Brand and toggle get grouped for better mobile display -->
-    			<div class="navbar-header">
-      				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-        				<span class="sr-only">Toggle navigation</span>
-        				<span class="icon-bar"></span>
-        				<span class="icon-bar"></span>
-        				<span class="icon-bar"></span>
-      				</button>
-      				
-      				<a class="navbar-brand" href="#">
-						<img src="resources/NHS_logo.jpg" alt="NHS_Logo" style="width:43px;height:27px">
-      				</a>
-    			</div>
-
-    			<!-- Collect the nav links, forms, and other content for toggling -->
-    			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      				<ul class="nav navbar-nav navbar-right">
-        				<li><a id="listEl_home_to_settings" href="#" onclick="Navigator.prototype.navigate(this.id)">Settings</a></li>
-        				<li><a href="#">Log out</a></li>
-      				</ul>
-    			</div>
-  			</div>
-		</nav>
+			<nav class="navbar navbar-default" role="navigation">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="row">
+ 		<div class="col-xs-2 border">
+    	</div>
+      <div class="col-xs-8 border navbar-title">HOME</div>
+      <div class="col-xs-2 visible-xs-block border">
+      <span style="float:right">
+      <button class="btn btn-default navbar-btn" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" id="toggle-button"><i class="glyphicon glyphicon-cog"></i>
+      </button>
+     </span>
+      </div>
+      <div class="collapse navbar-collapse" id="navbar-collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">setting</a></li>
+        <li><a href="#">Log out</a></li>
+      </ul>
+    </div>
+      </div>
+</nav>
     	
     	<div class="container">
      		<div class="row clearfix">

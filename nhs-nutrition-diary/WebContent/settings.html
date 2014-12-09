@@ -7,13 +7,14 @@
 		<link href="lib/bootstrap/bootstrap.min.css" rel="stylesheet">
   		<link href="css/standardPage.css" rel="stylesheet">
   		<link href="css/weight.css" rel="stylesheet">
+		<script src="scripts/OnLoad.js"></script>
 		<script src="lib/jquery/jquery-2.1.1.min.js"></script>
 		<script src="lib/bootstrap/bootstrap.min.js"></script>
 		<script src="scripts/incrementButton.js"></script>
     	<title>Settings</title>
 	</head>
 
-	<body>
+	<body onload="OnLoad.prototype.load('settings')">
 		<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 			<div class="container-fluid">
 				<div class="collapse navbar-collapse">
@@ -21,6 +22,8 @@
 				</div>
   			</div>
 		</nav>
+		
+
 		
 		
     	<div class="container">
@@ -31,7 +34,7 @@
 			
 			<div class="container">
 				  <div class="row">
-						<label class="col-sm-5">Calories per day (kcal)</label>
+						<label class="col-sm-5">Current calorie requirements: <span id="currentCals"></span> (kcal)</label>
 						<div class="col-sm-2">					
 						<input type='button' value='-' class='qtyMinusCal' field='quantity' />
 						<input type='text' name='quantity' id="cals" value='0' class='qty' />
@@ -43,7 +46,7 @@
 			
 						<div class="container">
 				  <div class="row">
-						<label class="col-sm-5">Protein per day (g)</label>
+						<label class="col-sm-5" >Current protein requirements: <span id="currentProtein"></span> (g)</label>
 						<div class="col-sm-2">					
 						<input type='button' value='-' class='qtyMinusProt' field='quantity' />
 						<input type='text' name='quantity' id="protein" value='0' class='qty' />
@@ -54,7 +57,7 @@
 			</div><br>
 						<div class="container">
 				  <div class="row">
-						<label class="col-sm-5">fluid per day (ml)</label>
+						<label class="col-sm-5">Current fluid requirements: <span id="currentFluid"></span> (mls)</label>
 						<div class="col-sm-2">					
 						<input type='button' value='-' class='qtyMinusFluid' field='quantity' />
 						<input type='text' name='quantity' id="fluid" value='0' class='qty' />
@@ -66,7 +69,7 @@
 			
 						<div class="container">
 				  <div class="row">
-						<label class="col-sm-5">Activity Level</label>
+						<label class="col-sm-5">Activity Level: <span id="currentActivity"></span></label>
 						<div class="col-sm-2">					
 						<input type='button' value='-' class='qtyMinusActivity' field='quantity' />
 						<input type='text' name='quantity' id="activity" value='0' class='qty' />
@@ -75,12 +78,9 @@
 						</div>
 				  </div>
 			</div><br>
-			</div>		</div>
-			
-			
+			</div>		</div>			
 			
      			<button class="btn btn-lg btn-primary btn-block" type="submit">Save changes</button>
 			</div>
-
 	</body>
 </html>

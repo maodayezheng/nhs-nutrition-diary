@@ -27,7 +27,7 @@ DbEntry.prototype.submit = function(data1)
 	    url: "database.php",
 	    type: "POST",
 	    dataType: "text", //what you will receive in response. 
-	    contentType: "text", //"application/json", //what you are sending.
+	    contentType: "application/json", //what you are sending.
 	    data: JSON.stringify(data1),
 	    success: function (msg){
 	        console.log("success " + msg); 

@@ -269,3 +269,7 @@ a.clickable:hover { text-decoration:none; }
 .dropButton{
 	width:500px;
 }
+
+.whiteBackground{
+	background-color:white;
+}

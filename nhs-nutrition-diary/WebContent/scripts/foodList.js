@@ -57,6 +57,18 @@ $(document).ready(function(){
 		database.databaseOpen(LocalDbSingleton.prototype.localDbAdd, 'foodManifestStore', food);
 		
 		//window.location.href = 'home.html';
+	});
+	
+	$('#nav-button').click(function(){
+		
+		console.log("NAV BUTTON CLICKED");
+		
+	});
+	
+	$('#toggle-button').click(function(){
+		
+		console.log("TOGGLE CLICKED");
+		
 	})
 });
 

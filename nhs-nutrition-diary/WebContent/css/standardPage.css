@@ -79,20 +79,6 @@ body{
 	
 	}
 
-.navbar-brand {
-  float: none;
-  }
-
-.navbar-center
-{
-    position: absolute;
-    width: 100%;
-    left: 0;
-    top: 0;
-    text-align: center;
-    margin: auto;
-  height:100%;
-}
 
 	
 
@@ -100,8 +86,17 @@ body{
 	#remember-me{
 		visibility:hidden;
 		}
-	
+	.navbar-center{
+		display:none;
 	}
+	}
+	
+@media(min-width:767px){
+		.mobile-navbar{
+		display:none;
+	}
+	
+}
 
 @media (max-width:767px){
 	#remember-me{

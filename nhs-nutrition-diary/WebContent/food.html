@@ -23,24 +23,24 @@
   	<body>
  		<nav class="navbar navbar-default" role="navigation">
     <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
+    <div class="row">
+ 		<div class="col-xs-2 border">
+ 		<button class="btn btn-default navbar-btn" id="nav-button"><i class="glyphicon glyphicon-chevron-left"></i></button>
+    	</div>
+      <div class="col-xs-8 border navbar-title">FOOD</div>
+      <div class="col-xs-2 visible-xs-block border">
+      <span style="float:right">
+      <button class="btn btn-default navbar-btn" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" id="toggle-button"><i class="glyphicon glyphicon-cog"></i>
       </button>
-      
-        <a href="#" class="btn btn-default navbar-btn"><i class="glyphicon glyphicon-chevron-left"></i> <span class="hidden-xs">Home</span></a> 
-    </div>
-<!--<div class="navbar-center navbar-brand" href="#"><a class="navbar-brand">Food</a></div>
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="navbar-collapse">
+     </span>
+      </div>
+      <div class="collapse navbar-collapse" id="navbar-collapse">
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#">setting</a></li>
         <li><a href="#">Log out</a></li>
       </ul>
-    </div><!-- /.navbar-collapse -->
+    </div>
+      </div>
 </nav>
     	<div class="container">
     		<div class="search-field">
@@ -66,7 +66,8 @@
 			</div>
 			<div class="panel panel-default" style="margin-top:10px">
   				<div class="panel-heading">
-  				<div class="row"><div class="col-md-10"><span>Selected food</span></div><div class="col-md-2"><span><input type="checkbox" style="margin-right:5px">Save as meal</span></div></div>
+  				<div class="row"><div class="col-md-6"><span>Selected food</span></div>
+  				<div class="col-md-6"><span><input type="checkbox" style="margin-right:5px">Save as meal</span></div></div>
   				</div>
 				<div class="panel-body selection-body">
 					<ul class="list-group selection-list" role="menu"></ul>

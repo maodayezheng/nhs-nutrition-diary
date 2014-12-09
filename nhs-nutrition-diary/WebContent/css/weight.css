@@ -44,15 +44,19 @@ h4
    line-height: 1.3em;
    
    border-radius: 10px;
-   /*box-shadow: 0 0 0 4px #00008B, 2px 1px 6px 4px rgba(10, 10, 0, 0.5);*/
-   /*text-shadow: -1px -1px #00008B;*/
    font-weight: normal;
 
 	}
 	#currentWeight {
-    color: red;
     text-align: left;
 
 }
-h1 { text-align: center; }
+h1 { text-align: center; 
+}
+#btn_submit_weight{
+	width:300px;
+}
+#newWeight{
+	width:80px;
+}
 

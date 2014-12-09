@@ -38,15 +38,13 @@
 		<div class="container">
   			<div class="panel-body">
   				<h4>It is recommended to enter your weight a maximum of once per week</h4>
+  				<div class="col-sm-4">
+  				<label>Please check the appropriate box below</label>
+  				</div>
   				
   				      				<div style="display: inline">
-      				 <div class="form-group">
-      				<label id="currentWeight"></label>
-  				
+      				 <div class="form-group"> 				
   				<div class="row">
-     
-
-
                 </div>
                 <div class="panel-body">
                    					<div>
@@ -71,58 +69,42 @@
 	    				right: -15px;
 					}
 				</style>
-				
-<!--  				<div style="display: inline">
-<div class="left-inner-addon ">
-    <i class="glyphicon glyphicon-calendar"></i>
-    <input type="text"
-           class="form-control date" 
-           placeholder="Date of new weight" />
-</div><br>-->
 
 	
 
                   
                 </div>
-                <div class="panel-body">
-<div class="left-inner-addon ">
-    <i class="glyphicon glyphicon-calendar"></i>
-    <input type="text"
-           class="form-control date" 
-           placeholder="Date" />
+                
+                <div class="container">
+  <div class="row">
+					                <div class="col-sm-4">
+					<div class="left-inner-addon ">
+					    <i class="glyphicon glyphicon-calendar"></i>
+					    <input type="text"
+					           class="form-control date" 
+					           placeholder="Date" />
+</div></div>  </div>
+</div><br>
+
+<div class="container">
+  <div class="row">
+<label class="col-sm-2">Current Weight</label>
+<label class="col-sm-1" id="currentWeight"></label>
+  </div>
 </div>
-<span><h5>New Weight</h5>
-<input class="col-sm-2" id="newWeight" type="number"></span>
 
-           
-        </div>
-    				
-    				
-    			<!--  	<div class="input-group spinner">
-    <input type="text" class="form-control" value="42">
-    <div class="input-group-btn-vertical">
-      <button class="btn btn-default"><i class="fa fa-caret-up"></i></button>
-      <button class="btn btn-default"><i class="fa fa-caret-down"></i></button>
-    </div>
-  </div><br>-->
-
-
-	    	 	
-
-
-		   
-
-				<!--<script>
-				$("#newWeight").val() = currentWeight;
-				</script>-->
+<div class="container">
+  <div class="row">
+<label class="col-sm-2">Update Weight</label>
+<input class="col-sm-1" id="newWeight" type="number"></span> 
+  </div>
+</div>
 
     			</div>
-    			<button class="btn btn-lg btn-primary btn-block" id="btn_submit_weight" onclick="SubmitController.prototype.submit(this.id)">Save</button>
-    			<p></p>
-    			<p></p>
-    			<p></p>
-			</form>
+    			<div class=" col-sm-4">
+    			<button class="btn btn-lg btn-success btn-block" id="btn_submit_weight" onclick="SubmitController.prototype.submit(this.id)">Save</button>
 		</div>
+</div>
 </div>
 	</body>
 </html>

@@ -199,7 +199,6 @@ function loadFrequentFoodView(data){
 }
 
 
-
 function loadCustomMealView(data){
 	
 	$('.modal-body').empty();

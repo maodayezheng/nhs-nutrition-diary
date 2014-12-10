@@ -17,18 +17,18 @@ function DbEntry(table)
 	var user; //should be equal to the unique ID of the user stored in the localStorage.
 }
 
-DbEntry.prototype.submit = function(data1)
+DbEntry.prototype.submit = function(dataToServer)
 {
 
 	console.log("printing the data sent to the submit function");
-	console.log(data1);
+	console.log(dataToServer);
 	
 	$.ajax({
-	    url: "database.php",
+	    url: "DbAdapter.php",
 	    type: "POST",
 	    dataType: "text", //what you will receive in response. 
 	    contentType: "application/json", //what you are sending.
-	    data: JSON.stringify(data1),
+	    data: JSON.stringify(dataToServer),
 	    success: function (msg){
 	        console.log("success " + msg); 
 	        //alert('changed');

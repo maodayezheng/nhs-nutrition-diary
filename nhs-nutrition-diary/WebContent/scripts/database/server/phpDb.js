@@ -23,6 +23,7 @@ DbEntry.prototype.submit = function(dataToServer)
 	console.log("printing the data sent to the submit function");
 	console.log(dataToServer);
 	
+	//TODO in addition to dataToServer, we need to have the table as argument for the post
 	$.ajax({
 	    url: "DbAdapter.php",
 	    type: "POST",

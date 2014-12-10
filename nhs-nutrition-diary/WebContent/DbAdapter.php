@@ -3,7 +3,9 @@ try {
 	//TODO receive data and store in local variables
 	echo "in try block, json stringify\n";
  	
+	//TODO in addition to the data we also need to receive the table where the data shall be stored
 	$rest_json = file_get_contents("php://input");
+	$table = "foodManifest"
 	echo $rest_json; 
 	echo "\n";
 	
@@ -18,9 +20,12 @@ $username = "root";
 $password = "";
 $dbname = "appetite";
 
-setMySqlDbEntry($dataDecoded);
+//TODO check which table was passed as argument of post and call function depending on that string
+if($table == "foodManifest") {
+	setEntryFoodManifest($dataDecoded);
+}
 
-function setMySqlDbEntry($entry) {
+function setEntryFoodManifest($entry) {
 	$conn = new mysqli($servername, $username, $password, $dbname);
 	if ($conn->connect_error) {
 		die("Connection failed: " . $conn->connect_error);
@@ -41,7 +46,6 @@ function setMySqlDbEntry($entry) {
 			echo "Error: " . $sql . "<br>" . $conn->error;
 		}
 	}
-	
 	
 	$conn->close();
 }

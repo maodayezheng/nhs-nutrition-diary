@@ -84,12 +84,10 @@ $(document).ready(function () {
   //  });
 
 	$('li').click(function(){
-		var drop =$(this).children('.drop-scoring');
-		console.log(drop);
-		if(drop !==null){
-	    drop.slideToggle('slow');
-	    }
+		var target = $(this).next(".drop-scoring");	
+	$(target).slideToggle('slow');
 	});
+
 
 	$("#saveWeight").click(function(){
 		$('p').html("#currentWeight");

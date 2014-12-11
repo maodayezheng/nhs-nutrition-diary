@@ -24,57 +24,69 @@
     	<title>Symptoms</title>
 	</head>
   	
-  	<body>
- 			<nav class="navbar navbar-default" role="navigation">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="row">
- 		<div class="col-xs-2 border">
- 		<button class="btn btn-default navbar-btn" id="nav-button"><i class="glyphicon glyphicon-chevron-left"></i></button>
-    	</div>
-      <div class="col-xs-8 border navbar-title">SYMPTOMS</div>
-      <div class="col-xs-2 visible-xs-block border">
-      <span style="float:right">
-      <button class="btn btn-default navbar-btn" data-toggle="collapse" data-target="#navbar-collapse" id="toggle-button"><i class="glyphicon glyphicon-cog"></i>
-      </button>
-     </span>
-      </div>
-      <div class="collapse navbar-collapse" id="navbar-collapse">
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">setting</a></li>
-        <li><a href="#">Log out</a></li>
-      </ul>
-    </div>
-      </div>
-</nav>
-    	<div class="container">
-      		<form class="form-signup" role="form">
-	        	<div class="well" style="max-height: 400px;overflow: auto;">
 
-	      <form class="form-inline" role="form">  	 	
-<div style="display: inline">
-<div class="left-inner-addon ">
-    <i class="glyphicon glyphicon-calendar"></i>
-    <input type="text"
-           class="form-control date" 
-           placeholder="Date" /><br>
-</div>
-<div class="left-inner-addon ">
-    <i class="glyphicon glyphicon-time"></i>
-    <input type="text"
-           class="form-control time " 
-           placeholder="Time" /><br>
-</div>
-</div>
-</form>
+<body>
+	<nav class="navbar navbar-default" role="navigation">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="row">
+			<div class="col-xs-2 border">
+				<button class="btn btn-default navbar-btn" id="nav-button">
+					<i class="glyphicon glyphicon-chevron-left"></i>
+				</button>
+			</div>
+			<div class="col-xs-8 border navbar-title">SYMPTOMS</div>
+			<div class="col-xs-2 visible-xs-block border">
+				<span style="float: right">
+					<button class="btn btn-default navbar-btn" data-toggle="collapse"
+						data-target="#bs-example-navbar-collapse-1" id="toggle-button">
+						<i class="glyphicon glyphicon-cog"></i>
+					</button>
+				</span>
+			</div>
+			<div class="collapse navbar-collapse" id="navbar-collapse">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#">setting</a></li>
+					<li><a href="#">Log out</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<div class="container">
+		<form class="form-signup" role="form">
+			<div class="well" style="max-height: 400px; overflow: auto;">
 
-
-
-
-
-
-	            	<ul class="list-group checked-list-box" id="symptomList" data-bind="foreach:symptoms">
-	            		<li class="list-group-item"><label data-bind="text:Symptom"></label><p data-bind="ratingScore:rate"></p></li>
-	            	<!-- <li class="list-group-item">Nausea</li>
+				<form class="form-inline" role="form">
+					<div style="display: inline">
+						<div class="left-inner-addon ">
+							<i class="glyphicon glyphicon-calendar"></i> <input type="text"
+								class="form-control date" placeholder="Date" /><br>
+						</div>
+						<div class="left-inner-addon ">
+							<i class="glyphicon glyphicon-time"></i> <input type="text"
+								class="form-control time " placeholder="Time" /><br>
+						</div>
+					</div>
+				</form>			
+				<ul class="list-group checked-list-box" id="symptomList"
+					data-bind="foreach:symptoms">
+					<li class="list-group-item"><label data-bind="text:Symptom"></label>
+					</li>
+					<p class="drop-scoring">
+					
+					Please rate discomfort 1-5 (low - high)<br>
+					1 <input type="radio" name="cfimb_5" id="id_cfimb_5_1" value="1">
+        
+        2 <input type="radio" name="cfimb_5" id="id_cfimb_5_1" value="1">
+        
+       3 <input type="radio" name="cfimb_5" id="id_cfimb_5_1" value="1">
+        
+        4 <input type="radio" name="cfimb_5" id="id_cfimb_5_1" value="1">
+        
+       5 <input type="radio" name="cfimb_5" id="id_cfimb_5_1" value="1">
+        <br><br>
+        <input type="text" class="form-control" id="symptomComment" placeholder="Optional comment">
+					</p>
+					<!-- <li class="list-group-item">Nausea</li>
 	            	<li class="list-group-item" id="rated">Stomach Pain</li>
 	            	<p class="drop-scoring">please rate the pain from 1-5 <br>
 	            	1 <input type="radio" name="custom_type" value="public" />
@@ -85,15 +97,20 @@
 	            	</p>            		            	
 	            	<li class="list-group-item">Headache</li>
 	            	<li class="list-group-item">Cramps</li>
-	            	<li class="list-group-item">Taste changes</li> -->            								                	
-	                </ul> 
-	            </div>
-			</form>
-	
-			<button id="btn_symptoms_to_symptomNotInList" class="btn btn-lg btn-primary btn-block" onclick="Navigator.prototype.navigate(this.id)">Symptom not in list</button>
-			<button id="btn_submit_symptoms" class="btn btn-lg btn-primary btn-block test" onclick="SubmitController.prototype.submit(this.id)">Submit symptoms</button>
-		</div>    
-		
-		<div id="display-json"></div>
-  </body>
+	            	<li class="list-group-item">Taste changes</li> -->
+				</ul>
+			</div>
+		</form>
+		<button id="btn_symptoms_to_symptomNotInList"
+			class="btn btn-lg btn-primary btn-block"
+			onclick="Navigator.prototype.navigate(this.id)">Symptom not
+			in list</button>
+		<button id="btn_submit_symptoms"
+			class="btn btn-lg btn-primary btn-block test"
+			onclick="SubmitController.prototype.submit(this.id)">Submit
+			symptoms</button>
+	</div>
+
+	<div id="display-json"></div>
+</body>
 </html>

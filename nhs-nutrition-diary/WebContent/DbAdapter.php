@@ -5,7 +5,7 @@ try {
  	
 	//TODO in addition to the data we also need to receive the table where the data shall be stored
 	$rest_json = file_get_contents("php://input");
-	$table = "foodManifest"
+	$table = "foodManifest";
 	echo $rest_json; 
 	echo "\n";
 	

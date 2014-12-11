@@ -1,4 +1,6 @@
 <?php
+
+
 try {
 	//TODO receive data and store in local variables
 	echo "in try block, json stringify\n";

@@ -54,8 +54,10 @@ $(document).ready(function(){
 		var food = submitData();
 		var progress = getNutritionBreakDown();
 		var database = new LocalDbSingleton();
-		database.databaseOpen(LocalDbSingleton.prototype.localDbAdd, 'foodManifestStore', food);
-		
+		//database.databaseOpen(LocalDbSingleton.prototype.localDbAdd, 'foodManifestStore', food);
+		var newWarning = warning();
+		    $('body').append(newWarning);
+				setTimeout(function(){newWarning.remove()},3000);
 		//window.location.href = 'home.html';
 	});
 	
@@ -176,7 +178,17 @@ function loadNewFoodView(data){
 	}).appendTo(form);
 }
 
-
+function warning(){
+	
+	var warning = $('<div>',{
+		"class":"alert alert-success center",
+		"role":"alert",
+		"text":"update success"
+		});
+	
+	return warning;
+	
+}
 
 function loadFrequentFoodView(data){
 	

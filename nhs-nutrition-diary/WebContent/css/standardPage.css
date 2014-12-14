@@ -29,18 +29,7 @@ body{
 	}
 
 .form-signin,
-.form-signup
-{
-	align:center;
-	max-width:400px;
-	
-	margin:50px auto;
-	}
-.form-signup > input,
-.form-signup > button{
-	margin-top:20px;
-	
-	}
+
 	
 .ui-autocomplete {
     max-height: 250px;
@@ -274,4 +263,25 @@ a.clickable:hover { text-decoration:none; }
 
 .whiteBackground{
 	background-color:white;
+}
+.symptomAddButton{
+	max-width:35px;
+	height:35px;
+	text-align:centre;
+
+
+}
+#newSymptom{
+	max-width:320px;
+}
+.glyphicon-plus{
+	color:white;
+    font-size: 21px;
+  
+    display: block;
+    margin: -0.2em auto 0px;
+
+
+
+
 }

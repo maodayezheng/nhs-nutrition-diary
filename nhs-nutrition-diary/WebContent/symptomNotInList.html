@@ -53,29 +53,34 @@
 	</nav>
 
 
-		<form class="form-signup" role="form">
-			<div style="display: inline">
-				<div class="left-inner-addon ">
-					<i class="glyphicon glyphicon-calendar"></i> <input type="text"
-						class="form-control date" placeholder="Date" /><br>
-				</div>
-				<div class="left-inner-addon ">
-					<i class="glyphicon glyphicon-time"></i> <input type="text"
-						class="form-control time " placeholder="Time" /><br>
-				</div>
-			</div>
-			<input type="text" class="form-control" id="newSymptom"
-				placeholder="Enter symptom...">
-			<!-- http://bootsnipp.com/snippets/featured/checked-list-group -->
-			<button class="btn btn-lg btn-primary btn-block" type="button"
-				id="saveNewSymptom">Create new symptom</button>
-		</form>
-	
-
-
-<div class="container">
+	  	<div class="container">
 	<form class="form-signup" role="form">
-		<div class="well" style="max-height: 400px; max-width: 400px; overflow: auto;">
+		<div class="well" style= max-width: 400px; overflow: auto;">
+		<h4 style="text-align:center">Enter New Symptom</h4>
+		<div class="left-inner-addon style="float:left;"">
+					<i class="glyphicon glyphicon-calendar"></i> <input type="text"
+						class="form-control date" placeholder="Date" /></div>	
+				
+				<div class="left-inner-addon style="float:left;"">
+					<i class="glyphicon glyphicon-time"></i> <input type="text"
+						class="form-control time " placeholder="Time" />
+				
+			</div><br>
+			
+			<div class="right-inner-addon style="float:right;"">
+					<i class="glyphicon glyphicon-plus" style="vertical-align:centre"></i>
+			<input class="btn btn-lg btn-primary btn-block symptomAddButton" type="button"
+				id="saveNewSymptom" style="float: right">
+							<div style="overflow: hidden; padding-right: .5em;">
+							<input type="text" class="form-control" id="newSymptom"
+				placeholder="Enter symptom..."><br></div>​
+		
+				</div>		
+				
+			
+						
+				
+						<h4 style="text-align:center">Custom Symptoms</h4>
 
 			<ul class="list-group checked-list-box" id="newSymptomList">
 				
@@ -98,9 +103,15 @@
 				</p>
 				
 
-			</ul>
-		</div>
+			</ul><br>
 	</form>
+	
+	
+	
+	<button id="btn_submit_symptoms"
+			class="btn btn-lg btn-success btn-block test"
+			onclick="SubmitController.prototype.submit(this.id)">Submit
+			symptoms</button>
 	</div>
 
 

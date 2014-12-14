@@ -91,10 +91,25 @@ $(document).ready(function () {
     
    // $('#get-checked-data').on('click', function(event) {
        // event.preventDefault(); 
+	
+	 ////////////////////////////////SUBMIT SYMPTOMS TO JSON///////////////////////////////////////////////
 
-   $(".test").click(function(){
+   $(".submitSymptoms").click(function(){
        var checkedItems = {}, counter = 0;
        $("#symptomList li.active").each(function(idx, li) {
+           checkedItems[counter] = $(li).text();
+           console.log($(li).text());
+           counter++;
+       });
+       console.log(checkedItems);
+       alert(JSON.stringify(checkedItems));
+   });
+   
+   ////////////////////////////////SUBMIT NEW SYMPTOMS TO JSON///////////////////////////////////////////////
+   
+   $(".submitNewSymptoms").click(function(){
+       var checkedItems = {}, counter = 0;
+       $("#newSymptomList li.active").each(function(idx, li) {
            checkedItems[counter] = $(li).text();
            console.log($(li).text());
            counter++;

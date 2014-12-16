@@ -53,7 +53,7 @@ SubmitController.prototype.submitWeight = function() {
 	var weight = $('#weight').val();
 	
 	var dataToServer = {
-			"table": "weightmanifest",
+			"table": "userweightmanifest",
 			"userid" : userid,
 			"datetime": datetime,
 			"weight": weight

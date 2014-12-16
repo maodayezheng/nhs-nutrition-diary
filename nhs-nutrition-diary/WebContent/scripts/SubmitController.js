@@ -8,6 +8,11 @@ SubmitController.prototype.submit = function(submitter) {
 	}
 }
 
+SubmitController.prototype.getUserId = function() {
+	//TODO implement method
+	return 1;
+}
+
 SubmitController.prototype.signUp = function() {
 	//TODO submit data
 }
@@ -44,12 +49,17 @@ SubmitController.prototype.submitWeight = function() {
 	var table = "weightmanifest"; 
 	
 	//TODO retrieve user id
-	var userid = 1;
+	var userid = this.getUserId();
 	var datetime = $('#datetime').val();
 	var weight = $('#weight').val();
 	
-	var data = JSON.stringify(Array(userid, datetime, weight));
-	var dataToServer = Array(data, table);
+	var dataToServer = {
+			"table": "weightmanifest",
+			"userid" : userid,
+			"datetime": datetime,
+			"weight": weight
+	};
+	
 	ServerDBAdapter.prototype.submit(dataToServer, "save");
 }
 

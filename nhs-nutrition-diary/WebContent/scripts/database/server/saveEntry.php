@@ -13,24 +13,24 @@ $data = $database->retrieveData();
 $dataDecoded = json_decode($data, true);
 echo "\nechoing data\n".$data;
 
-if($data[0]["table"] == "weightmanifest") {
-	setEntryWeightManifest($dataDecoded);
+if($dataDecoded["table"] == "weightmanifest") {
+	setEntryWeightManifest($database, $dataDecoded);
 }
 
 $database -> closeConnection();
 
-function setEntryWeightManifest($entry) {
+function setEntryWeightManifest($database, $entry) {
 	$id = "'111'";
-	$userid = "'" . $data["userid"] . "'";
-	$datetime = "'" . $data["datatime"] . "'";
-	$weight = "'" . $data["weight"] . "'";
+	$userid = "'" . $entry["userid"] . "'";
+	$datetime = "'" . $entry["datetime"] . "'";
+	$weight = "'" . $entry["weight"] . "'";
 	
 	$sql = "INSERT INTO weightmanifest (id, userid, datetime, weight)
-		VALUES ($id, $userid, $datetime, $weight";
-	if ($database -> getDb -> query($sql) === TRUE) {
+		VALUES ($id, $userid, $datetime, $weight)";
+	if ($database -> getDb() -> query($sql) === TRUE) {
 		echo "New record created successfully";
 	} else {
-		echo "Error: " . $sql . "<br>" . $database -> getDb -> error;
+		echo "Error: " . $sql . "<br>" . $database -> getDb() -> error;
 	}	
 }
 

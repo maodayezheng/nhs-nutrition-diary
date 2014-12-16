@@ -13,6 +13,16 @@ SubmitController.prototype.submitSymptoms = function() {
 }
 
 SubmitController.prototype.submitWeight = function() {
-	//TODO implement once html elements are defined in weight.html
-	var newWeight = $('#newWeight').val();
+	var table = "weightmanifest"; 
+	
+	//TODO retrieve user id
+	var userid = 1;
+	var datetime = $('#datetime').val();
+	var weight = $('#weight').val();
+	
+	var data = JSON.stringify(Array(userid, datetime, weight));
+	var dataToServer = Array(data, table);
+	alert("before stringify");
+	ServerDBAdapter.prototype.submit(dataToServer, "save");
+	alert("after stringify");
 }

@@ -15,14 +15,15 @@ function ServerDBAdapter() {}
 
 ServerDBAdapter.prototype.submit = function(dataToServer, action)
 {
+	alert("in server db adapter");
 	console.log("printing the data sent to the submit function");
 	console.log(dataToServer);
 	
 	var actionUrl;
 	switch(action) {
-		case "save": actionUrl = "saveEntry.php";
-		case "edit": actionUrl = "editEntry.php";
-		case "delete": actionUrl = "deleteEntry.php";
+		case "save": actionUrl = "saveEntry.php"; break;
+		case "edit": actionUrl = "editEntry.php"; break;
+		case "delete": actionUrl = "deleteEntry.php"; break;
 	}
 	
 	$.ajax({

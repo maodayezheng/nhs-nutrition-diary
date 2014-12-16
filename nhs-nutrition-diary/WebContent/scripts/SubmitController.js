@@ -28,6 +28,26 @@ SubmitController.prototype.signIn = function() {
 
 SubmitController.prototype.submitFoods = function() {
 	//TODO submit data
+	var table = "userfoodmanifest"; 
+	
+	var userid = this.getUserId();
+	var datetime = $('#datetime').val();
+	var foodTable;
+	var foodId;
+	var quantity;
+	var calories;
+	var protein;
+	var fluid;
+	var carbohydrates;
+	var fat;
+	var meal;
+	
+	var dataToServer = {
+		"table": table
+		//TODO create JSON for submitting to PHP file
+	};
+	
+	ServerDBAdapter.prototype.submit(dataToServer, "save");
 }
 
 SubmitController.prototype.submitNewFood = function() {
@@ -47,17 +67,17 @@ SubmitController.prototype.submitNewCustomSymptom = function() {
 }
 
 SubmitController.prototype.submitWeight = function() {
-	var table = "weightmanifest"; 
+	var table = "userweightmanifest"; 
 	
 	var userid = this.getUserId();
 	var datetime = $('#datetime').val();
 	var weight = $('#newWeight').val();
 	
 	var dataToServer = {
-			"table": "userweightmanifest",
-			"userid" : userid,
-			"datetime": datetime,
-			"weight": weight
+		"table": table,
+		"userid" : userid,
+		"datetime": datetime,
+		"weight": weight
 	};
 	
 	ServerDBAdapter.prototype.submit(dataToServer, "save");
@@ -72,6 +92,7 @@ SubmitController.prototype.submitSettings = function() {
 	var amendedActivity = $('#activity').val();
 	
 	var dataToServer = {
+		"table": table
 		//TODO create JSON for submitting to PHP file
 	}
 	

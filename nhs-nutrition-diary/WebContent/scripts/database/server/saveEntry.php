@@ -13,7 +13,7 @@ $data = $database->retrieveData();
 $dataDecoded = json_decode($data, true);
 echo "\nechoing data\n".$data;
 
-if($data["table"] == "weightmanifest") {
+if($data[0]["table"] == "weightmanifest") {
 	setEntryWeightManifest($dataDecoded);
 }
 

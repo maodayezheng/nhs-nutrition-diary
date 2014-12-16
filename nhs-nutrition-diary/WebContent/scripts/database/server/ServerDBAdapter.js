@@ -7,8 +7,7 @@
 */
 
 /**
- * This is the constructor for the object with the only required parameter being the table the database entry is concerned with. 
- * Other properties of the object are added on the relevant page. 
+ * This is the constructor for the object. 
  */
 
 function ServerDBAdapter() {}
@@ -21,9 +20,10 @@ ServerDBAdapter.prototype.submit = function(dataToServer, action)
 	
 	var actionUrl;
 	switch(action) {
-		case "save": actionUrl = "saveEntry.php"; break;
-		case "edit": actionUrl = "editEntry.php"; break;
-		case "delete": actionUrl = "deleteEntry.php"; break;
+		case "save": actionUrl = "scripts/database/server/saveEntry.php"; break;
+		case "edit": actionUrl = "scripts/database/server/editEntry.php"; break;
+		case "delete": actionUrl = "scripts/database/server/deleteEntry.php"; break;
+		case "test": actionUrl = "test.php"; break; 
 	}
 	
 	$.ajax({

@@ -9,7 +9,7 @@ SubmitController.prototype.submit = function(submitter) {
 }
 
 SubmitController.prototype.getUserId = function() {
-	//TODO implement method
+	//TODO retrieve user id
 	return 1;
 }
 
@@ -48,7 +48,6 @@ SubmitController.prototype.submitNewCustomSymptom = function() {
 SubmitController.prototype.submitWeight = function() {
 	var table = "weightmanifest"; 
 	
-	//TODO retrieve user id
 	var userid = this.getUserId();
 	var datetime = $('#datetime').val();
 	var weight = $('#weight').val();

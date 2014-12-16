@@ -6,21 +6,18 @@
 include 'DbConfig.php';
 include 'ServerDatabase.php';
 
-echo "\nin saveEntry.php\n";
-
 $database = new ServerDatabase();
 $data = $database->retrieveData();
 $dataDecoded = json_decode($data, true);
-echo "\nechoing data\n".$data;
+
+setEntry($database, $dataDecoded);
+$database -> closeConnection();
 
 /*
 if($dataDecoded["table"] == "weightmanifest") {
 	setEntryWeightManifest($database, $dataDecoded);
 }
 */
-
-setEntry($database, $dataDecoded);
-$database -> closeConnection();
 
 function setEntry($database, $entry) {
 	$sql = "INSERT INTO " . $entry["table"] . " (";
@@ -43,7 +40,7 @@ function setEntry($database, $entry) {
 			$sql = $sql . ", ";
 			continue;
 		}
-		$sql = $sql . $value;
+		$sql = $sql . "'" . $value . "'";
 		$sql = $sql . ", ";
 	}
 	$sql = substr($sql, 0, strlen($sql) - 2);

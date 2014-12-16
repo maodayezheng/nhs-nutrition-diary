@@ -14,7 +14,6 @@ function ServerDBAdapter() {}
 
 ServerDBAdapter.prototype.submit = function(dataToServer, action)
 {
-	alert("in server db adapter");
 	console.log("printing the data sent to the submit function");
 	console.log(dataToServer);
 	

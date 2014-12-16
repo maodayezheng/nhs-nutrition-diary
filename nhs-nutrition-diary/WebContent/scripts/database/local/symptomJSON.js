@@ -29,7 +29,7 @@ function SymptomListSingleton()
 	                        {"Symptom":"Dumping syndrome","rate":false},
 	                        {"Symptom":"Abdominal pain with eating","rate":true},
 	                        {"Symptom":"Abdominal pain after eating","rate":true},
-	                        {"Symptom":"Blaoting","rate":false},
+	                        {"Symptom":"Bloating","rate":false},
 	                        {"Symptom":"Loose stools","rate":false},
 	                        {"Symptom":"Pale/oily/difficult to flush stools","rate":false},
 	                        {"Symptom":"Bowels opened over 4 times a day","rate":false},

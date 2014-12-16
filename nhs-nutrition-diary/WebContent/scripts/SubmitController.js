@@ -5,6 +5,7 @@ SubmitController.prototype.submit = function(submitter) {
 	switch(submitter) {
 		case 'btn_submit_symptoms': this.submitSymptoms(); break;
 		case 'btn_submit_weight': this.submitWeight(); break;
+		case 'btn_submit_settings': this.submitSettings(); break;
 	}
 }
 
@@ -50,7 +51,7 @@ SubmitController.prototype.submitWeight = function() {
 	
 	var userid = this.getUserId();
 	var datetime = $('#datetime').val();
-	var weight = $('#weight').val();
+	var weight = $('#newWeight').val();
 	
 	var dataToServer = {
 			"table": "userweightmanifest",
@@ -63,5 +64,16 @@ SubmitController.prototype.submitWeight = function() {
 }
 
 SubmitController.prototype.submitSettings = function() {
-	//TODO submit data
+	var table = "userrequirementsmanifest";
+	
+	var amendedCalories = $('#cals').val();
+	var amendedProtein = $('#protein').val();
+	var amendedFluid = $('#fluid').val();
+	var amendedActivity = $('#activity').val();
+	
+	var dataToServer = {
+		//TODO create JSON for submitting to PHP file
+	}
+	
+	ServerDBAdapter.prototype.submit(dataToServer, "save");
 }

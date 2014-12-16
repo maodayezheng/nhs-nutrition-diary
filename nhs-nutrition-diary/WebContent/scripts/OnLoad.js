@@ -46,13 +46,10 @@ OnLoad.prototype.updateSettings = function() {
 	var fluidRequirement = 3150;
 	var activityLevel = 1;
 	
-	$('#cals').val(caloriesRequirement);
 	$('#currentCals').html(caloriesRequirement);
-	$('#protein').val(proteinRequirement);
 	$('#currentProtein').html(proteinRequirement);
-	$('#fluid').val(fluidRequirement);
 	$('#currentFluid').html(fluidRequirement);
-	$('#activity').val(activityLevel);
 	$('#currentActivity').html(activityLevel);
 	
+	//TODO amendments need to be queried from the DB
 }

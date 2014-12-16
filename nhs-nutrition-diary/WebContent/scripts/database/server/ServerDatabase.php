@@ -4,31 +4,27 @@ class ServerDatabase extends Dbconfig
 {
 	private $db;
 	
-	private function __construct()
+	public function __construct()
 	{
-		echo "in constructor of ServerDatabase";
+		echo "\nin constructor of ServerDatabase\n";
 		parent::__construct(); 
-		$this -> db = new mysqli($servername, $username, $password); // Create connection
+		$this -> db = new mysqli(parent::serverName, parent::$userName, parent::$passCode); // Create connection
 		if ($this->db->connect_error) { die("Connection failed: " . $conn->connect_error); } // Check connection
-		
 		
 	}
 	
+	public function closeConnection()
+	{
+		echo "\nclosing connection\n";
+		$this->db->close(); //close connection
+		echo "\nconnection closed\n";
+		
+	}
+	
+}	
 	
 	
 	
-	
-	/* // Create database
-	$sql = "CREATE DATABASE myDB";
-	if ($conn->query($sql) === TRUE) {
-		echo "Database created successfully";
-	} else {
-		echo "Error creating database: " . $conn->error;
-	} */
-	
-	$conn->close();
-	
-	
-}
+
 
 ?>

@@ -8,7 +8,35 @@ SubmitController.prototype.submit = function(submitter) {
 	}
 }
 
+SubmitController.prototype.signUp = function() {
+	//TODO submit data
+}
+
+SubmitController.prototype.submitSignUpDetails = function() {
+	//TODO submit data
+}
+
+SubmitController.prototype.signIn = function() {
+	//TODO submit data
+}
+
+SubmitController.prototype.submitFoods = function() {
+	//TODO submit data
+}
+
+SubmitController.prototype.submitNewFood = function() {
+	//TODO submit data
+}
+
+SubmitController.prototype.submitMeal = function() {
+	//TODO submit data
+}
+
 SubmitController.prototype.submitSymptoms = function() {
+	//TODO submit data
+}
+
+SubmitController.prototype.submitNewCustomSymptom = function() {
 	//TODO submit data
 }
 
@@ -22,7 +50,9 @@ SubmitController.prototype.submitWeight = function() {
 	
 	var data = JSON.stringify(Array(userid, datetime, weight));
 	var dataToServer = Array(data, table);
-	alert("before stringify");
 	ServerDBAdapter.prototype.submit(dataToServer, "save");
-	alert("after stringify");
+}
+
+SubmitController.prototype.submitSettings = function() {
+	//TODO submit data
 }

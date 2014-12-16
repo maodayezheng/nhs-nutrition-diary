@@ -1,94 +1,90 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="lib/jquery/jquery-ui-1.11.2.min.css" rel="stylesheet">
-<link href="lib/bootstrap/bootstrap.min.css" rel="stylesheet">
-<link href="css/timepicker.css" rel="stylesheet" />
-<link href="css/weight.css" rel="stylesheet">
-<link href="css/standardPage.css" rel="stylesheet">
-<script src="lib/jquery/jquery.js"></script>
-<script src="lib/jquery/jquery-ui-1.11.2.min.js"></script>
-<script src="lib/bootstrap/bootstrap.min.js"></script>
-<script src="lib/knockout/Knockout-v2.2.0.js"></script>
-<script src="scripts/OnLoad.js"></script>
-<script src="scripts/SubmitController.js"></script>
-<script src="scripts/database/server/ServerDBAdapter.js"></script>
-<script src="scripts/timepicker.js"></script>
-<script src="scripts/util/dateTimePicker.js"></script>
-<script src="scripts/Navigator.js"></script>
-<script src="scripts/database/local/symptomJSON.js"></script>
-<script src="scripts/symptoms.js"></script>
-<title>Weight</title>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		<link href="lib/jquery/jquery-ui-1.11.2.min.css" rel="stylesheet">
+		<link href="lib/bootstrap/bootstrap.min.css" rel="stylesheet">
+		<link href="css/timepicker.css" rel="stylesheet" />
+		<link href="css/weight.css" rel="stylesheet">
+		<link href="css/standardPage.css" rel="stylesheet">
 
-</head>
+		<script src="lib/jquery/jquery.js"></script>
+		<script src="lib/jquery/jquery-ui-1.11.2.min.js"></script>
+		<script src="lib/bootstrap/bootstrap.min.js"></script>
+		<script src="lib/knockout/Knockout-v2.2.0.js"></script>
+	
+		<script src="scripts/OnLoad.js"></script>
+		<script src="scripts/SubmitController.js"></script>
+		<script src="scripts/database/server/ServerDBAdapter.js"></script>
+		<script src="scripts/timepicker.js"></script>
+		<script src="scripts/util/dateTimePicker.js"></script>
+		<script src="scripts/Navigator.js"></script>
+		<script src="scripts/database/local/symptomJSON.js"></script>
+		<script src="scripts/symptoms.js"></script>
+		
+		<title>Weight</title>
+	</head>
 
-<body onload="OnLoad.prototype.load('weight')">
-	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-		<div class="container-fluid">
-			<div class="collapse navbar-collapse">
-				<h3 class="nav-title">Weight</h3>
+	<body onload="OnLoad.prototype.load('weight')">
+		<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+			<div class="container-fluid">
+				<div class="collapse navbar-collapse">
+					<h3 class="nav-title">Weight</h3>
+				</div>
 			</div>
-		</div>
-	</nav>
+		</nav>
 
-	<div class="container">
-		<div class="panel-body">
-			<h4>It is recommended to enter your weight a maximum of once per
-				week</h4>
-			<div class="col-sm-4">
-				<label>Please check the appropriate box below</label>
-			</div>
-
-			<div style="display: inline">
-				<div class="form-group">
-					<div class="row"></div>
-					<div class="panel-body">
-						<div>
-							<ul class="list-group checked-list-box">
-								<li class="list-group-item" id="swollenFeet">I have swollen
-									feet.</li>
-								<li class="list-group-item" id="swollenLegs">I have swollen
-									legs.</li>
-								<li class="list-group-item" id="swollenAbdomen">I have a
-									swollen abdomen.</li>
-								<li class="list-group-item" id="swollenAbdomen">None of the
-									above.</li>
-							</ul>
+		<div class="container">
+			<div class="panel-body">
+				<h4>It is recommended to enter your weight a maximum of once per week</h4>
+				<div class="col-sm-4">
+					<label>Please check the appropriate box below</label>
+				</div>
+				<div style="display: inline">
+					<div class="form-group">
+						<div class="row"></div>
+						<div class="panel-body">
+							<div>
+								<ul class="list-group checked-list-box">
+									<li class="list-group-item" id="swollenFeet">I have swollen feet.</li>
+									<li class="list-group-item" id="swollenLegs">I have swollen legs.</li>
+									<li class="list-group-item" id="swollenAbdomen">I have a swollen abdomen.</li>
+									<li class="list-group-item" id="swollenAbdomen">None of the above.</li>
+								</ul>
+							</div>
 						</div>
-					</div>
-					<div class="container">
-						<div class="row">
-							<div class="col-sm-4">
-								<div class="left-inner-addon ">
-									<i class="glyphicon glyphicon-calendar"></i>
-										<input type="text" class="form-control date" placeholder="Date" id="datetime">
+						<div class="container">
+							<div class="row">
+								<div class="col-sm-4">
+									<div class="left-inner-addon ">
+										<i class="glyphicon glyphicon-calendar"></i>
+											<input type="text" class="form-control date" placeholder="Date" id="datetime">
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-					<br>
-
-					<div class="container">
-						<div class="row">
-							<label class="col-sm-2">Current Weight</label>
-							<label class="col-sm-1" id="currentWeight"></label>
+						<br>
+						<div class="container">
+							<div class="row">
+								<label class="col-sm-2">Current Weight</label>
+								<label class="col-sm-1" id="currentWeight"></label>
+							</div>
+						</div>
+						<div class="container">
+							<div class="row">
+								<label class="col-sm-2">Update Weight</label>
+									<input class="col-sm-1" id="weight" type="number">
+							</div>
 						</div>
 					</div>
-
-					<div class="container">
-						<div class="row">
-							<label class="col-sm-2">Update Weight</label>
-								<input class="col-sm-1" id="weight" type="number">
-						</div>
+					<div class=" col-sm-4">
+						<button class="btn btn-lg btn-success btn-block" id="btn_submit_weight"
+							onclick="SubmitController.prototype.submit(this.id)">Save
+						</button>
 					</div>
-
-				</div>
-				<div class=" col-sm-4">
-					<button class="btn btn-lg btn-success btn-block" id="btn_submit_weight"
-						onclick="SubmitController.prototype.submit(this.id)">Save</button>
 				</div>
 			</div>
 		</div>

@@ -33,6 +33,10 @@ class ServerDatabase extends Dbconfig
 		echo "\nconnection closed\n";
 	}
 	
+	public getDb() {
+		return $this -> db;
+	}
+	
 }	
 	
 	

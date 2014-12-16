@@ -3,6 +3,14 @@
 /**
  * 
  */
+include 'DbConfig.php';
+include 'ServerDatabase.php';
 
-echo("in save entry");
+echo "\nin saveEntry.php\n";
+
+$database = new ServerDatabase();
+$data = $database->retrieveData();
+echo "\nechoing data\n".$data;
+
+$database -> closeConnection();
 ?>

@@ -13,12 +13,24 @@ class ServerDatabase extends Dbconfig
 		
 	}
 	
+	public function retrieveData()
+	{
+		try
+		{
+			$rest_json = file_get_contents("php://input");
+			return $rest_json;
+		} catch (Exception $e)
+		{
+			echo $e->getMessage();
+			return;
+		}
+	}
+	
 	public function closeConnection()
 	{
 		echo "\nclosing connection\n";
 		$this->db->close(); //close connection
 		echo "\nconnection closed\n";
-		
 	}
 	
 }	

@@ -75,9 +75,9 @@ $(document).ready(function(){
 		
 		
 		
-		var dbEntry = new ServerDBAdapter('foodManifest');
+		var dbEntry = new ServerDBAdapter();
 		
-		dbEntry.submit(test,'test');
+		dbEntry.submit(test,'save');
 
 
 		

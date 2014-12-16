@@ -2,18 +2,19 @@
 //Using http://stackoverflow.com/questions/3228694/php-database-connection-class as guidance. 
 class Dbconfig 
 {
-	protected $serverName;
-	protected $userName;
-	protected $passCode;
-	protected $dbName;
+	const serverName='localhost';
+	protected static $userName='';
+	protected static $passCode='';
+	protected static $dbName='';
 
 	protected function __construct()
 	{
-		echo "in DbConfig constructor";
-		$this -> serverName = 'localhost';
-		$this -> userName = 'root';
-		$this -> passCode = '';
-		$this -> dbName = 'appetite';		
+		echo "\nin DbConfig constructor\n";
+		//$this-> serverName = 'localhost';
+		$this-> userName = 'root';
+		$this-> passCode = '';
+		$this-> dbName = 'appetite';		
+		echo "\n variables assigned \n";
 	}
 }
 ?>

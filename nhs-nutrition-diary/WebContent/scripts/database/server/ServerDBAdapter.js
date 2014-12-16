@@ -11,28 +11,28 @@
  * Other properties of the object are added on the relevant page. 
  */
 
-function DbEntry(table)
-{
-	this.table = table; //the table the dbEntry refers to. 
-	var user; //should be equal to the unique ID of the user stored in the localStorage.
-}
+function ServerDBAdapter() {}
 
-DbEntry.prototype.submit = function(dataToServer)
+ServerDBAdapter.prototype.submit = function(dataToServer, action)
 {
-
 	console.log("printing the data sent to the submit function");
 	console.log(dataToServer);
 	
-	//TODO in addition to dataToServer, we need to have the table as argument for the post
+	var actionUrl;
+	switch(action) {
+		case "save": actionUrl = "saveEntry.php";
+		case "edit": actionUrl = "editEntry.php";
+		case "delete": actionUrl = "deleteEntry.php";
+	}
+	
 	$.ajax({
-	    url: "DbAdapter.php",
+	    url: actionUrl,
 	    type: "POST",
 	    dataType: "text", //what you will receive in response. 
 	    contentType: "application/json", //what you are sending.
 	    data: JSON.stringify(dataToServer),
 	    success: function (msg){
 	        console.log("success " + msg); 
-	        //alert('changed');
 	    },
 	    error: function (xhr, ajaxOptions, thrownError) {
 	        console.log(xhr.statusText);
@@ -42,45 +42,3 @@ DbEntry.prototype.submit = function(dataToServer)
 	    }
 	});
 };
-	
-	
-//	function()  	
-//{
-//	console.log('in submit'); 	
-//	console.log(this);
-//	console.log(JSON.stringify(this));
-//	ajaxReq = new XMLHttpRequest();
-//
-//	ajaxReq.open("POST","database.php",false);
-//	ajaxReq.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-//
-//
-//	
-//	ajaxReq.send(JSON.stringify(this));
-//	
-//	console.log('after request');
-//	
-//};
-/*
-$.ajax(
-{
-	    url: "localhost",
-	    type: "post",
-	    //dataType: 'jsonp', //use jsonp data type in order to perform cross-domain ajax 
-	    //crossDomain: true, 
-	    data: JSON.stringify(this), 
-	    success: alert('success'),
-	    error: alert('failures')
-});*/
-	
-	
-/*
-jQuery(document).ready(function( $ ) {
-	  
-	});
-	
-
-});*/
-
-
-console.log('in phpdb');

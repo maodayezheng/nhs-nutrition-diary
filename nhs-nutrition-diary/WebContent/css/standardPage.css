@@ -28,7 +28,7 @@ body{
 	
 	}
 
-.form-signin,
+.form-signin{}
 
 	
 .ui-autocomplete {
@@ -58,7 +58,7 @@ body{
 .form-signup
 {
 	align:center;
-	max-width:400px;
+	max-width:767px;
 	
 	margin:50px auto;
 	}

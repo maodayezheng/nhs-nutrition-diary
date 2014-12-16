@@ -5,7 +5,7 @@ class Dbconfig
 	const serverName='localhost';
 	protected static $userName='';
 	protected static $passCode='';
-	protected static $dbName='';
+	const dbName='appetite';
 
 	protected function __construct()
 	{
@@ -13,7 +13,7 @@ class Dbconfig
 		//$this-> serverName = 'localhost';
 		$this-> userName = 'root';
 		$this-> passCode = '';
-		$this-> dbName = 'appetite';		
+		//$this-> dbName = 'appetite';		
 		echo "\n variables assigned \n";
 	}
 }

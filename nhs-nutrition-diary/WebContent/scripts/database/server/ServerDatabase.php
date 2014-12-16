@@ -8,7 +8,7 @@ class ServerDatabase extends Dbconfig
 	{
 		echo "\nin constructor of ServerDatabase\n";
 		parent::__construct(); 
-		$this -> db = new mysqli(parent::serverName, parent::$userName, parent::$passCode); // Create connection
+		$this -> db = new mysqli(parent::serverName, parent::$userName, parent::$passCode, parent::dbName); // Create connection
 		if ($this->db->connect_error) { die("Connection failed: " . $conn->connect_error); } // Check connection
 		
 	}

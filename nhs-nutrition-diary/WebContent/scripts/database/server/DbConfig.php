@@ -1,6 +1,6 @@
 <?php
  
-class Dbconfig 
+class DbConfig 
 {
 	private $serverName;
 	private $userName;

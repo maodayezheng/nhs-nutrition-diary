@@ -105,13 +105,22 @@ $(document).ready(function () {
 	});
 	
 	 ////////////////////////////////SUBMIT SYMPTOMS TO JSON///////////////////////////////////////////////
-
+	
+	   $("input:radio[name=discomfort]").click(function() {
+		    var value = $(this).val();
+		    console.log(value);
+		});
+	
    $(".submitSymptoms").click(function(){
+	   
+
+	   
        var checkedItems = {}, counter = 0;
        $("#symptomList li.active").each(function(idx, li) {
            checkedItems[counter] = $(li).text();
            console.log($(li).text());
            counter++;
+
        });
        $("#symptomListCustom li.active").each(function(idx, li) {
            checkedItems[counter] = $(li).text();
@@ -122,6 +131,8 @@ $(document).ready(function () {
        console.log(checkedItems);
        alert(JSON.stringify(checkedItems));
    });
+   
+
    
    ////////////////////////////////SUBMIT NEW SYMPTOMS TO JSON///////////////////////////////////////////////
    

@@ -6,17 +6,20 @@
  * Created: 16th December 2014. 
  * @author Vikram Bakshi
  */
-class ServerDatabase extends DbConfig
+
+require_once 'init.php';
+
+class ServerDatabase
 {
 	private static $_instance = null; //instance for the singleton. 
 	private $db, $_query, $_error=false, $_results, $_count = 0; //instance variables for manipulating the database.
 	
 	public function __construct()
 	{
-		echo "\nin constructor of ServerDatabase\n";
-		parent::__construct(); 
-		$this -> db = new mysqli(parent::getServerName(), parent::getUserName(), parent::getPassCode(), parent::getDbName()); // Create connection
+		echo "\nin constructor of ServerDatabase\n"; 
+		$this -> db = new mysqli(DbConfig::get('mysql/serverName'), DbConfig::get('mysql/userName'), DbConfig::get('mysql/passCode'), DbConfig::get('mysql/dbName')); // Create connection
 		if ($this->db->connect_error) { die("Connection failed: " . $this->db); } // Check connection was successful. 
+		echo "\n successful connection \n";
 	}
 	
 	/**
@@ -43,7 +46,7 @@ class ServerDatabase extends DbConfig
 	public function closeConnection()
 	{
 		echo "\nclosing connection\n";
-		$this->db->close(); //close connection
+		$this->db->close(); 
 		echo "\nconnection closed\n";
 	}
 	

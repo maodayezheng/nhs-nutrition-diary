@@ -94,13 +94,52 @@
 					</ul>
 				</div>
 			</form>
-			<button id="btn_symptoms_to_symptomNotInList" class="btn btn-lg btn-primary btn-block"
+			
+					</div>
+
+	<div class="hiddenSymptomContainer">
+		<form class="form-signup" role="form">
+			<div class="well"overflow:auto;">
+				<div class="right-inner-addon style="float:right;">
+					<i class="glyphicon glyphicon-plus" style="vertical-align: centre"></i>
+					<input class="btn btn-lg btn-primary btn-block symptomAddButton"
+						type="button" id="saveNewCustomSymptom" style="float: right">
+					<div style="overflow: hidden; padding-right: .5em;">
+						<input type="text" class="form-control" id="newSymptom"
+							placeholder="Enter symptom..."> <br>
+					</div>
+				</div>
+
+				<h4>Custom Symptoms</h4>
+
+				<ul class="list-group checked-list-box" id="symptomListCustom">
+
+					<li class="list-group-item" style="cursor: pointer;"><span
+						class="state-icon glyphicon glyphicon-unchecked"></span>Headache</li>
+					<li class="list-group-item" style="cursor: pointer;"><span
+						class="state-icon glyphicon glyphicon-unchecked"></span>Back pain</li>
+
+
+				</ul>
+				<br>
+			</div>
+		</form>
+	</div>
+
+	<!--  <button id="btn_symptoms_to_symptomNotInList" class="btn btn-lg btn-primary btn-block"
 				onclick="Navigator.prototype.navigate(this.id)">Symptom not in list
-			</button>
-			<button id="btn_submit_symptoms" class="btn btn-lg btn-primary btn-block submitSymptoms"
+			</button>-->
+			
+			<input id="revealHiddenCustomSymptoms" class="btn btn-lg btn-primary btn-block" value="Symptom not in list?">
+			
+			<button id="btn_submit_symptoms" class="btn btn-lg btn-success btn-block submitSymptoms"
 				onclick="SubmitController.prototype.submit(this.id)">Submit symptoms
 			</button>
-		</div>
+						
+			
+			
+
+		
 		<div id="display-json"></div>
 	</body>
 </html>

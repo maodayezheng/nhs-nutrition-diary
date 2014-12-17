@@ -280,8 +280,10 @@ a.clickable:hover { text-decoration:none; }
   
     display: block;
     margin: -0.2em auto 0px;
-
-
-
-
+}
+.hiddenSymptomContainer{
+	display:none;
+}
+.hiddenSymptomContainer{
+	display:none;
 }

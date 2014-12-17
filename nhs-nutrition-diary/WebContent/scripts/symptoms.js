@@ -82,6 +82,13 @@ $(document).ready(function () {
 		$("#newSymptomList").append(newSymptomInList);	     
 	     setUpCheckbox();		
 	});
+	
+	$("#saveNewCustomSymptom").click(function(){	
+		var symptom = $('#newSymptom').val();
+		var newSymptomInList = '<li class="list-group-item" style="cursor: pointer;"><span class="state-icon glyphicon glyphicon-unchecked"></span>'+symptom+'</li>';
+		$("#symptomListCustom").append(newSymptomInList);	     
+	     setUpCheckbox();		
+	});
 
 
 	var symptoms = new SymptomListSingleton().symptomList;
@@ -91,6 +98,11 @@ $(document).ready(function () {
     
    // $('#get-checked-data').on('click', function(event) {
        // event.preventDefault(); 
+	
+	$('#revealHiddenCustomSymptoms').click(function() {
+		$(".hiddenSymptomContainer").show("slow");
+
+	});
 	
 	 ////////////////////////////////SUBMIT SYMPTOMS TO JSON///////////////////////////////////////////////
 

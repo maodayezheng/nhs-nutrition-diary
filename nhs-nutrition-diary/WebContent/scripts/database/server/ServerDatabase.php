@@ -31,6 +31,9 @@ class ServerDatabase
 		return self::$_instance; 
 	}
 	
+	/**
+	 * This function retrieves the JSON data sent via the post method. 
+	 */
 	public static function retrieveData()
 	{
 		try
@@ -43,6 +46,9 @@ class ServerDatabase
 		}
 	}
 	
+	/**
+	 * For closing the connection to the database. 
+	 */
 	public function closeConnection()
 	{
 		echo "\nclosing connection\n";
@@ -50,6 +56,9 @@ class ServerDatabase
 		echo "\nconnection closed\n";
 	}
 	
+	/**
+	 * Function returns a pointer/reference to the database for binding purposes. 
+	 */
 	public function getDb() 
 	{
 		return $this->db;

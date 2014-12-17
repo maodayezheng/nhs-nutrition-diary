@@ -113,6 +113,12 @@ $(document).ready(function () {
            console.log($(li).text());
            counter++;
        });
+       $("#symptomListCustom li.active").each(function(idx, li) {
+           checkedItems[counter] = $(li).text();
+           console.log($(li).text());
+           counter++;
+       });
+       
        console.log(checkedItems);
        alert(JSON.stringify(checkedItems));
    });

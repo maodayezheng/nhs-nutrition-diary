@@ -1,5 +1,5 @@
 <?php
-//Using http://stackoverflow.com/questions/3228694/php-database-connection-class as guidance. 
+ 
 class Dbconfig 
 {
 	private $serverName;

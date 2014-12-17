@@ -9,6 +9,7 @@ class DbConfig
 
 	protected function __construct()
 	{
+		echo "\n in constructor for DbConfig\n";
 		$this-> serverName = 'localhost';
 		$this-> userName = 'root';
 		$this-> passCode = '';

@@ -4,14 +4,14 @@
  * This class implements the singleton pattern to enforce only one connection to the database at a single time. To return 
  * a connection to the database the user should use call the static method 'ServerDatabase::getInstance();'
  * Created: 16th December 2014. 
- * @author Vikram Bakshi, Robert Juergens 
+ * @author Vikram Bakshi
  */
 class ServerDatabase extends DbConfig
 {
 	private static $_instance = null; //instance for the singleton. 
-	private $db, $_query, $_error=false, $_results, $_count = 0; 
+	private $db, $_query, $_error=false, $_results, $_count = 0; //instance variables for manipulating the database.
 	
-	private function __construct()
+	public function __construct()
 	{
 		echo "\nin constructor of ServerDatabase\n";
 		parent::__construct(); 
@@ -19,19 +19,16 @@ class ServerDatabase extends DbConfig
 		if ($this->db->connect_error) { die("Connection failed: " . $this->db); } // Check connection was successful. 
 	}
 	
+	/**
+	 * This function returns the instance if it exists otherwise it creates one. This acts as the singleton object. 
+	 */
 	public static function getInstance()
 	{
-		if (!isset(self::$_instance))
-		{
-			self::$_instance = new ServerDatabase();
-		}
-		else 
-		{
-			return self::$_instance; 
-		}
+		if (!isset(self::$_instance)) { self::$_instance = new ServerDatabase(); }
+		return self::$_instance; 
 	}
 	
-	public function retrieveData()
+	public static function retrieveData()
 	{
 		try
 		{
@@ -52,13 +49,7 @@ class ServerDatabase extends DbConfig
 	
 	public function getDb() 
 	{
-		return $this -> db;
+		return $this->db;
 	}
-	
-}	
-	
-	
-	
-
-
+}
 ?>

@@ -4,12 +4,12 @@
  * 
  */
 include 'DbConfig.php';
-include 'ServerDatabase.php';
+//include 'ServerDatabase.php';
+require_once 'ServerDatabase.php';
 
-$database = new ServerDatabase();
-$data = $database->retrieveData();
+$database = ServerDatabase::getInstance();
+$data = ServerDatabase::retrieveData();
 $dataDecoded = json_decode($data, true);
-
 setEntry($database, $dataDecoded);
 $database -> closeConnection();
 

@@ -1,8 +1,9 @@
 <?php
 /**
- * This class extends the DbConfig class allowing it to have access to its parents configuration variables.
- * This class implements the singleton pattern to enforce only one connection to the database at a single time. To return 
- * a connection to the database the user should use call the static method 'ServerDatabase::getInstance();'
+ * This class contains the main functionalty needed for the server side database. It imports init.php to have access to the global variables associated
+ * with the config of the database. The class follows the singleton design pattern so that only one instance of the connection to the database can ever exist. 
+ * To return a connection to the database the user should use call the static method 'ServerDatabase::getInstance();'. To close the connection the user should 
+ * call closeConnection() on the instance object. 
  * Created: 16th December 2014. 
  * @author Vikram Bakshi
  */

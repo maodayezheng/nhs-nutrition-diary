@@ -2,35 +2,6 @@
  
 class DbConfig 
 {
-	private $serverName;
-	private $userName;
-	private $passCode;
-	private $dbName;
-
-	protected function __construct()
-	{
-		echo "\n in constructor for DbConfig\n";
-		$this-> serverName = 'localhost';
-		$this-> userName = 'root';
-		$this-> passCode = '';
-		$this-> dbName = 'appetite';		
-	}
-	
-	public function getServerName() {
-		return $this->serverName;
-	}
-	
-	public function getUserName() {
-		return $this->userName;
-	}
-	
-	public function getPassCode() {
-		return $this->passCode;
-	}
-	
-	public function getDbName() {
-		return $this->dbName;
-	}
 	
 	/**
 	 * This function is for allowing easy access to the config variables of the database. Rather than having to refer to the variables through array notation, this function will allow
@@ -54,8 +25,6 @@ class DbConfig
 			return $config;
 		}
 		return false;
-	}
-	
-	
+	}	
 }
 ?>

@@ -118,30 +118,35 @@ function loadNewFoodView(data){
 	var nameField = $('<input>',{
 		"class":"form-control",
 		"type":"text",
+		"id":"newFoodName",
 		"placeholder":"Food name",
 	}).appendTo(form);
 	
 	var amountField = $('<input>',{
 		"class":"form-control",
 		"type":"text",
-		"placeholder":"Amount"
-	}).appendTo(form);
-	
-	var protienField = $('<input>',{
-		"class":"form-control",
-		"type":"text",
-		"placeholder":"Protein (g)"
+		"id":"newFoodProportion",
+		"placeholder":"Edible proportion (e.g. 1 slice)"
 	}).appendTo(form);
 	
 	var carloriesField = $('<input>',{
 		"class":"form-control",
 		"type":"text",
+		"id":"newFoodCalories",
 		"placeholder":"Calories (kcal)"
+	}).appendTo(form);
+	
+	var protienField = $('<input>',{
+		"class":"form-control",
+		"type":"text",
+		"id":"newFoodProtein",
+		"placeholder":"Protein (g)"
 	}).appendTo(form);
 	
 	var fluidField =$('<input>',{
 		"class":"form-control",
 		"type":"text",
+		"id":"newFoodFluid",
 		"placeholder":"Fluid (ml)"
 	}).appendTo(form);
 }

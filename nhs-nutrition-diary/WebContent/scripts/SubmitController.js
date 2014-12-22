@@ -3,8 +3,8 @@ function SubmitController() {}
 SubmitController.prototype.submit = function(submitter) {
 	switch(submitter) {
 		case 'btn_submit_signUpDetails': this.submitSignUpDetails(); break;
+		case 'btn_submit_foods': this.submitFoods(); break;
 		//TODO set button ids
-//		case '': this.submitFoods(); break;
 //		case '': this.submitNewFood(); break;
 //		case '': this.submitMeal(); break;
 		case 'btn_submit_symptoms': this.submitSymptoms(); break;
@@ -126,12 +126,44 @@ SubmitController.prototype.submitSignUpDetails = function() {
 }
 
 SubmitController.prototype.submitFoods = function() {
+	
+	var foodList =[];
+	var children = $('.selection-list').children('li');
+	children.each(function(index,item){
+		var obj = $(item);
+		// TODO need to add 'date' , 'foodid' and 'foodTable' before push data to food list array
+		foodList.push(obj.data('data'));
+	})
+
+	// TODO add date before return nutriontionBreakDown
+	var nutritionalBreakdown =  {"calories":"","protein":"","fluid":""};
+	nutritionBreakDown["calories"] = $('#calories').text();
+	nutritionBreakDown["protein"] = $('#protein').text();
+	nutritionBreakDown["fluid"] = $('#fluid').text();
+	
+	//TODO check if next lines are needed
+	var warning = $('<div>',{
+		"class":"alert alert-success center",
+		"role":"alert",
+		"text":"update success"
+		});
+	$('body').append(warning);
+	setTimeout(function(){warning.remove()},3000);
+	
+	// TODO warning is not on the center of page
+	//window.location.href = 'home.html';
+	
+	
+	
+	
+	
 	//TODO submit data
 	var table = "userfoodmanifest"; 
 	
 	var userid = this.getUserId();
-	var date = $('#datetime').val();
-	var datetime = this.formatDateTime(date, null);
+	//TODO find actual date
+	var date = "22/10/2014";
+	var dateTime = this.formatDateTime(date, null);
 	var foodTable;
 	var foodId;
 	var quantity;
@@ -143,11 +175,23 @@ SubmitController.prototype.submitFoods = function() {
 	var meal;
 	
 	var dataToServer = {
-		"table": table
-		//TODO create JSON for submitting to PHP file
+		"table": table,
+		"userid": userid,
+		"datetime": dateTime,
+		"foodtable": foodTable,
+		"foodid": foodId,
+		"quantity": quantity,
+		"calories": calories,
+		"protein": protein,
+		"fluid": fluid,
+		"carbohydrates": carbohydrates,
+		"fat": fat,
+		"meal": meal
 	};
 	
 	ServerDBAdapter.prototype.submit(dataToServer, "save");
+	
+	// TODO check whether current meal should be store as customised meal
 }
 
 SubmitController.prototype.submitNewFood = function() {

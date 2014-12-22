@@ -51,28 +51,6 @@ $(document).ready(function(){
 		loadFrequentFoodView(frequentFood);
 	});
 	
-	$('#submit-meal').click(function(){
-		// TODO check whether current meal should be store as customised meal
-		
-		
-		// collect food data in Selection lists and form JSON
-		var food = selections();
-		
-		// collect nutrition breakDown of this meal
-		var progress = getNutritionBreakDown();
-		
-		
-		//var database = new LocalDbSingleton();
-		//database.databaseOpen(LocalDbSingleton.prototype.localDbAdd, 'foodManifestStore', food);
-		
-		var newWarning = warning();
-		    $('body').append(newWarning);
-				setTimeout(function(){newWarning.remove()},3000);
-		
-		// TODO warning is not on the center of page
-		//window.location.href = 'home.html';
-	});
-	
 	$('#nav-button').click(function(){
 		
 		console.log("NAV BUTTON CLICKED");
@@ -89,8 +67,6 @@ $(document).ready(function(){
 	//TODO evaluate frequent food
 });
 
-
-
 function compareWithCurrentSelections(selection){
 	
 	var present = false;
@@ -104,49 +80,6 @@ function compareWithCurrentSelections(selection){
 		});
 	return present;
 }
-
-
-function selections(){
-	
-	var selections =[];
-	var children = $('.selection-list').children('li');
-	children.each(function(index,item){
-		var obj = $(item);
-		// TODO need to add 'date' , 'foodid' and 'foodTable' before push data to selection array
-		selections.push(obj.data('data'));
-	})
-	return selections;
-}
-
-function getNutritionBreakDown(){
-	// TODO add date before return nutriontionBreakDown
-	var nutritionBreakDown={"calories":"","protein":"","fluid":""};
-	nutritionBreakDown["calories"] = $('#calories').text();
-	nutritionBreakDown["protein"] = $('#protein').text();
-	nutritionBreakDown["fluid"] = $('#fluid').text();
-	return [nutritionBreakDown];
-}
-
-
-// TODO missing JSON constructor of costomised meal and new food 
-
-/*
- * function newFood(){
- * var food = {};
- * 
- * return food;
- * 
- * }
- * 
- * function newMeal(){
- * var meal = {}
- * 
- * 
- * return meal
- * }
- * 
- * */
-
 
 function updateNutritionBreakDown(){
 	var children = $('.selection-list').children('li');
@@ -213,18 +146,6 @@ function loadNewFoodView(data){
 	}).appendTo(form);
 }
 
-function warning(){
-	
-	var warning = $('<div>',{
-		"class":"alert alert-success center",
-		"role":"alert",
-		"text":"update success"
-		});
-	
-	return warning;
-	
-}
-
 function loadFrequentFoodView(data){
 	
 	$('.modal-body').empty();
@@ -265,11 +186,7 @@ function loadCustomMealView(data){
 	})
 	
 	$('.modal-body').append(list);
-	
-	
 }
-
-
 
 function displaySelection(selection){
 	
@@ -296,7 +213,6 @@ function displaySelection(selection){
 			alert("Selection already in list");
 		}
 }
-
 
 // render the search result here
 $(function(){

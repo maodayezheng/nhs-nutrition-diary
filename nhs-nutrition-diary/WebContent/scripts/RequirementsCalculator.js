@@ -1,6 +1,6 @@
 function RequirementsCalculator() {
-	//TODO get weight from database
-	//TODO get age from database
+	//TODO get gender, weight and age from database
+	//TODO consider activity level (use activity level + additional activity level)
 }
 
 RequirementsCalculator.prototype.calcCalories = function() {

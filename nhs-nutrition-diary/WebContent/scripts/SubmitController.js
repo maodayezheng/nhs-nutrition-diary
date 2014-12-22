@@ -1,8 +1,12 @@
 function SubmitController() {}
 
 SubmitController.prototype.submit = function(submitter) {
-	
 	switch(submitter) {
+		case 'btn_submit_signUpDetails': this.submitSignUpDetails(); break;
+		//TODO set button ids
+//		case '': this.submitFoods(); break;
+//		case '': this.submitNewFood(); break;
+//		case '': this.submitMeal(); break;
 		case 'btn_submit_symptoms': this.submitSymptoms(); break;
 		case 'btn_save_newCustomSymptom': this.submitNewCustomSymptom(); break;
 		case 'btn_submit_weight': this.submitWeight(); break;
@@ -30,16 +34,95 @@ SubmitController.prototype.formatDateTime = function(date, time) {
 	return dateTime;
 }
 
-SubmitController.prototype.signUp = function() {
-	//TODO submit data
+SubmitController.prototype.updateRequirements = function() {
+	var table = "userrequirementsmanifest";
+	
+	var userId = this.getUserId();
+	//TODO set date of now
+	var date = "10/10/2014";
+	var dateTime = this.formatDateTime(date, null);
+	//TODO get gender, weight, activityLevel, additional calories/protein/fluid/activity from database
+	var gender = "female";
+	var weight = 62.0;
+	var activityLevel = 1.1;
+	var additionalActivity = 0.0;
+	var requirementsCalculator = new RequirementsCalculator();
+	var formulaCalories = requirementsCalculator.calcCalories();
+	var formulaProtein = requirementsCalculator.calcProtein();
+	var formulaFluid = requirementsCalculator.calcFluid();
+	var additionalCalories = 0;
+	var additionalProtein = 0;
+	var additionalFluid = 0;
+	var finalCalories = formulaCalories + additionalCalories;
+	var finalProtein = formulaProtein + additionalProtein;
+	var finalFluid = formulaFluid + additionalFluid;
+	
+	var dataToServer = {
+		"table": table,
+		"userid": userId,
+		"datetime": dateTime,
+		"gender": gender,
+		"weight": weight,
+		"activitylevel": activityLevel,
+		"formulacalories": formulaCalories,
+		"formulaprotein": formulaProtein,
+		"formulafluid": formulaFluid,
+		"additionalcalories": additionalCalories,
+		"additionalprotein": additionalProtein,
+		"additionalfluid": additionalFluid,
+		"additionalactivitylevel": additionalActivity,
+		"finalcalories": finalCalories,
+		"finalprotein": finalProtein,
+		"finalfluid": finalFluid
+	}
+	
+	ServerDBAdapter.prototype.submit(dataToServer, "save");
 }
 
-SubmitController.prototype.submitSignUpDetails = function() {
+SubmitController.prototype.signUp = function() {
 	//TODO submit data
 }
 
 SubmitController.prototype.signIn = function() {
 	//TODO submit data
+}
+
+SubmitController.prototype.submitSignUpDetails = function() {
+	var table = "users";
+	
+	var userId = this.getUserId();
+	//TODO set date of now
+	var date = "10/10/2014";
+	var dateTime = this.formatDateTime(date, null);
+	//TODO get priviledge
+	var priviledge = "dietician";
+	//TODO pw needs to be salted on the server
+	var hashedsaltedpw = 0;
+	
+	var nhsNumber = $('#nhs-number').val();
+	//TODO include hospital number to registration form
+	var hospitalNumber = 0;
+	var weight = $('#weight').val();
+	var dateOfBirth = $('#age').val();;
+	var activityLevel = $('#activity-level').val();;
+	//TODO check which radio button is selected
+	var gender = "female";
+	
+	var dataToServer = {
+		"table": table,
+		"priviledge": priviledge,
+		"hashedsaltedpw": hashedsaltedpw,
+		"nhsnumber": nhsNumber,
+		"hospitalnumber": hospitalNumber,
+		"dateofbirth": dateOfBirth,
+		"gender": gender,
+		"activitylevel": activityLevel,
+		"registrationtimestamp": dateTime
+	}
+	
+	ServerDBAdapter.prototype.submit(dataToServer, "save");
+	
+	this.updateRequirements();
 }
 
 SubmitController.prototype.submitFoods = function() {
@@ -81,25 +164,24 @@ SubmitController.prototype.submitSymptoms = function() {
 	var userid = this.getUserId();
 	var date = $('#symptomDate').val();
 	var time = $('#symptomTime').val();
-	var datetime = this.formatDateTime(date, time);
+	var dateTime = this.formatDateTime(date, time);
 	
-	var checkedItems = {};
+	var checkedSymptoms = {};
 	var counter = 0;
 	$("#symptomList li.active").each(function(idx, li) {
-    	checkedItems[counter] = $(li).text();
+    	checkedSymptoms[counter] = $(li).text();
     	counter++;
 	});
 	$("#symptomListCustom li.active").each(function(idx, li) {
-		checkedItems[counter] = $(li).text();
+		checkedSymptoms[counter] = $(li).text();
 		counter++;
 	});
 	
 	for(var index = 0; index < counter; index++) {
-		//TODO find symptom table
+		var symptom = checkedSymptoms[index];
+		//TODO find symptom table and symptom id --> call GET function for DB (needs to be implemented)
 		var symptomTable = "testTable";
-		//TODO find symptom id
 		var symptomId = 5;
-		var symptom = checkedItems[index];
 		//TODO find rating
 		var rating = 3;
 		//TODO find comment
@@ -108,7 +190,7 @@ SubmitController.prototype.submitSymptoms = function() {
 		var dataToServer = {
 				"table": table,
 				"userid" : userid,
-				"datetime": datetime,
+				"datetime": dateTime,
 				"symptomtable": symptomTable,
 				"symptomid": symptomId,
 				"symptom": symptom,
@@ -158,19 +240,50 @@ SubmitController.prototype.submitWeight = function() {
 	};
 	
 	ServerDBAdapter.prototype.submit(dataToServer, "save");
+	
+	this.updateRequirements();
 }
 
 SubmitController.prototype.submitSettings = function() {
 	var table = "userrequirementsmanifest";
 	
-	var amendedCalories = $('#cals').val();
-	var amendedProtein = $('#protein').val();
-	var amendedFluid = $('#fluid').val();
-	var amendedActivity = $('#activity').val();
+	var userId = this.getUserId();
+	//TODO set date of now
+	var date = "10/10/2014";
+	var dateTime = this.formatDateTime(date, null);
+	//TODO get gender, weight, activityLevel from database
+	var gender = "female";
+	var weight = 62.0;
+	var activityLevel = 1.1;
+	var additionalActivity = $('#activity').val();
+	var requirementsCalculator = new RequirementsCalculator();
+	var formulaCalories = requirementsCalculator.calcCalories();
+	var formulaProtein = requirementsCalculator.calcProtein();
+	var formulaFluid = requirementsCalculator.calcFluid();
+	var additionalCalories = $('#cals').val();
+	var additionalProtein = $('#protein').val();
+	var additionalFluid = $('#fluid').val();
+	var finalCalories = formulaCalories + additionalCalories;
+	var finalProtein = formulaProtein + additionalProtein;
+	var finalFluid = formulaFluid + additionalFluid;
 	
 	var dataToServer = {
-		"table": table
-		//TODO create JSON for submitting to PHP file
+		"table": table,
+		"userid": userId,
+		"datetime": dateTime,
+		"gender": gender,
+		"weight": weight,
+		"activitylevel": activityLevel,
+		"formulacalories": formulaCalories,
+		"formulaprotein": formulaProtein,
+		"formulafluid": formulaFluid,
+		"additionalcalories": additionalCalories,
+		"additionalprotein": additionalProtein,
+		"additionalfluid": additionalFluid,
+		"additionalactivitylevel": additionalActivity,
+		"finalcalories": finalCalories,
+		"finalprotein": finalProtein,
+		"finalfluid": finalFluid
 	}
 	
 	ServerDBAdapter.prototype.submit(dataToServer, "save");

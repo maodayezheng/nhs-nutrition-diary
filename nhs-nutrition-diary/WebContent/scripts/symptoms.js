@@ -197,7 +197,7 @@ $(document).ready(function(){
 });
 
 $(function() {
-    var action;
+	var action;
     $(".number-spinner button").mousedown(function () {
         btn = $(this);
         input = btn.closest('.number-spinner').find('input');

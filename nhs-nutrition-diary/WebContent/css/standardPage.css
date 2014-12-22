@@ -46,8 +46,8 @@ body{
 	
 	
 }
-.form-newFood > input,
-.form-newFood > button{
+.modal-form > input,
+.modal-form> button{
 	margin-top: 10px;	
 }
 .greeding{

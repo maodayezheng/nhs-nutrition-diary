@@ -112,7 +112,7 @@ function loadNewFoodView(data){
 	
 	$('.modal-body').empty();
 	var form = $('<form>',{
-		"class":"form-newFood",
+		"class":"modal-form",
 	}).appendTo('.modal-body');
 	
 	var nameField = $('<input>',{
@@ -198,18 +198,6 @@ function loadCustomMealView(data){
 	})
 	
 	$('.modal-body').append(list);
-}
-
-function loadDateView(){
-	$('.modal-body').empty();
-	var form = $('<form>',{
-		"class":"modal-form",
-	}).appendTo('.modal-body');
-	var fluidField =$('<input>',{
-		"class":"form-control date",
-		"type":"text",
-	}).appendTo(form);
-	
 }
 
 function displaySelection(selection){

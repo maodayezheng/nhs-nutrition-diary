@@ -206,7 +206,7 @@ function loadDateView(){
 		"class":"modal-form",
 	}).appendTo('.modal-body');
 	var fluidField =$('<input>',{
-		"class":"form-control",
+		"class":"form-control date",
 		"type":"text",
 	}).appendTo(form);
 	
@@ -233,8 +233,11 @@ function displaySelection(selection){
 		li.addItemToRight(controlPanel);
 		$('.selection-list').append(li);
 		updateNutritionBreakDown();
+		
 		}else{
+			
 			alert("Selection already in list");
+			
 		}
 }
 

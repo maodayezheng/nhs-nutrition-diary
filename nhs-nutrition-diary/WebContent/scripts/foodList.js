@@ -200,6 +200,18 @@ function loadCustomMealView(data){
 	$('.modal-body').append(list);
 }
 
+function loadDateView(){
+	$('.modal-body').empty();
+	var form = $('<form>',{
+		"class":"modal-form",
+	}).appendTo('.modal-body');
+	var fluidField =$('<input>',{
+		"class":"form-control",
+		"type":"text",
+	}).appendTo(form);
+	
+}
+
 function displaySelection(selection){
 	
 	selection['portion'] = 1;

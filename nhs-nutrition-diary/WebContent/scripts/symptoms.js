@@ -107,25 +107,46 @@ $(document).ready(function () {
 		    var value = $(this).val();
 		    console.log(value);
 		});
-   
-   ////////////////////////////////SUBMIT NEW SYMPTOMS TO JSON///////////////////////////////////////////////
-   
-   $(".submitNewSymptoms").click(function(){
-       var checkedItems = {}, counter = 0;
-       $("#newSymptomList li.active").each(function(idx, li) {
-           checkedItems[counter] = $(li).text();
-           console.log($(li).text());
-           counter++;
-       });
-       console.log(checkedItems);
-       alert(JSON.stringify(checkedItems));
-   });
-       // $('#display-json').html(JSON.stringify(checkedItems, null, '\t'));
-  //  });
+	
+$(".submitSymptoms").click(function(){
+	   
+
+	   
+    var checkedItems = {}, counter = 0;
+    $("#symptomList li.active").each(function(idx, li) {
+        checkedItems[counter] = $(li).text();
+        console.log($(li).text());
+        counter++;
+
+    });
+    $("#symptomListCustom li.active").each(function(idx, li) {
+        checkedItems[counter] = $(li).text();
+        console.log($(li).text());
+        counter++;
+    });
+    
+    console.log(checkedItems);
+    alert(JSON.stringify(checkedItems));
+});
+
+
+
+////////////////////////////////SUBMIT NEW SYMPTOMS TO JSON///////////////////////////////////////////////
+
+$(".submitNewSymptoms").click(function(){
+    var checkedItems = {}, counter = 0;
+    $("#newSymptomList li.active").each(function(idx, li) {
+        checkedItems[counter] = $(li).text();
+        console.log($(li).text());
+        counter++;
+    });
+    console.log(checkedItems);
+    alert(JSON.stringify(checkedItems));
+});
+
 
 	$("#saveWeight").click(function(){
 		$('p').html("#currentWeight");
-		//$("#currentweight").val("#number");
 	});
 	
 	$('li').click(function(){

@@ -126,32 +126,20 @@ SubmitController.prototype.submitSignUpDetails = function() {
 }
 
 SubmitController.prototype.submitFoods = function() {
-	
 	var foodList =[];
 	var children = $('.selection-list').children('li');
 	children.each(function(index,item){
 		var obj = $(item);
 		// TODO need to add 'date' , 'foodid' and 'foodTable' before push data to food list array
 		foodList.push(obj.data('data'));
-	})
-
+	});
+	alert(foodList);
 	// TODO add date before return nutriontionBreakDown
 	var nutritionalBreakdown =  {"calories":"","protein":"","fluid":""};
 	nutritionBreakDown["calories"] = $('#calories').text();
 	nutritionBreakDown["protein"] = $('#protein').text();
 	nutritionBreakDown["fluid"] = $('#fluid').text();
 	
-	//TODO check if next lines are needed
-	var warning = $('<div>',{
-		"class":"alert alert-success center",
-		"role":"alert",
-		"text":"update success"
-		});
-	$('body').append(warning);
-	setTimeout(function(){warning.remove()},3000);
-	
-	// TODO warning is not on the center of page
-	//window.location.href = 'home.html';
 	
 	
 	
@@ -192,6 +180,17 @@ SubmitController.prototype.submitFoods = function() {
 	ServerDBAdapter.prototype.submit(dataToServer, "save");
 	
 	// TODO check whether current meal should be store as customised meal
+	
+	var warning = $('<div>',{
+		"class":"alert alert-success center",
+		"role":"alert",
+		"text":"update success"
+	});
+	$('body').append(warning);
+	setTimeout(function(){warning.remove()},3000);
+	
+	// TODO warning is not on the center of page
+	//window.location.href = 'home.html';
 }
 
 SubmitController.prototype.submitNewFood = function() {

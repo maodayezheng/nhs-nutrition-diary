@@ -9,6 +9,7 @@
 		<link href="css/standardPage.css" rel="stylesheet">
 		<link href="css/weight.css" rel="stylesheet">
 		
+		<script src="scripts/util/Validator.js"></script>
 		<script src="scripts/RequirementsCalculator.js"></script>
 		<script src="scripts/SubmitController.js"></script>
 		<script src="scripts/database/server/ServerDBAdapter.js"></script>
@@ -87,7 +88,8 @@
 				<br>
 			</div>
 		</div>
-		<button id="btn_submit_settings" class="btn btn-lg btn-primary btn-block">Save changes</button>
+		<button id="btn_submit_settings" class="btn btn-lg btn-primary btn-block"
+			onclick="SubmitController.prototype.submit(this.id)">Save changes</button>
 	</div>
 </body>
 </html>

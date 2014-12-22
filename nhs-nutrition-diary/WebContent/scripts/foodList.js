@@ -129,14 +129,14 @@ function loadNewFoodView(data){
 		"placeholder":"Edible proportion (e.g. 1 slice)"
 	}).appendTo(form);
 	
-	var carloriesField = $('<input>',{
+	var caloriesField = $('<input>',{
 		"class":"form-control",
 		"type":"text",
 		"id":"newFoodCalories",
 		"placeholder":"Calories (kcal)"
 	}).appendTo(form);
 	
-	var protienField = $('<input>',{
+	var proteinField = $('<input>',{
 		"class":"form-control",
 		"type":"text",
 		"id":"newFoodProtein",

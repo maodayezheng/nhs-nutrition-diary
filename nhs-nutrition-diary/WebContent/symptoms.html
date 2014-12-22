@@ -14,6 +14,7 @@
     	<script src="lib/bootstrap/bootstrap.min.js"></script>
     	<script src="lib/knockout/Knockout-v2.2.0.js"></script>   	    	
     	
+    	<script src="scripts/util/Validator.js"></script>
     	<script src="scripts/SubmitController.js"></script>
 		<script src="scripts/database/server/ServerDBAdapter.js"></script>
     	<script src="scripts/timepicker.js"></script>
@@ -57,11 +58,11 @@
 						<div style="display: inline">
 							<div class="left-inner-addon ">
 								<i class="glyphicon glyphicon-calendar"></i>
-								<input type="text" class="form-control date" placeholder="Date"><br/>
+								<input type="text" id="symptomDate" class="form-control date" placeholder="Date"><br/>
 							</div>
 							<div class="left-inner-addon ">
 								<i class="glyphicon glyphicon-time"></i>
-								<input type="text" class="form-control time " placeholder="Time"><br/>
+								<input type="text" id="symptomTime" class="form-control time " placeholder="Time"><br/>
 							</div>
 						</div>
 					</form>			
@@ -79,8 +80,7 @@
 					</ul>
 				</div>
 			</form>
-			
-					</div>
+		</div>
 
 	<div class="hiddenSymptomContainer">
 		<form class="form-signup" role="form">
@@ -88,7 +88,8 @@
 				<div class="right-inner-addon style="float:right;">
 					<i class="glyphicon glyphicon-plus" style="vertical-align: centre"></i>
 					<input class="btn btn-lg btn-primary btn-block symptomAddButton"
-						type="button" id="saveNewCustomSymptom" style="float: right">
+						type="button" id="btn_save_newCustomSymptom" style="float: right"
+						onclick="SubmitController.prototype.submit(this.id)">
 					<div style="overflow: hidden; padding-right: .5em;">
 						<input type="text" class="form-control" id="newSymptom"
 							placeholder="Enter symptom..."> <br>
@@ -96,21 +97,16 @@
 				</div>
 
 				<h4>Custom Symptoms</h4>
-
 				<ul class="list-group checked-list-box" id="symptomListCustom">
-
 					<li class="list-group-item" style="cursor: pointer;"><span
 						class="state-icon glyphicon glyphicon-unchecked"></span>Headache</li>
 					<li class="list-group-item" style="cursor: pointer;"><span
 						class="state-icon glyphicon glyphicon-unchecked"></span>Back pain</li>
-
-
 				</ul>
 				<br>
 			</div>
 		</form>
 	</div>
-
 	<!--  <button id="btn_symptoms_to_symptomNotInList" class="btn btn-lg btn-primary btn-block"
 				onclick="Navigator.prototype.navigate(this.id)">Symptom not in list
 			</button>-->
@@ -120,11 +116,6 @@
 			<button id="btn_submit_symptoms" class="btn btn-lg btn-success btn-block submitSymptoms"
 				onclick="SubmitController.prototype.submit(this.id)">Submit symptoms
 			</button>
-						
-			
-			
-
-		
 		<div id="display-json"></div>
 	</body>
 </html>

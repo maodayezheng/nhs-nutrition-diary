@@ -4,6 +4,7 @@ SubmitController.prototype.submit = function(submitter) {
 	
 	switch(submitter) {
 		case 'btn_submit_symptoms': this.submitSymptoms(); break;
+		case 'btn_save_newCustomSymptom': this.submitNewCustomSymptom(); break;
 		case 'btn_submit_weight': this.submitWeight(); break;
 		case 'btn_submit_settings': this.submitSettings(); break;
 	}
@@ -12,6 +13,21 @@ SubmitController.prototype.submit = function(submitter) {
 SubmitController.prototype.getUserId = function() {
 	//TODO retrieve user id
 	return 1;
+}
+
+SubmitController.prototype.formatDateTime = function(date, time) {
+	var dateTime = "";
+	var validator = new Validator();
+	var dateParts = validator.dateSplit(date);
+	dateTime = dateTime + dateParts[2] + "-" + dateParts[1] + "-" + dateParts[0];
+	
+	if(time != null) {
+		dateTime = dateTime + " " + time + ":00"; 
+	} else {
+		dateTime += " 00:00:00";
+	}
+	
+	return dateTime;
 }
 
 SubmitController.prototype.signUp = function() {
@@ -31,7 +47,8 @@ SubmitController.prototype.submitFoods = function() {
 	var table = "userfoodmanifest"; 
 	
 	var userid = this.getUserId();
-	var datetime = $('#datetime').val();
+	var date = $('#datetime').val();
+	var datetime = this.formatDateTime(date, null);
 	var foodTable;
 	var foodId;
 	var quantity;
@@ -59,18 +76,78 @@ SubmitController.prototype.submitMeal = function() {
 }
 
 SubmitController.prototype.submitSymptoms = function() {
-	//TODO submit data
+	var table = "usersymptommanifest"; 
+	
+	var userid = this.getUserId();
+	var date = $('#symptomDate').val();
+	var time = $('#symptomTime').val();
+	var datetime = this.formatDateTime(date, time);
+	
+	var checkedItems = {};
+	var counter = 0;
+	$("#symptomList li.active").each(function(idx, li) {
+    	checkedItems[counter] = $(li).text();
+    	counter++;
+	});
+	$("#symptomListCustom li.active").each(function(idx, li) {
+		checkedItems[counter] = $(li).text();
+		counter++;
+	});
+	
+	for(var index = 0; index < counter; index++) {
+		//TODO find symptom table
+		var symptomTable = "testTable";
+		//TODO find symptom id
+		var symptomId = 5;
+		var symptom = checkedItems[index];
+		//TODO find rating
+		var rating = 3;
+		//TODO find comment
+		var comment = "test comment";
+		
+		var dataToServer = {
+				"table": table,
+				"userid" : userid,
+				"datetime": datetime,
+				"symptomtable": symptomTable,
+				"symptomid": symptomId,
+				"symptom": symptom,
+				"rating": rating,
+				"comment": comment
+		};
+		
+		ServerDBAdapter.prototype.submit(dataToServer, "save");		
+	}
 }
 
 SubmitController.prototype.submitNewCustomSymptom = function() {
-	//TODO submit data
+	table = "usersymptomlist";
+	userid = this.getUserId();
+	var date = $('#symptomDate').val();
+	var time = $('#symptomTime').val();
+	var datetime = this.formatDateTime(date, time);
+	
+	var symptom = $("#newSymptom").val();
+	//TODO find symptom description
+	var symptomDescription = "testDescription";
+	
+	var dataToServer = {
+			"table": table,
+			"userid" : userid,
+			"datetime": datetime,
+			"symptom": symptom,
+			"symptomdescription": symptomDescription,
+	};
+	
+	ServerDBAdapter.prototype.submit(dataToServer, "save");	
 }
 
 SubmitController.prototype.submitWeight = function() {
 	var table = "userweightmanifest"; 
 	
 	var userid = this.getUserId();
-	var datetime = $('#datetime').val();
+	var date = $('#datetime').val();
+	var datetime = this.formatDateTime(date, null);
 	var weight = $('#newWeight').val();
 	
 	var dataToServer = {

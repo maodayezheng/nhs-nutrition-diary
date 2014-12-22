@@ -1,5 +1,3 @@
-
-
 jQuery.fn.extend({
 
 	//add more items to a target DOM
@@ -8,11 +6,8 @@ jQuery.fn.extend({
 		$.each(items,function(index){
 			target.append(items[index]);
 		});
-			}
+	}
 });
-
-
-
 
 // constructor of deleteButton target is the delete target
 function createDeleteButton(target){
@@ -37,7 +32,6 @@ function createControlPanel(){
 	});
 		return controlPanel;
 	}
-
 
 // constructor of increaseButton
 function createIncreaseButton(data){
@@ -77,7 +71,6 @@ function createReduceButton(data){
 	return reduceButton;
 	}
 
-
 // constructor of account button 
 function createAccountButton(data){
 	
@@ -89,8 +82,6 @@ function createAccountButton(data){
 	});
 	return accountButton;
 }
-
-
 
 // constructor of basic <li> DOM in our project
 function createBasicLi(data){
@@ -114,32 +105,4 @@ function createBasicLi(data){
 		position.append(item);
 	}
 	return li;
-	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+}

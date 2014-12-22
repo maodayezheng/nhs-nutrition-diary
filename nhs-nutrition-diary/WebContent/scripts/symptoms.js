@@ -52,7 +52,6 @@ $(document).ready(function () {
 		                $widget.removeClass(style + color + ' active');
 		            }
 		        }
-		        
 
 		        function init() {
 		            
@@ -83,13 +82,12 @@ $(document).ready(function () {
 	     setUpCheckbox();		
 	});
 	
-	$("#saveNewCustomSymptom").click(function(){	
+	$("#btn_save_newCustomSymptom").click(function(){	
 		var symptom = $('#newSymptom').val();
 		var newSymptomInList = '<li class="list-group-item" style="cursor: pointer;"><span class="state-icon glyphicon glyphicon-unchecked"></span>'+symptom+'</li>';
 		$("#symptomListCustom").append(newSymptomInList);	     
 	     setUpCheckbox();		
 	});
-
 
 	var symptoms = new SymptomListSingleton().symptomList;
 	ko.applyBindings(new symptomsListView(symptoms));
@@ -101,7 +99,6 @@ $(document).ready(function () {
 	
 	$('#revealHiddenCustomSymptoms').click(function() {
 		$(".hiddenSymptomContainer").show("slow");
-
 	});
 	
 	 ////////////////////////////////SUBMIT SYMPTOMS TO JSON///////////////////////////////////////////////
@@ -110,29 +107,6 @@ $(document).ready(function () {
 		    var value = $(this).val();
 		    console.log(value);
 		});
-	
-   $(".submitSymptoms").click(function(){
-	   
-
-	   
-       var checkedItems = {}, counter = 0;
-       $("#symptomList li.active").each(function(idx, li) {
-           checkedItems[counter] = $(li).text();
-           console.log($(li).text());
-           counter++;
-
-       });
-       $("#symptomListCustom li.active").each(function(idx, li) {
-           checkedItems[counter] = $(li).text();
-           console.log($(li).text());
-           counter++;
-       });
-       
-       console.log(checkedItems);
-       alert(JSON.stringify(checkedItems));
-   });
-   
-
    
    ////////////////////////////////SUBMIT NEW SYMPTOMS TO JSON///////////////////////////////////////////////
    
@@ -149,24 +123,15 @@ $(document).ready(function () {
        // $('#display-json').html(JSON.stringify(checkedItems, null, '\t'));
   //  });
 
-
-
-
 	$("#saveWeight").click(function(){
 		$('p').html("#currentWeight");
 		//$("#currentweight").val("#number");
 	});
 	
-	
-
-	
 	$('li').click(function(){
 		var target = $(this).next(".drop-scoring");	
 	$(target).slideToggle('slow');
 	});
-
-	
-	
 });
 
 //---- method to combine data with DOMs----
@@ -182,23 +147,15 @@ ko.bindingHandlers.ratingScore ={
 			}
 			}
 		},
-		update:function(element,valueAccessor){
-			
-		}
+		update:function(element,valueAccessor){}
 };
-
-
 
 function symptomsListView(symptoms){
 		var self = this;
 		this.symptoms =symptoms;
 		self.ratingSection = ko.computed(function(){
 		},this);
-		
 }
-
-
-
 
 ////////////////////////////////NOT USED IN SYMPTOMS//////////////////////////////
 ////////////////////////////////USED IN WEIGHT//////////////////////////////
@@ -269,6 +226,3 @@ $(function() {
         clearInterval(action);
     });
 });
-
-
-

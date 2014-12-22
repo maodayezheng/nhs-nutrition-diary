@@ -21,7 +21,6 @@ class DB
 	
 	public function __construct()
 	{
-		echo "\nin constructor of DB\n"; 
 		try 
 		{
 			$this->_pdo = new PDO('mysql:host=' . DbConfig::get('mysql/host') . ';dbname=' . DbConfig::get('mysql/db'), DbConfig::get('mysql/userName'), DbConfig::get('mysql/passCode'));
@@ -33,7 +32,7 @@ class DB
 	}
 	
 	/**
-	 * This function returns the instance if it exists otherwise it creates one. This acts as the singleton object. 
+	 * This static function creates an instance of the class if it does not exist. Otherwise it returns the pre-existing instance - thus following the singleton pattern.  
 	 */
 	public static function getInstance()
 	{
@@ -43,20 +42,6 @@ class DB
 	}
 	
 	/**
-	 * This function retrieves the JSON data sent via the post method. 
-	 */
-	public static function retrieveData()
-	{
-		try
-		{
-			$rest_json = file_get_contents("php://input");
-			return $rest_json;
-		} catch (Exception $e)
-		{
-			echo $e->getMessage();
-		}
-	}
-	/**
 	 * For closing the connection to the database. 
 	 */
 	public function closeConnection()
@@ -65,6 +50,7 @@ class DB
 		$this->_pdo = null; 
 		echo "\nconnection closed\n";
 	}
+	
 	/**
 	 * Function returns a pointer/reference to the database for binding purposes. 
 	 */
@@ -73,11 +59,12 @@ class DB
 		return $this->_pdo;
 	}
 	
-	
 	/**
-	 * This function abstracts away the native PDO functionality in order to create a more general database query. You can call this function as such:
-	 * (for example) 'DB::getInstance()->query("SELECT id FROM userweightmanifest WHERE weight = ?", array('99'))'. This function allows the developer to chain the value 99 to the '?'. Multiple
-	 * values can be included in the array making it extremely flexible.  
+	 * This method abstracts away the native PDO functionality in order to create a more general database query. It takes to inputs, $sql, and $params.
+	 * The method is intended to receive sql ($sql) containing '?' marks (e.g. SELECT id FROM userweightmanifest WHERE weight = ?). The method then binds
+	 * the values from the $params array to the question mark. Multiple question  marks and values can be used in the $sql and $params variables. The result
+	 * of the query is stored in the instance variable _results and the number of results is stored in the instance variable _count. If there is an error, 
+	 * _error is set to true. 
 	 */
 	public function query($sql, $params = array())
 	{
@@ -105,6 +92,11 @@ class DB
 		return $this; 
 	}
 	
+	/**
+	 * This method utilises the query method to conduct any sql action (get, delete) etc. It is intended to be called by a given action method (such as GET or DELETE)
+	 * and is used to aid preventing SQL injections. For example 'DB::getInstance()->get('userweightmanifest', array('weight','=','99')' would call this method with $action 
+	 * defined as GET. The operators allowed are defined in the $operators array. 
+	 */
 	public function action($action, $table, $where = array()) //action e.g. SELECT *
 	{
 		if(count($where)===3) //we need a field, operator and value. 
@@ -125,16 +117,26 @@ class DB
 		}
 	}
 	
+	/**
+	 * Utilises the action method to carry out a GET action. 
+	 */
 	public function get($table, $where)
 	{
 		return $this->action('SELECT *', $table, $where); //assume that the action is always SELECT * because we want to return all rows. 
 	}
-	
+	/**
+	 * Utilises the action method to carry out a DELETE action.
+	 */
 	public function delete($table, $where)
 	{
 		return $this->action('DELETE', $table, $where); 
 	}
 	
+	/**
+	 * Inserts a record into a given table. Uses the backtick character '`' to increase security by preventing SQL injections. 
+	 * Usage example: DB::getInstance()->insert('users',array('nhsnumber' => '123456', 'dateofbirth' => '20141222', 'hashedsaltedpw' => 'hashedsaltedpw'));
+	 * 
+	 */
 	public function insert($table, $fields = array())
 	{
 		if(count($fields)) //if data is in out fields array
@@ -143,6 +145,7 @@ class DB
 			$values = ''; //variable that will keep track of the '?' marks in the query.
 			$x = 1; //count. PDO documentation states position starts with 1. 
 			
+			//building up the $values variable for the query. 
 			foreach($fields as $field)
 			{
 				$values .= '?';
@@ -158,11 +161,13 @@ class DB
 			{
 				return true;
 			}
-			
-			echo $sql;
 		}
 	}
 	
+	/**
+	 * This method updates a pre existing record in the database. It needs to be provided with the id of the record in the table in which it is updating.  
+	 * Example usage: DB::getInstance()->update('users',1,array('nhsnumber' => 'newNHSNum', 'dateofbirth' => 'newDOB', 'hashedsaltedpw' => 'newhashedsaltedpw')); 
+	 */
 	public function update($table, $id, $fields)
 	{
 		$set = ''; //field to update for the given id. 
@@ -188,7 +193,9 @@ class DB
 		return false; 
 	}
 	
-	
+	/**
+	 * Returns the results instance variable. 
+	 */
 	public function results()
 	{
 		return $this->_results; 
@@ -202,26 +209,20 @@ class DB
 		return $this->results()[0];
 	}
 	
-	
+	/**
+	 * Returns the count of the results i.e. num of rows returned in the query instance variable. 
+	 */
 	public function count()
 	{
 		return $this->_count; 
 	}
 	
 	/**
-	 * 
+	 * Returns true if there is an error ($this->_error is set in other methods)
 	 */
 	public function error()
 	{
 		return $this->_error; 
 	}
-	
-	
-	
-	
-	
-	
-	
-	
 }
 ?>

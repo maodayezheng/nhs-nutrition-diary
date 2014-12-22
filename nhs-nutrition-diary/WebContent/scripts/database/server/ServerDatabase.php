@@ -18,9 +18,9 @@ class ServerDatabase
 	public function __construct()
 	{
 		echo "\nin constructor of ServerDatabase\n"; 
-		$this -> db = new mysqli(DbConfig::get('mysql/serverName'), DbConfig::get('mysql/userName'), DbConfig::get('mysql/passCode'), DbConfig::get('mysql/dbName')); // Create connection
+		$this -> db = new mysqli(DbConfig::get('mysql/host'), DbConfig::get('mysql/userName'), DbConfig::get('mysql/passCode'), DbConfig::get('mysql/db')); // Create connection
 		if ($this->db->connect_error) { die("Connection failed: " . $this->db); } // Check connection was successful. 
-		echo "\n successful connection \n";
+		echo "\n successful connection!! \n";
 	}
 	
 	/**
@@ -46,7 +46,6 @@ class ServerDatabase
 			echo $e->getMessage();
 		}
 	}
-	
 	/**
 	 * For closing the connection to the database. 
 	 */
@@ -56,7 +55,6 @@ class ServerDatabase
 		$this->db->close(); 
 		echo "\nconnection closed\n";
 	}
-	
 	/**
 	 * Function returns a pointer/reference to the database for binding purposes. 
 	 */
@@ -64,5 +62,24 @@ class ServerDatabase
 	{
 		return $this->db;
 	}
+	
+	public function query($sql, $params = array())
+	{
+		$this->_error = false; //needs to be reset to false so that we know we are not returning an error for a previous query.  
+		if($this->_query = $this->db->prepare($sql))
+		{
+		
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
 ?>

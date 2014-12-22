@@ -10,10 +10,10 @@ echo "<br /> in init.php <br />";
  */
 $GLOBALS['config'] = array(
 	'mysql' => array(
-		'serverName' => '127.0.0.1',
+		'host' => '127.0.0.1',
 		'userName'	 => 'root',
 		'passCode'	 => '',
-		'dbName'	 => 'appetite'
+		'db'	 => 'appetite'
 	),
 	'remember' => array(
 		'cookie_name'	=> 'appetiteCookie',

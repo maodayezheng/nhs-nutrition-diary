@@ -3,6 +3,7 @@ function OnLoad() {}
 OnLoad.prototype.load = function(pageName) {
 	switch(pageName) {
 		case 'home': this.updateTodaysBalance(); break;
+		case 'symptoms': this.updateSymptoms(); break;
 		case 'history': toggleHistoryVisualisation(); break;
 		case 'weight': this.updateWeight(); break;
 		case 'settings': this.updateSettings(); break;
@@ -32,8 +33,16 @@ OnLoad.prototype.updateTodaysBalance = function() {
 	$('#progressBar_fluid').html('' + fluidCurrent + '/' + fluidRequirement + ' ml');
 }
 
+OnLoad.prototype.updateSymptoms = function() {
+	var date = new Date();
+	$('#symptomDate').val(date.dateFormat('d/m/Y'));
+	$('#symptomTime').val(date.dateFormat('H:i'));
+}
+
 OnLoad.prototype.updateWeight = function() {
 	//TODO replace hard-coded value with db getter
+	var date = new Date();
+	$('#datetime').val(date.dateFormat('d/m/Y'));
 	var weight = 100;
 	$('#currentWeight').html('' + weight + ' kg');
 	$('#newWeight').val(weight);

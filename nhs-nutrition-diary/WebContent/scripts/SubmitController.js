@@ -126,75 +126,58 @@ SubmitController.prototype.submitSignUpDetails = function() {
 }
 
 SubmitController.prototype.submitFoods = function() {
-	//TODO create food list
-	var foodList =[];
-	var counter = 0;
-	$('.selection-list li').each(function(idx, li) {
-		
-		var food  = $(li).data('data');
-		alert(food['label']);
-		alert(food['portion']);
-		/*foodList[counter] = $(li).data('data');
-		alert()
-		alert(foodList[counter]);
-		counter++;*/
-	});
-	
-	/* BOWENS CODE
-	var children = $('.selection-list').children('li');
-	children.each(function(index,item){
-		var obj = $(item);
-		// TODO need to add 'date' , 'foodid' and 'foodTable' before push data to food list array
-		alert(obj);
-		foodList.push(obj.data('data'));
-	});*/
-	
-	// TODO add date before return nutriontionBreakDown
-	var nutritionalBreakdown =  {"calories":"","protein":"","fluid":""};
-	nutritionalBreakdown["calories"] = $('#calories').text();
-	nutritionalBreakdown["protein"] = $('#protein').text();
-	nutritionalBreakdown["fluid"] = $('#fluid').text();
-	
-	
-	
-	
-	
-	
-	//TODO submit data
 	var table = "userfoodmanifest"; 
 	
 	var userid = this.getUserId();
 	//TODO find actual date
 	var date = "22/10/2014";
 	var dateTime = this.formatDateTime(date, null);
-	var foodTable;
-	var foodId;
-	var quantity;
-	var calories;
-	var protein;
-	var fluid;
-	var carbohydrates;
-	var fat;
 	var meal;
 	
-	var dataToServer = {
-		"table": table,
-		"userid": userid,
-		"datetime": dateTime,
-		"foodtable": foodTable,
-		"foodid": foodId,
-		"quantity": quantity,
-		"calories": calories,
-		"protein": protein,
-		"fluid": fluid,
-		"carbohydrates": carbohydrates,
-		"fat": fat,
-		"meal": meal
-	};
+	//TODO create food list
+	var foodList =[];
+	var counter = 0;
+	$('.selection-list li').each(function(idx, li) {
+		var food  = $(li).data('data');
+		var foodLabel = food['label'];
+		var quantity = food['portion'];
+		counter++;
+		
+		//TODO get foodid, cals, prot, fluid, carbs, fat, and check if food is from foodlist or from userfoodlist
+		var foodTable = "foodlist";
+		var foodId = 0;
+		var calories = 0;
+		var protein = 0;
+		var fluid = 0;
+		var carbohydrates = 0;
+		var fat = 0;
+		
+		var dataToServer = {
+				"table": table,
+				"userid": userid,
+				"datetime": dateTime,
+				"foodtable": foodTable,
+				"foodid": foodId,
+				"quantity": quantity,
+				"calories": calories,
+				"protein": protein,
+				"fluid": fluid,
+				"carbohydrates": carbohydrates,
+				"fat": fat,
+				"meal": meal
+		};
+		
+		ServerDBAdapter.prototype.submit(dataToServer, "save");
+	});
 	
-	ServerDBAdapter.prototype.submit(dataToServer, "save");
+	//TODO add date before return nutritional breakdown
+	var nutritionalBreakdown =  {"calories":"","protein":"","fluid":""};
+	nutritionalBreakdown["calories"] = $('#calories').text();
+	nutritionalBreakdown["protein"] = $('#protein').text();
+	nutritionalBreakdown["fluid"] = $('#fluid').text();
 	
-	// TODO check whether current meal should be store as customised meal
+	//TODO check whether current meal should be store as customised meal
+	//TODO if yes, then user must enter a name for the meal
 	
 	var warning = $('<div>',{
 		"class":"alert alert-success center",

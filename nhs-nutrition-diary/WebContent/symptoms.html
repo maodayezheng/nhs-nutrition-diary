@@ -14,6 +14,7 @@
     	<script src="lib/bootstrap/bootstrap.min.js"></script>
     	<script src="lib/knockout/Knockout-v2.2.0.js"></script>   	    	
     	
+    	<script src="scripts/OnLoad.js"></script>
     	<script src="scripts/util/Validator.js"></script>
     	<script src="scripts/SubmitController.js"></script>
 		<script src="scripts/database/server/ServerDBAdapter.js"></script>
@@ -26,7 +27,7 @@
     	<title>Symptoms</title>
 	</head>
 
-	<body>
+	<body onload="OnLoad.prototype.load('symptoms')">
 		<nav class="navbar navbar-default" role="navigation">
 			<div class="row">
 				<div class="col-xs-2 border">

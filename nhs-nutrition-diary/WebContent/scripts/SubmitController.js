@@ -126,19 +126,29 @@ SubmitController.prototype.submitSignUpDetails = function() {
 }
 
 SubmitController.prototype.submitFoods = function() {
+	//TODO create food list
 	var foodList =[];
+	var counter = 0;
+	$('.selection-list li').each(function(idx, li) {
+		foodList[counter] = $(li).text();
+		alert(foodList[counter]);
+		counter++;
+	});
+	
+	/* BOWENS CODE
 	var children = $('.selection-list').children('li');
 	children.each(function(index,item){
 		var obj = $(item);
 		// TODO need to add 'date' , 'foodid' and 'foodTable' before push data to food list array
+		alert(obj);
 		foodList.push(obj.data('data'));
-	});
-	alert(foodList);
+	});*/
+	
 	// TODO add date before return nutriontionBreakDown
 	var nutritionalBreakdown =  {"calories":"","protein":"","fluid":""};
-	nutritionBreakDown["calories"] = $('#calories').text();
-	nutritionBreakDown["protein"] = $('#protein').text();
-	nutritionBreakDown["fluid"] = $('#fluid').text();
+	nutritionalBreakdown["calories"] = $('#calories').text();
+	nutritionalBreakdown["protein"] = $('#protein').text();
+	nutritionalBreakdown["fluid"] = $('#fluid').text();
 	
 	
 	

@@ -68,23 +68,22 @@
 						</div>
 					</form>			
 					<ul class="list-group checked-list-box" id="symptomList" data-bind="foreach:symptoms"><li class="list-group-item"><label data-bind="text:Symptom"></label></li>
-						
-						
-<div class="drop-scoring">										
-  <label>Rate discomfort 1-5 (low to high)</label>
-  <select class="discomfortRating">
-    <option>1</option>
-    <option>2</option>
-    <option>3</option>
-    <option>4</option>
-    <option>5</option>
-  </select>
 
-        					<br><br>
-        					
-        					<input type="text" class="form-control" id="symptomComment" placeholder="Optional comment"><br>
-						</div>
-					</ul>
+
+					<div class="drop-scoring">
+						<label>Rate discomfort 0-4 (low to high)</label> 
+						<select
+							class="discomfortRating">
+							<option>0</option>
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+							<option>4</option>
+						</select> <br>
+						<br> <input type="text" class="form-control"
+							id="symptomComment" placeholder="Optional comment"><br>
+					</div>
+				</ul>
 				</div>
 			</form>
 		</div>

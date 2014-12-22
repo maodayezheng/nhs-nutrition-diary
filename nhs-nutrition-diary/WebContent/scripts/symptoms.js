@@ -107,6 +107,7 @@ $(document).ready(function () {
 $(".submitSymptoms").click(function(){
 	   
 var discomfortScore = $('input[name="discomfort"]:checked').val();
+var conceptName = $('.discomfortRating :selected').text();
 	   
     var checkedItems = {}, counter = 0;
     $("#symptomList li.active").each(function(idx, li) {
@@ -121,8 +122,8 @@ var discomfortScore = $('input[name="discomfort"]:checked').val();
         counter++;
     });
     
-    console.log(checkedItems + discomfortScore);
-    alert(JSON.stringify(checkedItems) + "discomfort score is " + discomfortScore);
+    console.log(checkedItems + conceptName);
+    alert(JSON.stringify(checkedItems));
 });
 
 

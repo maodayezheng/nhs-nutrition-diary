@@ -38,9 +38,8 @@ SubmitController.prototype.updateRequirements = function() {
 	var table = "userrequirementsmanifest";
 	
 	var userId = this.getUserId();
-	//TODO set date of now
-	var date = "10/10/2014";
-	var dateTime = this.formatDateTime(date, null);
+	var date = new Date();
+	var dateTime = this.formatDateTime(date.dateFormat('d/m/Y'), null);
 	//TODO get gender, weight, activityLevel, additional calories/protein/fluid/activity from database
 	var gender = "female";
 	var weight = 62.0;
@@ -91,9 +90,8 @@ SubmitController.prototype.submitSignUpDetails = function() {
 	var table = "users";
 	
 	var userId = this.getUserId();
-	//TODO set date of now
-	var date = "10/10/2014";
-	var dateTime = this.formatDateTime(date, null);
+	var date = new Date();
+	var dateTime = this.formatDateTime(date.dateFormat('d/m/Y'), null);
 	//TODO get priviledge
 	var priviledge = "dietician";
 	//TODO pw needs to be salted on the server
@@ -192,7 +190,6 @@ SubmitController.prototype.submitFoods = function() {
 }
 
 SubmitController.prototype.submitNewFood = function() {
-	//TODO submit data
 	var table = "userfoodlist";
 	var userid = this.getUserId();
 	var date = new Date();
@@ -316,9 +313,8 @@ SubmitController.prototype.submitSettings = function() {
 	var table = "userrequirementsmanifest";
 	
 	var userId = this.getUserId();
-	//TODO set date of now
-	var date = "10/10/2014";
-	var dateTime = this.formatDateTime(date, null);
+	var date = new Date();
+	var dateTime = this.formatDateTime(date.dateFormat('d/m/Y'), null);
 	//TODO get gender, weight, activityLevel from database
 	var gender = "female";
 	var weight = 62.0;

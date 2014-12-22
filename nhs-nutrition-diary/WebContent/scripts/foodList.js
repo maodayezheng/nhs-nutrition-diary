@@ -157,7 +157,7 @@ function updateNutritionBreakDown(){
 		var obj = $(item);
 		var food = obj.data('data');
 		console.log(food);
-		var portion = food['edibleproportion'];
+		var portion = food['portion'];
 		
 		protein += portion*parseNutritionData(food['Protein.g']);
 		fluid += portion*parseNutritionData(food['Water.g']);
@@ -273,7 +273,7 @@ function loadCustomMealView(data){
 
 function displaySelection(selection){
 	
-	
+	selection['portion'] = 1;
 	if(!compareWithCurrentSelections(selection)){
 			
 		var li = new createBasicLi(selection);

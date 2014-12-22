@@ -129,6 +129,13 @@ function loadNewFoodView(data){
 		"placeholder":"Edible proportion (e.g. 1 slice)"
 	}).appendTo(form);
 	
+	var amountField = $('<input>',{
+		"class":"form-control",
+		"type":"text",
+		"id":"newFoodWeight",
+		"placeholder":"Weight of edible proportion in g (e.g. 100)"
+	}).appendTo(form);
+	
 	var caloriesField = $('<input>',{
 		"class":"form-control",
 		"type":"text",

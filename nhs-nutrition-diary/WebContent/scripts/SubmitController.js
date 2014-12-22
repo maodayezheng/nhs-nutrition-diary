@@ -193,6 +193,33 @@ SubmitController.prototype.submitFoods = function() {
 
 SubmitController.prototype.submitNewFood = function() {
 	//TODO submit data
+	var table = "userfoodlist";
+	var userid = this.getUserId();
+	var date = new Date();
+	var dateTime = this.formatDateTime(date.dateFormat('d/m/Y'), date.dateFormat('H:i'));
+	
+	var foodName = $('#newFoodName');
+	var comment = $('#newFoodProportion');
+	var quantityWeight = $('#newFoodWeight');
+	var calories = $('#newFoodCalories');
+	var protein = $('#newFoodProtein');
+	var fluid = $('#newFoodFluid');
+	
+	var dataToServer = {
+			"table": table,
+			"userid": userid,
+			"datetime": dateTime,
+			"foodname": foodName,
+			"quantity.g": quantityWeight,
+			"quantitycomment": comment,
+			"calories": calories,
+			"protein": protein,
+			"fluid": fluid,
+			//TODO fat is currently not implemented on the page
+			"fat": 0
+	};
+	
+	ServerDBAdapter.prototype.submit(dataToServer, "save");
 }
 
 SubmitController.prototype.submitMeal = function() {

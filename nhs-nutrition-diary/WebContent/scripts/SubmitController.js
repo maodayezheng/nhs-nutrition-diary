@@ -130,9 +130,14 @@ SubmitController.prototype.submitFoods = function() {
 	var foodList =[];
 	var counter = 0;
 	$('.selection-list li').each(function(idx, li) {
-		foodList[counter] = $(li).text();
+		
+		var food  = $(li).data('data');
+		alert(food['label']);
+		alert(food['portion']);
+		/*foodList[counter] = $(li).data('data');
+		alert()
 		alert(foodList[counter]);
-		counter++;
+		counter++;*/
 	});
 	
 	/* BOWENS CODE

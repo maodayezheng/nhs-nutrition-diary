@@ -46,8 +46,8 @@ body{
 	
 	
 }
-.modal-form > input,
-.modal-form> button{
+.form-newFood > input,
+.form-newFood > button{
 	margin-top: 10px;	
 }
 .greeding{
@@ -287,3 +287,4 @@ a.clickable:hover { text-decoration:none; }
 .hiddenSymptomContainer{
 	display:none;
 }
+

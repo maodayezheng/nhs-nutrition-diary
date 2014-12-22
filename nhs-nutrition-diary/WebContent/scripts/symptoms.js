@@ -103,14 +103,10 @@ $(document).ready(function () {
 	
 	 ////////////////////////////////SUBMIT SYMPTOMS TO JSON///////////////////////////////////////////////
 	
-	   $("input:radio[name=discomfort]").click(function() {
-		    var value = $(this).val();
-		    console.log(value);
-		});
 	
 $(".submitSymptoms").click(function(){
 	   
-
+var discomfortScore = $('input[name="discomfort"]:checked').val();
 	   
     var checkedItems = {}, counter = 0;
     $("#symptomList li.active").each(function(idx, li) {
@@ -125,8 +121,8 @@ $(".submitSymptoms").click(function(){
         counter++;
     });
     
-    console.log(checkedItems);
-    alert(JSON.stringify(checkedItems));
+    console.log(checkedItems + discomfortScore);
+    alert(JSON.stringify(checkedItems) + "discomfort score is " + discomfortScore);
 });
 
 

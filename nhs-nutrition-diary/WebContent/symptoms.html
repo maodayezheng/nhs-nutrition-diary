@@ -68,16 +68,22 @@
 						</div>
 					</form>			
 					<ul class="list-group checked-list-box" id="symptomList" data-bind="foreach:symptoms"><li class="list-group-item"><label data-bind="text:Symptom"></label></li>
-						<p class="drop-scoring">
-							Please rate discomfort 1-5 (low - high)<br>
-							1 <input type="radio" name="discomfort" id="id_cfimb_5_1" value="1">
-							2 <input type="radio" name="discomfort" id="id_cfimb_5_1" value="2">
-							3 <input type="radio" name="discomfort" id="id_cfimb_5_1" value="3">
-							4 <input type="radio" name="discomfort" id="id_cfimb_5_1" value="4">
-							5 <input type="radio" name="discomfort" id="id_cfimb_5_1" value="5">
+						
+						
+<div class="drop-scoring">										
+  <label>Rate discomfort 1-5 (low to high)</label>
+  <select class="discomfortRating">
+    <option>1</option>
+    <option>2</option>
+    <option>3</option>
+    <option>4</option>
+    <option>5</option>
+  </select>
+
         					<br><br>
-        					<input type="text" class="form-control" id="symptomComment" placeholder="Optional comment">
-						</p>
+        					
+        					<input type="text" class="form-control" id="symptomComment" placeholder="Optional comment"><br>
+						</div>
 					</ul>
 				</div>
 			</form>
@@ -117,6 +123,7 @@
 			<button id="btn_submit_symptoms" class="btn btn-lg btn-success btn-block submitSymptoms"
 				onclick="SubmitController.prototype.submit(this.id)">Submit symptoms
 			</button>
+
 		<div id="display-json"></div>
 	</body>
 </html>

@@ -135,6 +135,74 @@ class DB
 		return $this->action('DELETE', $table, $where); 
 	}
 	
+	public function insert($table, $fields = array())
+	{
+		if(count($fields)) //if data is in out fields array
+		{
+			$keys = array_keys($fields);
+			$values = ''; //variable that will keep track of the '?' marks in the query.
+			$x = 1; //count. PDO documentation states position starts with 1. 
+			
+			foreach($fields as $field)
+			{
+				$values .= '?';
+				if($x < count($fields)) //are we at the end of the fields we have defined? If not, we want to add a comma.
+				{
+					$values .= ', ';
+				}	
+				$x++;
+			}
+			
+			$sql = "INSERT INTO {$table} (`" . implode('`,`',$keys) . "`) VALUES({$values})";
+			if(!$this->query($sql,$fields)->error())
+			{
+				return true;
+			}
+			
+			echo $sql;
+		}
+	}
+	
+	public function update($table, $id, $fields)
+	{
+		$set = ''; //field to update for the given id. 
+		$x = 1; //count. As before, PDO documentation states position starts with 1 NOT 0. 
+		
+		//building up the $set variable for the SQL query. 
+		foreach($fields as $name => $value)
+		{
+			$set .= "{$name} = ?"; //using ? marks to prevent SQL injections. 
+			if($x < count($fields))
+			{
+				$set .= ', ';
+			}
+			$x++;
+		}
+		$sql = "UPDATE {$table} SET {$set} WHERE id = {$id}";
+		
+		if(!$this->query($sql, $fields)->error())
+		{
+			return true;
+		}
+		
+		return false; 
+	}
+	
+	
+	public function results()
+	{
+		return $this->_results; 
+	}
+	
+	/**
+	 * Return the first result only. 
+	 */
+	public function first()
+	{
+		return $this->results()[0];
+	}
+	
+	
 	public function count()
 	{
 		return $this->_count; 

@@ -15,7 +15,7 @@ else
 {
 	echo "<br />ok!";
 } */
-
+/* 
 $user = DB::getInstance()->get('userweightmanifest', array('weight','=','99'));
 if (!$user->count())
 {
@@ -23,7 +23,33 @@ if (!$user->count())
 }
 else
 {
-	echo "<br />ok!";
+	//echo $user->first()->weight; //example of retrieving just the first result. 
+	/* foreach($user->results() as $user)
+	{
+		echo '<br />'.$user->datetime.'  '.$user->weight, '<br />';
+	}
+	
+	echo "<br />ok!"; 
+} */
+
+
+/*  $user = DB::getInstance()->insert('users',array(
+		'id' => '1',
+ 		'nhsnumber' => '123456',
+		'dateofbirth' => '20141222',
+		'hashedsaltedpw' => 'hashedsaltedpw'
+));  */
+
+$user = DB::getInstance()->update('users',1,array(
+		'nhsnumber' => 'newNHSNum123456',
+		'dateofbirth' => '20141222',
+		'hashedsaltedpw' => 'hashedsaltedpw'
+)); 
+
+
+if($user)
+{
+	echo "<br /> success";
 }
 
 ?>

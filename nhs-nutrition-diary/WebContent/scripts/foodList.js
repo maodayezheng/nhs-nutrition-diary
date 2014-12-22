@@ -156,6 +156,15 @@ function loadNewFoodView(data){
 		"id":"newFoodFluid",
 		"placeholder":"Fluid (ml)"
 	}).appendTo(form);
+	
+	$('.modal-footer').empty();
+	var doneButton = $('<button>',{
+		"type":"button",
+		"class":"btn btn-success",
+		"data-dismiss":"modal",
+		"text":"Done",
+		"id":""
+	}).appendTo('.modal-footer');
 }
 
 function loadFrequentFoodView(data){
@@ -176,6 +185,14 @@ function loadFrequentFoodView(data){
 	})
 	
 	$('.modal-body').append(list);
+	$('.modal-footer').empty();
+	var doneButton = $('<button>',{
+		"type":"button",
+		"class":"btn btn-success",
+		"data-dismiss":"modal",
+		"text":"Done",
+		"id":""
+	}).appendTo('.modal-footer')
 }
 
 
@@ -198,6 +215,14 @@ function loadCustomMealView(data){
 	})
 	
 	$('.modal-body').append(list);
+	$('.modal-footer').empty();
+	var doneButton = $('<button>',{
+		"type":"button",
+		"class":"btn btn-success",
+		"data-dismiss":"modal",
+		"text":"Done",
+		"id":""
+	}).appendTo('.modal-footer')
 }
 
 function displaySelection(selection){

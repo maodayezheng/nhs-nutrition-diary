@@ -1,14 +1,14 @@
 <?php
 /**
  * This class contains the main functionalty needed for the server side database. It imports init.php to have access to the global variables associated
- * with the config of the database. The class follows the singleton design pattern so that only one instance of the connection to the database can ever exist. 
+ * with the configurations of the database. The class follows the singleton design pattern so that only one instance of the connection to the database can ever exist. 
  * To return a connection to the database the user should use call the static method 'ServerDatabase::getInstance();'. To close the connection the user should 
  * call closeConnection() on the instance object. 
  * Created: 16th December 2014. 
  * @author Vikram Bakshi
  */
 
-require_once 'init.php'; //require the global DB config array, and class loader.
+//require_once 'init.php'; 
 
 class DB
 {
@@ -23,8 +23,8 @@ class DB
 	{
 		try 
 		{
-			$this->_pdo = new PDO('mysql:host=' . Config::get('mysql/host') . ';dbname=' . Config::get('mysql/db'), Config::get('mysql/userName'), Config::get('mysql/passCode'));
-			echo "<br /> Successfuly Connected \n";
+			$this->_pdo = new PDO('mysql:host=' . Configurations::get('mysql/host') . ';dbname=' . Configurations::get('mysql/db'), Configurations::get('mysql/userName'), Configurations::get('mysql/passCode'));
+			echo "<br /> Successfuly Connected <br />";
 		} catch (PDOExeption $e)
 		{
 			die($e->getMessage());
@@ -36,7 +36,7 @@ class DB
 	 */
 	public static function getInstance()
 	{
-		echo "<br /> in get instance";
+		//echo "<br /> in get instance";
 		if (!isset(self::$_instance)) { self::$_instance = new DB(); }
 		return self::$_instance; 
 	}
@@ -139,7 +139,7 @@ class DB
 	 */
 	public function insert($table, $fields = array())
 	{
-		if(count($fields)) //if data is in out fields array
+		if(count($fields)) //if data actually in the fields array
 		{
 			$keys = array_keys($fields);
 			$values = ''; //variable that will keep track of the '?' marks in the query.
@@ -156,10 +156,15 @@ class DB
 				$x++;
 			}
 			
-			$sql = "INSERT INTO {$table} (`" . implode('`,`',$keys) . "`) VALUES({$values})";
+			$sql = "INSERT INTO {$table} (`" . implode('`,`',$keys) . "`) VALUES({$values})"; 
+			
 			if(!$this->query($sql,$fields)->error())
 			{
+				echo "<br />no error inserting into database";
 				return true;
+			}
+			else { //delete else bit
+				echo "<br />there was an error in the insert method<br />";
 			}
 		}
 	}

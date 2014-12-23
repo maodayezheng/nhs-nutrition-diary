@@ -12,40 +12,44 @@ require_once 'init.php';
 
 echo 'in register.php';
 
-/**
- * 
- */
+var_dump(Token::check(Input::get('token')));
+
+
 if(Input::exists('post'))
 {
-	$validate = new Validate();
-	$validation = $validate -> check($_POST, array(
-			'nhsnumber' => array(
-				'required' => true,
-				'min' => 5, //min length
-				'max' => 15, //max length
-				'unique' => 'users'
-			),
-			'password' => array(
-				'required' => true,
-				'min' => 6,
-			),
-			'password_again' => array(
-				'required' => true,
-				'matches' => 'password'
-			),
-			'weight' => array(
-				'required' => true
-			),
-			'dob' => array(),
-			'activitylevel' => array()
-	));
-	
-	if($validation->passed())
+	if(Token::check(Input::get('token')))
 	{
-		echo 'passed'; //register user
-	} else {
-		print_r($validation->getErrors());
-		//output errors
+		echo "I have been run";
+		$validate = new Validate();
+		$validation = $validate -> check($_POST, array(
+				'nhsnumber' => array(
+					'required' => true,
+					'min' => 5, //min length
+					'max' => 15, //max length
+					'unique' => 'users'
+				),
+				'password' => array(
+					'required' => true,
+					'min' => 6,
+				),
+				'password_again' => array(
+					'required' => true,
+					'matches' => 'password'
+				),
+				'weight' => array(
+					'required' => true
+				),
+				'dob' => array(),
+				'activitylevel' => array()
+		));
+		
+		if($validation->passed())
+		{
+			echo 'passed'; //register user
+		} else {
+			print_r($validation->getErrors());
+			//output errors
+		}
 	}
 	
 }

@@ -1,5 +1,5 @@
 <?php
-include 'Config.php';
+include 'Configurations.php';
 require_once 'ServerDatabase.php';
 
 $database = ServerDatabase::getInstance();

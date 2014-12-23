@@ -5,6 +5,7 @@
  * @author Vikram Bakshi
  */
 
+//require_once 'init.php';
 
 class Validate
 {
@@ -50,7 +51,7 @@ class Validate
 					}
 				}
 				
-				echo $source[$item].'<br />';
+				//echo $source[$item].'<br />';
 
 				
 			}	

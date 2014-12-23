@@ -6,7 +6,7 @@ $(document).ready(function(){
 	
 	// load data
 	var data =new FoodDataSingleton().foodData;
-	var customMeals =["John Sandwich","Virk Super Sandwich","Robert Germany Sandwich","Bowen Dumpling"];
+	var aMeal =[{"id":"meal","label":"John Sandwich","portion":1,"mealtotalcalories":400.0,"mealtotalprotien":30.3,"mealtotalfat":12.2,"mealtotalfluid":100}];
 	var frequentFood = [data[3],data[100],data[90],data[102]];
 	// TODO replace customMeals and frequentFood with real data
 	// search 
@@ -38,7 +38,7 @@ $(document).ready(function(){
 	// click events		
 		$('#myMeals').click(function(){
 			$('.modal-title').text("My meals");
-			loadCustomMealView(customMeals)
+			loadCustomMealView(aMeal)
 		});
 		
 	$('#newFood').click(function(){
@@ -67,7 +67,6 @@ $(document).ready(function(){
 	    $('#search').autocomplete('search');
 	});
 	
-	//TODO submission of New food and customised meal
 	//TODO evaluate frequent food
 });
 
@@ -92,13 +91,19 @@ function updateNutritionBreakDown(){
 	var fluid = 0;
 	children.each(function(index,item){
 		var obj = $(item);
-		var food = obj.data('data');
-		console.log(food);
-		var portion = food['portion'];
-		
-		protein += portion*parseNutritionData(food['Protein.g']);
-		fluid += portion*parseNutritionData(food['Water.g']);
-		calories +=portion*parseNutritionData(food['Energy.kcal']);
+		var data = obj.data('data');
+		var portion = data['portion'];
+		if(data['id']==='food'){
+		protein += portion*parseNutritionData(data['Protein.g']);
+		fluid += portion*parseNutritionData(data['Water.g']);
+		calories +=portion*parseNutritionData(data['Energy.kcal']);
+		}else{
+			protein += portion*parseNutritionData(data['mealtotalprotien']);
+			fluid += portion*parseNutritionData(data['mealtotalfluid']);
+			calories +=portion*parseNutritionData(data['mealtotalcalories']);
+			
+			
+		}
 	});
 	
 	$('#calories').text(calories);
@@ -202,18 +207,19 @@ function loadFrequentFoodView(data){
 
 
 function loadCustomMealView(data){
-	
+	console.log("start");
 	$('.modal-body').empty();
 	var list = $('<ul>',{
 		"class":"list-group",
 		"role":"menu"
 	});
-	$.each(data,function(index){
+	$.each(data,function(index,item){
+		console.log(item);
 		var li =$('<li>',{
 			"class":"list-group-item",
-			"text":data[index]	
-		}).data('data',data[index]).bind('click',function(){
-			//displaySelection(data[index]);
+			"text":	item["label"]
+		}).data('data',item).bind('click',function(){
+			displaySelection(item);
 			// TODO parse the meal JSON
 		});
 		li.appendTo(list);
@@ -233,6 +239,9 @@ function loadCustomMealView(data){
 function displaySelection(selection){
 	
 	selection['portion'] = 1;
+	if(selection['id']!== 'meal'){
+		selection['id'] ='food';
+	}
 	if(!compareWithCurrentSelections(selection)){
 			
 		var li = new createBasicLi(selection);
@@ -246,7 +255,11 @@ function displaySelection(selection){
 		increaseButton.bind('click',updateNutritionBreakDown);
 		controlPanel.addItems([reduceButton,accountButton,increaseButton]);
 		li.addItemToLeft(deleteButton);
-		var displayContent = selection.label +" (" +parseInt(selection.EdibleProportion)*100 +" g)";
+		var amount = '';
+		if(selection['id']==='food'){
+			amount = " (" +parseInt(selection.EdibleProportion)*100 +" g)";
+		}
+		var displayContent = selection.label +amount;
 		li.addItemToLeft(displayContent);
 		li.addItemToRight(controlPanel);
 		$('.selection-list').append(li);

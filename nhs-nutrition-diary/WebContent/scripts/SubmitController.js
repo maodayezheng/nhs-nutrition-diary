@@ -99,7 +99,16 @@ SubmitController.prototype.submitSignUpDetails = function() {
 	var dateOfBirth = $('#age').val();;
 	var activityLevel = $('#activity-level').val();;
 	//TODO check which radio button is selected
-	var gender = "female";
+	var gender = "";
+	if($('#user_basic_sex_male').is(':checked')) {
+		gender = "male";
+		alert("male");
+	} else if($('#user_basic_sex_female').is(':checked')){
+		gender = "female";
+		alert("female");
+	} else {
+		alert("error: no gender selected");
+	}
 	
 	var dataToServer = {
 		"table": table,
@@ -122,12 +131,16 @@ SubmitController.prototype.submitFoods = function() {
 	var table = "userfoodmanifest"; 
 	
 	var userid = this.getUserId();
-	//TODO find actual date
+	//TODO find actual date from food.html
 	var date = "22/10/2014";
 	var dateTime = this.formatDateTime(date, null);
-	var meal;
+	var meal = "";
 	
-	//TODO create food list
+	if($('#checkbox_saveAsMeal').is(':selected')) {
+		//TODO meal should be the name of the meal entered by the user
+		meal = "";
+	}
+	
 	var foodList =[];
 	var counter = 0;
 	$('.selection-list li').each(function(idx, li) {
@@ -163,14 +176,9 @@ SubmitController.prototype.submitFoods = function() {
 		ServerDBAdapter.prototype.submit(dataToServer, "save");
 	});
 	
-	//TODO add date before return nutritional breakdown
-	var nutritionalBreakdown =  {"calories":"","protein":"","fluid":""};
-	nutritionalBreakdown["calories"] = $('#calories').text();
-	nutritionalBreakdown["protein"] = $('#protein').text();
-	nutritionalBreakdown["fluid"] = $('#fluid').text();
-	
-	//TODO check whether current meal should be store as customised meal
-	//TODO if yes, then user must enter a name for the meal
+	if($('#checkbox_saveAsMeal').is(':selected')) {
+		//TODO store data in meal table --> call submitMeal
+	}
 	
 	var warning = $('<div>',{
 		"class":"alert alert-success center",

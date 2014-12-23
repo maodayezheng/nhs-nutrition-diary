@@ -11,6 +11,7 @@
 		<script src="lib/jquery/jquery-2.1.1.min.js"></script>
 		<script src="lib/bootstrap/bootstrap.min.js"></script>
 		
+		<script src="scripts/util/Validator.js"></script>
 		<script src="scripts/SubmitController.js"></script>
 		<script src="scripts/database/server/ServerDBAdapter.js"></script>
 		<script src="scripts/RequirementsCalculator.js"></script>
@@ -63,15 +64,13 @@
 				  <tr>
 				    <td><label for="gender">Enter Your Gender:</label></td>
 				    <td>
-		      			<input class="radio_buttons optional" id="user_basic_sex_female" name="user_basic[sex]" type="radio" value="Male"> Male
+		      			<input class="radio_buttons optional" id="user_basic_sex_male" name="user_basic[sex]" type="radio" value="Male"> Male
 		      			<input class="radio_buttons optional" id="user_basic_sex_female" name="user_basic[sex]" type="radio" value="Female"> Female</td>
 				  </tr>
 				</table>
 	
-      			
-      			
-      			
-        		<button id="btn_submit_signUpDetails" class="btn btn-lg btn-primary btn-block">Submit</button>
+        		<button id="btn_submit_signUpDetails" class="btn btn-lg btn-primary btn-block"
+        			onclick="SubmitController.prototype.submit(this.id)">Submit</button>
       		</form>
     	</div>
   	</body>

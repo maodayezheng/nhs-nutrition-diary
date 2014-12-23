@@ -78,12 +78,8 @@ SubmitController.prototype.updateRequirements = function() {
 	ServerDBAdapter.prototype.submit(dataToServer, "save");
 }
 
-SubmitController.prototype.signUp = function() {
-	//TODO submit data
-}
-
 SubmitController.prototype.signIn = function() {
-	//TODO check user name and passcode
+	//TODO authorise user (verify user name and passcode)
 }
 
 SubmitController.prototype.submitSignUpDetails = function() {
@@ -96,7 +92,6 @@ SubmitController.prototype.submitSignUpDetails = function() {
 	var priviledge = "dietician";
 	//TODO pw needs to be salted on the server
 	var hashedsaltedpw = 0;
-	
 	var nhsNumber = $('#nhs-number').val();
 	//TODO include hospital number to registration form
 	var hospitalNumber = 0;

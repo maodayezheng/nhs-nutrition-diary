@@ -19,3 +19,14 @@ Navigator.prototype.navigate = function(origin) {
 	
 	window.location.href = nextPage;
 }
+Navigator.prototype.setting = function(){
+	
+	window.location.href = "settings.html";
+	
+}
+
+Navigator.prototype.back = function(){
+	
+	window.history.back();
+	
+}

@@ -61,7 +61,11 @@ $(document).ready(function(){
 		
 		console.log("TOGGLE CLICKED");
 		
-	})
+	});
+	$('#searchButton').click(function() {
+		$('#search').focus();
+	    $('#search').autocomplete('search');
+	});
 	
 	//TODO submission of New food and customised meal
 	//TODO evaluate frequent food

@@ -4,8 +4,8 @@ SubmitController.prototype.submit = function(submitter) {
 	switch(submitter) {
 		case 'btn_submit_signUpDetails': this.submitSignUpDetails(); break;
 		case 'btn_submit_foods': this.submitFoods(); break;
-		//TODO set button ids
-//		case '': this.submitNewFood(); break;
+		case 'btn_submit_newFood': this.submitNewFood(); break;
+		//TODO set button id
 //		case '': this.submitMeal(); break;
 		case 'btn_submit_symptoms': this.submitSymptoms(); break;
 		case 'btn_save_newCustomSymptom': this.submitNewCustomSymptom(); break;
@@ -39,7 +39,7 @@ SubmitController.prototype.updateRequirements = function() {
 	
 	var userId = this.getUserId();
 	var date = new Date();
-	var dateTime = this.formatDateTime(date.dateFormat('d/m/Y'), null);
+	var dateTime = this.formatDateTime(date.dateFormat('d/m/Y'), date.dateFormat('H:i'));
 	//TODO get gender, weight, activityLevel, additional calories/protein/fluid/activity from database
 	var gender = "female";
 	var weight = 62.0;
@@ -83,7 +83,7 @@ SubmitController.prototype.signUp = function() {
 }
 
 SubmitController.prototype.signIn = function() {
-	//TODO submit data
+	//TODO check user name and passcode
 }
 
 SubmitController.prototype.submitSignUpDetails = function() {
@@ -195,19 +195,19 @@ SubmitController.prototype.submitNewFood = function() {
 	var date = new Date();
 	var dateTime = this.formatDateTime(date.dateFormat('d/m/Y'), date.dateFormat('H:i'));
 	
-	var foodName = $('#newFoodName');
-	var comment = $('#newFoodProportion');
-	var quantityWeight = $('#newFoodWeight');
-	var calories = $('#newFoodCalories');
-	var protein = $('#newFoodProtein');
-	var fluid = $('#newFoodFluid');
-	
+	var foodName = $('#newFoodName').val();
+	var comment = $('#newFoodProportion').val();
+	var quantityWeight = $('#newFoodWeight').val();
+	var calories = $('#newFoodCalories').val();
+	var protein = $('#newFoodProtein').val();
+	var fluid = $('#newFoodFluid').val();
+
 	var dataToServer = {
 			"table": table,
 			"userid": userid,
 			"datetime": dateTime,
 			"foodname": foodName,
-			"quantity.g": quantityWeight,
+			"quantity_g": quantityWeight,
 			"quantitycomment": comment,
 			"calories": calories,
 			"protein": protein,
@@ -215,7 +215,7 @@ SubmitController.prototype.submitNewFood = function() {
 			//TODO fat is currently not implemented on the page
 			"fat": 0
 	};
-	
+	console.log(dataToServer);
 	ServerDBAdapter.prototype.submit(dataToServer, "save");
 }
 

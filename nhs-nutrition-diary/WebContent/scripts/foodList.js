@@ -163,7 +163,8 @@ function loadNewFoodView(data){
 		"class":"btn btn-success",
 		"data-dismiss":"modal",
 		"text":"Done",
-		"id":""
+		"id":"btn_submit_newFood",
+		"onclick":"SubmitController.prototype.submit(this.id)"
 	}).appendTo('.modal-footer');
 }
 

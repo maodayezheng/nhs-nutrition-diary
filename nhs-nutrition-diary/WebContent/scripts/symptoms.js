@@ -106,8 +106,9 @@ $(document).ready(function () {
 	
 $(".submitSymptoms").click(function(){
 	   
-var discomfortScore = $('input[name="discomfort"]:checked').val();
-var conceptName = $('.discomfortRating :selected').text();
+
+var discomfortScores = $('.discomfortRating :selected').text();
+var symptomComments = $('#symptomComment').val();
 	   
     var checkedItems = {}, counter = 0;
     $("#symptomList li.active").each(function(idx, li) {
@@ -121,9 +122,13 @@ var conceptName = $('.discomfortRating :selected').text();
         console.log($(li).text());
         counter++;
     });
-    
-    console.log(checkedItems + conceptName);
-    alert(JSON.stringify(checkedItems));
+    for(var i = 0; i < checkedItems.length; i++){
+        console.log(i + " = " + checkedItems[i] + discomfortScores);
+    }
+    console.log(discomfortScores);
+    console.log(symptomComments);
+    alert(checkedItems + discomfortScores);
+    //alert(JSON.stringify(checkedItems));
 });
 
 

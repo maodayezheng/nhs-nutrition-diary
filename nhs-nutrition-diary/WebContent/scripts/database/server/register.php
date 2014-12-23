@@ -1,16 +1,28 @@
 <?php
+/**
+ * Register.php is the script called when the user clicks submit in the registration process. It contains the function call
+ * to the validation class which checks whether the data passed to the form conforms to certain rules (min/max length, if it is unique etc.). 
+ * If it passes the validation it allows the user to register, if not it returns errors relating to why the registration was unsuccessful.  
+ * 
+ * Created 22nd December 2014
+ * @author Vikram Bakshi
+ * 
+ */
 require_once 'init.php';
 
 echo 'in register.php';
 
+/**
+ * 
+ */
 if(Input::exists('post'))
 {
 	$validate = new Validate();
 	$validation = $validate -> check($_POST, array(
 			'nhsnumber' => array(
 				'required' => true,
-				'min' => 5,
-				'max' => 15,
+				'min' => 5, //min length
+				'max' => 15, //max length
 				'unique' => 'users'
 			),
 			'password' => array(
@@ -32,7 +44,7 @@ if(Input::exists('post'))
 	{
 		echo 'passed'; //register user
 	} else {
-		print_r($validation->_errors);
+		print_r($validation->getErrors());
 		//output errors
 	}
 	

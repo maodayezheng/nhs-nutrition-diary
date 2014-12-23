@@ -1,8 +1,5 @@
+<?php require_once 'scripts/database/server/init.php'; ?>
 <!DOCTYPE html>
-<!-- 
-	THIS FILE HAS BEEN REPLACED By signUpDetails.php
-	All LINKS TO THIS FILE SHOULD BE CHANGED TO signUpDetails.php
- -->
 <html lang="en">
 	<head>
     	<meta charset="utf-8">
@@ -72,7 +69,7 @@
 		      			<input class="radio_buttons optional" id="user_basic_sex_female" name="user_basic[sex]" type="radio" value="Female"> Female</td>
 				  </tr>
 				</table>
-				<!-- Mandatory hidden input --><input type="hidden" name="token" value="">
+				<input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
         		<button id="btn_submit_signUpDetails" class="btn btn-lg btn-primary btn-block"
         			onclick="SubmitController.prototype.submit(this.id)">Submit</button>
       		</form>

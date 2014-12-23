@@ -1,11 +1,17 @@
 <?php
 require_once 'init.php';
 /**
- * Validating input for the registration process.
+ * This class contains all of the functionality for receiving data from the client via the GET or POST method. 
+ * Created: 22nd December 2014
+ * @author Vikram Bakshi
  */
 
 class Input 
 {
+	/**
+	 * This static function checks whether there exists any post/get data. It uses the $_POST and $_GET superglobals and as such it can only be used for when data is being 
+	 * sent through a form. The retrieveData() static function is used when data is sent via POST or GET but not through a form.   
+	 */
 	public static function exists($type)
 	{
 		switch($type)
@@ -20,7 +26,10 @@ class Input
 		}
 	}
 
-
+	/**
+	 * Function simplifies working with data received from the client. Instead of having to write (e.g.) $_POST['name'] the function allows you to
+	 * write 'Input::get('name')' which looks cleaner.
+	 */
 	public static function get($item)
 	{
 		if(isset($_POST[$item])) 		{ return $_POST[$item]; }
@@ -30,7 +39,8 @@ class Input
 	
 	
 	/**
-	 * This static function retrieves the JSON data sent via the post method. It is needed when retrieving data which is not sent through a form. e.g. food data the user has input.
+	 * This static function is intended to retrieve POST data which has been not been sent through a form. 
+	 * For example food data the user has input on the client side. 
 	 */
 	public static function retrieveData()
 	{

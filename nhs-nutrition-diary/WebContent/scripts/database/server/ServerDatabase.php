@@ -18,7 +18,7 @@ class ServerDatabase
 	public function __construct()
 	{
 		echo "\nin constructor of ServerDatabase\n"; 
-		$this -> db = new mysqli(DbConfig::get('mysql/host'), DbConfig::get('mysql/userName'), DbConfig::get('mysql/passCode'), DbConfig::get('mysql/db')); // Create connection
+		$this -> db = new mysqli(Config::get('mysql/host'), Config::get('mysql/userName'), Config::get('mysql/passCode'), Config::get('mysql/db')); // Create connection
 		if ($this->db->connect_error) { die("Connection failed: " . $this->db); } // Check connection was successful. 
 		echo "\n successful connection!! \n";
 	}

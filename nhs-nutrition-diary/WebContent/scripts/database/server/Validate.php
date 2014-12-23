@@ -1,24 +1,34 @@
 <?php
+/**
+ * This class contains all the functionality relating to validating input passed from the client to the server. 
+ * Created 22nd December 2014
+ * @author Vikram Bakshi
+ */
+
 
 class Validate
 {
-	public $_errors = array();
+	//private instance variables  
 	private $_passed = false,
-			//$_errors = array(),
+			$_errors = array(),
 			$_db = null;
 	
 	public function __construct()
 	{
-		$this->_db = DB::getInstance();
+		$this->_db = DB::getInstance(); //grab the singleton connection to the DB. 
 	}
 	
+	/**
+	 * This method is used to check whether the $source passed to it conforms to the given rules. 
+	 * If it does not the addError method is called. 
+	 */
 	public function check($source, $items = array())
 	{
 		foreach($items as $item => $rules) //$item will be each of the entries e.g. nhsnumber, password. $rules will be the array that governs each $item. see register.php.
 		{
 			foreach($rules as $rule => $rule_value)
 			{
-				$item = escape($item); //for sanitization. 
+				$item = escape($item); //for sanitisation. imported from init.php and functionality is in sanitise.php.
 				$value = trim($source[$item]); //get rid of whitespaces. 
 				
 				if($rule === 'required' && empty($value))
@@ -41,14 +51,12 @@ class Validate
 				}
 				
 				echo $source[$item].'<br />';
-				//echo "{$item} {$rule} must be {$rule_value} <br />"; //uncomment this if you want to see the specific rules on the screen after clicking register.
-				//$value = $source[$item];
-				//echo $value.'<br />';
+
 				
 			}	
 		}
 		
-		if(empty($this->_errors)) //if the errors array is empty
+		if(empty($this->_errors)) //if the errors array is empty at this point then all of the checks were passed.
 		{
 			$this->_passed = true;
 		}
@@ -56,16 +64,25 @@ class Validate
 		return $this;
 	}
 	
+	/**
+	 * Adds an error to the errors array.
+	 */
 	private function addError($error)
 	{
 		$this->_errors[] = $error;
 	}
 	
-	public function errors()
+	/**
+	 * Public function used to retrieve the errors which occurred during the check method's execution.
+	 */
+	public function getErrors()
 	{
 		return $this->_errors;
 	}
 	
+	/**
+	 * Returns true if the check method passed or else false. 
+	 */
 	public function passed()
 	{
 		return $this->_passed;

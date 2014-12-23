@@ -8,7 +8,7 @@
  * @author Vikram Bakshi
  */
 
-require_once 'init.php';
+require_once 'init.php'; //require the global DB config array, and class loader.
 
 class DB
 {
@@ -23,7 +23,7 @@ class DB
 	{
 		try 
 		{
-			$this->_pdo = new PDO('mysql:host=' . DbConfig::get('mysql/host') . ';dbname=' . DbConfig::get('mysql/db'), DbConfig::get('mysql/userName'), DbConfig::get('mysql/passCode'));
+			$this->_pdo = new PDO('mysql:host=' . Config::get('mysql/host') . ';dbname=' . Config::get('mysql/db'), Config::get('mysql/userName'), Config::get('mysql/passCode'));
 			echo "<br /> Successfuly Connected \n";
 		} catch (PDOExeption $e)
 		{

@@ -26,18 +26,51 @@
   			</div>
 		</nav>
     	<div class="container">
-      		<form class="form-signup" role="form">
+      		<form class="form-signup" role="form" method="post" action="scripts/database/server/register.php">
       			<div class="input-group">
       				<div class="input-group-btn"></div>
     			</div>
-      			<label for="weight" class="sr-only">Weight</label>
-      			<input class="form-control" id="nhs-number" type="text" placeholder="Enter Your NHS Number" required>
-      			<input class="form-control" id="weight" type="number" placeholder="Enter Your Weight" required>	
-      			<input class="form-control" id="age" type="number" placeholder="Enter Your DOB DD MM YYYY" required>
-      			<input class="form-control" id="activity-level" type="text" placeholder="Enter Your Activity Level" required> <br>
-      			<label>Sex</label><br>
-      			<input class="radio_buttons optional" id="user_basic_sex_female" name="user_basic[sex]" type="radio" value="Male"> Male<br>
-      			<input class="radio_buttons optional" id="user_basic_sex_female" name="user_basic[sex]" type="radio" value="Female"> Female<br>
+      			
+				<table border="0" width="100%" style="text-align: center;">
+				  <tr>
+				    <th></th>
+				    <th></th>
+				  </tr>
+				  <tr>
+				    <td><label for="nhsnumber">Enter Your NHS Number:</label></td>
+				    <td><input class="form-control" name="nhsnumber" id="nhs-number" type="text" placeholder="Enter Your NHS Number" required></td>
+				  </tr>
+				  <tr>
+				    <td><label for="password">Enter Your Password:</label></td>
+				    <td><input class="form-control" name="password" id="password" type="text" placeholder="Enter Your Password" required></td>
+				  </tr>
+				  <tr>
+				    <td><label for="password_again">Confirm Your Password:</label></td>
+				    <td><input class="form-control" name="password_again" id="password-confirm" type="password" placeholder="Confirm Your Password" required></td>
+				  </tr>
+				  <tr>
+				    <td><label for="weight">Enter Your Weight:</label></td>
+				    <td><input class="form-control" name="weight" id="weight" type="number" placeholder="Enter Your Weight" required></td>
+				  </tr>
+				  <tr>
+				    <td><label for="dob">Enter Your Date of Birth:</label></td>
+				    <td><input class="form-control" name="dob" id="dob" type="number" placeholder="Enter Your DOB DD MM YYYY" required></td>
+				  </tr>
+				  <tr>
+				    <td><label for="activity_level">Enter Your Activity Level:</label></td>
+				    <td><input class="form-control" name="activity_level" id="activity-level" type="text" placeholder="Enter Your Activity Level" required></td>
+				  </tr>
+				  <tr>
+				    <td><label for="gender">Enter Your Gender:</label></td>
+				    <td>
+		      			<input class="radio_buttons optional" id="user_basic_sex_female" name="user_basic[sex]" type="radio" value="Male"> Male
+		      			<input class="radio_buttons optional" id="user_basic_sex_female" name="user_basic[sex]" type="radio" value="Female"> Female</td>
+				  </tr>
+				</table>
+	
+      			
+      			
+      			
         		<button id="btn_submit_signUpDetails" class="btn btn-lg btn-primary btn-block">Submit</button>
       		</form>
     	</div>

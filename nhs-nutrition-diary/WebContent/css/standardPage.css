@@ -1,7 +1,6 @@
 body{
 	
-	padding-top:40px;
-	padding-bottom:40px;
+	margin-bottom:40px;
 	background-color:#eee;
 
 }
@@ -27,9 +26,6 @@ body{
 	font-size:16px;
 	
 	}
-
-.form-signin{}
-
 	
 .ui-autocomplete {
     max-height: 250px;
@@ -50,9 +46,7 @@ body{
 .form-newFood > button{
 	margin-top: 10px;	
 }
-.greeding{
-	font-size:16px;
-	}
+
 
 .form-signin,
 .form-signup

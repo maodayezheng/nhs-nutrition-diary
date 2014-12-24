@@ -1,13 +1,13 @@
 <?php
-/**
+/* 
  * Register.php is the script called when the user clicks submit in the registration process. It contains the function call
  * to the validation class which checks whether the data passed to the form conforms to certain rules (min/max length, if it is unique etc.). 
  * If it passes the validation it allows the user to register, if not it returns errors relating to why the registration was unsuccessful.  
  * 
  * Created 22nd December 2014
  * @author Vikram Bakshi
- * 
- */
+ * */
+ 
 require_once 'init.php';
 
 echo 'in register.php <br />';
@@ -18,8 +18,9 @@ echo 'in register.php <br />';
 if(Input::exists('post'))
 {
 	echo "input exists as post <br />";
-	if(Token::check(Input::get('token')))
-	{
+	echo Token::check(Input::get('token'));
+	//if(Token::check(Input::get('token')))
+	//{
 		echo "I have been run <br />";
 		$validate = new Validate();
 		$validation = $validate -> check($_POST, array(
@@ -68,15 +69,15 @@ if(Input::exists('post'))
 				echo ($e->getMessage());
 			}
 			
-			/* Session::flash('success', 'You registered successfully!'); */
-			Redirect::to('404.php');
+			// Session::flash('success', 'You registered successfully!'); 
+			//Redirect::to('404.php');
 		} else {
 			print_r($validation->getErrors()); //output errors
 			
 		}
-	}
+	//}
 	
-}
+} 
 ?>
 
 
@@ -136,8 +137,11 @@ if(Input::exists('post'))
 				    <td><input class="form-control" name="weight" id="weight" type="number" placeholder="Enter Your Weight" required></td>
 				  </tr>
 				  <tr>
-				    <td><label for="dob">Enter Your Date of Birth:</label></td>
-				    <td><input class="form-control" name="dob" id="dob" type="number" placeholder="Enter Your DOB DD MM YYYY" required></td>
+				    <td><label for="dob">Enter Your Date of Birth (YYYY MM DD):</label></td>
+				    <td><input class="form-control" name="dob" id="dob" type="number" placeholder="Enter Your DOB DD MM YYYY" required>
+				    	<input class="form-control" name="dobmm" id="dobmm" type="number" placeholder="Enter Your DOB DD MM YYYY" required>
+				    	<input class="form-control" name="dobdd" id="dob" type="number" placeholder="Enter Your DOB DD MM YYYY" required>
+				    </td>
 				  </tr>
 				  <tr>
 				    <td><label for="activity_level">Enter Your Activity Level:</label></td>
@@ -150,7 +154,7 @@ if(Input::exists('post'))
 		      			<input class="radio_buttons optional" id="user_basic_sex_female" name="gender" type="radio" value="Female"> Female</td>
 				  </tr>
 				</table>
-				<input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
+				<input type="hidden" name="token" value="<?php  echo Token::generate(); ?>">
         		<button id="btn_submit_signUpDetails" class="btn btn-lg btn-primary btn-block"
         			onclick="SubmitController.prototype.submit(this.id)">Submit</button>
       		</form>

@@ -11,7 +11,6 @@ class User
 	
 	public function create($fields = array())
 	{
-		
 		if(!$this->_db->insert('users', $fields))
 		{
 			echo var_dump($fields); //For DEBUGGING
@@ -19,7 +18,23 @@ class User
 		}
 	}
 	
+	public function find($user = null)
+	{
+		if($user)
+		{
+			$field = 'nhsnumber'; //logging in using nhs number. 
+			$data = $this ->_db->get('users', array($field, '=', $user)); 
+			
+			if($data )
+		}
+	}
 	
+	public function login($username = null, $password = null)
+	{
+		$user = $this -> find($username);
+		
+		return false; 
+	}
 }
 
 

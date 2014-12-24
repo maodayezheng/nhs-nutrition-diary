@@ -36,17 +36,33 @@
       	</div>
 	</nav>
     <div class="container">
-		<form class="form-signin" role="form">
+		<form class="form-signin" role="form" method="post" action="scripts/database/server/login.php">
 			<h3 class="form-signin-heading greeding" style="text-align: center;">Welcome to Appetite - Your NHS Nutrition and Symptom Diary!</h3>
-    		<label for="inputAccount" class="sr-only">Email address</label>
-      		<input class="form-control" id="inputAccount" type="text" placeholder="Enter your NHS number"required>
-	  		<label for="password" class="sr-only">Password</label>
-      		<input class="form-control" id="password" type="password" placeholder="Enter your password"required>      
-        	<div class="checkbox" id="remember-me">
-        		<label>
-        			<input type="checkbox" value="remember-me">Remember me
-        		</label>
-        	</div>
+    		
+    		<table border="0" width="100%" style="text-align: center;">
+				  <tr>
+				    <th></th>
+				    <th></th>
+				  </tr>
+				  <tr>
+				    <td><label for="nhsnumber">Enter Your Username/NHS Number:</label></td>
+				    <td><input class="form-control" name="nhsnumber" id="inputAccount" type="text" placeholder="Enter your NHS number" ></td>
+				  </tr>
+				  <tr>
+				    <td><label for="password">Enter Your Password:</label></td>
+				    <td><input class="form-control" name="password" id="password" type="password" placeholder="Enter your password" ></td>
+				  </tr>
+				  <tr>
+					  <td colspan="2"><div class="checkbox" id="remember-me">
+        							<label>
+        								<input type="checkbox" value="remember-me">Remember me
+        							</label>
+        							</div>
+   					  </td>
+				  </tr>
+ 			</table>
+      		      
+        	
         	<button id="btn_signin_to_home" class="btn btn-lg btn-primary btn-block">Sign in</button>
         	<button id="btn_signup_to_details" class="btn btn-lg btn-success btn-block" onclick="Navigator.prototype.navigate(this.id)">Sign up</button>
       	</form>

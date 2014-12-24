@@ -73,9 +73,7 @@
 					</div>
 	    			
 	    			<div class="panel panel-default" style="margin-top:30px">
-	    				<div class="panel-body">
-						    <div class="goal-progress"> 
-	    						<form id="parameters">Select 
+	    			<div class="panel-heading"><form id="parameters">Select 
 									<select id="foodComponents" name="foodComponents" onchange="toggleHistoryVisualisation()">
 										<option id="calories_dropdown" value="Calories (kcal)">Calories</option>
 										<option id="protein_dropdown" value="Protein (g)">Protein</option>
@@ -83,13 +81,9 @@
 										<option id="weight_dropdown" value="Weight (kg)">Weight</option>
 										<option id="symptoms_dropdown" value="Symptoms">Symptoms</option>
 									</select>
-								</form>
-	    					</div>
-	     				</div>
-					</div>
-				</div>
-     	
-	     		<div class="row">
+								</form></div>
+	    				<div class="panel-body">
+						    <div class="row">
 					<div class="col-md-12 column">
 	     				<div id="datepicker_div">
 							<p>
@@ -105,9 +99,63 @@
 	     			</div>
 	     		</div>
 			</div>
+	     				</div>
+					</div>
+				</div>
 			 <div style="margin-top:10px">
-		    	<button class="btn btn-lg btn-success btn-block">Export</button> 
+		    	<button class="btn btn-lg btn-success btn-block" data-toggle="modal" 
+    						data-target="#modal-export">Export</button> 
 		    </div>
+		    <div class="modal fade" id="modal-export" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
+  			<div class="modal-dialog">
+    			<div class="modal-content">
+      				<div class="modal-header">
+        				<button type="button" class="close" data-dismiss="modal">
+        					<span aria-hidden="true">&times;</span>
+        					<span class="sr-only">Close</span>
+        				</button>
+        				<h4 class="modal-title">Export</h4>
+      				</div>
+      				<div class="modal-body">
+      					<table class="table table-striped">
+							<tr>
+      							<th></th>
+      							<th>Graph</th>
+      							<th>Table</th>
+    						</tr>
+      						<tr>
+      							<td>Calories</td>
+      							<td><input type="checkbox"></td>
+      							<td><input type="checkbox"></td>
+    						</tr>
+    						<tr>
+      							<td>Protein</td>
+      							<td><input type="checkbox"></td>
+      							<td><input type="checkbox"></td>
+    						</tr>
+    						<tr>
+      							<td>Weight</td>
+      							<td><input type="checkbox"></td>
+      							<td><input type="checkbox"></td>
+    						</tr>
+    						<tr>
+      							<td>Fluid</td>
+      							<td><input type="checkbox"></td>
+      							<td><input type="checkbox"></td>
+    						</tr>
+    						<tr>
+      							<td>Symptoms</td>
+      							<td><input type="checkbox"></td>
+      							<td><input type="checkbox"></td>
+    						</tr>
+    					</table>
+      				</div>
+      				<div class="modal-footer">
+        				<button type="button" class="btn btn-success" data-dismiss="modal">Export</button>
+      				</div>
+    			</div>
+  			</div>
+		</div>
 		</div>
   	</body>
 </html>

@@ -1,7 +1,7 @@
 <?php
 require_once 'init.php';
 
-echo 'in test.php for the test m8';
+echo '<br />in test.php for the test m8<br />';
 
 /* if(Session::exists('success'))
 {
@@ -10,7 +10,7 @@ echo 'in test.php for the test m8';
 
 //$user = DB::getInstance()->query('SELECT * FROM users WHERE nhsnumber = ?', array(
 //		'nhsnumber' => 'newNHSNum1'));
-
+/* 
 $user = DB::getInstance()->insert('users',array('nhsnumber' => '1234567', 'dateofbirth' => '20141222', 'hashedsaltedpw' => 'hashedsaltedpw'));
 
 if($user->error())
@@ -19,6 +19,17 @@ if($user->error())
 }
 else {
 	echo "did it m8";
+} */
+
+$user = new User();
+
+if($user->isLoggedIn())
+{
+	echo "<br />The user ". $user->data()->nhsnumber." is logged in <br />"; 
+} else 
+{
+	echo "<br />No user is logged in<br />";
 }
+
 
 ?>

@@ -21,7 +21,7 @@ $GLOBALS['config'] = array(
 	),
 	'remember' => array(
 		'cookie_name'	=> 'appetiteCookie',
-		'cookie_expiry'	=> 604800 //one week in seconds
+		'cookie_expiry'	=> 315532800 //ten years in seconds
 	), 
 	'session' => array(
 		'session_name'	=> 'user',
@@ -39,6 +39,32 @@ spl_autoload_register(function($class)
 
 // This imports the functions which are required across all scripts. It is done here for cleaner code.    
 require_once 'sanitise.php';
+
+if(Cookie::exists(Configurations::get('remember/cookie_name')) && !Session::exists(Configurations::get('session/session_name'))) //if the cookie exists but the session does not - then the user asked to be remembered and so should be logged in.
+{
+	echo '<br /> User asked to be remembered <br />';
+	$hash = Cookie::get(Configurations::get('remember/cookie_name'));
+	$hashCheck = DB::getInstance()->get('users_session', array('hash','=',$hash));
+	
+	if($hashCheck->count())
+	{
+		//if here then the user wanted to be remembered and so should be logged in 
+		echo 'Hash Matches, log the user in.';
+		echo '<br />'.$hashCheck->first()->user_id;
+		$user = new User($hashCheck->first()->user_id); 
+		$user->login(); 
+	}
+	
+}
+
+
+
+
+
+
+
+
+
 
 ?>
 

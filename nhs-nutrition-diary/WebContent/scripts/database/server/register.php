@@ -55,23 +55,30 @@ if(Input::exists('post'))
 			{
 				$user->create(array(
 						'nhsnumber' 			=> Input::get('nhsnumber'),
-						'hashedsaltedpw' 		=> Hash::make(Input::get('password'),$salt),
+						'password' 				=> Hash::make(Input::get('password'),$salt),
 						'salt' 					=> $salt,
 						'dateofbirth' 			=> Input::get('dob'),
 						//'gender' 				=> Input::get('gender'),
 						//'weight' 				=> Input::get('weight'),
 						//'activitylevel' 		=> Input::get('activitylevel'),
 						'registrationtimestamp' => date('Y-m-d H:i:s'),
-						'priviledge' 			=> 1
+						'group' 			=> 1
 				));
+				$login = $user -> login(Input::get('nhsnumber'), Input::get('password'), true);
 			} catch(Exception $e)
 			{
 				echo ($e->getMessage());
 			}
 			
 			// Session::flash('success', 'You registered successfully!'); 
-			echo "<script type='text/javascript'> alert('Successfully Registered'); </script>";
-			Redirect::to('../../../home.html');
+			
+			echo "You have registered successfully! You will be redirected in 5 seconds. <br/>
+					If you are not redirected please ".'<a href="../../../home.html">'. 'click here'.'</a>';
+			//header( "refresh:5;url=../../../home.html");
+			
+			
+			
+			//Redirect::to('../../../home.html');
 		} else {
 			print_r($validation->getErrors()); //output errors
 			

@@ -36,7 +36,7 @@
       	</div>
 	</nav>
     <div class="container">
-		<form class="form-signin" role="form" method="post" action="scripts/database/server/login.php">
+		<form class="form-signin" role="form" method="post" action="scripts/database/server/login.php"">
 			<h3 class="form-signin-heading greeding" style="text-align: center;">Welcome to Appetite - Your NHS Nutrition and Symptom Diary!</h3>
     		
     		<table border="0" width="100%" style="text-align: center;">
@@ -53,19 +53,23 @@
 				    <td><input class="form-control" name="password" id="password" type="password" placeholder="Enter your password" ></td>
 				  </tr>
 				  <tr>
-					  <td colspan="2"><div class="checkbox" id="remember-me">
-        							<label>
-        								<input type="checkbox" value="remember-me">Remember me
+					  <td colspan="2"><div class="checkbox" id="remember" name="remember">
+        							<label for="remember">
+        								<input type="checkbox" name="remember" id="remember" value="remember">Remember me
         							</label>
         							</div>
    					  </td>
 				  </tr>
- 			</table>
-      		      
-        	
-        	<button id="btn_signin_to_home" class="btn btn-lg btn-primary btn-block">Sign in</button>
-        	<button id="btn_signup_to_details" class="btn btn-lg btn-success btn-block" onclick="Navigator.prototype.navigate(this.id)">Sign up</button>
-      	</form>
-    </div>
+				  
+				  <tr>
+				    <td colspan="2"><button id="btn_signin_to_home" class="btn btn-lg btn-success btn-block">Sign in</button></td>
+				  </tr>
+				  </table>
+			</form>    	
+		
+		<button id="btn_signup_to_details" class="btn btn-lg btn-primary btn-block" onclick="Navigator.prototype.navigate(this.id)">Sign up</button>
+			
+			
+    
 </body>
 </html>

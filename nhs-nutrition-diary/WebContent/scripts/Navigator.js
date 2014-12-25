@@ -4,7 +4,7 @@ Navigator.prototype.navigate = function(origin) {
 	var nextPage = null;
 	
 	switch(origin)
-	{
+	{		 
 		case "btn_signin_to_home": nextPage = 'home.html'; break;
 		case "btn_signup_to_details": nextPage = 'signUpDetails.html'; break;
 		case "btn_signUpDetails_to_home": nextPage = 'home.html'; break;

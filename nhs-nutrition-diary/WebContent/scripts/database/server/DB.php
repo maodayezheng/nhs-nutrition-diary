@@ -24,7 +24,7 @@ class DB
 		try 
 		{
 			$this->_pdo = new PDO('mysql:host=' . Configurations::get('mysql/host') . ';dbname=' . Configurations::get('mysql/db'), Configurations::get('mysql/userName'), Configurations::get('mysql/passCode'));
-			echo "<br /> Successfuly Connected <br />";
+			echo "<br /> Successfuly Connected To the DB <br />";
 		} catch (PDOExeption $e)
 		{
 			die($e->getMessage());

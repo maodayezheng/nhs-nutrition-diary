@@ -20,6 +20,9 @@ class Redirect
 						include '404.php';
 						exit(); 
 						break;
+					case 'index.html':
+						header('../../../index.html');
+						break;
 				}
 				
 			}

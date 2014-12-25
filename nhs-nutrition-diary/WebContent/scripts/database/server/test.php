@@ -31,5 +31,19 @@ if($user->isLoggedIn())
 	echo "<br />No user is logged in<br />";
 }
 
+if($user->hasPermission('admin'))
+{
+	echo '<p> You are an admin </p>';
+}
+ if($user->hasPermission('user'))
+{
+	echo '<p> You are a standard user. </p>';
+} 
+if($user->hasPermission('moderator'))
+{
+	echo '<p> You are a moderator. </p>';
+}
+
 
 ?>
+

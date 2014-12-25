@@ -27,20 +27,18 @@ if(Input::exists('post'))
 		$remember = (Input::get('remember') === 'remember') ? true:false; 
 		echo '<br />remember: '.$remember.'<br />';
 		echo "<br />Get nhs number: ".Input::get('nhsnumber');
-		//////////////////////////////////////NHSNUMBER SHOULD BE ID BUT WOULD MESS UP LOGIN ON Init
 		$login = $user -> login(Input::get('nhsnumber'), Input::get('password'), $remember);
 		
 		if ($login)
 		{
 			echo "<br />You have logged in successfully! You will be redirected in 5 seconds. <br/>
 					If you are not redirected please ".'<a href="../../../home.html">'. 'click here'.'</a>';
-			//header( "refresh:5;url=../../../home.html");
+			header( "refresh:5;url=../../../home.html");
 		}
 		else 
 		{
 			'Log In Failed. Please check your username/nhsnumber and password.';
 		}
-		//log user in
 	} else 
 	{
 		foreach($validation -> getErrors() as $error)

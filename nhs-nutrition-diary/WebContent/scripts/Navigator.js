@@ -2,7 +2,7 @@ function Navigator() {}
 
 Navigator.prototype.navigate = function(origin) {
 	var nextPage = null;
-	
+	console.log("signUp");
 	switch(origin)
 	{		 
 		case "btn_signin_to_home": nextPage = 'home.html'; break;

@@ -62,8 +62,7 @@ body{
 {
 	align:center;
 	max-width:767px;
-	
-	margin:50px auto;
+	margin:auto;
 	}
 .form-signup > input,
 .form-signup > button{

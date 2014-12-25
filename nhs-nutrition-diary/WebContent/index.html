@@ -25,9 +25,7 @@
 	<nav class="navbar navbar-default" role="navigation">
     	<div class="row">
  			<div class="col-xs-2 border">
- 				<button class="btn btn-default navbar-btn" id="nav-button">
- 					<i class="glyphicon glyphicon-chevron-left"></i>
- 				</button>
+ 	
     		</div>
       		<div class="col-xs-8 border navbar-title">Appetite</div>
       		<div class="col-xs-2 visible-xs-block border">
@@ -39,11 +37,7 @@
 		<form class="form-signin" role="form" method="post" action="scripts/database/server/login.php"">
 			<h3 class="form-signin-heading greeding" style="text-align: center;">Welcome to Appetite - Your NHS Nutrition and Symptom Diary!</h3>
     		
-    		<table border="0" width="100%" style="text-align: center;">
-				  <tr>
-				    <th></th>
-				    <th></th>
-				  </tr>
+    		<table class="login-tabel"border="0" width="100%" style="text-align: center;">
 				  <tr>
 				    <td><label for="nhsnumber">Enter Your Username/NHS Number:</label></td>
 				    <td><input class="form-control" name="nhsnumber" id="inputAccount" type="text" placeholder="Enter your NHS number" ></td>
@@ -64,10 +58,13 @@
 				  <tr>
 				    <td colspan="2"><button id="btn_signin_to_home" class="btn btn-lg btn-success btn-block">Sign in</button></td>
 				  </tr>
+				  <tr>
+				  <td colspan="2"><button id="btn_signup_to_details" class="btn btn-lg btn-primary btn-block" onclick="Navigator.prototype.navigate(this.id)">Sign up</button></td>
+				  </tr>
 				  </table>
 			</form>    	
 		
-		<button id="btn_signup_to_details" class="btn btn-lg btn-primary btn-block" onclick="Navigator.prototype.navigate(this.id)">Sign up</button>
+		
 			
 			
     

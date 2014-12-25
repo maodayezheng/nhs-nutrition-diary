@@ -45,6 +45,12 @@ body{
 	
 	
 }
+.login-tabel{
+	
+	border-collapse:separate;
+	border-spacing:1em;
+	
+}
 .modal-form > input,
 .modal-form > button{
 	margin-top: 10px;	

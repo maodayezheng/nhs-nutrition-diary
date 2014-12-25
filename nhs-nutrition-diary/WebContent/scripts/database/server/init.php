@@ -20,7 +20,8 @@ $GLOBALS['config'] = array(
 		'db'	 		=> 'appetite'
 	),
 	'remember' => array(
-		'cookie_name'	=> 'appetiteCookie',
+		'cookie_name'	=> 'appetiteCookieHash',
+		'cookie_name2'	=> 'appetiteCookieUserID',
 		'cookie_expiry'	=> 315532800 //ten years in seconds
 	), 
 	'session' => array(

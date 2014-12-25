@@ -7,13 +7,15 @@ class User
 			$_data, //to store the user data. 
 			$_sessionName,
 			$_cookieName,
+			$_cookieName2,
 			$_isLoggedIn; 
 			
 	public function __construct($user = null)
 	{
 		$this->_db = DB::getInstance(); 
 		$this->_sessionName = Configurations::get('session/session_name');
-		$this->_cookieName = Configurations::get('remember/cookie_name');
+		$this->_cookieName = Configurations::get('remember/cookie_name'); //name for cookie storing the hash.
+		$this->_cookieName2 = Configurations::get('remember/cookie_name2'); //name for cookie storing user ID. 
 		
 		//echo "<br /> In the constructor of User var user is: {$user}";
 		
@@ -88,7 +90,7 @@ class User
 			{
 				if($this->data()->password === Hash::make($password, $this->data()->salt))
 				{
-					Session::put($this->_sessionName, $this->data()->id); //WHAT TO STORE IN THE SESSION
+					Session::put($this->_sessionName, $this->data()->id); 
 					if($remember)
 					{
 						$hash = Hash::unique();
@@ -104,7 +106,8 @@ class User
 						{
 							$hash = $hashCheck -> first()->hash;
 						}
-						Cookie::put($this->_cookieName, $hash, Configurations::get('remember/cookie_expiry'));
+						Cookie::put($this->_cookieName, $hash, Configurations::get('remember/cookie_expiry')); //store the hash in a cookie
+						Cookie::put($this->_cookieName2,$this->data()->id , Configurations::get('remember/cookie_expiry')); //store the userID in a cookie 
 					}
 					return true;
 				}

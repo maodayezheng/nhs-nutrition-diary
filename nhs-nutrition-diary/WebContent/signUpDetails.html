@@ -19,24 +19,19 @@
     	<title>Sign Up</title>
 	</head>
 	<body>
- 		<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-  			<div class="container-fluid">
-    			<div class="collapse navbar-collapse">
-					<h2 class="nav-title">Sign Up</h2>
-          		</div>
-  			</div>
+ 		<nav class="navbar navbar-default" role="navigation">
+    		<div class="row">
+ 				<div class="col-xs-2 border">
+ 					<button class="btn btn-default navbar-btn" id="nav-button" onclick="Navigator.prototype.back()">
+ 						<i class="glyphicon glyphicon-chevron-left"></i>
+ 					</button>
+    			</div>
+      			<div class="col-xs-8 border navbar-title">Register</div>
+      		</div>
 		</nav>
     	<div class="container">
       		<form class="form-signup" role="form" method="post" action="scripts/database/server/register.php">
-      			<div class="input-group">
-      				<div class="input-group-btn"></div>
-    			</div>
-      			
-				<table border="0" width="100%" style="text-align: center;">
-				  <tr>
-				    <th></th>
-				    <th></th>
-				  </tr>
+				<table class="regester-table">
 				  <tr>
 				    <td><label for="nhsnumber">Enter Your NHS Number:</label></td>
 				    <td><input class="form-control" name="nhsnumber" id="nhs-number" type="text" placeholder="Enter Your NHS Number" required></td>
@@ -69,7 +64,7 @@
 				  </tr>
 				</table>
 				<!-- Mandatory hidden input --><input type="hidden" name="token" value="">
-        		<button id="btn_submit_signUpDetails" class="btn btn-lg btn-primary btn-block"
+        		<button id="btn_submit_signUpDetails" class="btn btn-lg btn-success btn-block"
         			onclick="SubmitController.prototype.submit(this.id)">Submit</button>
       		</form>
     	</div>

@@ -1,5 +1,21 @@
 $(document).ready(function () {
 	
+	$(".passwordButton").click(function(){
+		var email = $("#email").val();
+		var password = $("#password").val();
+		if( email =='NHS' && password =='123'){
+		$('.inputClass').css("border","2px solid green");
+		$('.inputClass').css("box-shadow","0 0 3px green");
+		Navigator.prototype.setting()
+		
+
+		}else {
+			$('.inputClass').css("border","2px solid red");
+			$('.inputClass').css("box-shadow","0 0 3px red");
+			alert("Invalid name and password...!!!!!!");
+		}
+		});
+	
 /* This function creates the bootstrap style check boxes
  * call "setUpCheckbox" on $('.list-group.checked-list-box .list-group-item') */
 	

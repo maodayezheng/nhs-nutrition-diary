@@ -143,7 +143,7 @@ var symptomComments = $('#symptomComment').val();
     }
     console.log(discomfortScores);
     console.log(symptomComments);
-    alert(checkedItems + discomfortScores);
+    //alert(checkedItems + discomfortScores);
     //alert(JSON.stringify(checkedItems));
 });
 

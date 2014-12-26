@@ -5,11 +5,8 @@
  * @author Vikram Bakshi
  */
 
-//require_once 'init.php';
-
 class Validate
 {
-	//private instance variables  
 	private $_passed = false,
 			$_errors = array(),
 			$_db = null;

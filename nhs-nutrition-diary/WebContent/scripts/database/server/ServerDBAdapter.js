@@ -1,8 +1,8 @@
 /**
  * Created by Vikram Bakshi on 03/12/2014.
- * This .js file holds the methods and constructor for the DbEntry object. This object is created when the user adds/deletes/amends an entry to the 
+ * This .js file holds the methods and constructor for the ServerDBAdapter object. This object is created when the user adds/deletes/amends an entry to the 
  * database. The object holds all of the relevant information relating to the db entry i.e. whether is is an addition/amendment/delete, whether it concerns food, weight,
- * or symptoms etc. The object is then serialised and sent to the php script through an AJAX request. The php script deserialises it and processes the database 
+ * or symptoms etc. The object is then serialised as JSON and sent to the php script through an AJAX request. The php script deserialises it and processes the database 
  * transaction. 
 */
 

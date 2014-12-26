@@ -96,19 +96,22 @@ $(".passwordButton")
 	 * it is used when the user enters a custom symptom 
 	 * which is then appended to the $("#newSymptomList")
 	 * */
-	
-	$("#saveNewSymptom").click(function(){	
-		var symptom = $('#newSymptom').val();
-		var newSymptomInList = '<li class="list-group-item" style="cursor: pointer;"><span class="state-icon glyphicon glyphicon-unchecked"></span>'+symptom+'</li>';
-		$("#newSymptomList").append(newSymptomInList);	     
-	     setUpCheckbox();		
-	});
-	
+	     
+var dropContent = 'Rate discomfort 0-4 (low to high)<select class="discomfortRating"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option></select> <br><br> <input type="text" class="form-control"id="symptomComment" placeholder="Optional comment">';
+
 	$("#btn_save_newCustomSymptom").click(function(){	
-		var symptom = $('#newSymptom').val();
-		var newSymptomInList = '<li class="list-group-item" style="cursor: pointer;"><span class="state-icon glyphicon glyphicon-unchecked"></span>'+symptom+'</li>';
-		$("#symptomListCustom").append(newSymptomInList);	     
-	     setUpCheckbox();		
+		var customSymptom = $('#newSymptom').val();
+		
+		var newSymptomInList = '<ol class="list-group-item" style="cursor: pointer;"><span class="state-icon glyphicon glyphicon-unchecked"></span>'+customSymptom+'</ol><div class="drop-scoring">'+dropContent+'</div>';
+		$("#symptomListCustom").append(newSymptomInList);	  
+		 ///////////////////WARNING THIS RESETS CHECKBOXES (TO FIX AFTER DB LOAD SYMPTOMS) ///////////////////
+	     setUpCheckbox();
+	 	$('ol').click(function(){
+			var target = $(this).next(".drop-scoring");	
+		$(target).slideDown('slow');
+		});
+
+
 	});
 
 	var symptoms = new SymptomListSingleton().symptomList;

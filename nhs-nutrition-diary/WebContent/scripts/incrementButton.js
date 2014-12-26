@@ -1,4 +1,6 @@
 jQuery(document).ready(function(){
+	
+	
     $('.qtyPlusCal').click(function(e){
         e.preventDefault();
         fieldName = $(this).attr('field');
@@ -56,7 +58,7 @@ jQuery(document).ready(function(){
         if (!isNaN(currentVal)) {
             $('#fluid').val(currentVal - 50);
         } else {
-            $('#fluis').val(0);
+            $('#fluid').val(0);
         }
     });
     $('.qtyPlusActivity').click(function(e){
@@ -79,4 +81,13 @@ jQuery(document).ready(function(){
             $('#activity').val(0);
         }
     });
+    
+/*$("#btn_submit_settings").click(function(){
+    var currentFluid = $("#currentFluid").text();
+    var me = $("#fluid").val();
+    var lol = currentFluid + me;
+    $("#currentFluid").text(lol);
+});*/
+    
+
 });

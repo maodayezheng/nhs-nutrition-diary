@@ -1,4 +1,15 @@
 <?php
+
+/**
+ * This is a TEST script for testing functionality of the other PHP servers. 
+ * 
+ * DELETE THIS AFTER TESTING. 
+ * 
+ * 
+ */
+
+
+
 require_once 'init.php';
 
 echo '<br />in test.php for the test m8<br />';

@@ -9,7 +9,7 @@
  * @author Vikram Bakshi
  */
 
-session_start();
+session_start(); 
 
 /*
  * Creating a gloabl array for easy access to data.  

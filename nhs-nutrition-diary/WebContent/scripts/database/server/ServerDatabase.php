@@ -1,5 +1,20 @@
 <?php
 /**
+ * 
+ * 
+ * 
+ * 
+ * 
+ * OLD SCRIPT WHICH NEEDS TO BE DELETED ONCE THE NEW DB.php FILE IS CONFIRMED TO HAVE ALL OF THE FUNCTIONALITY IN HERE. 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
  * This class contains the main functionalty needed for the server side database. It imports init.php to have access to the global variables associated
  * with the configurations of the database. The class follows the singleton design pattern so that only one instance of the connection to the database can ever exist. 
  * To return a connection to the database the user should use call the static method 'ServerDatabase::getInstance();'. To close the connection the user should 

@@ -1,4 +1,14 @@
 <?php
+
+/*
+ * 
+ * 
+ * Old script which needs to be deleted once it is confirmed the new scripts cover this functionality. 
+ * 
+ * 
+ * 
+ * 
+ */
 include 'Configurations.php';
 require_once 'ServerDatabase.php';
 

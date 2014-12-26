@@ -7,9 +7,14 @@
  * @author Vikram Bakshi
  */
 
+//TODO FINALISE THIS CLASS AND ITS FUNCTIONALITY IN IN. SET A TOKEN FOR A SESSION FOR THE USER TO PREVENT THE CROSS SITE SCRIPTING VULNERABILITIES
+
 
 class Token
 {
+	/**
+	 * 
+	 */
 	public static function generate()
 	{
 		return Session::put(Configurations::get('session/token_name'), md5(uniqid()));

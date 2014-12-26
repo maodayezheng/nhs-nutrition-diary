@@ -1,11 +1,14 @@
 <?php
 /**
- * This PHP file contains functions which are required across other scripts. It does not need to be imported into any script which imports init.php as it would already be included.  
+ * This PHP file contains functions which may be required across other scripts.
+ * 
+ * Created 17th December 2014
+ * @author Vikram Bakshi
  */
 
-
 /**
- * This is included to increase security of the application and aid against cross site scripting vulnerabilities. 
+ * This is included to theoretically make cross site scripting vulnerabilities harder. 
+ * Intended usage is to santitise data before displaying in a html page (this could be data received from the database or something else).   
  */
 function escape($string)
 {

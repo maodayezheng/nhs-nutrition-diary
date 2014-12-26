@@ -2,7 +2,7 @@
 /**
  * This class' purpose is to abstract away redirection so that instead of using the 
  * PHP header function we can use a more readable and friendly one. 
- * Created: 23rd December 2014
+ * Created: 22nd December 2014
  * @author Vikram Bakshi 
  */
 class Redirect

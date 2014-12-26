@@ -1,5 +1,11 @@
 <?php
-
+//TODO CONTINUE DOCUMENTATION FROM HERE
+/**
+ * 
+ * Created 22nd December 2014
+ * @author Vikram Bakshi
+ *
+ */
 
 class User
 {
@@ -9,7 +15,15 @@ class User
 			$_cookieName,
 			$_cookieName2,
 			$_isLoggedIn; 
-			
+	
+	/**
+	 * When an object of this class in instantiated the instance variables are set so that:
+	 * - There is a connection to the singleton DB ($_db). 
+	 * - The session name is retrieved from the global config array stored in init.php ($_sessionName).
+	 * - The two cookie names are also retreived and stored in $_cookieName and $_cookieName2 - one cookie stores 
+	 * 	 the user's ID (which is just a number i.e. purposefully non-identifiable) and the other cookie stores a hash which allows the user to stay logged in
+	 *   (if they clicked the remember me button when logging in). 
+	 */
 	public function __construct($user = null)
 	{
 		$this->_db = DB::getInstance(); 
@@ -29,6 +43,7 @@ class User
 					$this->_isLoggedIn = true; 
 				} else
 				{
+					//TODO process logout
 					//process logout
 				}
 			}
@@ -74,6 +89,9 @@ class User
 	
 	
 	/**
+	 * 
+	 * //TODO REWRITE METHOD DESCRIPTION
+	 * 
 	 * This method logs the user in or returns a session if they are already logged in. If no arguments are passed it is assumed the user is logged in already (i.e. their cookie stores a valid hash).
 	 * Otherwise you pass the $username, $password, and whether or not the user asked to be remembered ($remember). If the $username and hashed $password match that which is stored in the database
 	 * the user is logged in. If the user has clicked 'remember me' then a cookie is also stored with a hash in order to keep the user logged in.   

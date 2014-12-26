@@ -2,7 +2,7 @@
 /**
  * This is the script which is run once the user clicks the login/sign in button. If any post data exists the script the data is validated against the requirements.
  * If the user validation is passed then user is logged in, otherwise errors are echoed to the user. 
- * Created 24th December 2014
+ * Created 23rd December 2014
  * @author Vikram Bakshi 
  */
 

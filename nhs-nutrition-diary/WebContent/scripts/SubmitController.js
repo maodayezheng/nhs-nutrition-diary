@@ -1,22 +1,21 @@
 function SubmitController() {}
 
 SubmitController.prototype.submit = function(submitter) {
-	switch(submitter) 
-	{
-		case 'btn_submit_signUpDetails': 	this.submitSignUpDetails(); break;
-		case 'btn_submit_foods': 			this.submitFoods(); break;
-		case 'btn_submit_newFood': 			this.submitNewFood(); break;
+	switch(submitter) {
+		case 'btn_submit_signUpDetails': this.submitSignUpDetails(); break;
+		case 'btn_submit_foods': this.submitFoods(); break;
+		case 'btn_submit_newFood': this.submitNewFood(); break;
 		//TODO set button id
-//		case '': 							this.submitMeal(); break;
-		case 'btn_submit_symptoms': 		this.submitSymptoms(); break;
-		case 'btn_save_newCustomSymptom': 	this.submitNewCustomSymptom(); break;
-		case 'btn_submit_weight': 			this.submitWeight(); break;
-		case 'btn_submit_settings': 		this.submitSettings(); break;
+//		case '': this.submitMeal(); break;
+		case 'btn_submit_symptoms': this.submitSymptoms(); break;
+		case 'btn_save_newCustomSymptom': this.submitNewCustomSymptom(); break;
+		case 'btn_submit_weight': this.submitWeight(); break;
+		case 'btn_submit_settings': this.submitSettings(); break;
 	}
 }
 
 SubmitController.prototype.getUserId = function() {
-	//TODO retrieve user id. Vik: This is stored in a cookie. Will coordinate to get this done with you later. Should be "1" line of code -_- 
+	//TODO retrieve user id
 	return 1;
 }
 

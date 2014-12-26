@@ -297,7 +297,7 @@ a.clickable:hover { text-decoration:none; }
 
 div.main{
 padding: 10px 55px 40px;
-background-image: url("http://www.farmison.com/images/category/greengrocer/office_fruit_bowl.jpg");border: 15px solid white;
+background-image: url("resources/fruitbowl.jpg");border: 15px solid white;
 box-shadow: 0 0 10px;
 border-radius: 2px;
 font-size: 13px;

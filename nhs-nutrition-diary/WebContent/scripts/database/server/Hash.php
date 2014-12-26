@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * This class contains all of the functionality related to hashes and hashing. It is mainly used for the creation of hashes to be stored as passwords
+ * and for the creation of salts. 
+ * Created: 24th December 2014
+ * @author Vikram Bakshi
+ *
+ */
 class Hash
 {
 	
@@ -18,10 +25,9 @@ class Hash
 	{
 		return mcrypt_create_iv($length);
 	}
-	
 
 	/**
-	 * Function makes a unique hash. 
+	 * Function calls the static function make whilst passing the first argument, $string as uniqid(). 
 	 */
 	public static function unique()
 	{

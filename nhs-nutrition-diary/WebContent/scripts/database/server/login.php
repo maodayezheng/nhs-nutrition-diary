@@ -1,15 +1,15 @@
 <?php
+/**
+ * This is the script which is run once the user clicks the login/sign in button. If any post data exists the script the data is validated against the requirements.
+ * If the user validation is passed then user is logged in, otherwise errors are echoed to the user. 
+ * Created 24th December 2014
+ * @author Vikram Bakshi 
+ */
 
+require_once 'init.php'; 
 
-require_once 'init.php';
-
-echo 'in login.php <br />';
-
-//echo 'the session name '.Session::get(Configurations::get('session/session_name'));
 if(Input::exists('post'))
-{
-	echo "<br />input exists login.php <br />";
-	
+{	
 	$validate = new Validate();
 	$validation = $validate->check($_POST,array(
 		'nhsnumber' => array(
@@ -24,9 +24,7 @@ if(Input::exists('post'))
 	{
 		$user = new User(); 
 	
-		$remember = (Input::get('remember') === 'remember') ? true:false; 
-		echo '<br />remember: '.$remember.'<br />';
-		echo "<br />Get nhs number: ".Input::get('nhsnumber');
+		$remember = (Input::get('remember') === 'remember') ? true:false; //did the user tick the remember me button?
 		$login = $user -> login(Input::get('nhsnumber'), Input::get('password'), $remember);
 		
 		if ($login)

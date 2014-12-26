@@ -1,16 +1,18 @@
 <?php
 /**
- * This PHP script will be included in all others. It contains the superglobal array 'config' which details inforamation about the database, cookie, and session.
- * This script also imports sanitise.php which contains functionality which is needed for every script which imports this one. 
+ * This PHP script is intended to be included in others. Instead of having to write countless require statements e.g. require_once 'DB.php'; require_once 'User.php'; etc.
+ * the script includes an autoload function. It also contains the global array 'config' which details information about the database, cookies, and session. 
+ * The script contains a line 'require_once 'sanitise.php'' which contains functionality which may be needed in other classes. Finally, the script checks whether 
+ * the user has asked to be remembered i.e. if a cookie is present and if they are logged in. It goes on to log the user in if that is the desired outcome. 
  * 
  * Created 16th December 2014
  * @author Vikram Bakshi
  */
 
 session_start();
-//echo "<br /> in init.php <br />";
+
 /*
- * Creating a gloabl array so all classes which import init.php will have access to these variables. 
+ * Creating a gloabl array for easy access to data.  
  */
 $GLOBALS['config'] = array(
 	'mysql' => array(
@@ -37,21 +39,21 @@ spl_autoload_register(function($class)
 {
 	require_once $class.'.php';
 });
+    
+require_once 'sanitise.php'; // Imports functions which should be accessible to scripts which use require_once 'init.php'. 
 
-// This imports the functions which are required across all scripts. It is done here for cleaner code.    
-require_once 'sanitise.php';
 
 if(Cookie::exists(Configurations::get('remember/cookie_name')) && !Session::exists(Configurations::get('session/session_name'))) //if the cookie exists but the session does not - then the user asked to be remembered and so should be logged in.
 {
-	echo '<br /> User asked to be remembered <br />';
+	//echo '<br /> User asked to be remembered <br />'; //for debugging. 
 	$hash = Cookie::get(Configurations::get('remember/cookie_name'));
 	$hashCheck = DB::getInstance()->get('users_session', array('hash','=',$hash));
 	
 	if($hashCheck->count())
 	{
 		//if here then the user wanted to be remembered and so should be logged in 
-		echo 'Hash Matches, log the user in.';
-		echo '<br />'.$hashCheck->first()->user_id;
+		/* echo 'Hash Matches, log the user in.';
+		echo '<br />'.$hashCheck->first()->user_id; */ //for debugging. 
 		$user = new User($hashCheck->first()->user_id); 
 		$user->login(); 
 	}

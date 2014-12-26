@@ -7,6 +7,9 @@
  */
 class Redirect
 {
+	/**
+	 * This static function's purpose is to make it easier to redirect between pages. 
+	 */
 	public static function to($location = null)
 	{
 		if($location)

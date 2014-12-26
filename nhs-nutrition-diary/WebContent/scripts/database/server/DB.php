@@ -1,14 +1,11 @@
 <?php
 /**
- * This class contains the main functionalty needed for the server side database. It imports init.php to have access to the global variables associated
- * with the configurations of the database. The class follows the singleton design pattern so that only one instance of the connection to the database can ever exist. 
- * To return a connection to the database the user should use call the static method 'ServerDatabase::getInstance();'. To close the connection the user should 
- * call closeConnection() on the instance object. 
+ * This class contains the main functionalty needed for the server side database. The class follows the singleton design pattern so that only one instance of 
+ * the connection to the database can ever exist. To return a connection to the database the user should use call the static method 'ServerDatabase::getInstance();'. 
+ * To close the connection the user should call closeConnection() on the instance object. The database uses PDO (PHP Data Objects) to connect a MySQL database. 
  * Created: 16th December 2014. 
  * @author Vikram Bakshi
  */
-
-//require_once 'init.php'; 
 
 class DB
 {
@@ -19,6 +16,9 @@ class DB
 			$_results, 
 			$_count = 0; 
 	
+	/**
+	 * The constructor is only run if an instance does not already exist. 
+	 */
 	public function __construct()
 	{
 		try 
@@ -60,7 +60,7 @@ class DB
 	}
 	
 	/**
-	 * This method abstracts away the native PDO functionality in order to create a more general database query. It takes to inputs, $sql, and $params.
+	 * This method abstracts away the native PDO functionality in order to create a more general database query. It takes two inputs, $sql, and $params.
 	 * The method is intended to receive sql ($sql) containing '?' marks (e.g. SELECT id FROM userweightmanifest WHERE weight = ?). The method then binds
 	 * the values from the $params array to the question mark. Multiple question  marks and values can be used in the $sql and $params variables. The result
 	 * of the query is stored in the instance variable _results and the number of results is stored in the instance variable _count. If there is an error, 
@@ -93,7 +93,7 @@ class DB
 	}
 	
 	/**
-	 * This method utilises the query method to conduct any sql action (get, delete) etc. It is intended to be called by a given action method (such as GET or DELETE)
+	 * This method utilises the query method to abstract away actions (e.g. get, delete) etc. It is intended to be called by a given action method (such as GET or DELETE)
 	 * and is used to aid preventing SQL injections. For example 'DB::getInstance()->get('userweightmanifest', array('weight','=','99')' would call this method with $action 
 	 * defined as GET. The operators allowed are defined in the $operators array. 
 	 */
@@ -124,6 +124,13 @@ class DB
 	{
 		return $this->action('SELECT *', $table, $where); //assume that the action is always SELECT * because we want to return all rows. 
 	}
+	
+	//TODO Write function so that it returns data between two date intervals. 
+	public function getInterval()
+	{
+		
+	}
+	
 	/**
 	 * Utilises the action method to carry out a DELETE action.
 	 */
@@ -134,12 +141,12 @@ class DB
 	
 	/**
 	 * Inserts a record into a given table. Uses the backtick character '`' to increase security by preventing SQL injections. 
-	 * Usage example: DB::getInstance()->insert('users',array('nhsnumber' => '123456', 'dateofbirth' => '20141222', 'hashedsaltedpw' => 'hashedsaltedpw'));
+	 * Usage example: DB::getInstance()->insert('users',array('nhsnumber' => '123456', 'dateofbirth' => '20141222', 'group' => '1'));
 	 * 
 	 */
 	public function insert($table, $fields = array())
 	{
-		if(count($fields)) //if data actually in the fields array
+		if(count($fields)) //if data is actually in the fields array
 		{
 			$keys = array_keys($fields);
 			$values = ''; //variable that will keep track of the '?' marks in the query.

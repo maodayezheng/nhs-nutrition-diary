@@ -1,5 +1,5 @@
 <?php
-/* 
+/**
  * Register.php is the script called when the user clicks submit in the registration process. It contains the function call
  * to the validation class which checks whether the data passed to the form conforms to certain rules (min/max length, if it is unique etc.). 
  * If it passes the validation it allows the user to register, if not it returns errors relating to why the registration was unsuccessful.  
@@ -10,80 +10,66 @@
  
 require_once 'init.php';
 
-echo 'in register.php <br />';
-
-//var_dump(Token::check(Input::get('token')));
-
-
 if(Input::exists('post'))
 {
-	echo "input exists as post for register.php<br />";
-	echo Token::check(Input::get('token'));
-	//if(Token::check(Input::get('token')))
-	//{
-		echo "I have been run <br />";
-		$validate = new Validate();
-		$validation = $validate -> check($_POST, array(
-				'nhsnumber' => array(
-					'required' => true,
-					'min' => 5, //min length
-					'max' => 15, //max length
-					'unique' => 'users'
-				),
-				'password' => array(
-					'required' => true,
-					'min' => 6,
-				),
-				'password_again' => array(
-					'required' => true,
-					'matches' => 'password'
-				),
-				'weight' => array(
-					'required' => true
-				),
-				'dob' => array(),
-				'activitylevel' => array()
-		));
-		
-		if($validation->passed())
-		{
-			echo 'passed'; //register user
-			$user = new User(); 
-			$salt = Hash::salt(32);
-
-			try 
-			{
-				$user->create(array(
-						'nhsnumber' 			=> Input::get('nhsnumber'),
-						'password' 				=> Hash::make(Input::get('password'),$salt),
-						'salt' 					=> $salt,
-						'dateofbirth' 			=> Input::get('dob'),
-						//'gender' 				=> Input::get('gender'),
-						//'weight' 				=> Input::get('weight'),
-						//'activitylevel' 		=> Input::get('activitylevel'),
-						'registrationtimestamp' => date('Y-m-d H:i:s'),
-						'group' 			=> 1
-				));
-				$login = $user -> login(Input::get('nhsnumber'), Input::get('password'), true);
-			} catch(Exception $e)
-			{
-				echo ($e->getMessage());
-			}
-			
-			// Session::flash('success', 'You registered successfully!'); 
-			
-			echo "You have registered successfully! You will be redirected in 5 seconds. <br/>
-					If you are not redirected please ".'<a href="../../../home.html">'. 'click here'.'</a>';
-			//header( "refresh:5;url=../../../home.html");
-			
-			
-			
-			//Redirect::to('../../../home.html');
-		} else {
-			print_r($validation->getErrors()); //output errors
-			
-		}
-	//}
+	$validate = new Validate();
+	$validation = $validate -> check($_POST, array(
+			'nhsnumber' => array(
+				'required' => true,
+				'min' => 5, //min length
+				'max' => 15, //max length
+				'unique' => 'users'
+			),
+			'password' => array(
+				'required' => true,
+				'min' => 6,
+			),
+			'password_again' => array(
+				'required' => true,
+				'matches' => 'password'
+			),
+			'weight' => array(
+				'required' => true
+			),
+			'dob' => array(),
+			'activitylevel' => array()
+	));
 	
+	if($validation->passed())
+	{
+		echo 'passed'; //register user
+		$user = new User(); 
+		$salt = Hash::salt(32);
+
+		try 
+		{
+			$user->create(array(
+					'nhsnumber' 			=> Input::get('nhsnumber'),
+					'password' 				=> Hash::make(Input::get('password'),$salt),
+					'salt' 					=> $salt,
+					'dateofbirth' 			=> Input::get('dob'),
+					//'gender' 				=> Input::get('gender'),
+					//'weight' 				=> Input::get('weight'),
+					//'activitylevel' 		=> Input::get('activitylevel'),
+					'registrationtimestamp' => date('Y-m-d H:i:s'),
+					'group' 			=> 1
+			));
+			$login = $user -> login(Input::get('nhsnumber'), Input::get('password'), true);
+		} catch(Exception $e)
+		{
+			echo ($e->getMessage());
+		}
+		
+		echo "You have registered successfully! You will be redirected in 5 seconds. <br/>
+				If you are not redirected please ".'<a href="../../../home.html">'. 'click here'.'</a>';
+		header( "refresh:5;url=../../../home.html");
+		//Redirect::to('../../../home.html');
+	} else 
+	{
+		print_r($validation->getErrors()); //output errors
+		
+	}
+
+
 } 
 ?>

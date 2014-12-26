@@ -42,3 +42,25 @@ ServerDBAdapter.prototype.submit = function(dataToServer, action)
 	    }
 	});
 };
+
+//TODO For Vik: This is where you can put the code for DB getters.
+ServerDBAdapter.prototype.get = function(table, where)
+{
+	console.log("ServerDBAdapter.prototype.get() entered.");
+	
+	$.ajax({
+	    url: "scripts/database/server/DB.php?action=get&table=" + table + "&where=" + where,
+	    type: "GET",
+	    dataType: "text", //what you will receive in response. 
+	    contentType: "application/json", //what you are sending.
+	    success: function (msg){
+	        console.log("success " + msg); 
+	    },
+	    error: function (xhr, ajaxOptions, thrownError) {
+	        console.log(xhr.statusText);
+	        console.log(xhr.responseText);
+	        console.log(xhr.status);
+	        console.log(thrownError);
+	    }
+	});
+};

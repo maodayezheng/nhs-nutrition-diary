@@ -15,14 +15,17 @@ function ServerDBAdapter() {}
 ServerDBAdapter.prototype.submit = function(dataToServer, action)
 {
 	console.log("printing the data sent to the submit function");
-	console.log(dataToServer);
+	//console.log(dataToServer);
+	dataToServer.action = action; 
+	console.log(dataToServer); 
 	
 	var actionUrl;
 	switch(action) {
-		case "save": actionUrl = "scripts/database/server/saveEntry.php"; break;
+		/*case "save": actionUrl = "scripts/database/server/saveEntry.php"; break;
 		case "edit": actionUrl = "scripts/database/server/editEntry.php"; break;
 		case "delete": actionUrl = "scripts/database/server/deleteEntry.php"; break;
-		case "test": actionUrl = "test.php"; break; 
+		case "test": actionUrl = "test.php"; break;*/
+		default: actionUrl = "scripts/database/server/clientToServerController.php"; break; 
 	}
 	
 	$.ajax({

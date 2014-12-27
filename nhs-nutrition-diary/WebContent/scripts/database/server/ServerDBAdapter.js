@@ -42,3 +42,29 @@ ServerDBAdapter.prototype.submit = function(dataToServer, action)
 	    }
 	});
 };
+
+ServerDBAdapter.prototype.get = function(table, where)
+{
+	console.log("ServerDBAdapter.prototype.get() entered.");
+	
+	$.ajax({
+	    url: "scripts/database/server/DB_get.php",
+	    type: "POST",
+	    dataType: "text", //what you will receive in response. 
+	    contentType: "application/json", //what you are sending.
+	    data: JSON.stringify({table: table, where: where}),
+	    success: function (result){
+	        console.log("success");
+	        //TODO set variables to values returned by query
+	        
+	        var databaseResult = result;
+	        alert(JSON.stringify(databaseResult));
+	    },
+	    error: function (xhr, ajaxOptions, thrownError) {
+	        console.log(xhr.statusText);
+	        console.log(xhr.responseText);
+	        console.log(xhr.status);
+	        console.log(thrownError);
+	    }
+	});
+};

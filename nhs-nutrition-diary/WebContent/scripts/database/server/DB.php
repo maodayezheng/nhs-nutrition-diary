@@ -7,6 +7,8 @@
  * @author Vikram Bakshi
  */
 
+include 'Configurations.php';
+
 class DB
 {
 	private static $_instance = null; //instance for the singleton. 
@@ -99,6 +101,8 @@ class DB
 	 */
 	public function action($action, $table, $where = array()) //action e.g. SELECT *
 	{
+		echo($table);
+		echo($where);
 		if(count($where)===3) //we need a field, operator and value. 
 		{
 			$operators = array('=','>','<','>=','<=');

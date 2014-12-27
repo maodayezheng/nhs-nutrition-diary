@@ -229,6 +229,9 @@ SubmitController.prototype.submitMeal = function() {
 SubmitController.prototype.submitSymptoms = function() {
 	var table = "usersymptommanifest"; 
 	
+	//TODO delete line after testing works
+	alert(ServerDBAdapter.prototype.get("usersymptommanifest", "userid=1"));
+	
 	var userid = this.getUserId();
 	var date = $('#symptomDate').val();
 	var time = $('#symptomTime').val();
@@ -266,7 +269,7 @@ SubmitController.prototype.submitSymptoms = function() {
 				"comment": comment
 		};
 		
-		ServerDBAdapter.prototype.submit(dataToServer, "save");		
+		ServerDBAdapter.prototype.submit(dataToServer, "save");
 	}
 }
 

@@ -4,21 +4,22 @@ $(document).ready(function () {
 $(".passwordButton")
 	.click(
 			function() {
-				var email = $("#email").val();
+				var username = $("#username").val();
 				var password = $("#password").val();
-				if (email == 'NHS' && password == '123') {
+				if (username == 'NHS' && password == '123') {
 					$('.inputClass').css("border",
 							"2px solid green");
 					$('.inputClass').css("box-shadow",
 							"0 0 3px green");
-					Navigator.prototype.setting()
+					window.location.href = "settings.html";
+					//Navigator.prototype.setting()
 
 				} else {
 					$('.inputClass').css("border",
 							"2px solid red");
 					$('.inputClass').css("box-shadow",
 							"0 0 3px red");
-					alert("Invalid name and password...!!!!!!");
+					alert("Invalid name and password");
 				}
 			});
 	
@@ -110,8 +111,6 @@ var dropContent = 'Rate discomfort 0-4 (low to high)<select class="discomfortRat
 			var target = $(this).next(".drop-scoring");	
 		$(target).slideDown('slow');
 		});
-
-
 	});
 
 	var symptoms = new SymptomListSingleton().symptomList;
@@ -147,13 +146,14 @@ var symptomComments = $('#symptomComment').val();
         console.log($(li).text());
         counter++;
     });
-    for(var i = 0; i < checkedItems.length; i++){
-        console.log(i + " = " + checkedItems[i] + discomfortScores);
-    }
-    console.log(discomfortScores);
-    console.log(symptomComments);
-    alert(checkedItems + discomfortScores);
-    //alert(JSON.stringify(checkedItems));
+ 
+     //   console.log(checkedItems);
+    
+  //  console.log(discomfortScores);
+  //  console.log(symptomComments);
+   // alert(checkedItems + discomfortScores);
+    alert(JSON.stringify(checkedItems) + discomfortScores);
+    console.log(checkedItems);
 });
 
 

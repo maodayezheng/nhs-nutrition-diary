@@ -21,7 +21,7 @@ Navigator.prototype.navigate = function(origin) {
 }
 Navigator.prototype.setting = function(){
 	
-	window.location.href = "settings.html";
+	window.location.href = "settingsPassword.html";
 	
 }
 

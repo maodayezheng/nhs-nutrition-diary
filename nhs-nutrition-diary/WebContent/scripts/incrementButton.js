@@ -1,5 +1,23 @@
 jQuery(document).ready(function(){
+	$("#btn_submit_settings").click(function(){
+			
+	//TODO replace hard-coded value with same db getters as onLoad.js
+	var caloriesRequirement = 2000;
+	var proteinRequirement = 45;
+	var fluidRequirement = 3150;
+	var activityLevel = 1;
 	
+	// Value of decrease/increase adjustments by dietician	
+	var calsToAdjust = parseInt($("#cals").val());
+	var proteinToAdjust = parseInt($("#protein").val());
+	var fluidToAdjust = parseInt($("#fluid").val());
+	var activityToAdjust = parseFloat($("#activity").val());
+
+	$("#currentCals").html(calsToAdjust+ caloriesRequirement);
+	$("#currentProtein").html(proteinToAdjust+ proteinRequirement);
+	$("#currentFluid").html(fluidToAdjust+ fluidRequirement);
+	$("#currentActivity").html(activityToAdjust+ activityLevel);
+	});
 	
     $('.qtyPlusCal').click(function(e){
         e.preventDefault();

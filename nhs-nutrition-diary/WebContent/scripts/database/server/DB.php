@@ -167,7 +167,7 @@ class DB
 			
 			if(!$this->query($sql,$fields)->error())
 			{
-				echo "<br />no error inserting into database";
+				echo "<br />Inserting into the database was a success!";
 				return true;
 			}
 			else { //delete else bit

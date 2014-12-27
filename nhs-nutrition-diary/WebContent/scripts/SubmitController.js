@@ -15,8 +15,9 @@ SubmitController.prototype.submit = function(submitter) {
 }
 
 SubmitController.prototype.getUserID = function() {
+	return Cookies.prototype.getUserID(); 	
 	//TODO retrieve user id
-	return 1;
+	//return 1;
 }
 
 SubmitController.prototype.formatDateTime = function(date, time) {

@@ -11,6 +11,7 @@
    	<script src="lib/jquery/jquery-2.1.1.min.js"></script>
    	<script src="lib/bootstrap/bootstrap.min.js"></script>
    	
+   	<script src="scripts/symptoms.js"></script>
    	<script src="scripts/OnLoad.js"></script>
    	<script src="scripts/Navigator.js"></script>
    	<script src="scripts/cookie.js"></script>
@@ -127,24 +128,21 @@
 	<div class="modal fade" id="modal-amend" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
   			<div class="modal-dialog">
     			<div class="modal-content">
-      				<div class="modal-header">
-        				<button type="button" class="close" data-dismiss="modal">
-        					<span aria-hidden="true">&times;</span>
-        					<span class="sr-only">Close</span>
-        				</button>
-        				<h4 class="modal-title">Apitite</h4>
-      				</div>
-      				<div class="modal-body">
-      						<h4>ATTENTION!</h4>
-      						<p>This login is only for dieticians to check</p>
-      						<p>Dieticians can log in to change users nutritional requirements</p>
-      						<hr>
-      						<form class="form" method="post" action="#">
-				<input class="inputClass" type="text" name="demail" id="email" placeholder="User Name">
-				<input class="inputClass" type="password" name="password" id="password" placeholder="Password">
-				<input class="passwordButton btn btn-lg btn-success btn-block"  type="button"  value="Update Nutrition">
-				</form>			
-      				</div>
+      		<div class="main" style="background-image: url(resources/fruit.jpg);">
+			<form class="form" method="post" action="#">
+				<div id="headingInWhiteBackground">
+					<h2 class="dieticianOnly">This section is for dieticians only</h2>
+					<div class="dieticianOnly">Dieticians can log in to change
+						users nutritional requirements</div>
+				</div>
+				<input class="inputClass" type="text" name="demail" id="username"
+					placeholder="User Name"> <input class="inputClass"
+					type="password" name="password" id="password"
+					placeholder="Password"> <input
+					class="passwordButton btn btn-lg btn-success btn-block"
+					type="button" value="Update Nutrition">
+			</form>
+		</div>
   
     			</div>
   			</div>

@@ -57,8 +57,7 @@ ServerDBAdapter.prototype.get = function(table, where)
 	        console.log("success");
 	        //TODO set variables to values returned by query
 	        
-	        var databaseResult = result;
-	        alert(JSON.stringify(databaseResult));
+	        alert(JSON.stringify(result));
 	    },
 	    error: function (xhr, ajaxOptions, thrownError) {
 	        console.log(xhr.statusText);

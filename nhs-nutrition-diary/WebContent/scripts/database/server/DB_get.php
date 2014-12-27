@@ -16,13 +16,9 @@ switch($table) {
 $database -> closeConnection();
 
 function get_usersymptommanifest($table, $where) {
-	echo("...");
-	echo($table);
-	echo("...");
-	echo($where);
-	echo("...");
-	
+// 	echo($db->get($table, $where));
 	$db = new DB();
-	echo($db->get($table, $where));
+	$db->get('usersymptommanifest', array('userid','=','1'));
+	echo($db->results()[0]);
 }
 ?>

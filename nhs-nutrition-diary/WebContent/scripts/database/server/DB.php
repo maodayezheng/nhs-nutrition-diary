@@ -101,8 +101,6 @@ class DB
 	 */
 	public function action($action, $table, $where = array()) //action e.g. SELECT *
 	{
-		echo($table);
-		echo($where);
 		if(count($where)===3) //we need a field, operator and value. 
 		{
 			$operators = array('=','>','<','>=','<=');
@@ -115,7 +113,7 @@ class DB
 				$sql = "{$action} FROM {$table} WHERE {$field} {$operator} ?";
 				if(!$this->query($sql, array($value))->error()) //$value is what you want the ? in the sql to be replaced by. 
 				{
-					return $this; 
+					return $this;
 				}
 			}
 		}

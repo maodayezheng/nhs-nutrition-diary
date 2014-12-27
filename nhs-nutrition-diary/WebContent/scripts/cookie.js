@@ -33,6 +33,6 @@ console.log(Cookies.prototype.getCookie("appetiteCookieUserID"));
 
 if(!Cookies.prototype.getUserID()) 
 {
-	console.log("No User ID stored in cookie. The User is not logged in. Redirecting to notLoggedIn.html ....");
-	
+	console.log("No User ID stored in cookie. The User is not logged in. Redirecting ....");
+	window.location.replace("notLoggedIn.html");
 }

@@ -11,12 +11,18 @@ require_once 'init.php'; //contains the class loader
 $db 			= 	DB::getInstance(); 
 $data 			= 	Input::retrieveData();
 $dataDecoded 	= 	json_decode($data, true); //decode the json data with the true flag so that objects are converted into associative arrays. 
+$action 		=   $dataDecoded['action']; //extract the table and action and unset them from the associative array. This is so that only fields in the database remain in the array. 
+$table			=	$dataDecoded['table'];
+ 
+unset($dataDecoded['action']); 
+unset($dataDecoded['table']);
 
-echo "in clientToServerController!";
-echo $dataDecoded; 
-print_r($dataDecoded);
+switch($action)
+{
+	case 'save': $db->insert($table, $dataDecoded); break; 
+}
 
-echo $dataDecoded['action'];
+
 
 
 /* 

@@ -14,7 +14,7 @@ SubmitController.prototype.submit = function(submitter) {
 	}
 }
 
-SubmitController.prototype.getUserId = function() {
+SubmitController.prototype.getUserID = function() {
 	//TODO retrieve user id
 	return 1;
 }
@@ -37,7 +37,7 @@ SubmitController.prototype.formatDateTime = function(date, time) {
 SubmitController.prototype.updateRequirements = function() {
 	var table = "userrequirementsmanifest";
 	
-	var userId = this.getUserId();
+	var userId = this.getUserID();
 	var date = new Date();
 	var dateTime = this.formatDateTime(date.dateFormat('d/m/Y'), date.dateFormat('H:i'));
 	//TODO get gender, weight, activityLevel, additional calories/protein/fluid/activity from database
@@ -85,7 +85,7 @@ SubmitController.prototype.signIn = function() {
 SubmitController.prototype.submitSignUpDetails = function() {
 	var table = "users";
 	
-	var userId = this.getUserId();
+	var userId = this.getUserID();
 	var date = new Date();
 	var dateTime = this.formatDateTime(date.dateFormat('d/m/Y'), null);
 	//TODO get priviledge
@@ -130,7 +130,7 @@ SubmitController.prototype.submitSignUpDetails = function() {
 SubmitController.prototype.submitFoods = function() {
 	var table = "userfoodmanifest"; 
 	
-	var userid = this.getUserId();
+	var userid = this.getUserID();
 	//TODO find actual date from food.html
 	var date = "22/10/2014";
 	var dateTime = this.formatDateTime(date, null);
@@ -194,7 +194,7 @@ SubmitController.prototype.submitFoods = function() {
 
 SubmitController.prototype.submitNewFood = function() {
 	var table = "userfoodlist";
-	var userid = this.getUserId();
+	var userid = this.getUserID();
 	var date = new Date();
 	var dateTime = this.formatDateTime(date.dateFormat('d/m/Y'), date.dateFormat('H:i'));
 	
@@ -232,7 +232,7 @@ SubmitController.prototype.submitSymptoms = function() {
 	//TODO delete line after testing works
 	//alert(ServerDBAdapter.prototype.get("usersymptommanifest", "userid=1"));
 	
-	var userid = this.getUserId();
+	var userid = this.getUserID();
 	var date = $('#symptomDate').val();
 	var time = $('#symptomTime').val();
 	var dateTime = this.formatDateTime(date, time);
@@ -275,7 +275,7 @@ SubmitController.prototype.submitSymptoms = function() {
 
 SubmitController.prototype.submitNewCustomSymptom = function() {
 	table = "usersymptomlist";
-	userid = this.getUserId();
+	userid = this.getUserID();
 	var date = $('#symptomDate').val();
 	var time = $('#symptomTime').val();
 	var datetime = this.formatDateTime(date, time);
@@ -298,7 +298,7 @@ SubmitController.prototype.submitNewCustomSymptom = function() {
 SubmitController.prototype.submitWeight = function() {
 	var table = "userweightmanifest"; 
 	
-	var userid = this.getUserId();
+	var userid = this.getUserID();
 	var date = $('#datetime').val();
 	var datetime = this.formatDateTime(date, null);
 	var weight = $('#newWeight').val();
@@ -318,7 +318,7 @@ SubmitController.prototype.submitWeight = function() {
 SubmitController.prototype.submitSettings = function() {
 	var table = "userrequirementsmanifest";
 	
-	var userId = this.getUserId();
+	var userId = this.getUserID();
 	var date = new Date();
 	var dateTime = this.formatDateTime(date.dateFormat('d/m/Y'), null);
 	//TODO get gender, weight, activityLevel from database

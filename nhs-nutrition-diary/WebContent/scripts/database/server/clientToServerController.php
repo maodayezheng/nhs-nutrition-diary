@@ -11,10 +11,10 @@ require_once 'init.php'; //contains the class loader
 $db 			= 	DB::getInstance(); 
 $data 			= 	Input::retrieveData();
 $dataDecoded 	= 	json_decode($data, true); //decode the json data with the true flag so that objects are converted into associative arrays. 
-$action 		=   $dataDecoded['action']; //extract the table and action and unset them from the associative array. This is so that only fields in the database remain in the array. 
+$action 		=   $dataDecoded['action'];  
 $table			=	$dataDecoded['table'];
  
-unset($dataDecoded['action']); 
+unset($dataDecoded['action']); //unset these from the associative array. This is so that only relevant fields needed remain in the array. 
 unset($dataDecoded['table']);
 
 switch($action)

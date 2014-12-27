@@ -6,7 +6,7 @@ $(".passwordButton")
 			function() {
 				var username = $("#username").val();
 				var password = $("#password").val();
-				if (username == 'NHS' && password == '123') {
+				if (username == 'NHS' && password == '1100') {
 					$('.inputClass').css("border",
 							"2px solid green");
 					$('.inputClass').css("box-shadow",

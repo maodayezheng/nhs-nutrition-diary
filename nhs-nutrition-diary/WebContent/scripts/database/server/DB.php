@@ -7,8 +7,6 @@
  * @author Vikram Bakshi
  */
 
-include 'Configurations.php';
-
 class DB
 {
 	private static $_instance = null; //instance for the singleton. 

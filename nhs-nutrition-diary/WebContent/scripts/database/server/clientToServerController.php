@@ -6,11 +6,11 @@
  * @author Vikram Bakshi
  */
 
-require_once 'init.php';
+require_once 'init.php'; //contains the class loader 
 
-$db 	= DB::getInstance(); 
-$data 	= Input::retrieveData();
-$dataDecoded = json_decode($data, true); //decode the json data with the true flag so that objects are converted into associative arrays. 
+$db 			= 	DB::getInstance(); 
+$data 			= 	Input::retrieveData();
+$dataDecoded 	= 	json_decode($data, true); //decode the json data with the true flag so that objects are converted into associative arrays. 
 
 echo "in clientToServerController!";
 echo $dataDecoded; 

@@ -230,7 +230,7 @@ SubmitController.prototype.submitSymptoms = function() {
 	var table = "usersymptommanifest"; 
 	
 	//TODO delete line after testing works
-	alert(ServerDBAdapter.prototype.get("usersymptommanifest", "userid=1"));
+	//alert(ServerDBAdapter.prototype.get("usersymptommanifest", "userid=1"));
 	
 	var userid = this.getUserId();
 	var date = $('#symptomDate').val();

@@ -221,6 +221,14 @@ class DB
 		return $this->results()[0];
 	}
 	
+	//TODO This function should return the latest entry in the database. Useful for getting the latest version of requirements. 
+	public function last()
+	{
+		
+	}
+	
+	
+	
 	/**
 	 * Returns the count of the results i.e. num of rows returned in the query instance variable. 
 	 */

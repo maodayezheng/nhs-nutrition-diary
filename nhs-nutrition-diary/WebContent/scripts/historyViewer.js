@@ -31,6 +31,8 @@ function toggleHistoryVisualisationButton(id) {
 	} else if (id == 'summarySelectorLabel') {
 		var summary = new Summary();
 		summary.manageSummary(presentedParameter, dateFrom, dateTo);
+	} else if (id == 'flagsSelectorLabel') {
+		//TODO display the flags
 	}
 }
 

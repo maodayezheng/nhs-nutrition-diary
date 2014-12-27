@@ -15,7 +15,7 @@ function ServerDBAdapter() {}
 ServerDBAdapter.prototype.submit = function(dataToServer, action)
 {
 	console.log("printing the data sent to the submit function");
-	dataToServer.action = action; //this is needed for the PHP side 
+	dataToServer.action = action; //this is needed for the PHP side. Do Not Delete!
 	console.log(dataToServer);
 	
 	var actionUrl;
@@ -24,7 +24,7 @@ ServerDBAdapter.prototype.submit = function(dataToServer, action)
 		case "edit": actionUrl = "scripts/database/server/editEntry.php"; break;
 		case "delete": actionUrl = "scripts/database/server/deleteEntry.php"; break;
 		case "test": actionUrl = "test.php"; break; */
-		default: actionUrl = "scripts/database/server/clientToServerController.php"
+		default: actionUrl = "scripts/database/server/clientToServerController.php" //one script to handle all cases. 
 	}
 	
 	$.ajax({
@@ -45,14 +45,15 @@ ServerDBAdapter.prototype.submit = function(dataToServer, action)
 	});
 };
 
-ServerDBAdapter.prototype.get = function(table, where)
+ServerDBAdapter.prototype.get = function(dataToServer)
 {
+	//the dataToServer object should contain the properties table, dateFrom and dateTo. 
 	console.log("ServerDBAdapter.prototype.get() entered.");
 	
 	$.ajax({
 	    url: "scripts/database/server/DB_get.php",
 	    type: "POST",
-	    dataType: "text", //what you will receive in response. 
+	    dataType: "application/json", //what you will receive in response. 
 	    contentType: "application/json", //what you are sending.
 	    data: JSON.stringify({table: table, where: where}),
 	    success: function (result){

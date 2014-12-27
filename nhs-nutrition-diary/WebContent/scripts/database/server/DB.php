@@ -93,29 +93,92 @@ class DB
 	}
 	
 	/**
-	 * This method utilises the query method to abstract away actions (e.g. get, delete) etc. It is intended to be called by a given action method (such as GET or DELETE)
-	 * and is used to aid preventing SQL injections. For example 'DB::getInstance()->get('userweightmanifest', array('weight','=','99')' would call this method with $action 
-	 * defined as GET. The operators allowed are defined in the $operators array. 
+	 * This method utilises the query method (also in this class) to abstract away actions (e.g. get, delete) etc. It is intended to be called by a given action method (such as GET or DELETE or UPDATE). It tries to prevent
+	 * potential SQL injections by specifying a list of allowed operators.  
 	 */
+	public function action($action, $table, $where = array()) //$action e.g. SELECT *
+	{
+		if(sizeof($where)%3==0) // The correct number of entries in the $where array should be divisible by 3 otherwise an exception will be thrown. 
+		{
+			$operators  = array('=','>','<','>=','<='); //allowed operators in the SQL query which will be sent to the database. 
+			$value 		= array(); 
+			
+			for($i = 0; $i<sizeof($where)/3; $i++) 
+			{
+				$field 		= $where[$i*3];
+				$operator 	= $where[($i*3)+1];
+				array_push($value, $where[($i*3)+2]);
+				
+				if (in_array($operator, $operators)) //only add to the SQL sent to the database if the operator is in the allowed list.
+				{
+					if($i==0)
+					{
+						$sql = "{$action} FROM {$table} WHERE {$field} {$operator} ?";
+					} else 
+					{
+						$sql .= " AND {$field} {$operator} ?";
+					}
+				}
+				
+				/* echo "<br /> value of i:{$i} <br />";
+				echo $field."<br />";
+				echo $operator."<br />";
+				echo $where[($i*3)+2]."<br />";
+				 */
+			}
+			
+			/* echo "<br /> {$sql}".' <- sql from action method in db class'.'<br />';
+			var_dump($value); */
+
+			
+			if(!$this->query($sql, $value)->error()) 
+			{
+				return $this;
+			} 
+			
+			
+			
+		} else
+		{
+			throw new Exception('Your associative array length (argument $where) must have a length divisible by 3.');
+		}
+	}
+	
+	
+	
+	
+	
+	/**
+	 * 
+	 * ORIGINAL ACTION METHOD. Creating an altered one which will alow for multiple where clauses. DELETE THIS WHEN THAT IS DONE. 
+	 * 
+	 * 
+	 * This method utilises the query method to abstract away actions (e.g. get, delete) etc. It is intended to be called by a given action method (such as GET or DELETE)
+	 * and is used to aid preventing SQL injections. For example ' DB::getInstance()->get('userweightmanifest', array('weight','=','99') ' would call this method with $action
+	 * defined as GET. The operators allowed are defined in the $operators array.
+	 
 	public function action($action, $table, $where = array()) //action e.g. SELECT *
 	{
-		if(count($where)===3) //we need a field, operator and value. 
+		if(count($where)===3) //we need a field, operator and value.
 		{
 			$operators = array('=','>','<','>=','<=');
 			$field 		= $where[0];
 			$operator 	= $where[1];
 			$value 		= $where[2];
-			
+				
 			if (in_array($operator, $operators))
 			{
 				$sql = "{$action} FROM {$table} WHERE {$field} {$operator} ?";
-				if(!$this->query($sql, array($value))->error()) //$value is what you want the ? in the sql to be replaced by. 
+				
+				if(!$this->query($sql, array($value))->error()) //$value is what you want the ? in the sql to be replaced by.
 				{
 					return $this;
 				}
 			}
 		}
-	}
+	} */
+	
+	
 	
 	/**
 	 * Utilises the action method to carry out a GET action. 
@@ -125,11 +188,6 @@ class DB
 		return $this->action('SELECT *', $table, $where); //assume that the action is always SELECT * because we want to return all rows. 
 	}
 	
-	//TODO Write function so that it returns data between two date intervals. 
-	public function getInterval()
-	{
-		
-	}
 	
 	/**
 	 * Utilises the action method to carry out a DELETE action.

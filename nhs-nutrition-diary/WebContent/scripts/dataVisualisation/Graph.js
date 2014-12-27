@@ -6,8 +6,13 @@ function manageGraph(presentedParameter, dateFrom, dateTo) {
 		return false;
 	}
 	
-	var database = new LocalDbSingleton();
-	var data = database.databaseOpen(LocalDbSingleton.prototype.localDbGet, 'foodManifestStore', dateFrom, dateTo, presentedParameter, makeGraph);
+	console.log("in manage graph");
+	console.log(dateFrom);
+	console.log(dateTo);
+	
+	//ServerDBAdapter.prototype.get
+	//var database = new LocalDbSingleton();
+	//var data = database.databaseOpen(LocalDbSingleton.prototype.localDbGet, 'foodManifestStore', dateFrom, dateTo, presentedParameter, makeGraph);
 	
 }
 

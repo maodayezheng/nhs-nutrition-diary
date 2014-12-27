@@ -8,11 +8,41 @@
  * 
  */
 
-
-
 require_once 'init.php';
 
 echo '<br />in test.php for the test m8<br />';
+
+
+$db = DB::getInstance();
+
+$results4 = $db->get('usersymptommanifest', array('userid','=','2','datetime','>=','2014-12-22','datetime','<=','2014-12-25'))->results();
+echo '<br /> Var dump of the set of results received from the database'.'<br />';
+var_dump($results4).'<br />';
+$results4JSON = json_encode($results4);
+echo '<br /> The JSON encoded results: <br />'.$results4JSON.'<br />';
+
+
+$results = $db->get('usersymptommanifest', array('userid','=','2'))->results();
+echo '<br /> Var dump of the set of results received from the database'.'<br />';
+var_dump($results).'<br />'; 
+$resultsJSON = json_encode($results); 
+echo '<br /> The JSON encoded results: <br />'.$resultsJSON.'<br />'; 
+
+
+
+$results2 = $db->get('usersymptommanifest', array('userid','=','2','symptom','=','Constipation'))->results();
+echo '<br /> Var dump of the set of results received from the database'.'<br />';
+var_dump($results2).'<br />';
+$results2JSON = json_encode($results2);
+echo '<br /> The JSON encoded results: <br />'.$results2JSON.'<br />';
+
+
+$results3 = $db->get('usersymptommanifest', array('userid','=','2','symptom','=','Constipation','comment','=','test comment'))->results();
+echo '<br /> Var dump of the set of results received from the database'.'<br />';
+var_dump($results3).'<br />';
+$results3JSON = json_encode($results3);
+echo '<br /> The JSON encoded results: <br />'.$results3JSON.'<br />';
+
 
 /* if(Session::exists('success'))
 {
@@ -32,8 +62,11 @@ else {
 	echo "did it m8";
 } */
 
- 
+ /* 
 
+
+
+///FOR DISPLAYING SOMETHING WITH USER PERMISSION
 $user = new User();
 
 if($user->isLoggedIn())
@@ -55,7 +88,7 @@ if($user->hasPermission('admin'))
 if($user->hasPermission('moderator'))
 {
 	echo '<p> You are a moderator. </p>';
-}
+} */
 
 
 ?>

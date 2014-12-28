@@ -44,7 +44,7 @@ switch($action)
 {
 	case 'get':						get($db, $table, $where); break;
 	case 'save': 					$db->insert($table, $dataDecoded); break; 
-	case 'getUserData':				$db->getUserData($dataDecoded); break; 
+	case 'getUserData':				echo json_encode($db->getUserData($dataDecoded)); break; 
 }
 
 function get($db, $table, $where) {

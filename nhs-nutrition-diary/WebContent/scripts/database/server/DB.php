@@ -161,7 +161,7 @@ class DB
 			print_r($queryResults); 
 			
 			echo "all keys have been passed";
-			
+			return $queryResults; 
 			
 		} else 
 		{

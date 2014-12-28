@@ -2,7 +2,7 @@ function RequirementsCalculator() {
 	//TODO get gender, weight and age from database
 	//TODO consider activity level (use activity level + additional activity level)
 }
-
+//comment 
 RequirementsCalculator.prototype.calcCalories = function() {
 	//TODO check if user is female: currently true
 	if(true) {

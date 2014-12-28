@@ -4,8 +4,6 @@
 
 function GetController() {};
 
-
-
 GetController.prototype.getUserID = function() 
 {
 	return Cookies.prototype.getUserID(); 	

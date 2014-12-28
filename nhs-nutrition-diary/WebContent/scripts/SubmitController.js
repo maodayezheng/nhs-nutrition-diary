@@ -35,13 +35,10 @@ SubmitController.prototype.formatDateTime = function(date, time) {
 	return dateTime;
 }
 
+//TODO this is only for testing purposes
 SubmitController.prototype.callBackTest = function(result) {
 	var test = JSON.parse(result);
-	alert(test.weight);
-}
-
-SubmitController.prototype.initUpdateRequirements = function() {
-	var table = "userrequirementsmanifest";
+	return test.weight;
 }
 
 SubmitController.prototype.updateRequirements = function() {

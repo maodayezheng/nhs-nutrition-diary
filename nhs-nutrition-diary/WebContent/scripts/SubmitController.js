@@ -15,9 +15,9 @@ SubmitController.prototype.submit = function(submitter) {
 }
 
 SubmitController.prototype.getUserID = function() {
-	return Cookies.prototype.getUserID(); 	
+	//return Cookies.prototype.getUserID(); 	
 	//TODO retrieve user id
-	//return 1;
+	return 1;
 }
 
 SubmitController.prototype.formatDateTime = function(date, time) {
@@ -41,9 +41,34 @@ SubmitController.prototype.updateRequirements = function() {
 	var userId = this.getUserID();
 	var date = new Date();
 	var dateTime = this.formatDateTime(date.dateFormat('d/m/Y'), date.dateFormat('H:i'));
+	
+	var weightRequestJSON = {
+			"action": "get",
+			"table": "userweightmanifest",
+			"where": "weight,=,109"
+	};
+	var weight = ServerDBAdapter.prototype.get(weightRequestJSON);
+	alert(weight);
+	
+	var userInfoRequestJSON = {
+			"action": "get",
+			"table": "users",
+			"where": "id,=,1"
+	}
+//	var userInfo = ServerDBAdapter.prototype.get(userInfoRequestJSON);
+//	alert(userInfo);
+	
+	var previousRequirementsRequestJSON = {
+			"action": "get",
+			"table": "userrequirementsmanifest",
+			"where": "userid,=,1"
+	}
+//	var previousRequirements = ServerDBAdapter.prototype.get(previousRequirementsRequestJSON);
+//	alert(previousRequirements);
+	
 	//TODO get gender, weight, activityLevel, additional calories/protein/fluid/activity from database
 	var gender = "female";
-	var weight = 62.0;
+//	var weight = 62.0;
 	var activityLevel = 1.1;
 	var additionalActivity = 0.0;
 	var requirementsCalculator = new RequirementsCalculator();
@@ -228,10 +253,7 @@ SubmitController.prototype.submitMeal = function() {
 }
 
 SubmitController.prototype.submitSymptoms = function() {
-	var table = "usersymptommanifest"; 
-	
-	//TODO delete line after testing works
-	//alert(ServerDBAdapter.prototype.get("usersymptommanifest", "userid=1"));
+	var table = "usersymptommanifest";
 	
 	var userid = this.getUserID();
 	var date = $('#symptomDate').val();
@@ -322,6 +344,7 @@ SubmitController.prototype.submitSettings = function() {
 	var userId = this.getUserID();
 	var date = new Date();
 	var dateTime = this.formatDateTime(date.dateFormat('d/m/Y'), null);
+	
 	//TODO get gender, weight, activityLevel from database
 	var gender = "female";
 	var weight = 62.0;

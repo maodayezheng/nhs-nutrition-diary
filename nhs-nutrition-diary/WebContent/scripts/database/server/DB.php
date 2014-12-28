@@ -24,7 +24,7 @@ class DB
 		try 
 		{
 			$this->_pdo = new PDO('mysql:host=' . Configurations::get('mysql/host') . ';dbname=' . Configurations::get('mysql/db'), Configurations::get('mysql/userName'), Configurations::get('mysql/passCode'));
-			echo "<br /> Successfuly Connected To the DB <br />";
+// 			echo "<br /> Successfuly Connected To the DB <br />";
 		} catch (PDOExeption $e)
 		{
 			die($e->getMessage());
@@ -46,9 +46,9 @@ class DB
 	 */
 	public function closeConnection()
 	{
-		echo "\nclosing connection\n";
+// 		echo "\nclosing connection\n";
 		$this->_pdo = null; 
-		echo "\nconnection closed\n";
+// 		echo "\nconnection closed\n";
 	}
 	
 	/**
@@ -143,7 +143,7 @@ class DB
 	 */
 	public function getGraphData($dataDecoded) 
 	{
-		echo "in getGraphData in the DB class \n";
+// 		echo "in getGraphData in the DB class \n";
 		$queryResults = array(); //array the data will be pushed to. 
 		
 		if((isset($dataDecoded['userid']) && isset($dataDecoded['dateFrom']) && isset($dataDecoded['dateTo']) ) )
@@ -211,11 +211,11 @@ class DB
 			
 			if(!$this->query($sql,$fields)->error())
 			{
-				echo "<br />Inserting into the database was a success!";
+// 				echo "<br />Inserting into the database was a success!";
 				return true;
 			}
 			else { //delete else bit
-				echo "<br />there was an error in the insert method<br />";
+// 				echo "<br />there was an error in the insert method<br />";
 			}
 		}
 	}

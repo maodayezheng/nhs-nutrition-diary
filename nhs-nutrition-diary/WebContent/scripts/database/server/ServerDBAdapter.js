@@ -50,6 +50,8 @@ ServerDBAdapter.prototype.get = function(dataToServer)
 	//the dataToServer object should contain the properties table, dateFrom and dateTo. 
 	console.log("ServerDBAdapter.prototype.get() entered.");
 	
+	var requestResult;
+	
 	$.ajax({
 	    url: "scripts/database/server/clientToServerController.php",
 	    type: "POST",
@@ -57,8 +59,8 @@ ServerDBAdapter.prototype.get = function(dataToServer)
 	    contentType: "application/json", //what you are sending.
 	    data: JSON.stringify(dataToServer),
 	    success: function (result){
-	        console.log("success" + result);
-	        //TODO set variables to values returned by query
+	        console.log("success");
+	        requestResult = result;
 	    },
 	    error: function (xhr, ajaxOptions, thrownError) {
 	        console.log(xhr.statusText);
@@ -67,4 +69,6 @@ ServerDBAdapter.prototype.get = function(dataToServer)
 	        console.log(thrownError);
 	    }
 	});
+	
+	return requestResult;
 };

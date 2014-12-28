@@ -145,7 +145,7 @@ class DB
 	{
 // 		echo "in getGraphData in the DB class \n";
 		$queryResults = array(); //array the data will be pushed to. 
-		echo "in get graph data";
+		//echo "in get user data method in DB class.php";
 		if((isset($dataDecoded['userid']) && isset($dataDecoded['dateFrom']) && isset($dataDecoded['dateTo']) ) )
 		{
 			$userID 	= $dataDecoded['userid'];

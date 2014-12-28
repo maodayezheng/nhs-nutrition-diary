@@ -45,7 +45,7 @@ ServerDBAdapter.prototype.submit = function(dataToServer, action)
 	});
 };
 
-ServerDBAdapter.prototype.get = function(dataToServer)
+ServerDBAdapter.prototype.get = function(dataToServer, callback, callbackarg1, callbackarg2)
 {
 	//the dataToServer object should contain the properties table, dateFrom and dateTo. 
 	console.log("ServerDBAdapter.prototype.get() entered.");
@@ -60,8 +60,10 @@ ServerDBAdapter.prototype.get = function(dataToServer)
 	    data: JSON.stringify(dataToServer),
 	    success: function (result){
 	        console.log("success"+result);
-	        requestResult = result.substring(2,result.length);
+	        //requestResult = result.substring(2,result.length);
 	        //console.log(requestResult);
+	        requestResult = result; 
+	        callback()
 	    },
 	    error: function (xhr, ajaxOptions, thrownError) {
 	        console.log(xhr.statusText);

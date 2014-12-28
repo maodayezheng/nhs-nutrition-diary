@@ -16,7 +16,7 @@ ServerDBAdapter.prototype.submit = function(dataToServer, action)
 {
 	console.log("printing the data sent to the submit function");
 	dataToServer.action = action; //this is needed for the PHP side. Do Not Delete!
-	console.log(dataToServer);
+//	console.log(dataToServer);
 	
 	var actionUrl;
 	switch(action) {
@@ -45,12 +45,10 @@ ServerDBAdapter.prototype.submit = function(dataToServer, action)
 	});
 };
 
-ServerDBAdapter.prototype.get = function(dataToServer, callback, callbackarg1, callbackarg2)
+ServerDBAdapter.prototype.get = function(dataToServer, callback)
 {
 	//the dataToServer object should contain the properties table, dateFrom and dateTo. 
 	console.log("ServerDBAdapter.prototype.get() entered.");
-	
-	var requestResult;
 	
 	$.ajax({
 	    url: "scripts/database/server/clientToServerController.php",
@@ -61,9 +59,7 @@ ServerDBAdapter.prototype.get = function(dataToServer, callback, callbackarg1, c
 	    success: function (result){
 	        console.log("success"+result);
 	        //requestResult = result.substring(2,result.length);
-	        //console.log(requestResult);
-	        requestResult = result; 
-	        callback()
+	        callback(result.substring(2,result.length));
 	    },
 	    error: function (xhr, ajaxOptions, thrownError) {
 	        console.log(xhr.statusText);
@@ -72,6 +68,4 @@ ServerDBAdapter.prototype.get = function(dataToServer, callback, callbackarg1, c
 	        console.log(thrownError);
 	    }
 	});
-	
-	return requestResult;
 };

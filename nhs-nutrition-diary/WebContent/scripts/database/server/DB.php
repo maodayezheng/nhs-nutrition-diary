@@ -263,18 +263,20 @@ class DB
 	/**
 	 * Return the first result only. 
 	 */
-	public function first()
+	public function first($table, $where)
 	{
+		$this->get($table, $where);
 		return $this->results()[0];
 	}
 	
-	//TODO This function should return the latest entry in the database. Useful for getting the latest version of requirements. 
-	public function last()
+	/**
+	 * Return the last result only.
+	 */
+	public function last($table, $where)
 	{
-		
+		$this->get($table, $where);
+		return $this->results()[sizeof($this->results()) - 1];
 	}
-	
-	
 	
 	/**
 	 * Returns the count of the results i.e. num of rows returned in the query instance variable. 

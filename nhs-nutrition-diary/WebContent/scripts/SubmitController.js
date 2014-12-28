@@ -35,6 +35,15 @@ SubmitController.prototype.formatDateTime = function(date, time) {
 	return dateTime;
 }
 
+SubmitController.prototype.callBackTest = function(result) {
+	var test = JSON.parse(result);
+	alert(test.weight);
+}
+
+SubmitController.prototype.initUpdateRequirements = function() {
+	var table = "userrequirementsmanifest";
+}
+
 SubmitController.prototype.updateRequirements = function() {
 	var table = "userrequirementsmanifest";
 	
@@ -43,11 +52,12 @@ SubmitController.prototype.updateRequirements = function() {
 	var dateTime = this.formatDateTime(date.dateFormat('d/m/Y'), date.dateFormat('H:i'));
 	
 	var weightRequestJSON = {
-			"action": "get",
+			"action": "getLast",
 			"table": "userweightmanifest",
-			"where": "weight,=,109"
+			"where": "userid,>,0"
 	};
-	var weightResponseJSON = JSON.parse(ServerDBAdapter.prototype.get(weightRequestJSON));
+//	var weightResponseJSON = JSON.parse(ServerDBAdapter.prototype.get(weightRequestJSON));
+	ServerDBAdapter.prototype.get(weightRequestJSON, this.callBackTest);
 	
 	var userInfoRequestJSON = {
 			"action": "get",
@@ -67,7 +77,7 @@ SubmitController.prototype.updateRequirements = function() {
 	
 	//TODO get gender, weight, activityLevel, additional calories/protein/fluid/activity from database
 	var gender = "female";
-//	var weight = 62.0;
+	var weight = 62.0;
 	var activityLevel = 1.1;
 	var additionalActivity = 0.0;
 	var requirementsCalculator = new RequirementsCalculator();

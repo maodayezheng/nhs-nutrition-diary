@@ -12,7 +12,7 @@ $db 			= 	DB::getInstance();
 $data 			= 	Input::retrieveData();
 $dataDecoded 	= 	json_decode($data, true); //decode the json data with the true flag so that objects are converted into associative arrays for entry into the MySQL database. 
 
-var_dump($dataDecoded); //FOR DEBUGGING
+// var_dump($dataDecoded); //FOR DEBUGGING
 
 //Extract values and remove them from the array. This is so that only relevant fields remain.  
 if(!isset($dataDecoded['action'])) 
@@ -43,13 +43,20 @@ $results = null;
 switch($action)
 {
 	case 'get':						get($db, $table, $where); break;
+	case 'getLast':					getLast($db, $table, $where); break;
 	case 'save': 					$db->insert($table, $dataDecoded); break; 
 	case 'getUserData':				echo json_encode($db->getUserData($dataDecoded)); break; 
 }
 
-
 function get($db, $table, $where) {
 	$results = $db->get($table, $where)->results();
+	$resultsJSON = json_encode($results);
+	echo($resultsJSON);
+}
+
+function getLast($db, $table, $where) {
+// 	$db->get($table, $where);
+	$results = $db->last($table, $where);
 	$resultsJSON = json_encode($results);
 	echo($resultsJSON);
 }

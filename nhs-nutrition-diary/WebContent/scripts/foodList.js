@@ -72,8 +72,7 @@ $(document).ready(function(){
 		var saveMeal = $(this).prop("checked");
 		
 		if(saveMeal){
-			
-			console.log("save meal");
+			$("#modal-saveMeal").modal("show");
 		}
 	});
 	

@@ -12,15 +12,30 @@ $db 			= 	DB::getInstance();
 $data 			= 	Input::retrieveData();
 $dataDecoded 	= 	json_decode($data, true); //decode the json data with the true flag so that objects are converted into associative arrays for entry into the MySQL database. 
 
-//Extract the values for the action and table and then remove/unset them from the array. This is so that only relevant fields remain in the array. 
-$action 		=   $dataDecoded['action'];  //this will have the value, 'save'/'edit'/'delete'/'get' etc. 
-$table			=	$dataDecoded['table'];
-unset($dataDecoded['action']); 
-unset($dataDecoded['table']);
+//Extract values and remove them from the array. This is so that only relevant fields remain.  
+var_dump($dataDecoded);
+
+if(!isset($dataDecoded['action']))
+{
+	throw new Exception("An 'action' property needs to exist as a JSON property in the data sent to this script"); 
+} else 
+{
+	$action = $dataDecoded['action']; //this will have the value, 'save'/'edit'/'delete'/'get' etc.
+	unset($dataDecoded['action']);
+}
+
+if(isset($dataDecoded['table']))
+{
+	$table = $dataDecoded['table'];
+	unset($dataDecoded['table']);
+}
+
+var_dump($dataDecoded);
 
 switch($action)
 {
-	case 'save': $db->insert($table, $dataDecoded); break; 
+	case 'save': 					$db->insert($table, $dataDecoded); break; 
+	case 'getGraphData':			$db->getGraphData($dataDecoded); break; 
 }
 
 

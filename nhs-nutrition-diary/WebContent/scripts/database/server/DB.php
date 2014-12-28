@@ -119,25 +119,12 @@ class DB
 						$sql .= " AND {$field} {$operator} ?";
 					}
 				}
-				
-				/* echo "<br /> value of i:{$i} <br />";
-				echo $field."<br />";
-				echo $operator."<br />";
-				echo $where[($i*3)+2]."<br />";
-				 */
 			}
-			
-			/* echo "<br /> {$sql}".' <- sql from action method in db class'.'<br />';
-			var_dump($value); */
-
 			
 			if(!$this->query($sql, $value)->error()) 
 			{
 				return $this;
 			} 
-			
-			
-			
 		} else
 		{
 			throw new Exception('Your associative array length (argument $where) must have a length divisible by 3.');
@@ -145,38 +132,41 @@ class DB
 	}
 	
 	
-	
-	
-	
+
+	//each property of the array passed as an argument needs to be part of a where clause in an SQL statement.
+	//This statment needs to be sent to multiple tables.
+	//graphs can be made for calories, protein, fluid, weight, symptoms
+	//This means grabbing everything using the where caluses from the 'userfoodmanifest', 'userweightmanifest','usersymptommanifest'
 	/**
 	 * 
-	 * ORIGINAL ACTION METHOD. Creating an altered one which will alow for multiple where clauses. DELETE THIS WHEN THAT IS DONE. 
-	 * 
-	 * 
-	 * This method utilises the query method to abstract away actions (e.g. get, delete) etc. It is intended to be called by a given action method (such as GET or DELETE)
-	 * and is used to aid preventing SQL injections. For example ' DB::getInstance()->get('userweightmanifest', array('weight','=','99') ' would call this method with $action
-	 * defined as GET. The operators allowed are defined in the $operators array.
-	 
-	public function action($action, $table, $where = array()) //action e.g. SELECT *
+	 * @param $dataDecoded This is an associative array decoded from JSON received from the client. See clientToServerController.php
+	 */
+	public function getGraphData($dataDecoded) 
 	{
-		if(count($where)===3) //we need a field, operator and value.
+		echo "in getGraphData in the DB class \n";
+		$queryResults = array(); 
+		
+		
+		
+		echo isset($dataDecoded['userid'])? "true": "false";
+		
+		if((isset($dataDecoded['userid']) || isset($dataDecoded['dateFrom']) || isset($dataDecoded['dateTo']) ) )
 		{
-			$operators = array('=','>','<','>=','<=');
-			$field 		= $where[0];
-			$operator 	= $where[1];
-			$value 		= $where[2];
-				
-			if (in_array($operator, $operators))
-			{
-				$sql = "{$action} FROM {$table} WHERE {$field} {$operator} ?";
-				
-				if(!$this->query($sql, array($value))->error()) //$value is what you want the ? in the sql to be replaced by.
-				{
-					return $this;
-				}
-			}
+			throw new Exception('Class DB method getGraphData has not been passed a valid associative array. Please check that the array has the keys "userid", "dateFrom", and "dateTo"');
+			
+		} else 
+		{
+			 $userID 	= $dataDecoded['userid'];
+			 $dateFrom 	= $dataDecoded['dateFrom'];
+			 $dateTo 	= $dataDecoded['dateTo']; 
+			
+			echo "in else"; 
+			//echo $userID.' '.$dateFrom.' '.$dateTo;
 		}
-	} */
+	
+		
+		 	
+	}
 	
 	
 	

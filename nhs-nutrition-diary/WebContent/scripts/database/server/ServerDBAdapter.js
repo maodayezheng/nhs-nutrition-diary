@@ -51,16 +51,14 @@ ServerDBAdapter.prototype.get = function(dataToServer)
 	console.log("ServerDBAdapter.prototype.get() entered.");
 	
 	$.ajax({
-	    url: "scripts/database/server/DB_get.php",
+	    url: "scripts/database/server/clientToServerController.php",
 	    type: "POST",
-	    dataType: "application/json", //what you will receive in response. 
+	    dataType: "text", //what you will receive in response. 
 	    contentType: "application/json", //what you are sending.
-	    data: JSON.stringify({table: table, where: where}),
+	    data: JSON.stringify(dataToServer),
 	    success: function (result){
-	        console.log("success");
+	        console.log("success" + result);
 	        //TODO set variables to values returned by query
-	        
-	        alert(JSON.stringify(result));
 	    },
 	    error: function (xhr, ajaxOptions, thrownError) {
 	        console.log(xhr.statusText);

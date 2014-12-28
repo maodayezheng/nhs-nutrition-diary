@@ -9,7 +9,15 @@ function manageGraph(presentedParameter, dateFrom, dateTo) {
 	console.log("in manage graph");
 	console.log(dateFrom);
 	console.log(dateTo);
+	var dateFromFormatted = GetController.prototype.formatDate(dateFrom); 
+	var dateToFormatted   = GetController.prototype.formatDate(dateTo); 
 	
+	GetController.prototype.getGraphData(dateFromFormatted, dateToFormatted); 
+	
+	//get the json from the server
+	//prepare the data i.e. sum over protein, fluid, calories
+	
+	//create a JSON object with the relevant properties. 
 	//ServerDBAdapter.prototype.get
 	//var database = new LocalDbSingleton();
 	//var data = database.databaseOpen(LocalDbSingleton.prototype.localDbGet, 'foodManifestStore', dateFrom, dateTo, presentedParameter, makeGraph);

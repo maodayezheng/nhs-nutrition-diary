@@ -33,12 +33,11 @@
       	</div>
 	</nav>
     <div class="container">
-   <div class="row">
-    <div class ="col-xs-10 col-xs-offset-1">
-		<form class="form-signin" role="form" method="post" action="scripts/database/server/login.php"">
+    
+		<form class="form-signin" role="form" method="post" action="scripts/database/server/login.php">
 			<h3 class="form-signin-heading greeding" style="text-align: center;">Welcome to Appetite - Your NHS Nutrition and Symptom Diary!</h3>
     		
-    		<table class="login-tabel"border="0" width="100%" style="text-align: center;">
+    		<table class="login-table">
 				  <tr>
 				    <td><label for="nhsnumber">Enter Your Username/NHS Number:</label></td>
 				    <td><input class="form-control" name="nhsnumber" id="inputAccount" type="text" placeholder="Enter your NHS number" ></td>
@@ -62,12 +61,9 @@
 				  </table>
 				  <button id="btn_signin_to_home" class="btn btn-lg btn-success btn-block">Sign in</button>
 			</form>
-			</div>
-			<div class ="col-xs-10 col-xs-offset-1">
 			
 			<button id="btn_signup_to_details" class="btn btn-lg btn-primary btn-block"  onclick="Navigator.prototype.navigate(this.id)">Sign up</button>	
-			</div>
-		</div>
+			
 		</div>
 </body>
 </html>

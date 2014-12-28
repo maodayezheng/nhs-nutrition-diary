@@ -22,15 +22,15 @@ GetController.prototype.formatDate = function(date)
 	 
 }
 
-GetController.prototype.getGraphData = function(dateFromFormatted, dateToFormatted)
+GetController.prototype.getUserData = function(dateFromFormatted, dateToFormatted)
 {
-	console.log('in get Graph data'); 
+	console.log('in get User data'); 
 	
 	
 	//fields are all MANDATORY to be sent to the server
 	dataToServer =
 	{
-		"action": "getGraphData", 
+		"action": "getUserData", 
 		"userid": this.getUserID(),
 		"dateFrom": dateFromFormatted,
 		"dateTo": dateToFormatted

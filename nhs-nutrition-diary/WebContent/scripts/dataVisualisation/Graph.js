@@ -12,7 +12,7 @@ function manageGraph(presentedParameter, dateFrom, dateTo) {
 	var dateFromFormatted = GetController.prototype.formatDate(dateFrom); 
 	var dateToFormatted   = GetController.prototype.formatDate(dateTo); 
 	
-	GetController.prototype.getGraphData(dateFromFormatted, dateToFormatted); 
+	GetController.prototype.getUserData(dateFromFormatted, dateToFormatted); 
 	
 	//get the json from the server
 	//prepare the data i.e. sum over protein, fluid, calories

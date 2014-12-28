@@ -141,17 +141,25 @@ class DB
 	 * 
 	 * @param $dataDecoded This is an associative array decoded from JSON received from the client. See clientToServerController.php
 	 */
-	public function getGraphData($dataDecoded) 
+	public function getUserData($dataDecoded) 
 	{
 // 		echo "in getGraphData in the DB class \n";
 		$queryResults = array(); //array the data will be pushed to. 
-		
+		echo "in get graph data";
 		if((isset($dataDecoded['userid']) && isset($dataDecoded['dateFrom']) && isset($dataDecoded['dateTo']) ) )
 		{
 			$userID 	= $dataDecoded['userid'];
 			$dateFrom 	= $dataDecoded['dateFrom'];
 			$dateTo 	= $dataDecoded['dateTo'];
-				
+			$tables 	= array('userfoodmanifest', 'userweightmanifest','usersymptommanifest','userrequirementsmanifest'); //these are the tables you would like to retrieve data from given the WHERE clauses. 
+			
+			for($i=0; $i<sizeof($tables); $i++)
+			{
+				array_push($queryResults,$this->get($tables[$i],array('userid','=',$userID,'datetime','>=',$dateFrom,'datetime','<=',$dateTo))->results());
+			}
+			
+			print_r($queryResults); 
+			
 			echo "all keys have been passed";
 			
 			
@@ -211,7 +219,7 @@ class DB
 			
 			if(!$this->query($sql,$fields)->error())
 			{
-// 				echo "<br />Inserting into the database was a success!";
+ 				echo "<br />Inserting into the database was a success!";
 				return true;
 			}
 			else { //delete else bit

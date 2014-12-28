@@ -59,9 +59,9 @@ ServerDBAdapter.prototype.get = function(dataToServer)
 	    contentType: "application/json", //what you are sending.
 	    data: JSON.stringify(dataToServer),
 	    success: function (result){
-	        console.log("success");
+	        console.log("success"+result);
 	        requestResult = result.substring(2,result.length);
-	        console.log(requestResult);
+	        //console.log(requestResult);
 	    },
 	    error: function (xhr, ajaxOptions, thrownError) {
 	        console.log(xhr.statusText);

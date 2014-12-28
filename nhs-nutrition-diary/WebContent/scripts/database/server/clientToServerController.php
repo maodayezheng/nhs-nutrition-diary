@@ -30,7 +30,6 @@ if(isset($dataDecoded['table']))
 	unset($dataDecoded['table']);
 }
 
-unset($dataDecoded['userid']);
 var_dump($dataDecoded);
 
 switch($action)

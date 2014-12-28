@@ -144,16 +144,16 @@ class DB
 	public function getGraphData($dataDecoded) 
 	{
 		echo "in getGraphData in the DB class \n";
-		$queryResults = array(); 
+		$queryResults = array(); //array the data will be pushed to. 
 		
-		if((isset($dataDecoded['userid']) || isset($dataDecoded['dateFrom']) || isset($dataDecoded['dateTo']) ) )
+		if((isset($dataDecoded['userid']) && isset($dataDecoded['dateFrom']) && isset($dataDecoded['dateTo']) ) )
 		{
 			$userID 	= $dataDecoded['userid'];
 			$dateFrom 	= $dataDecoded['dateFrom'];
 			$dateTo 	= $dataDecoded['dateTo'];
 				
-			echo "in else";
-			//echo $userID.' '.$dateFrom.' '.$dateTo;
+			echo "all keys have been passed";
+			
 			
 		} else 
 		{

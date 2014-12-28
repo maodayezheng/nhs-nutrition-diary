@@ -62,9 +62,19 @@ $(document).ready(function(){
 		console.log("TOGGLE CLICKED");
 		
 	});
+	
 	$('#searchButton').click(function() {
 		$('#search').focus();
 	    $('#search').autocomplete('search');
+	});
+	
+	$('#checkbox_saveAsMeal').change(function(){
+		var saveMeal = $(this).prop("checked");
+		
+		if(saveMeal){
+			
+			console.log("save meal");
+		}
 	});
 	
 	//TODO evaluate frequent food

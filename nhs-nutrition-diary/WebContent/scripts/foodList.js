@@ -37,30 +37,15 @@ $(document).ready(function(){
 			
 	// click events		
 		$('#myMeals').click(function(){
-			$('.modal-title').text("My meals");
 			loadCustomMealView(aMeal)
 		});
 		
 	$('#newFood').click(function(){
-			$('.modal-title').text("New food");
 			loadNewFoodView();
 		});
 	
 	$('#frequentFood').click(function(){
-		$('.modal-title').text("Frequent food");
 		loadFrequentFoodView(frequentFood);
-	});
-	
-	$('#nav-button').click(function(){
-		
-		console.log("NAV BUTTON CLICKED");
-		
-	});
-	
-	$('#toggle-button').click(function(){
-		
-		console.log("TOGGLE CLICKED");
-		
 	});
 	
 	$('#searchButton').click(function() {
@@ -70,7 +55,6 @@ $(document).ready(function(){
 	
 	$('#checkbox_saveAsMeal').change(function(){
 		var saveMeal = $(this).prop("checked");
-		
 		if(saveMeal){
 			$("#modal-saveMeal").modal("show");
 		}
@@ -127,11 +111,15 @@ function parseNutritionData(nutrition){
 }
 
 function loadNewFoodView(data){
+	// change the title
 	
-	$('.modal-body').empty();
+	$('#modal-info-title').text("New food");
+	
+	// construct new body
+	$('#modal-info-body').empty();
 	var form = $('<form>',{
 		"class":"modal-form",
-	}).appendTo('.modal-body');
+	}).appendTo('#modal-info-body');
 	
 	var nameField = $('<input>',{
 		"class":"form-control",
@@ -175,7 +163,8 @@ function loadNewFoodView(data){
 		"placeholder":"Fluid (ml)"
 	}).appendTo(form);
 	
-	$('.modal-footer').empty();
+	// construct new footer
+	$('#modal-info-footer').empty();
 	var doneButton = $('<button>',{
 		"type":"button",
 		"class":"btn btn-success",
@@ -183,16 +172,20 @@ function loadNewFoodView(data){
 		"text":"Done",
 		"id":"btn_submit_newFood",
 		"onclick":"SubmitController.prototype.submit(this.id)"
-	}).appendTo('.modal-footer');
+	}).appendTo('#modal-info-footer');
 }
 
 function loadFrequentFoodView(data){
 	
-	$('.modal-body').empty();
+	// change the title of the modal
+	$('#modal-info-title').text("Frequent food");
+	
+	// construct new body of the moal
+	$('#modal-info-body').empty();
 	var list = $('<ul>',{
 		"class":"list-group",
 		"role":"menu"
-	});
+	}).appendTo('#modal-info-body');
 	$.each(data,function(index){
 		var li =$('<li>',{
 			"class":"list-group-item",
@@ -203,25 +196,29 @@ function loadFrequentFoodView(data){
 		li.appendTo(list);
 	})
 	
-	$('.modal-body').append(list);
-	$('.modal-footer').empty();
+	
+	// construct new footer of the 
+	$('#modal-info-footer').empty();
 	var doneButton = $('<button>',{
 		"type":"button",
 		"class":"btn btn-success",
 		"data-dismiss":"modal",
 		"text":"Done",
 		"id":""
-	}).appendTo('.modal-footer')
+	}).appendTo('#modal-info-footer')
 }
 
 
 function loadCustomMealView(data){
-	console.log("start");
-	$('.modal-body').empty();
+	
+
+	$('#modal-info-title').text("My meals");
+	// construct body
+	$('#modal-info-body').empty();
 	var list = $('<ul>',{
 		"class":"list-group",
 		"role":"menu"
-	});
+	}).appendTo('#modal-info-body');
 	$.each(data,function(index,item){
 		console.log(item);
 		var li =$('<li>',{
@@ -232,18 +229,18 @@ function loadCustomMealView(data){
 			// TODO parse the meal JSON
 		});
 		li.appendTo(list);
-	})
-	
-	$('.modal-body').append(list);
-	$('.modal-footer').empty();
+	})	
+	//construct new footer 
+	$('#modal-info-footer').empty();
 	var doneButton = $('<button>',{
 		"type":"button",
 		"class":"btn btn-success",
 		"data-dismiss":"modal",
 		"text":"Done",
-		"id":""
-	}).appendTo('.modal-footer')
+		"id":"button-customMeals"
+	}).appendTo('#modal-info-footer')
 }
+
 
 function displaySelection(selection){
 	

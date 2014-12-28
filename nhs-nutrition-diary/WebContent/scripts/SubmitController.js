@@ -47,8 +47,7 @@ SubmitController.prototype.updateRequirements = function() {
 			"table": "userweightmanifest",
 			"where": "weight,=,109"
 	};
-	var weight = ServerDBAdapter.prototype.get(weightRequestJSON);
-	alert(weight);
+	var weightResponseJSON = JSON.parse(ServerDBAdapter.prototype.get(weightRequestJSON));
 	
 	var userInfoRequestJSON = {
 			"action": "get",

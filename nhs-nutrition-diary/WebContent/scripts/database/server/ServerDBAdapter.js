@@ -60,7 +60,8 @@ ServerDBAdapter.prototype.get = function(dataToServer)
 	    data: JSON.stringify(dataToServer),
 	    success: function (result){
 	        console.log("success");
-	        requestResult = result;
+	        requestResult = result.substring(2,result.length);
+	        console.log(requestResult);
 	    },
 	    error: function (xhr, ajaxOptions, thrownError) {
 	        console.log(xhr.statusText);

@@ -26,7 +26,7 @@ Navigator.prototype.setting = function(){
 }
 
 Navigator.prototype.back = function(){
-	
+	console.log("clicked back button");
 	window.history.back();
 	
 }

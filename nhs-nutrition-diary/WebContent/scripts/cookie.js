@@ -33,8 +33,8 @@ console.log(Cookies.prototype.getCookie("appetiteCookieUserID"));
 
 
 //COMMENT OUT THIS IF YOU WANT TO GET RID OF THE REDIRECTION WHEN A USER IS NOT LOGGED IN. 
-if(!Cookies.prototype.getUserID()) 
+/*if(!Cookies.prototype.getUserID()) 
 {
 	console.log("No User ID stored in cookie. The User is not logged in. Redirecting ....");
 	window.location.replace("notLoggedIn.html");
-}
+}*/

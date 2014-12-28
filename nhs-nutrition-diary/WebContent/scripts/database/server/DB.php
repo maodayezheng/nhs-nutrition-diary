@@ -146,22 +146,18 @@ class DB
 		echo "in getGraphData in the DB class \n";
 		$queryResults = array(); 
 		
-		
-		
-		echo isset($dataDecoded['userid'])? "true": "false";
-		
 		if((isset($dataDecoded['userid']) || isset($dataDecoded['dateFrom']) || isset($dataDecoded['dateTo']) ) )
 		{
-			throw new Exception('Class DB method getGraphData has not been passed a valid associative array. Please check that the array has the keys "userid", "dateFrom", and "dateTo"');
+			$userID 	= $dataDecoded['userid'];
+			$dateFrom 	= $dataDecoded['dateFrom'];
+			$dateTo 	= $dataDecoded['dateTo'];
+				
+			echo "in else";
+			//echo $userID.' '.$dateFrom.' '.$dateTo;
 			
 		} else 
 		{
-			 $userID 	= $dataDecoded['userid'];
-			 $dateFrom 	= $dataDecoded['dateFrom'];
-			 $dateTo 	= $dataDecoded['dateTo']; 
-			
-			echo "in else"; 
-			//echo $userID.' '.$dateFrom.' '.$dateTo;
+			throw new Exception('Class DB method getGraphData has not been passed a valid associative array. Please check that the array has the keys "userid", "dateFrom", and "dateTo"');
 		}
 	
 		

@@ -47,6 +47,7 @@ switch($action)
 	case 'getUserData':				echo json_encode($db->getUserData($dataDecoded)); break; 
 }
 
+
 function get($db, $table, $where) {
 	$results = $db->get($table, $where)->results();
 	$resultsJSON = json_encode($results);

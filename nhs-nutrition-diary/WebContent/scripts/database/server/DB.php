@@ -157,12 +157,7 @@ class DB
 			{
 				array_push($queryResults,$this->get($tables[$i],array('userid','=',$userID,'datetime','>=',$dateFrom,'datetime','<=',$dateTo))->results());
 			}
-			
-			print_r($queryResults); 
-			
-			echo "all keys have been passed";
 			return $queryResults; 
-			
 		} else 
 		{
 			throw new Exception('Class DB method getGraphData has not been passed a valid associative array. Please check that the array has the keys "userid", "dateFrom", and "dateTo"');

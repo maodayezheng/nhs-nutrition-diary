@@ -23,7 +23,6 @@ if(Input::exists('post'))
 	if($validation->passed())
 	{
 		$user = new User(); 
-	
 		$remember = (Input::get('remember') === 'remember') ? true:false; //did the user tick the remember me button?
 		$login = $user -> login(Input::get('nhsnumber'), Input::get('password'), $remember);
 		

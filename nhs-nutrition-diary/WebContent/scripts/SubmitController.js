@@ -45,7 +45,7 @@ SubmitController.prototype.updateRequirements = function() {
 	var weightRequestJSON = {
 			"action": "getLast",
 			"table": "userweightmanifest",
-			"where": "userid,>,0"
+			"where": "userid,=," + userId
 	};
 	var weight = ServerDBAdapter.prototype.get(weightRequestJSON).weight;
 	
@@ -384,7 +384,7 @@ SubmitController.prototype.submitSettings = function() {
 	var weightRequestJSON = {
 			"action": "getLast",
 			"table": "userweightmanifest",
-			"where": "userid,>,0"
+			"where": "userid,=," + userId
 	};
 	var weight = ServerDBAdapter.prototype.get(weightRequestJSON).weight;
 	

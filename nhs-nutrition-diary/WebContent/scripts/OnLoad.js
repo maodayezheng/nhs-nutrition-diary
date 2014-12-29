@@ -53,7 +53,7 @@ OnLoad.prototype.updateWeight = function() {
 	var weightRequestJSON = {
 			"action": "getLast",
 			"table": "userweightmanifest",
-			"where": "userid,>," + userId
+			"where": "userid,=," + userId
 	};
 	var weight = ServerDBAdapter.prototype.get(weightRequestJSON).weight;
 

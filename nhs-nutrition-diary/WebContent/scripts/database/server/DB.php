@@ -261,20 +261,20 @@ class DB
 	}
 	
 	/**
-	 * Return the first result only. 
+	 * Return the first result only. This method is intended to be chained onto another e.g. 
+	 * DB::getInstance()->get('usersymptommanifest', array('userid','=','2'))->first()
 	 */
-	public function first($table, $where)
+	public function first()
 	{
-		$this->get($table, $where);
 		return $this->results()[0];
 	}
 	
 	/**
-	 * Return the last result only.
+	 * Return the last result only. This method is intended to be chained onto another e.g.
+	 * DB::getInstance()->get('usersymptommanifest', array('userid','=','2'))->last()
 	 */
-	public function last($table, $where)
+	public function last()
 	{
-		$this->get($table, $where);
 		return $this->results()[sizeof($this->results()) - 1];
 	}
 	

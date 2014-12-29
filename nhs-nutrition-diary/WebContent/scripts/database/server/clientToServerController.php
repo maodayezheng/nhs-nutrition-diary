@@ -55,7 +55,7 @@ function get($db, $table, $where) {
 }
 
 function getLast($db, $table, $where) {
-	$results = $db->last($table, $where);
+	$results = $db->get($table, $where)->last();
 	$resultsJSON = json_encode($results);
 	echo($resultsJSON);
 }

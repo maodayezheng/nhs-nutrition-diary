@@ -132,13 +132,10 @@ class DB
 	}
 	
 	
-
-	//each property of the array passed as an argument needs to be part of a where clause in an SQL statement.
-	//This statment needs to be sent to multiple tables.
-	//graphs can be made for calories, protein, fluid, weight, symptoms
-	//This means grabbing everything using the where caluses from the 'userfoodmanifest', 'userweightmanifest','usersymptommanifest'
 	/**
-	 * 
+	 * This method is passed an associative array which must have three properties - userID, dateFrom, and dateTo. If these properties are not set 
+	 * an exception is thrown. It queries the database tables defined in the $tables array in the method - adding the results for each query to the $queryResults array.
+	 * Once all tables have been queried and the data stored in the array it returns that array.  
 	 * @param $dataDecoded This is an associative array decoded from JSON received from the client. See clientToServerController.php
 	 */
 	public function getUserData($dataDecoded) 
@@ -146,26 +143,22 @@ class DB
 // 		echo "in getGraphData in the DB class \n";
 		$queryResults = array(); //array the data will be pushed to. 
 		//echo "in get user data method in DB class.php";
-		if((isset($dataDecoded['userHash']) && isset($dataDecoded['dateFrom']) && isset($dataDecoded['dateTo']) ) )
+		if((isset($dataDecoded['userID']) && isset($dataDecoded['dateFrom']) && isset($dataDecoded['dateTo']) ) )
 		{
 			$dateFrom 	= $dataDecoded['dateFrom'];
 			$dateTo 	= $dataDecoded['dateTo'];
-			$userHash	= $dataDecoded['userHash'];
-			
-			//The following two lines retrieve the User ID from the 'users_session' table. The DB returns an object which we cast to an array and then extract the relevant data from. 
-			$userID 	= (array) $this->action('SELECT `user_id`','users_session',array('hash','=',$userHash))->first(); 
-			$userID		= $userID['user_id'];
+			$userID		= $dataDecoded['userID'];
 			
 			$tables 	= array('userfoodmanifest', 'userweightmanifest','usersymptommanifest','userrequirementsmanifest'); //these are the tables we are retrieving the user's data from. 
 			
 			for($i=0; $i<sizeof($tables); $i++)
 			{
-				array_push($queryResults,$this->get($tables[$i],array('userid','=',$userID,'datetime','>=',$dateFrom,'datetime','<=',$dateTo))->results());
+				array_push($queryResults, array($tables[$i] => $this->get($tables[$i],array('userid','=',$userID,'datetime','>=',$dateFrom,'datetime','<=',$dateTo))->results()));
 			}
 			return $queryResults; 
 		} else 
 		{
-			throw new Exception('Class DB method getUserData has not been passed a valid associative array. Please check that the array has the keys "userHash", "dateFrom", and "dateTo"');
+			throw new Exception('Class DB method getUserData has not been passed a valid associative array. Please check that the array has the keys "userID", "dateFrom", and "dateTo"');
 		}
 	
 		

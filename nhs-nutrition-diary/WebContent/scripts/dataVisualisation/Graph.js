@@ -12,15 +12,21 @@ function manageGraph(presentedParameter, dateFrom, dateTo) {
 	
 	var data = { "dateFrom": dateFrom, "dateTo": dateTo, "presentedParameter": presentedParameter }; //store the dates in an array to send to the getter. 
 	
-	var result = GetController.prototype.get('manageGraph', data);
-	console.log('made it to the bit after result'); 
+	var result = GetController.prototype.get('manageGraph', data); //synchronous call which times out after 5 seconds if no response from the server. 
+	console.log(result); 
+	console.log(JSON.stringify(result)); 
+	
+	for (var i = 0; i < result.length; i++)
+	{
+		var name = result[i][1]; 
+		console.log(result[i]); 
+	}
+	console.log(result[2].usersymptommanifest);
 	
 	
-	//get the json from the server
-	//prepare the data i.e. sum over protein, fluid, calories
 	
-	//create a JSON object with the relevant properties. 
-	//ServerDBAdapter.prototype.get
+	
+	
 	//var database = new LocalDbSingleton();
 	//var data = database.databaseOpen(LocalDbSingleton.prototype.localDbGet, 'foodManifestStore', dateFrom, dateTo, presentedParameter, makeGraph);
 	

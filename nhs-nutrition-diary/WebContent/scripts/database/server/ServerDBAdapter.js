@@ -49,16 +49,17 @@ ServerDBAdapter.prototype.get = function(dataToServer, callback)
 {
 	//the dataToServer object should contain the properties table, dateFrom and dateTo. 
 	console.log("ServerDBAdapter.prototype.get() entered.");
-	
+	var results; 
 	$.ajax({
 	    url: "scripts/database/server/clientToServerController.php",
 	    type: "POST",
 	    dataType: "text", //what you will receive in response. 
 	    contentType: "application/json", //what you are sending.
 	    data: JSON.stringify(dataToServer),
+	    timeout: 5000, //timeout the AJAX after 5000 milliseconds. 
 	    success: function (result){
 	        console.log("success"+result);
-	        return result; 
+	        results = JSON.parse(result); 
 	        //callback(result.substring(2,result.length));
 	    },
 	    async: false, //we want this call to be synchronous 
@@ -69,4 +70,5 @@ ServerDBAdapter.prototype.get = function(dataToServer, callback)
 	        console.log(thrownError);
 	    }
 	});
+	return results;
 };

@@ -41,8 +41,14 @@ $(document).ready(function(){
 		});
 		
 	$('#newFood').click(function(){
+		console.log('clicked new food');
 			loadNewFoodView();
 		});
+	
+	$('#newMeal').click(function(){
+		console.log('click test');
+		loadSaveMealView();
+	});
 	
 	$('#frequentFood').click(function(){
 		loadFrequentFoodView(frequentFood);
@@ -238,7 +244,35 @@ function loadCustomMealView(data){
 		"data-dismiss":"modal",
 		"text":"Done",
 		"id":"button-customMeals"
-	}).appendTo('#modal-info-footer')
+	}).appendTo('#modal-info-footer');
+}
+
+function loadSaveMealView(){
+	$('#modal-info-title').text("New meal");
+	// construct body
+	$('#modal-info-body').empty();
+	var form = $('<form>',{
+		"class":"modal-form",
+	}).appendTo('#modal-info-body');
+	
+	var nameField = $('<input>',{
+		"class":"form-control",
+		"type":"text",
+		"id":"mealName",
+		"placeholder":"meal name",
+	}).appendTo(form);
+	// construct new footer
+	$('#modal-info-footer').empty();
+	var doneButton = $('<button>',{
+		"type":"button",
+		"class":"btn btn-success",
+		"data-dismiss":"modal",
+		"text":"save",
+		"id":"button-saveMeals"
+	}).bind('click',function(){
+		console.log('save meal');
+		
+	}).appendTo('#modal-info-footer');
 }
 
 

@@ -46,7 +46,6 @@ $(document).ready(function(){
 		});
 	
 	$('#newMeal').click(function(){
-		console.log('click test');
 		loadSaveMealView();
 	});
 	
@@ -270,9 +269,19 @@ function loadSaveMealView(){
 		"text":"save",
 		"id":"button-saveMeals"
 	}).bind('click',function(){
-		console.log('save meal');
+		var meal = newMeal();
+		SubmitController.prototype.submitMeal(meal);
 		
 	}).appendTo('#modal-info-footer');
+}
+
+function newMeal(){
+		var newMeal = {};
+		newMeal['mealname']=$('#mealName').text();
+		newMeal['mealtotalcalories'] =$('#calories').text();
+		newMeal['mealtotalprotein']=$('#protein').text();
+		newMeal['mealtotalfluid']=$('#fluid').text();
+		return newMeal;
 }
 
 

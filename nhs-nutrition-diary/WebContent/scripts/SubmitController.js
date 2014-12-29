@@ -168,13 +168,7 @@ SubmitController.prototype.submitFoods = function() {
 	//TODO find actual date from food.html
 	var date = "22/10/2014";
 	var dateTime = this.formatDateTime(date, null);
-	var meal = "";
-	
-	if($('#checkbox_saveAsMeal').is(':selected')) {
-		//TODO meal should be the name of the meal entered by the user
-		meal = "";
-	}
-	
+	var meal = "";	
 	var foodList =[];
 	var counter = 0;
 	$('.selection-list li').each(function(idx, li) {
@@ -284,8 +278,14 @@ SubmitController.prototype.submitNewFood = function() {
 	ServerDBAdapter.prototype.submit(dataToServer, "save");
 }
 
-SubmitController.prototype.submitMeal = function() {
-	//TODO submit data
+SubmitController.prototype.submitMeal = function(data) {
+	
+	console.log(data.mealname);
+	console.log(data.mealtotalcalories);
+	console.log(data.mealtotalprotein);
+	console.log(data.mealtotalfluid);
+	
+	
 }
 
 SubmitController.prototype.submitSymptoms = function() {

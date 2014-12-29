@@ -58,8 +58,10 @@ ServerDBAdapter.prototype.get = function(dataToServer, callback)
 	    data: JSON.stringify(dataToServer),
 	    success: function (result){
 	        console.log("success"+result);
-	        callback(result.substring(2,result.length));
+	        return result; 
+	        //callback(result.substring(2,result.length));
 	    },
+	    async: false, //we want this call to be synchronous 
 	    error: function (xhr, ajaxOptions, thrownError) {
 	        console.log(xhr.statusText);
 	        console.log(xhr.responseText);

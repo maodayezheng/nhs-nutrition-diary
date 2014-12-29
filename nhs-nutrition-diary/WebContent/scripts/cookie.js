@@ -18,6 +18,19 @@ Cookies.prototype.getCookie = function(name)
 }
 
 /**
+ * Returns the user hash stored in the cookie. This is used to determine which user is sending data.
+ * A hash is used rather than the user ID for security purpose. The logged in user will have their corresponding hash
+ * stored in the users_session table in the server database. 
+ */
+
+Cookies.prototype.getUserHash = function() 
+{
+	return Cookies.prototype.getCookie("appetiteCookieHash");
+}
+
+
+
+/**
  * Method returns the value of the userID cookie. If it does not exist it returns null. 
  * @returns
  */
@@ -33,7 +46,7 @@ console.log(Cookies.prototype.getCookie("appetiteCookieUserID"));
 
 
 //COMMENT OUT THIS IF YOU WANT TO GET RID OF THE REDIRECTION WHEN A USER IS NOT LOGGED IN. 
-/*if(!Cookies.prototype.getUserID()) 
+/*if(!Cookies.prototype.getUserHash()) 
 {
 	console.log("No User ID stored in cookie. The User is not logged in. Redirecting ....");
 	window.location.replace("notLoggedIn.html");

@@ -12,7 +12,7 @@ $db 			= 	DB::getInstance();
 $data 			= 	Input::retrieveData();
 $dataDecoded 	= 	json_decode($data, true); //decode the json data with the true flag so that objects are converted into associative arrays for entry into the MySQL database. 
 
-// var_dump($dataDecoded); //FOR DEBUGGING
+//var_dump($dataDecoded); //FOR DEBUGGING
 
 //Extract values and remove them from the array. This is so that only relevant fields remain.  
 if(!isset($dataDecoded['action'])) 
@@ -22,6 +22,13 @@ if(!isset($dataDecoded['action']))
 {
 	$action = $dataDecoded['action']; //this will have the value, 'save'/'edit'/'delete'/'get' etc.
 	unset($dataDecoded['action']);
+}
+
+if(isset($dataDecoded['userHash']))
+{
+	$userHash = $dataDecoded['userHash'];
+	$userID = $db->action('SELECT `user_id`','users_session',array('hash','=',$userHash))->first(); //retrieve the user's hash
+	//var_dump($userID); //FOR DEBUGGING 
 }
 
 if(isset($dataDecoded['table'])) 

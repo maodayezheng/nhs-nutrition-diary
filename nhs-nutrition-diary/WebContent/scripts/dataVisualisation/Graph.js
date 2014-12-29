@@ -9,11 +9,12 @@ function manageGraph(presentedParameter, dateFrom, dateTo) {
 	console.log("in manage graph");
 	console.log(dateFrom);
 	console.log(dateTo);
-	var dateFromFormatted = GetController.prototype.formatDate(dateFrom); 
-	var dateToFormatted   = GetController.prototype.formatDate(dateTo); 
 	
-	GetController.prototype.getUserData(dateFromFormatted, dateToFormatted);
-	console.log(userData); 
+	var data = { "dateFrom": dateFrom, "dateTo": dateTo, "presentedParameter": presentedParameter }; //store the dates in an array to send to the getter. 
+	
+	var result = GetController.prototype.get('manageGraph', data);
+	console.log('made it to the bit after result'); 
+	
 	
 	//get the json from the server
 	//prepare the data i.e. sum over protein, fluid, calories

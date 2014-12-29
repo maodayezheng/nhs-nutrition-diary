@@ -146,12 +146,17 @@ class DB
 // 		echo "in getGraphData in the DB class \n";
 		$queryResults = array(); //array the data will be pushed to. 
 		//echo "in get user data method in DB class.php";
-		if((isset($dataDecoded['userid']) && isset($dataDecoded['dateFrom']) && isset($dataDecoded['dateTo']) ) )
+		if((isset($dataDecoded['userHash']) && isset($dataDecoded['dateFrom']) && isset($dataDecoded['dateTo']) ) )
 		{
-			$userID 	= $dataDecoded['userid'];
 			$dateFrom 	= $dataDecoded['dateFrom'];
 			$dateTo 	= $dataDecoded['dateTo'];
-			$tables 	= array('userfoodmanifest', 'userweightmanifest','usersymptommanifest','userrequirementsmanifest'); //these are the tables you would like to retrieve data from given the WHERE clauses. 
+			$userHash	= $dataDecoded['userHash'];
+			
+			//The following two lines retrieve the User ID from the 'users_session' table. The DB returns an object which we cast to an array and then extract the relevant data from. 
+			$userID 	= (array) $this->action('SELECT `user_id`','users_session',array('hash','=',$userHash))->first(); 
+			$userID		= $userID['user_id'];
+			
+			$tables 	= array('userfoodmanifest', 'userweightmanifest','usersymptommanifest','userrequirementsmanifest'); //these are the tables we are retrieving the user's data from. 
 			
 			for($i=0; $i<sizeof($tables); $i++)
 			{
@@ -160,7 +165,7 @@ class DB
 			return $queryResults; 
 		} else 
 		{
-			throw new Exception('Class DB method getGraphData has not been passed a valid associative array. Please check that the array has the keys "userid", "dateFrom", and "dateTo"');
+			throw new Exception('Class DB method getUserData has not been passed a valid associative array. Please check that the array has the keys "userHash", "dateFrom", and "dateTo"');
 		}
 	
 		

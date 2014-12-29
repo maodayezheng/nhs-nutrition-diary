@@ -4,9 +4,25 @@
 
 function GetController() {};
 
-GetController.prototype.getUserID = function() 
+GetController.prototype.get = function(getter, data) 
 {
-	return Cookies.prototype.getUserID(); 	
+	switch(getter) 
+	{
+		case 'manageGraph': return GetController.prototype.getUserData(data); break;
+	}
+}
+
+
+
+
+
+/**
+ * Returns the user hash which needs to be included when sent to the server. 
+ * @returns
+ */
+GetController.prototype.getUserHash = function() 
+{
+	return Cookies.prototype.getUserHash(); 	
 }
 
 /**
@@ -20,22 +36,24 @@ GetController.prototype.formatDate = function(date)
 	 
 }
 
-GetController.prototype.getUserData = function(dateFromFormatted, dateToFormatted)
+GetController.prototype.getUserData = function(data)
 {
 	console.log('in get User data'); 
 	
+	var dateFromFormatted = GetController.prototype.formatDate(data.dateFrom); 
+	var dateToFormatted   = GetController.prototype.formatDate(data.dateTo); 
 	
 	//fields are all MANDATORY to be sent to the server
 	dataToServer =
 	{
 		"action": "getUserData", 
-		"userid": this.getUserID(),
+		"userHash": this.getUserHash(), //sending hash rather than userID for security purposes
 		"dateFrom": dateFromFormatted,
 		"dateTo": dateToFormatted
 	}
 	console.log(dataToServer); 
 	
-	ServerDBAdapter.prototype.get(dataToServer);
+	return ServerDBAdapter.prototype.get(dataToServer);
 }
 
 

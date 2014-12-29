@@ -76,16 +76,13 @@ OnLoad.prototype.updateSettings = function() {
 	var fluidRequirement = previousRequirements.formulafluid;
 	var activityLevel = previousRequirements.activitylevel;
 	
-	//TODO replace hard-coded value with db getter
-	/*var caloriesRequirement = 2000;
-	var proteinRequirement = 45;
-	var fluidRequirement = 3150;
-	var activityLevel = 1;*/
-	
 	$('#currentCals').html(caloriesRequirement);
 	$('#currentProtein').html(proteinRequirement);
 	$('#currentFluid').html(fluidRequirement);
 	$('#currentActivity').html(activityLevel);
 	
-	//TODO amendments need to be queried from the DB
+	$('#cals').val(previousRequirements.additionalcalories);
+	$('#protein').val(previousRequirements.additionalprotein);
+	$('#fluid').val(previousRequirements.additionalfluid);
+	$('#activity').val(previousRequirements.additionalactivitylevel);
 }

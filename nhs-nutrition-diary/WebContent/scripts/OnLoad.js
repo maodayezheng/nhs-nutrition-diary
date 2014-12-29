@@ -12,13 +12,22 @@ OnLoad.prototype.load = function(pageName) {
 }
 
 OnLoad.prototype.updateTodaysBalance = function() {
-	//TODO replace hard-coded values with db getters
+	var userId = SubmitController.prototype.getUserID();
+	var previousRequirementsRequestJSON = {
+			"action": "getLast",
+			"table": "userrequirementsmanifest",
+			"where": "userid,=," + userId
+	};
+	var previousRequirements = ServerDBAdapter.prototype.get(previousRequirementsRequestJSON);
+	var caloriesRequirement = previousRequirements.finalcalories;
+	var proteinRequirement = previousRequirements.finalprotein;
+	var fluidRequirement = previousRequirements.finalfluid;
+	var activityLevel = previousRequirements.activitylevel + previousRequirements.additionalactivitylevel;
+	
+	//TODO replace hard-coded values with db getters --> summarise for current day
 	var caloriesCurrent = 500;
-	var caloriesRequirement = 2000;
 	var proteinCurrent = 14;
-	var proteinRequirement = 45;
 	var fluidCurrent = 2740;
-	var fluidRequirement = 3150;
 
 	var caloriesProgress = (caloriesCurrent/caloriesRequirement) * 100;
 	$('#progressBar_calories').css('width', '' + caloriesProgress + '%');
@@ -40,20 +49,38 @@ OnLoad.prototype.updateSymptoms = function() {
 }
 
 OnLoad.prototype.updateWeight = function() {
-	//TODO replace hard-coded value with db getter
+	var userId = SubmitController.prototype.getUserID();
+	var weightRequestJSON = {
+			"action": "getLast",
+			"table": "userweightmanifest",
+			"where": "userid,>," + userId
+	};
+	var weight = ServerDBAdapter.prototype.get(weightRequestJSON).weight;
+
 	var date = new Date();
 	$('#datetime').val(date.dateFormat('d/m/Y'));
-	var weight = 100;
 	$('#currentWeight').html('' + weight + ' kg');
 	$('#newWeight').val(weight);
 }
 
 OnLoad.prototype.updateSettings = function() {
+	var userId = SubmitController.prototype.getUserID();
+	var previousRequirementsRequestJSON = {
+			"action": "getLast",
+			"table": "userrequirementsmanifest",
+			"where": "userid,=," + userId
+	};
+	var previousRequirements = ServerDBAdapter.prototype.get(previousRequirementsRequestJSON);
+	var caloriesRequirement = previousRequirements.formulacalories;
+	var proteinRequirement = previousRequirements.formulaprotein;
+	var fluidRequirement = previousRequirements.formulafluid;
+	var activityLevel = previousRequirements.activitylevel;
+	
 	//TODO replace hard-coded value with db getter
-	var caloriesRequirement = 2000;
+	/*var caloriesRequirement = 2000;
 	var proteinRequirement = 45;
 	var fluidRequirement = 3150;
-	var activityLevel = 1;
+	var activityLevel = 1;*/
 	
 	$('#currentCals').html(caloriesRequirement);
 	$('#currentProtein').html(proteinRequirement);

@@ -1,21 +1,16 @@
 function RequirementsCalculator() {
-	//TODO get gender, weight and age from database
-	//TODO consider activity level (use activity level + additional activity level)
+	//TODO consider activity level
 }
-//comment 
-RequirementsCalculator.prototype.calcCalories = function() {
+RequirementsCalculator.prototype.calcCalories = function(gender, weight, age, activityLevel) {
 	//TODO check if user is female: currently true
 	if(true) {
-		return this.calcCaloriesFemale();
+		return this.calcCaloriesFemale(weight, age, activityLevel);
 	} else {
-		return this.calcCaloriesMale();
+		return this.calcCaloriesMale(weight, age, activityLevel);
 	}	
 }
 
-RequirementsCalculator.prototype.calcCaloriesFemale = function() {
-	var age = $("#age").val();
-	var weight = $("#weight").val();
-	
+RequirementsCalculator.prototype.calcCaloriesFemale = function(weight, age, activityLevel) {
 	if(age < 17) {
 		return weight * 13.4 + 692;
 	} else if(age >= 17 && age < 30) {
@@ -29,10 +24,7 @@ RequirementsCalculator.prototype.calcCaloriesFemale = function() {
 	}
 }
 
-RequirementsCalculator.prototype.calcCaloriesMale = function() {
-	var age = $("#age").val();
-	var weight = $("#weight").val();
-	
+RequirementsCalculator.prototype.calcCaloriesMale = function(weight, age, activityLevel) {
 	if(age < 17) {
 		return weight * 17.7 + 657;
 	} else if(age >= 17 && age < 30) {
@@ -46,12 +38,11 @@ RequirementsCalculator.prototype.calcCaloriesMale = function() {
 	}
 }
 
-RequirementsCalculator.prototype.calcProtein = function() {
-	return $("#weight").val() * 0.17 * 6.25;
+RequirementsCalculator.prototype.calcProtein = function(weight, age, activityLevel) {
+	return weight * 0.17 * 6.25;
 }
 
-RequirementsCalculator.prototype.calcFluid = function() {
-	var weight = $("#weight").val();
+RequirementsCalculator.prototype.calcFluid = function(weight, age, activityLevel) {
 	if(weight <= 60) {
 		return weight * 30;
 	} else {

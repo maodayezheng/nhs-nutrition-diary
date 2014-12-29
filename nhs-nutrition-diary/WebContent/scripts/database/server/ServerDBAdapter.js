@@ -24,7 +24,7 @@ ServerDBAdapter.prototype.submit = function(dataToServer, action)
 		case "edit": actionUrl = "scripts/database/server/editEntry.php"; break;
 		case "delete": actionUrl = "scripts/database/server/deleteEntry.php"; break;
 		case "test": actionUrl = "test.php"; break; */
-		default: actionUrl = "scripts/database/server/clientToServerController.php" //one script to handle all cases. 
+		default: actionUrl = "scripts/database/server/clientToServerController.php"; //one script to handle all cases. 
 	}
 	
 	$.ajax({
@@ -45,7 +45,7 @@ ServerDBAdapter.prototype.submit = function(dataToServer, action)
 	});
 };
 
-ServerDBAdapter.prototype.get = function(dataToServer, callback)
+ServerDBAdapter.prototype.get = function(dataToServer)
 {
 	//the dataToServer object should contain the properties table, dateFrom and dateTo. 
 	console.log("ServerDBAdapter.prototype.get() entered.");
@@ -59,7 +59,11 @@ ServerDBAdapter.prototype.get = function(dataToServer, callback)
 	    timeout: 5000, //timeout the AJAX after 5000 milliseconds. 
 	    success: function (result){
 	        console.log("success"+result);
-	        results = JSON.parse(result); 
+	        if(result != null) {
+	        	results = JSON.parse(result); 
+	        } else {
+	        	results = null;
+	        }
 	        //callback(result.substring(2,result.length));
 	    },
 	    async: false, //we want this call to be synchronous 

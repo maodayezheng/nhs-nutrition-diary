@@ -58,13 +58,16 @@ switch($action)
 }
 
 function get($db, $table, $where) {
-	$results = $db->get($table, $where)->results();
+	$db->get($table, $where);
+	$results = $db->results();
 	$resultsJSON = json_encode($results);
 	echo($resultsJSON);
+	$resultsJSON = null;
 }
 
 function getLast($db, $table, $where) {
-	$results = $db->get($table, $where)->last();
+	$results = $db->last($table, $where);
 	$resultsJSON = json_encode($results);
 	echo($resultsJSON);
+	$resultsJSON = null;
 }

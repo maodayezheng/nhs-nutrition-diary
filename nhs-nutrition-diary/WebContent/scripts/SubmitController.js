@@ -17,7 +17,7 @@ SubmitController.prototype.submit = function(submitter) {
 SubmitController.prototype.getUserID = function() {
 	//return Cookies.prototype.getUserID(); 	
 	//TODO retrieve user id
-	return 2;
+	return 1;
 }
 
 SubmitController.prototype.formatDateTime = function(date, time) {
@@ -35,12 +35,6 @@ SubmitController.prototype.formatDateTime = function(date, time) {
 	return dateTime;
 }
 
-//TODO this is only for testing purposes
-SubmitController.prototype.callBackTest = function(result) {
-	var test = JSON.parse(result);
-	return test.weight;
-}
-
 SubmitController.prototype.updateRequirements = function() {
 	var table = "userrequirementsmanifest";
 	
@@ -53,37 +47,45 @@ SubmitController.prototype.updateRequirements = function() {
 			"table": "userweightmanifest",
 			"where": "userid,>,0"
 	};
-//	var weightResponseJSON = JSON.parse(ServerDBAdapter.prototype.get(weightRequestJSON));
-	ServerDBAdapter.prototype.get(weightRequestJSON, this.callBackTest);
+	var weight = ServerDBAdapter.prototype.get(weightRequestJSON).weight;
 	
+	//TODO get age, gender and activityLevel from database --> ONLY TABLE 'USERS' HAS PROBLEMS RETURNING ENTRIES
+	/* needs to be commented out once data can be retrieved from table 'users'
 	var userInfoRequestJSON = {
 			"action": "get",
 			"table": "users",
-			"where": "id,=,1"
-	}
-//	var userInfo = ServerDBAdapter.prototype.get(userInfoRequestJSON);
-//	alert(userInfo);
+			"where": "id,=," + userId
+	};
+	var userInfoResponseJSON = ServerDBAdapter.prototype.get(userInfoRequestJSON);
+	var gender = userInfoResponseJSON.gender;
+	var dateOfBirth = userInfoResponseJSON.dateofbirth;
+	var activityLevel = userInfoResponseJSON.activitylevel;
+	*/
+	var gender = "female";
+	var age = 45;
+	var activityLevel = 1.1;
 	
 	var previousRequirementsRequestJSON = {
-			"action": "get",
+			"action": "getLast",
 			"table": "userrequirementsmanifest",
-			"where": "userid,=,1"
-	}
-//	var previousRequirements = ServerDBAdapter.prototype.get(previousRequirementsRequestJSON);
-//	alert(previousRequirements);
-	
-	//TODO get gender, weight, activityLevel, additional calories/protein/fluid/activity from database
-	var gender = "female";
-	var weight = 62.0;
-	var activityLevel = 1.1;
-	var additionalActivity = 0.0;
-	var requirementsCalculator = new RequirementsCalculator();
-	var formulaCalories = requirementsCalculator.calcCalories();
-	var formulaProtein = requirementsCalculator.calcProtein();
-	var formulaFluid = requirementsCalculator.calcFluid();
+			"where": "userid,=," + userId
+	};
+	var previousRequirements = ServerDBAdapter.prototype.get(previousRequirementsRequestJSON);
+	var additionalActivity = 0;
 	var additionalCalories = 0;
 	var additionalProtein = 0;
 	var additionalFluid = 0;
+	if(previousRequirements != null) {
+		additionalActivity = parseFloat(previousRequirements.additionalactivitylevel);
+		additionalCalories = parseFloat(previousRequirements.additionalcalories);
+		additionalProtein = parseFloat(previousRequirements.additionalprotein);
+		additionalFluid = parseFloat(previousRequirements.additionalfluid);
+	}
+	var finalActivityLevel = activityLevel + additionalActivity;
+	var requirementsCalculator = new RequirementsCalculator();
+	var formulaCalories = requirementsCalculator.calcCalories(gender, weight, age, finalActivityLevel);
+	var formulaProtein = requirementsCalculator.calcProtein(weight, age, finalActivityLevel);
+	var formulaFluid = requirementsCalculator.calcFluid(weight, age, finalActivityLevel);
 	var finalCalories = formulaCalories + additionalCalories;
 	var finalProtein = formulaProtein + additionalProtein;
 	var finalFluid = formulaFluid + additionalFluid;
@@ -105,7 +107,7 @@ SubmitController.prototype.updateRequirements = function() {
 		"finalcalories": finalCalories,
 		"finalprotein": finalProtein,
 		"finalfluid": finalFluid
-	}
+	};
 	
 	ServerDBAdapter.prototype.submit(dataToServer, "save");
 }
@@ -181,14 +183,43 @@ SubmitController.prototype.submitFoods = function() {
 		var quantity = food['portion'];
 		counter++;
 		
-		//TODO get foodid, cals, prot, fluid, carbs, fat, and check if food is from foodlist or from userfoodlist
-		var foodTable = "foodlist";
+		var foodTable = "";
 		var foodId = 0;
 		var calories = 0;
 		var protein = 0;
 		var fluid = 0;
 		var carbohydrates = 0;
 		var fat = 0;
+		
+		var foodDetailsRequestJSON = {
+				"action": "get",
+				"table": "foodlist",
+				"where": "label,=," + foodLabel
+		};
+		var foodDetails = ServerDBAdapter.prototype.get(foodDetailsRequestJSON)[0];
+		
+		if(foodDetails != null) {
+			foodTable = "foodlist";
+			foodId = foodDetails.id;
+			calories = foodDetails.energy_kcal;
+			protein = foodDetails.protein_g;
+			fluid = foodDetails.water_g;
+			carbohydrates = foodDetails.carbohydrate_g;
+			fat = foodDetails.fat_g;
+		} else {
+			var userFoodDetailsRequestJSON = {
+					"action": "get",
+					"table": "userfoodlist",
+					"where": "label,=," + foodLabel
+			};
+			var userFoodDetails = ServerDBAdapter.prototype.get(userFoodDetailsRequestJSON)[0];
+			foodTable = "userfoodlist";
+			foodId = userFoodDetails.id;
+			calories = userFoodDetails.calories;
+			protein = userFoodDetails.protein;
+			fluid = userFoodDetails.fluid;
+			fat = userFoodDetails.fat;
+		}
 		
 		var dataToServer = {
 				"table": table,
@@ -247,7 +278,6 @@ SubmitController.prototype.submitNewFood = function() {
 			"calories": calories,
 			"protein": protein,
 			"fluid": fluid,
-			//TODO fat is currently not implemented on the page
 			"fat": 0
 	};
 	console.log(dataToServer);
@@ -351,15 +381,35 @@ SubmitController.prototype.submitSettings = function() {
 	var date = new Date();
 	var dateTime = this.formatDateTime(date.dateFormat('d/m/Y'), null);
 	
-	//TODO get gender, weight, activityLevel from database
+	var weightRequestJSON = {
+			"action": "getLast",
+			"table": "userweightmanifest",
+			"where": "userid,>,0"
+	};
+	var weight = ServerDBAdapter.prototype.get(weightRequestJSON).weight;
+	
+	//TODO get age, gender and activityLevel from database --> ONLY TABLE 'USERS' HAS PROBLEMS RETURNING ENTRIES
+	/* needs to be commented out once data can be retrieved from table 'users'
+	var userInfoRequestJSON = {
+			"action": "get",
+			"table": "users",
+			"where": "id,=," + userId
+	};
+	var userInfoResponseJSON = ServerDBAdapter.prototype.get(userInfoRequestJSON);
+	var gender = userInfoResponseJSON.gender;
+	var dateOfBirth = userInfoResponseJSON.dateofbirth;
+	var activityLevel = userInfoResponseJSON.activitylevel;
+	*/
 	var gender = "female";
-	var weight = 62.0;
+	var age = 45;
 	var activityLevel = 1.1;
+	
 	var additionalActivity = $('#activity').val();
+	var finalActivityLevel = activityLevel + additionalActivity;
 	var requirementsCalculator = new RequirementsCalculator();
-	var formulaCalories = requirementsCalculator.calcCalories();
-	var formulaProtein = requirementsCalculator.calcProtein();
-	var formulaFluid = requirementsCalculator.calcFluid();
+	var formulaCalories = requirementsCalculator.calcCalories(gender, weight, age, finalActivityLevel);
+	var formulaProtein = requirementsCalculator.calcProtein(weight, age, finalActivityLevel);
+	var formulaFluid = requirementsCalculator.calcFluid(weight, age, finalActivityLevel);
 	var additionalCalories = $('#cals').val();
 	var additionalProtein = $('#protein').val();
 	var additionalFluid = $('#fluid').val();

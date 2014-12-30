@@ -65,6 +65,7 @@ OnLoad.prototype.updateTodaysBalance = function() {
 OnLoad.prototype.updateFood = function() {
 	var date = new Date();
 	$('#Date').val(date.dateFormat('d/m/Y'));
+	$('#Time').val(date.dateFormat('H:i'));
 }
 
 OnLoad.prototype.updateSymptoms = function() {

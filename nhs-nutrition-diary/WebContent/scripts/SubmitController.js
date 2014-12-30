@@ -20,6 +20,15 @@ SubmitController.prototype.getUserID = function() {
 	return 1;
 }
 
+SubmitController.prototype.formatDateOnly = function(date) {
+	var dateFormatted = "";
+	var validator = new Validator();
+	var dateParts = validator.dateSplit(date);
+	dateFormatted = dateFormatted + dateParts[2] + "-" + dateParts[1] + "-" + dateParts[0];
+	
+	return dateFormatted;
+}
+
 SubmitController.prototype.formatDateTime = function(date, time) {
 	var dateTime = "";
 	var validator = new Validator();
@@ -81,14 +90,14 @@ SubmitController.prototype.updateRequirements = function() {
 		additionalProtein = parseFloat(previousRequirements.additionalprotein);
 		additionalFluid = parseFloat(previousRequirements.additionalfluid);
 	}
-	var finalActivityLevel = activityLevel + additionalActivity;
+	var finalActivityLevel = parseFloat(activityLevel) + parseFloat(additionalActivity);
 	var requirementsCalculator = new RequirementsCalculator();
 	var formulaCalories = requirementsCalculator.calcCalories(gender, weight, age, finalActivityLevel);
 	var formulaProtein = requirementsCalculator.calcProtein(weight, age, finalActivityLevel);
 	var formulaFluid = requirementsCalculator.calcFluid(weight, age, finalActivityLevel);
-	var finalCalories = formulaCalories + additionalCalories;
-	var finalProtein = formulaProtein + additionalProtein;
-	var finalFluid = formulaFluid + additionalFluid;
+	var finalCalories = parseFloat(formulaCalories) + parseFloat(additionalCalories);
+	var finalProtein = parseFloat(formulaProtein) + parseFloat(additionalProtein);
+	var finalFluid = parseFloat(formulaFluid) + parseFloat(additionalFluid);
 	
 	var dataToServer = {
 		"table": table,
@@ -194,7 +203,8 @@ SubmitController.prototype.submitFoods = function() {
 		
 		if(foodDetails != null) {
 			foodTable = "foodlist";
-			foodId = foodDetails.id;
+			
+			foodId = foodDetails.foodcode;
 			calories = foodDetails.energy_kcal;
 			protein = foodDetails.protein_g;
 			fluid = foodDetails.water_g;
@@ -408,7 +418,7 @@ SubmitController.prototype.submitSettings = function() {
 	var activityLevel = 1.1;
 	
 	var additionalActivity = $('#activity').val();
-	var finalActivityLevel = activityLevel + additionalActivity;
+	var finalActivityLevel = parseFloat(activityLevel) + parseFloat(additionalActivity);
 	var requirementsCalculator = new RequirementsCalculator();
 	var formulaCalories = requirementsCalculator.calcCalories(gender, weight, age, finalActivityLevel);
 	var formulaProtein = requirementsCalculator.calcProtein(weight, age, finalActivityLevel);
@@ -416,9 +426,9 @@ SubmitController.prototype.submitSettings = function() {
 	var additionalCalories = $('#cals').val();
 	var additionalProtein = $('#protein').val();
 	var additionalFluid = $('#fluid').val();
-	var finalCalories = formulaCalories + additionalCalories;
-	var finalProtein = formulaProtein + additionalProtein;
-	var finalFluid = formulaFluid + additionalFluid;
+	var finalCalories = parseFloat(formulaCalories) + parseFloat(additionalCalories);
+	var finalProtein = parseFloat(formulaProtein) + parseFloat(additionalProtein);
+	var finalFluid = parseFloat(formulaFluid) + parseFloat(additionalFluid);
 	
 	var dataToServer = {
 		"table": table,

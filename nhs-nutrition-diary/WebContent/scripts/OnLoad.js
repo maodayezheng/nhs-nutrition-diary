@@ -16,9 +16,7 @@ OnLoad.prototype.updateTodaysBalance = function() {
 	var userId = SubmitController.prototype.getUserID();
 	
 	var date = new Date();
-	//TODO fix date bug --> shown as undefined
-//	var dateFormatted = date.dateFormat('d/m/Y');
-	var dateFormatted = "2014/12/30";
+	var dateFormatted = SubmitController.prototype.formatDateOnly(date.dateFormat('d/m/Y'));
 	
 	var todaysFoodsRequestJSON = {
 			"action": "get",
@@ -44,10 +42,10 @@ OnLoad.prototype.updateTodaysBalance = function() {
 			"where": "userid,=," + userId
 	};
 	var previousRequirements = ServerDBAdapter.prototype.get(previousRequirementsRequestJSON);
-	var caloriesRequirement = previousRequirements.finalcalories;
-	var proteinRequirement = previousRequirements.finalprotein;
-	var fluidRequirement = previousRequirements.finalfluid;
-	var activityLevel = previousRequirements.activitylevel + previousRequirements.additionalactivitylevel;
+	var caloriesRequirement = parseFloat(previousRequirements.finalcalories);
+	var proteinRequirement = parseFloat(previousRequirements.finalprotein);
+	var fluidRequirement = parseFloat(previousRequirements.finalfluid);
+	var activityLevel = parseFloat(previousRequirements.activitylevel) + parseFloat(previousRequirements.additionalactivitylevel);
 
 	var caloriesProgress = (caloriesCurrent/caloriesRequirement) * 100;
 	$('#progressBar_calories').css('width', '' + caloriesProgress + '%');

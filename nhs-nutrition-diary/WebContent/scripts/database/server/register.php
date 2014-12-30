@@ -49,10 +49,10 @@ if(Input::exists('post'))
 					'salt' 					=> $salt,
 					'dateofbirth' 			=> Input::get('dob'),
 					//'gender' 				=> Input::get('gender'),
-					//'weight' 				=> Input::get('weight'),
-					//'activitylevel' 		=> Input::get('activitylevel'),
+					'weight' 				=> Input::get('weight'),
+					'activitylevel' 		=> Input::get('activitylevel'),
 					'registrationtimestamp' => date('Y-m-d H:i:s'),
-					'group' 			=> 1
+					'group' 				=> 1
 			));
 			$login = $user -> login(Input::get('nhsnumber'), Input::get('password'), true);
 		} catch(Exception $e)

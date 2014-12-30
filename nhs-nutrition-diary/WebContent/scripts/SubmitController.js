@@ -166,7 +166,7 @@ SubmitController.prototype.submitFoods = function() {
 	
 	var userid = this.getUserID();
 	//TODO find actual date from food.html
-	var date = "22/10/2014";
+	var date = $('#Date').val();
 	var dateTime = this.formatDateTime(date, null);
 	var meal = "";	
 	var foodList =[];

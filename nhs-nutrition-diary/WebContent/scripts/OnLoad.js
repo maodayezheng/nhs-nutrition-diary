@@ -66,6 +66,21 @@ OnLoad.prototype.updateFood = function() {
 	$('#Time').val(date.dateFormat('H:i'));
 }
 
+OnLoad.prototype.frequentFoods = function() {
+	var userId = SubmitController.prototype.getUserID();
+	
+	//TODO might have to be amended along with the functions for returning the 10 most frequent foods
+	var frequentFoodsRequestJSON = {
+			"action": "getTenMostFrequent",
+			"table": "userfoodmanifest",
+			"where": "userid,=," + userId,
+			"number": 10
+	};
+	var frequentFoods = ServerDBAdapter.prototype.get(frequentFoodsRequestJSON);
+	
+	return frequentFoods;
+}
+
 OnLoad.prototype.updateSymptoms = function() {
 	var date = new Date();
 	$('#symptomDate').val(date.dateFormat('d/m/Y'));

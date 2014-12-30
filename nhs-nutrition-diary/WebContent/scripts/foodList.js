@@ -7,7 +7,6 @@ $(document).ready(function(){
 	// load data
 	var data =new FoodDataSingleton().foodData;
 	var aMeal =[{"id":"meal","label":"John Sandwich","portion":1,"mealtotalcalories":400.0,"mealtotalprotien":30.3,"mealtotalfat":12.2,"mealtotalfluid":100}];
-	var frequentFood = [data[3],data[100],data[90],data[102]];
 	// TODO replace customMeals and frequentFood with real data
 	// search 
 	
@@ -50,7 +49,7 @@ $(document).ready(function(){
 	});
 	
 	$('#frequentFood').click(function(){
-		loadFrequentFoodView(frequentFood);
+		loadFrequentFoodView();
 	});
 	
 	$('#searchButton').click(function() {
@@ -180,12 +179,15 @@ function loadNewFoodView(data){
 	}).appendTo('#modal-info-footer');
 }
 
-function loadFrequentFoodView(data){
+function loadFrequentFoodView(){
+	
+	// amend this function along with DB.php's function to return the 10 most frequent foods
+	var data = OnLoad.prototype.frequentFoods();
 	
 	// change the title of the modal
 	$('#modal-info-title').text("Frequent food");
 	
-	// construct new body of the moal
+	// construct new body of the modal
 	$('#modal-info-body').empty();
 	var list = $('<ul>',{
 		"class":"list-group",

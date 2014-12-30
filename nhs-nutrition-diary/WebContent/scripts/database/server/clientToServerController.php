@@ -53,6 +53,7 @@ switch($action)
 {
 	case 'get':						get($db, $table, $where); break;
 	case 'getLast':					getLast($db, $table, $where); break;
+	case 'getTenMostFrequent':		getTenMostFrequent($db, $table, $where); break;
 	case 'save': 					$db->insert($table, $dataDecoded); break; 
 	case 'getUserData':				echo json_encode($db->getUserData($dataDecoded)); break; 
 }
@@ -69,5 +70,14 @@ function getLast($db, $table, $where) {
 	$results = $db->last($table, $where);
 	$resultsJSON = json_encode($results);
 	echo($resultsJSON);
+	$resultsJSON = null;
+}
+
+function getTenMostFrequent($db, $table, $where) {
+	$db->getTenMostFrequent($table, $where);
+	$results = $db->results();
+	$resultsJSON = json_encode($results);
+	//echo($resultsJSON);
+	echo("test");
 	$resultsJSON = null;
 }

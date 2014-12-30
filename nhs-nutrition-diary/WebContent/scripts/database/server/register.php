@@ -50,7 +50,7 @@ if(Input::exists('post'))
 					'dateofbirth' 			=> Input::get('dob'),
 					//'gender' 				=> Input::get('gender'),
 					'weight' 				=> Input::get('weight'),
-					'activitylevel' 		=> Input::get('activitylevel'),
+					'activitylevel' 		=> Input::get('activity-level'),
 					'registrationtimestamp' => date('Y-m-d H:i:s'),
 					'group' 				=> 1
 			));
@@ -69,7 +69,7 @@ if(Input::exists('post'))
 		print_r($validation->getErrors()); //output errors
 		
 	}
-
+	//TODO call SubmitController.prototype.updateRequirements()
 
 } 
 ?>

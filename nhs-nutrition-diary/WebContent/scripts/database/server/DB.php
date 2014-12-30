@@ -278,6 +278,41 @@ class DB
 	}
 	
 	/**
+	 * Return the ten most frequent entries of a table.
+	 */
+	//TODO implement function to return the ten most frequent foods a given table
+	public function tenMostFrequent($table, $where = array(), $number) {
+		if(sizeof($where)%3==0) { // The correct number of entries in the $where array should be divisible by 3 otherwise an exception will be thrown.
+			$operators  = array('=','>','<','>=','<='); //allowed operators in the SQL query which will be sent to the database.
+			$value 		= array();
+		
+			for($i = 0; $i<sizeof($where)/3; $i++) {
+				$field 		= $where[$i*3];
+				$operator 	= $where[($i*3)+1];
+				array_push($value, $where[($i*3)+2]);
+						
+				if (in_array($operator, $operators)) { //only add to the SQL sent to the database if the operator is in the allowed list.
+					if($i==0) {
+						$sql = "SELECT label, COUNT(label) AS counter " + "FROM {$table} WHERE {$field} {$operator} ?";
+					} else {
+						$sql .= " AND {$field} {$operator} ?";
+					}
+				}
+			}
+			
+			$sql .= " GROUP BY label ORDER BY counter DESC";
+			
+			if(!$this->query($sql, $value)->error()) {
+				return $this;
+			}
+		} else {
+			throw new Exception('Your associative array length (argument $where) must have a length divisible by 3.');
+		}
+		
+		return $this->results();
+	}
+	
+	/**
 	 * Returns the count of the results i.e. num of rows returned in the query instance variable. 
 	 */
 	public function count()

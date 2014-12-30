@@ -165,9 +165,9 @@ SubmitController.prototype.submitFoods = function() {
 	var table = "userfoodmanifest"; 
 	
 	var userid = this.getUserID();
-	//TODO find actual date from food.html
 	var date = $('#Date').val();
-	var dateTime = this.formatDateTime(date, null);
+	var time = $('#Time').val();
+	var dateTime = this.formatDateTime(date, time);
 	var meal = "";	
 	var foodList =[];
 	var counter = 0;
@@ -279,6 +279,9 @@ SubmitController.prototype.submitNewFood = function() {
 }
 
 SubmitController.prototype.submitMeal = function(data) {
+	var userid = this.getUserID();
+	var date = new Date();
+	var dateTime = this.formatDateTime(date.dateFormat('d/m/Y'), date.dateFormat('H:i'));
 	
 	console.log(data.mealname);
 	console.log(data.mealtotalcalories);

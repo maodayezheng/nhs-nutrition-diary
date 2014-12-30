@@ -14,6 +14,30 @@ OnLoad.prototype.load = function(pageName) {
 
 OnLoad.prototype.updateTodaysBalance = function() {
 	var userId = SubmitController.prototype.getUserID();
+	
+	var date = new Date();
+	//TODO fix date bug --> shown as undefined
+//	var dateFormatted = date.dateFormat('d/m/Y');
+	var dateFormatted = "2014/12/30";
+	
+	var todaysFoodsRequestJSON = {
+			"action": "get",
+			"table": "userfoodmanifest",
+			"where": "userid,=," + userId + ",datetime,>=," + dateFormatted + " 00:00:00," + "datetime,<=," + dateFormatted + " 23:59:59"
+	};
+	var todaysFoods = ServerDBAdapter.prototype.get(todaysFoodsRequestJSON);
+	
+	var caloriesCurrent = 0;
+	var proteinCurrent = 0;
+	var fluidCurrent = 0;
+	
+	for(var index = 0; index < todaysFoods.length; index++) {
+        var entry = todaysFoods[index];
+        caloriesCurrent += parseFloat(entry.calories) * parseFloat(entry.quantity);
+        proteinCurrent += parseFloat(entry.protein) * parseFloat(entry.quantity);
+        fluidCurrent += parseFloat(entry.fluid) * parseFloat(entry.quantity);
+    }
+	
 	var previousRequirementsRequestJSON = {
 			"action": "getLast",
 			"table": "userrequirementsmanifest",
@@ -24,11 +48,6 @@ OnLoad.prototype.updateTodaysBalance = function() {
 	var proteinRequirement = previousRequirements.finalprotein;
 	var fluidRequirement = previousRequirements.finalfluid;
 	var activityLevel = previousRequirements.activitylevel + previousRequirements.additionalactivitylevel;
-	
-	//TODO replace hard-coded values with db getters --> summarise for current day
-	var caloriesCurrent = 500;
-	var proteinCurrent = 14;
-	var fluidCurrent = 2740;
 
 	var caloriesProgress = (caloriesCurrent/caloriesRequirement) * 100;
 	$('#progressBar_calories').css('width', '' + caloriesProgress + '%');
@@ -46,6 +65,7 @@ OnLoad.prototype.updateTodaysBalance = function() {
 OnLoad.prototype.updateFood = function() {
 	var date = new Date();
 	$('#Date').val(date.dateFormat('d/m/Y'));
+	$('#Time').val(date.dateFormat('H:i'));
 }
 
 OnLoad.prototype.updateSymptoms = function() {

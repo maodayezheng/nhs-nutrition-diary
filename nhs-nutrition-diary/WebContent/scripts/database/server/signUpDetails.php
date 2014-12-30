@@ -58,9 +58,9 @@ if(Input::exists('post'))
 						'hashedsaltedpw' 		=> Hash::make(Input::get('password'),$salt),
 						'salt' 					=> $salt,
 						'dateofbirth' 			=> Input::get('dob'),
-						//'gender' 				=> Input::get('gender'),
-						//'weight' 				=> Input::get('weight'),
-						//'activitylevel' 		=> Input::get('activitylevel'),
+// 						'gender' 				=> Input::get('gender'),
+// 						'weight' 				=> Input::get('weight'),
+// 						'activitylevel' 		=> Input::get('activity-level'),
 						'registrationtimestamp' => date('Y-m-d H:i:s'),
 						'priviledge' 			=> 1
 				));
@@ -126,7 +126,7 @@ if(Input::exists('post'))
 				  </tr>
 				  <tr>
 				    <td><label for="password">Enter Your Password:</label></td>
-				    <td><input class="form-control" name="password" id="password" type="text" placeholder="Enter Your Password" required></td>
+				    <td><input class="form-control" name="password" id="password" type="password" placeholder="Enter Your Password" required></td>
 				  </tr>
 				  <tr>
 				    <td><label for="password_again">Confirm Your Password:</label></td>

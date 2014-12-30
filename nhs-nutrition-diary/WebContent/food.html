@@ -13,6 +13,7 @@
 		<script src="lib/jquery/jquery-ui-1.11.2.min.js"></script>
     	<script src="lib/bootstrap/bootstrap.min.js"></script>
     	
+    	<script src="scripts/OnLoad.js"></script>
     	<script src="scripts/cookie.js"></script>
     	<script src="scripts/util/Validator.js"></script>
     	<script src="scripts/SubmitController.js"></script>
@@ -27,7 +28,7 @@
     	
     	<title>FOOD</title>
   	</head>
-  	<body>
+  	<body onload="OnLoad.prototype.load('food')">
  		<nav class="navbar navbar-default" role="navigation">
     		<div class="row">
  				<div class="col-xs-2 border">
@@ -161,6 +162,11 @@
       				<div class="modal-body">
       						<form class="modal-form">
       						<input type="text" id="Date" class="form-control date" placeholder="Date">
+      						</form>
+      				</div>
+      				<div class="modal-body">
+      						<form class="modal-form">
+      						<input type="text" id="Time" class="form-control date" placeholder="Time">
       						</form>
       				</div>
       				<div class="modal-footer">

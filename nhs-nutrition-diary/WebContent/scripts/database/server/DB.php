@@ -131,7 +131,6 @@ class DB
 		}
 	}
 	
-	
 	/**
 	 * This method is passed an associative array which must have three properties - userID, dateFrom, and dateTo. If these properties are not set 
 	 * an exception is thrown. It queries the database tables defined in the $tables array in the method - adding the results for each query to the $queryResults array.
@@ -160,12 +159,7 @@ class DB
 		{
 			throw new Exception('Class DB method getUserData has not been passed a valid associative array. Please check that the array has the keys "userID", "dateFrom", and "dateTo"');
 		}
-	
-		
-		 	
 	}
-	
-	
 	
 	/**
 	 * Utilises the action method to carry out a GET action. 
@@ -214,8 +208,8 @@ class DB
 			{
  				echo "<br />Inserting into the database was a success!";
 				return true;
-			}
-			else { //delete else bit
+			} else 
+			{ 
 // 				echo "<br />there was an error in the insert method<br />";
 			}
 		}
@@ -259,8 +253,7 @@ class DB
 	}
 	
 	/**
-	 * Return the first result only. This method is intended to be chained onto another e.g. 
-	 * DB::getInstance()->get('usersymptommanifest', array('userid','=','2'))->first()
+	 * Return the first result of a query only. 
 	 */
 	public function first($table, $where)
 	{
@@ -269,16 +262,17 @@ class DB
 	}
 	
 	/**
-	 * Return the last result only. This method is intended to be chained onto another e.g.
-	 * DB::getInstance()->get('usersymptommanifest', array('userid','=','2'))->last()
+	 * Return the last result of a query only. 
 	 */
 	public function last($table, $where)
 	{
 		$this->get($table, $where);
 		$size = sizeof($this->results());
-		if($size != 0) {
+		if($size != 0) 
+		{
 			return $this->results()[$size - 1];			
-		} else {
+		} else 
+		{
 			return null;
 		}
 	}

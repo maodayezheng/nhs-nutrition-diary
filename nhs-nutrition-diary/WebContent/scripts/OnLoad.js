@@ -3,6 +3,7 @@ function OnLoad() {}
 OnLoad.prototype.load = function(pageName) {
 	switch(pageName) {
 		case 'home': this.updateTodaysBalance(); break;
+		case 'food': this.updateFood(); break;
 		case 'symptoms': this.updateSymptoms(); break;
 		case 'history': toggleHistoryVisualisation(); break;
 		case 'weight': this.updateWeight(); break;
@@ -40,6 +41,11 @@ OnLoad.prototype.updateTodaysBalance = function() {
 	var fluidProgress = (fluidCurrent/fluidRequirement) * 100;
 	$('#progressBar_fluid').css('width', '' + fluidProgress + '%');
 	$('#progressBar_fluid').html('' + fluidCurrent + '/' + fluidRequirement + ' ml');
+}
+
+OnLoad.prototype.updateFood = function() {
+	var date = new Date();
+	$('#Date').val(date.dateFormat('d/m/Y'));
 }
 
 OnLoad.prototype.updateSymptoms = function() {

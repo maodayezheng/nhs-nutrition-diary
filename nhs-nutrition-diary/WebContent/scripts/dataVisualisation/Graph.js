@@ -13,7 +13,8 @@ function manageGraph(presentedParameter, dateFrom, dateTo) {
 	var data = { "dateFrom": dateFrom, "dateTo": dateTo, "presentedParameter": presentedParameter }; //store the dates in an array to send to the getter. 
 	
 	var result = GetController.prototype.get('manageGraph', data); //synchronous call which times out after 5 seconds if no response from the server. 
-	console.log(result); 
+	
+	//FOLLOWING CODE SHOULD EVENTUALLy BE ITS OWN FUNCTION. JUST TESTING PLAYING AROUND WITH THE RECEIVED JSON DATA
 	console.log(JSON.stringify(result)); 
 	
 	for (var i = 0; i < result.length; i++)

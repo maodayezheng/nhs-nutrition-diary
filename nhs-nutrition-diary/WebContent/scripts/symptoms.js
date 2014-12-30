@@ -122,7 +122,7 @@ var dropContent = 'Rate discomfort 0-4 (low to high)<select class="discomfortRat
        // event.preventDefault(); 
 	
 	$('#revealHiddenCustomSymptoms').click(function() {
-		$(".hiddenSymptomContainer").show("slow");
+		$(".hiddenSymptomContainer").toggle(400);
 	});
 	
 	 ////////////////////////////////SUBMIT SYMPTOMS TO JSON///////////////////////////////////////////////

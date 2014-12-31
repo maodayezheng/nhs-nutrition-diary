@@ -102,6 +102,9 @@ var dropContent = 'Rate discomfort 0-4 (low to high)<select class="discomfortRat
 
 	$("#btn_save_newCustomSymptom").click(function(){	
 		var customSymptom = $('#newSymptom').val();
+		if(customSymptom == ""){
+			alert("Please enter a valid symptom");
+		} else{
 		
 		var newSymptomInList = '<ol class="list-group-item" style="cursor: pointer;"><span class="state-icon glyphicon glyphicon-unchecked"></span>'+customSymptom+'</ol><div class="drop-scoring">'+dropContent+'</div>';
 		$("#symptomListCustom").append(newSymptomInList);	  
@@ -111,6 +114,7 @@ var dropContent = 'Rate discomfort 0-4 (low to high)<select class="discomfortRat
 			var target = $(this).next(".drop-scoring");	
 		$(target).slideDown('slow');
 		});
+	};
 	});
 
 	var symptoms = new SymptomListSingleton().symptomList;

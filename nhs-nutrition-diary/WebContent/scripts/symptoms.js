@@ -137,6 +137,13 @@ $(".submitSymptoms").click(function(){
 
 var discomfortScores = $('.discomfortRating :selected').text();
 var symptomComments = $('#symptomComment').val();
+
+///////////Saves comments///////////
+
+var symptomComments= $(".comments").map(function() {
+	   return $(this).val();
+	}).get();
+console.log(symptomComments);
 	   
     var checkedItems = {}, counter = 0;
     $("#symptomList li.active").each(function(idx, li) {
@@ -156,7 +163,7 @@ var symptomComments = $('#symptomComment').val();
   //  console.log(discomfortScores);
   //  console.log(symptomComments);
    // alert(checkedItems + discomfortScores);
-    alert(JSON.stringify(checkedItems) + discomfortScores);
+    alert(JSON.stringify(checkedItems) + discomfortScores + symptomComments);
     console.log(checkedItems);
 });
 

@@ -158,13 +158,8 @@ console.log(symptomComments);
         counter++;
     });
  
-     //   console.log(checkedItems);
-    
-  //  console.log(discomfortScores);
-  //  console.log(symptomComments);
-   // alert(checkedItems + discomfortScores);
+
     alert(JSON.stringify(checkedItems) + discomfortScores + symptomComments);
-    console.log(checkedItems);
 });
 
 

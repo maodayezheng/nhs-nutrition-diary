@@ -157,7 +157,9 @@ console.log(symptomComments);
         console.log($(li).text());
         counter++;
     });
- 
+    console.log(checkedItems);
+    console.log(discomfortScores);
+    console.log(symptomComments); 
 
     alert(JSON.stringify(checkedItems) + discomfortScores + symptomComments);
 });

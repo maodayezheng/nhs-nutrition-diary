@@ -138,7 +138,7 @@ $(".submitSymptoms").click(function(){
 var discomfortScores = $('.discomfortRating :selected').text();
 var symptomComments = $('#symptomComment').val();
 
-///////////Saves comments/////////////
+///////////Saves comments///////////////////
 
 var symptomComments= $(".comments").map(function() {
 	   return $(this).val();

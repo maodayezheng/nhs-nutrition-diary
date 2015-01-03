@@ -42,8 +42,7 @@ if(isset($dataDecoded['table']))
 if(isset($dataDecoded['where'])) 
 {
 	$whereDecoded = $dataDecoded['where'];
-	$where = explode(",", $whereDecoded);
-	
+	$where = explode(",", $whereDecoded); 
 	unset($dataDecoded['where']);
 }
 
@@ -52,18 +51,27 @@ $results = null;
 switch($action)
 {
 	case 'get':						get($db, $table, $where); break;
+	case 'getUserProfile':			getUserProfile($db, $table, $where); break; 
 	case 'getLast':					getLast($db, $table, $where); break;
 	case 'getTenMostFrequent':		getTenMostFrequent($db, $table, $where); break;
 	case 'save': 					$db->insert($table, $dataDecoded); break; 
 	case 'getUserData':				echo json_encode($db->getUserData($dataDecoded)); break; 
 }
 
-function get($db, $table, $where) {
-	$db->get($table, $where);
-	$results = $db->results();
+function getUserProfile($db, $table, $where)
+{
+	$comma = json_decode('"\u002C"');	//UTF representation of a comma so that it can be used in function arguments
+	$results = $db->action("SELECT gender$comma dateofbirth$comma activitylevel", $table, $where)->results(); 
 	$resultsJSON = json_encode($results);
 	echo($resultsJSON);
-	$resultsJSON = null;
+}
+
+
+function get($db, $table, $where) {
+	$results = $db->get($table, $where)->results();
+	$resultsJSON = json_encode($results);
+	echo($resultsJSON);
+	//$resultsJSON = null;
 }
 
 function getLast($db, $table, $where) {

@@ -58,18 +58,28 @@ SubmitController.prototype.updateRequirements = function() {
 	};
 	var weight = ServerDBAdapter.prototype.get(weightRequestJSON).weight;
 	
+	
+/////////////////START OF TESTING BLOCK
 	//TODO get age, gender and activityLevel from database --> ONLY TABLE 'USERS' HAS PROBLEMS RETURNING ENTRIES
-	/* needs to be commented out once data can be retrieved from table 'users'
+	///needs to be commented out once data can be retrieved from table 'users'
+	console.log("in update requirements"); 
 	var userInfoRequestJSON = {
-			"action": "get",
+			"action": "getUserProfile",
 			"table": "users",
 			"where": "id,=," + userId
 	};
 	var userInfoResponseJSON = ServerDBAdapter.prototype.get(userInfoRequestJSON);
+	console.log("Showing the userInfoResponseJSON"); 
+	console.log(userInfoResponseJSON); 
+	
 	var gender = userInfoResponseJSON.gender;
 	var dateOfBirth = userInfoResponseJSON.dateofbirth;
 	var activityLevel = userInfoResponseJSON.activitylevel;
-	*/
+	
+	
+/////////END OF BLOCK WHICH IS BEING TESTED
+	
+		
 	var gender = "female";
 	var age = 45;
 	var activityLevel = 1.1;

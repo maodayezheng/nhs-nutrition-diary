@@ -47,8 +47,11 @@ ServerDBAdapter.prototype.submit = function(dataToServer, action)
 
 ServerDBAdapter.prototype.get = function(dataToServer)
 {
-	//the dataToServer object should contain the properties table, dateFrom and dateTo. 
+	//the dataToServer object should contain the properties, 'action', 'table', 'dateFrom' and 'dateTo'. 
 	console.log("ServerDBAdapter.prototype.get() entered.");
+	console.log("Showing the data being sent to the server"); 
+	console.log(dataToServer); 
+	
 	var results; 
 	$.ajax({
 	    url: "scripts/database/server/clientToServerController.php",
@@ -64,7 +67,6 @@ ServerDBAdapter.prototype.get = function(dataToServer)
 	        } else {
 	        	results = null;
 	        }
-	        //callback(result.substring(2,result.length));
 	    },
 	    async: false, //we want this call to be synchronous 
 	    error: function (xhr, ajaxOptions, thrownError) {

@@ -14,6 +14,25 @@ echo '<br />in test.php for the test m8<br />';
 
 
 $db = DB::getInstance();
+$comma = json_decode('"\u002C"');
+echo $comma; 
+$sql = "SELECT group$comma test"; 
+echo $sql;
+
+$results5 = $db->get('users', array('id','=','1'))->results();
+echo '<br /> Var dump of the set of results received from the database'.'<br />';
+var_dump($results5).'<br />';
+$results5JSON = json_encode($results5);
+echo '<br /> The JSON encoded results: <br />'.$results5JSON.'<br />';
+
+
+
+$results6 = $db->action("SELECT nhsnumber$comma dateofbirth", 'users', array('id','=','1'))->results();
+echo '<br /> Var dump of the set of results received from the database'.'<br />';
+var_dump($results6).'<br />';
+$results6JSON = json_encode($results6);
+echo '<br /> The JSON encoded results: <br />'.$results6JSON.'<br />';
+
 
 $results4 = $db->get('usersymptommanifest', array('userid','=','2','datetime','>=','2014-12-22','datetime','<=','2014-12-25'))->results();
 echo '<br /> Var dump of the set of results received from the database'.'<br />';

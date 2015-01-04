@@ -45,7 +45,6 @@ SubmitController.prototype.formatDateTime = function(date, time) {
 }
 
 SubmitController.prototype.getAge = function(dateOfBirth) {
-    //TODO implement get age function
 	var today = new Date();
 	alert(today);
 	var dateOfBirthParts = dateOfBirth.split(' ');

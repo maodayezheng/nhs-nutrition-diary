@@ -5,8 +5,7 @@ SubmitController.prototype.submit = function(submitter) {
 		case 'btn_submit_signUpDetails': this.submitSignUpDetails(); break;
 		case 'btn_submit_foods': this.submitFoods(); break;
 		case 'btn_submit_newFood': this.submitNewFood(); break;
-		//TODO set button id
-//		case '': this.submitMeal(); break;
+		case 'btn_save_meals': this.submitMeal(); break;
 		case 'btn_submit_symptoms': this.submitSymptoms(); break;
 		case 'btn_save_newCustomSymptom': this.submitNewCustomSymptom(); break;
 		case 'btn_submit_weight': this.submitWeight(); break;
@@ -247,7 +246,8 @@ SubmitController.prototype.submitNewFood = function() {
 	ServerDBAdapter.prototype.submit(dataToServer, "save");
 }
 
-SubmitController.prototype.submitMeal = function(data) {
+SubmitController.prototype.submitMeal = function() {
+	alert("test");
 	var userid = this.getUserID();
 	var date = new Date();
 	var dateTime = this.formatDateTime(date.dateFormat('d/m/Y'), date.dateFormat('H:i'));
@@ -256,6 +256,14 @@ SubmitController.prototype.submitMeal = function(data) {
 	console.log(data.mealtotalcalories);
 	console.log(data.mealtotalprotein);
 	console.log(data.mealtotalfluid);
+	
+	
+	var newMeal = {};
+	newMeal['mealname']=$('#mealName').text();
+	newMeal['mealtotalcalories'] =$('#calories').text();
+	newMeal['mealtotalprotein']=$('#protein').text();
+	newMeal['mealtotalfluid']=$('#fluid').text();
+	return newMeal;
 	
 	
 }

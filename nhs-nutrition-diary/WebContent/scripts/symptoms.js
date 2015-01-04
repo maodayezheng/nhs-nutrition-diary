@@ -98,7 +98,7 @@ $(".passwordButton")
 	 * which is then appended to the $("#newSymptomList")
 	 * */
 	     
-var dropContent = 'Rate discomfort 0-4 (low to high)<select class="discomfortRating"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option></select> <br><br> <input type="text" class="form-control comments"id="symptomComment" placeholder="Optional comment">';
+var dropContent = 'Rate discomfort 1-5 (low to high)<select class="discomfortRating"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select> <br><br> <input type="text" class="form-control comments"id="symptomComment" placeholder="Optional comment">';
 
 	$("#btn_save_newCustomSymptom").click(function(){	
 		var customSymptom = $('#newSymptom').val();

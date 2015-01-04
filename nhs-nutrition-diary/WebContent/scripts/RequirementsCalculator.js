@@ -1,9 +1,9 @@
 function RequirementsCalculator() {
 	//TODO consider activity level
 }
+
 RequirementsCalculator.prototype.calcCalories = function(gender, weight, age, activityLevel) {
-	//TODO check if user is female: currently true
-	if(true) {
+	if(gender == "female") {
 		return this.calcCaloriesFemale(weight, age, activityLevel);
 	} else {
 		return this.calcCaloriesMale(weight, age, activityLevel);

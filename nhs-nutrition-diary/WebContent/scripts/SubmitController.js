@@ -44,6 +44,23 @@ SubmitController.prototype.formatDateTime = function(date, time) {
 	return dateTime;
 }
 
+SubmitController.prototype.getAge = function(dateOfBirth) {
+    //TODO implement get age function
+	var today = new Date();
+	
+	var dateOfBirthParts = dateOfBirth.split(' ');
+	var dateOfBirthYMD = dateOfBirthParts[0].split('-');
+	var birthDate = new Date(dateOfBirthYMD[0], dateOfBirthYMD[1], dateOfBirthYMD[2]);
+	
+    var age = today.getFullYear() - birthDate.getFullYear();
+    var m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+    }
+    alert(age);
+    return age;
+}
+
 SubmitController.prototype.updateRequirements = function() {
 	var table = "userrequirementsmanifest";
 	
@@ -58,31 +75,17 @@ SubmitController.prototype.updateRequirements = function() {
 	};
 	var weight = ServerDBAdapter.prototype.get(weightRequestJSON).weight;
 	
-	
-/////////////////START OF TESTING BLOCK
-	//TODO get age, gender and activityLevel from database --> ONLY TABLE 'USERS' HAS PROBLEMS RETURNING ENTRIES
-	///needs to be commented out once data can be retrieved from table 'users'
-	console.log("in update requirements"); 
 	var userInfoRequestJSON = {
 			"action": "getUserProfile",
 			"table": "users",
 			"where": "id,=," + userId
 	};
-	var userInfoResponseJSON = ServerDBAdapter.prototype.get(userInfoRequestJSON);
-	console.log("Showing the userInfoResponseJSON"); 
-	console.log(userInfoResponseJSON); 
+	var userInfoResponseJSON = ServerDBAdapter.prototype.get(userInfoRequestJSON)[0];
 	
 	var gender = userInfoResponseJSON.gender;
 	var dateOfBirth = userInfoResponseJSON.dateofbirth;
 	var activityLevel = userInfoResponseJSON.activitylevel;
-	
-	
-/////////END OF BLOCK WHICH IS BEING TESTED
-	
-		
-	var gender = "female";
-	var age = 45;
-	var activityLevel = 1.1;
+	var age = this.getAge(dateOfBirth);
 	
 	var previousRequirementsRequestJSON = {
 			"action": "getLast",
@@ -129,55 +132,6 @@ SubmitController.prototype.updateRequirements = function() {
 	};
 	
 	ServerDBAdapter.prototype.submit(dataToServer, "save");
-}
-
-SubmitController.prototype.signIn = function() {
-	//TODO authorise user (verify user name and passcode)
-}
-
-SubmitController.prototype.submitSignUpDetails = function() {
-	var table = "users";
-	
-	var userId = this.getUserID();
-	var date = new Date();
-	var dateTime = this.formatDateTime(date.dateFormat('d/m/Y'), null);
-	//TODO get priviledge
-	var priviledge = "dietician";
-	//TODO pw needs to be salted on the server
-	var hashedsaltedpw = 0;
-	var nhsNumber = $('#nhs-number').val();
-	//TODO include hospital number to registration form
-	var hospitalNumber = 0;
-	var weight = $('#weight').val();
-	var dateOfBirth = $('#age').val();;
-	var activityLevel = $('#activity-level').val();;
-	//TODO check which radio button is selected
-	var gender = "";
-	if($('#user_basic_sex_male').is(':checked')) {
-		gender = "male";
-		alert("male");
-	} else if($('#user_basic_sex_female').is(':checked')){
-		gender = "female";
-		alert("female");
-	} else {
-		alert("error: no gender selected");
-	}
-	
-	var dataToServer = {
-		"table": table,
-		"priviledge": priviledge,
-		"hashedsaltedpw": hashedsaltedpw,
-		"nhsnumber": nhsNumber,
-		"hospitalnumber": hospitalNumber,
-		"dateofbirth": dateOfBirth,
-		"gender": gender,
-		"activitylevel": activityLevel,
-		"registrationtimestamp": dateTime
-	}
-	
-	ServerDBAdapter.prototype.submit(dataToServer, "save");
-	
-	this.updateRequirements();
 }
 
 SubmitController.prototype.submitFoods = function() {
@@ -411,21 +365,17 @@ SubmitController.prototype.submitSettings = function() {
 	};
 	var weight = ServerDBAdapter.prototype.get(weightRequestJSON).weight;
 	
-	//TODO get age, gender and activityLevel from database --> ONLY TABLE 'USERS' HAS PROBLEMS RETURNING ENTRIES
-	/* needs to be commented out once data can be retrieved from table 'users'
 	var userInfoRequestJSON = {
-			"action": "get",
+			"action": "getUserProfile",
 			"table": "users",
 			"where": "id,=," + userId
 	};
-	var userInfoResponseJSON = ServerDBAdapter.prototype.get(userInfoRequestJSON);
+	var userInfoResponseJSON = ServerDBAdapter.prototype.get(userInfoRequestJSON)[0];
+	
 	var gender = userInfoResponseJSON.gender;
 	var dateOfBirth = userInfoResponseJSON.dateofbirth;
 	var activityLevel = userInfoResponseJSON.activitylevel;
-	*/
-	var gender = "female";
-	var age = 45;
-	var activityLevel = 1.1;
+	var age = this.getAge(dateOfBirth);
 	
 	var additionalActivity = $('#activity').val();
 	var finalActivityLevel = parseFloat(activityLevel) + parseFloat(additionalActivity);

@@ -343,15 +343,12 @@ SubmitController.prototype.submitNewCustomSymptom = function() {
 	var datetime = this.formatDateTime(date, time);
 	
 	var symptom = $("#newSymptom").val();
-	//TODO find symptom description
-	var symptomDescription = "empty";
 	
 	var dataToServer = {
 			"table": table,
 			"userid" : userid,
 			"datetime": datetime,
 			"symptom": symptom,
-			"symptomdescription": symptomDescription,
 	};
 	
 	ServerDBAdapter.prototype.submit(dataToServer, "save");	

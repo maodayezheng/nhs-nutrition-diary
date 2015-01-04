@@ -46,19 +46,18 @@ SubmitController.prototype.formatDateTime = function(date, time) {
 
 SubmitController.prototype.getAge = function(dateOfBirth) {
 	var today = new Date();
-	alert(today);
 	var dateOfBirthParts = dateOfBirth.split(' ');
 	var dateOfBirthYMD = dateOfBirthParts[0].split('-');
 	var month = "" + dateOfBirthYMD[1];
 	var monthCleared = month.replace("0", "");
 	var birthDate = new Date(dateOfBirthYMD[0], parseInt(dateOfBirthYMD[1]) - 1, dateOfBirthYMD[2]);
-	alert(birthDate);
-    var age = today.getFullYear() - birthDate.getFullYear();
+    
+	var age = today.getFullYear() - birthDate.getFullYear();
     var m = today.getMonth() - birthDate.getMonth();
     if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
         age--;
     }
-    alert(age);
+    
     return age;
 }
 

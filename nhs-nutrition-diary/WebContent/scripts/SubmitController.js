@@ -208,20 +208,15 @@ SubmitController.prototype.submitFoods = function() {
 		ServerDBAdapter.prototype.submit(dataToServer, "save");
 	});
 	
-	if($('#checkbox_saveAsMeal').is(':selected')) {
-		//TODO store data in meal table --> call submitMeal
-	}
-	
 	var warning = $('<div>',{
 		"class":"alert alert-success center",
 		"role":"alert",
-		"text":"update success"
+		"text":"Foods submitted."
 	});
 	$('body').append(warning);
 	setTimeout(function(){warning.remove()},3000);
 	
-	// TODO warning is not on the center of page
-	//window.location.href = 'home.html';
+	window.location.href = 'home.html';
 }
 
 SubmitController.prototype.submitNewFood = function() {
@@ -287,9 +282,30 @@ SubmitController.prototype.submitSymptoms = function() {
 	
 	for(var index = 0; index < counter; index++) {
 		var symptom = checkedSymptoms[index];
-		//TODO find symptom table and symptom id --> call GET function for DB (needs to be implemented)
-		var symptomTable = "testTable";
-		var symptomId = 5;
+		var symptomTable = "";
+		var symptomId = "";
+		
+		var symptomDetailsRequestJSON = {
+				"action": "get",
+				"table": "symptomlist",
+				"where": "symptom,=," + symptom
+		};
+		var symptomDetails = ServerDBAdapter.prototype.get(symptomDetailsRequestJSON)[0];
+		
+		if(symptomDetails != null) {
+			symptomTable = "symptomlist";
+			symptomId = symptomDetails.id;
+		} else {
+			var userSymptomDetailsRequestJSON = {
+					"action": "get",
+					"table": "usersymptomlist",
+					"where": "userid,=," + userid + ",symptom,=," + symptom
+			};
+			var userSymptomDetails = ServerDBAdapter.prototype.get(userSymptomDetailsRequestJSON)[0];
+			symptomTable = "usersymptomlist";
+			symptomId = userSymptomDetails.id;
+		}
+		
 		//TODO find rating
 		var rating = 3;
 		//TODO find comment
@@ -308,6 +324,16 @@ SubmitController.prototype.submitSymptoms = function() {
 		
 		ServerDBAdapter.prototype.submit(dataToServer, "save");
 	}
+	
+	var warning = $('<div>',{
+		"class":"alert alert-success center",
+		"role":"alert",
+		"text":"Symptoms submitted."
+	});
+	$('body').append(warning);
+	setTimeout(function(){warning.remove()},3000);
+	
+	window.location.href = 'home.html';
 }
 
 SubmitController.prototype.submitNewCustomSymptom = function() {
@@ -319,7 +345,7 @@ SubmitController.prototype.submitNewCustomSymptom = function() {
 	
 	var symptom = $("#newSymptom").val();
 	//TODO find symptom description
-	var symptomDescription = "testDescription";
+	var symptomDescription = "empty";
 	
 	var dataToServer = {
 			"table": table,
@@ -350,6 +376,16 @@ SubmitController.prototype.submitWeight = function() {
 	ServerDBAdapter.prototype.submit(dataToServer, "save");
 	
 	this.updateRequirements();
+	
+	var warning = $('<div>',{
+		"class":"alert alert-success center",
+		"role":"alert",
+		"text":"Weight submitted."
+	});
+	$('body').append(warning);
+	setTimeout(function(){warning.remove()},3000);
+	
+	window.location.href = 'home.html';
 }
 
 SubmitController.prototype.submitSettings = function() {
@@ -411,4 +447,14 @@ SubmitController.prototype.submitSettings = function() {
 	}
 	
 	ServerDBAdapter.prototype.submit(dataToServer, "save");
+	
+	var warning = $('<div>',{
+		"class":"alert alert-success center",
+		"role":"alert",
+		"text":"Amendments submitted."
+	});
+	$('body').append(warning);
+	setTimeout(function(){warning.remove()},3000);
+	
+	window.location.href = 'home.html';
 }

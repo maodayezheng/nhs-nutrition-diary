@@ -177,7 +177,7 @@ SubmitController.prototype.submitFoods = function() {
 			var userFoodDetailsRequestJSON = {
 					"action": "get",
 					"table": "userfoodlist",
-					"where": "label,=," + foodLabel
+					"where": "userid,=," + userid + ",label,=," + foodLabel
 			};
 			var userFoodDetails = ServerDBAdapter.prototype.get(userFoodDetailsRequestJSON)[0];
 			foodTable = "userfoodlist";
@@ -247,25 +247,76 @@ SubmitController.prototype.submitNewFood = function() {
 }
 
 SubmitController.prototype.submitMeal = function() {
-	alert("test");
+	var table = "usermeallist";
+	
 	var userid = this.getUserID();
 	var date = new Date();
 	var dateTime = this.formatDateTime(date.dateFormat('d/m/Y'), date.dateFormat('H:i'));
 	
-	console.log(data.mealname);
-	console.log(data.mealtotalcalories);
-	console.log(data.mealtotalprotein);
-	console.log(data.mealtotalfluid);
+	var mealName = $('#mealName').val();
 	
-	
-	var newMeal = {};
-	newMeal['mealname']=$('#mealName').text();
-	newMeal['mealtotalcalories'] =$('#calories').text();
-	newMeal['mealtotalprotein']=$('#protein').text();
-	newMeal['mealtotalfluid']=$('#fluid').text();
-	return newMeal;
-	
-	
+	var foodList =[];
+	var counter = 0;
+	$('.selection-list li').each(function(idx, li) {
+		var food  = $(li).data('data');
+		var foodLabel = food['label'];
+		var quantity = food['portion'];
+		counter++;
+		
+		var foodTable = "";
+		var foodId = 0;
+		var calories = 0;
+		var protein = 0;
+		var fluid = 0;
+		var fat = 0;
+		
+		var foodDetailsRequestJSON = {
+				"action": "get",
+				"table": "foodlist",
+				"where": "label,=," + foodLabel
+		};
+		var foodDetails = ServerDBAdapter.prototype.get(foodDetailsRequestJSON)[0];
+		
+		if(foodDetails != null) {
+			foodTable = "foodlist";
+			
+			foodId = foodDetails.foodcode;
+			calories = foodDetails.energy_kcal;
+			protein = foodDetails.protein_g;
+			fluid = foodDetails.water_g;
+			fat = foodDetails.fat_g;
+		} else {
+			var userFoodDetailsRequestJSON = {
+					"action": "get",
+					"table": "userfoodlist",
+					"where": "userid,=," + userid + ",label,=," + foodLabel
+			};
+			var userFoodDetails = ServerDBAdapter.prototype.get(userFoodDetailsRequestJSON)[0];
+			foodTable = "userfoodlist";
+			foodId = userFoodDetails.id;
+			calories = userFoodDetails.calories;
+			protein = userFoodDetails.protein;
+			fluid = userFoodDetails.fluid;
+			fat = userFoodDetails.fat;
+		}
+		
+		var dataToServer = {
+				"table": table,
+				"userid" : userid,
+				"datetime": dateTime,
+				"mealname": mealName,
+				"foodtable": foodTable,
+				"foodid": foodId,
+				"foodname": foodLabel,
+				"quantity": quantity,
+				"calories": calories,
+				"protein": protein,
+				"fluid": fluid,
+				"fat": fat
+		};
+		
+		ServerDBAdapter.prototype.submit(dataToServer, "save");
+	});	
 }
 
 SubmitController.prototype.submitSymptoms = function() {

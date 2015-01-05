@@ -133,8 +133,12 @@ var dropContent = 'Rate discomfort 1-5 (low to high)<select class="discomfortRat
 				"where": "userid,=," + userid
 		};
 		
-		var customSymptoms = ServerDBAdapter.prototype.get(customSymptomsRequestJSON)[0];
-		alert(customSymptoms.symptom);
+		var customSymptoms = ServerDBAdapter.prototype.get(customSymptomsRequestJSON);
+		for(var index = 0; index < customSymptoms.length; index++) {
+			var singleCustomSymptom = customSymptoms[index];
+			var newSymptomInList = '<li class="list-group-item" style="cursor: pointer;"><span class="state-icon glyphicon glyphicon-unchecked"></span>'+singleCustomSymptom.symptom+'</li><div class="drop-scoring">'+dropContent+'</div>';
+			$("#symptomListCustom").append(newSymptomInList);
+		}
 		
 		$(".hiddenSymptomContainer").toggle(400);
 	});

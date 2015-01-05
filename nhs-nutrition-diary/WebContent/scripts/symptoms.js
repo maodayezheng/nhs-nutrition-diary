@@ -28,7 +28,7 @@ $(".passwordButton")
 	
     var setUpCheckbox = function() {
 		
-		 $('.list-group.checked-list-box .list-group-item').each(function () {
+		 $('.list-group-item').each(function () {
 		        // Settings
 		        var $widget = $(this),
 		            $checkbox = $('<input type="checkbox" class="hidden"/>'),
@@ -93,6 +93,73 @@ $(".passwordButton")
 		    });
 	     };
 	     
+	     var setUpCheckbox2 = function() {
+	 		
+			 $('.customSymptom').each(function () {
+			        // Settings
+			        var $widget = $(this),
+			            $checkbox = $('<input type="checkbox" class="hidden"/>'),
+			            color = ($widget.data('color') ? $widget.data('color') : "primary"),
+			            style = ($widget.data('style') == "button" ? "btn-" : "list-group-item-"),
+			            settings = {
+			                on: {
+			                    icon: 'glyphicon glyphicon-check'
+			                },
+			                off: {
+			                    icon: 'glyphicon glyphicon-unchecked'
+			                }
+			            };
+			            
+			        $widget.css('cursor', 'pointer')
+			        $widget.append($checkbox);
+
+			        // Event Handlers
+			        $widget.on('click', function () {
+			            $checkbox.prop('checked', !$checkbox.is(':checked'));
+			            $checkbox.triggerHandler('change');
+			            updateDisplay();
+			        });
+			        $checkbox.on('change', function () {
+			            updateDisplay();
+			        });
+			          
+			        // Actions
+			        function updateDisplay() {
+			            var isChecked = $checkbox.is(':checked');
+
+			            // Set the button's state
+			            $widget.data('state', (isChecked) ? "on" : "off");
+
+			            // Set the button's icon
+			            $widget.find('.state-icon')
+			                .removeClass()
+			                .addClass('state-icon ' + settings[$widget.data('state')].icon);
+
+			            // Update the button's color
+			            if (isChecked) {
+			                $widget.addClass(style + color + ' active');
+			            } else {
+			                $widget.removeClass(style + color + ' active');
+			            }
+			        }
+
+			        function init() {
+			            
+			            if ($widget.data('checked') == true) {
+			                $checkbox.prop('checked', !$checkbox.is(':checked'));
+			            }
+			            
+			            updateDisplay();
+
+			            // Inject the icon if applicable
+			            if ($widget.find('.state-icon').length == 0) {
+			                $widget.prepend('<span class="state-icon ' + settings[$widget.data('state')].icon + '"></span>');
+			            }
+			        }
+			        init();
+			    });
+		     };
+	     
 	/* "#saveNewSymptom" is used on the "symptomNotOnList page"
 	 * it is used when the user enters a custom symptom 
 	 * which is then appended to the $("#newSymptomList")
@@ -106,11 +173,10 @@ var dropContent = 'Rate discomfort 1-5 (low to high)<select class="discomfortRat
 			alert("Please enter a valid symptom");
 		} else{
 		
-		var newSymptomInList = '<li class="list-group-item" style="cursor: pointer;"><span class="state-icon glyphicon glyphicon-unchecked"></span>'+customSymptom+'</li><div class="drop-scoring">'+dropContent+'</div>';
+		var newSymptomInList = '<li class="list-group-item customSymptom" style="cursor: pointer;"><span class="state-icon glyphicon glyphicon-unchecked"></span>'+customSymptom+'</li><div class="drop-scoring">'+dropContent+'</div>';
 		$("#symptomListCustom").append(newSymptomInList);	  
-		 ///////////////////WARNING THIS RESETS CHECKBOXES (TO FIX AFTER DB LOAD SYMPTOMS) ///////////////////
-	     setUpCheckbox();
-	 	$('li').click(function(){
+	     setUpCheckbox2();
+	 	$('newSymptomInList').click(function(){
 			var target = $(this).next(".drop-scoring");	
 		$(target).slideDown('slow');
 		});
@@ -126,6 +192,7 @@ var dropContent = 'Rate discomfort 1-5 (low to high)<select class="discomfortRat
        // event.preventDefault(); 
 	
 	$('#revealHiddenCustomSymptoms').click(function() {
+		
 		var userid = SubmitController.prototype.getUserID();
 		var customSymptomsRequestJSON = {
 				"action": "get",
@@ -154,12 +221,17 @@ var dropContent = 'Rate discomfort 1-5 (low to high)<select class="discomfortRat
 	$("#saveWeight").click(function(){
 		$('p').html("#currentWeight");
 	});
-	
-	$('li').click(function(){
+
+});
+
+////////////////////////////Enables drop scoring for non custom symptom list
+
+$( window ).load(function() { 	$('li').click(function(){
 		var target = $(this).next(".drop-scoring");	
 	$(target).slideToggle('slow');
-	});
-});
+	}); 
+
+})
 
 //---- method to combine data with DOMs----
 

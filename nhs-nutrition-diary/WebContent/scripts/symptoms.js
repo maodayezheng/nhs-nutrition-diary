@@ -98,7 +98,7 @@ $(".passwordButton")
 	 * which is then appended to the $("#newSymptomList")
 	 * */
 	     
-var dropContent = 'Rate discomfort 1-5 (low to high)<select class="discomfortRating"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select> <br><br> <input type="text" class="form-control comments"id="symptomComment" placeholder="Optional comment">';
+var dropContent = 'Rate discomfort 1-5 (low to high)<select class="discomfortRating"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select> <br><br> <input type="text" class="form-control comments symptoms"id="symptomComment" placeholder="Optional comment">';
 
 	$("#btn_save_newCustomSymptom").click(function(){	
 		var customSymptom = $('#newSymptom').val();
@@ -106,11 +106,11 @@ var dropContent = 'Rate discomfort 1-5 (low to high)<select class="discomfortRat
 			alert("Please enter a valid symptom");
 		} else{
 		
-		var newSymptomInList = '<ol class="list-group-item" style="cursor: pointer;"><span class="state-icon glyphicon glyphicon-unchecked"></span>'+customSymptom+'</ol><div class="drop-scoring">'+dropContent+'</div>';
+		var newSymptomInList = '<li class="list-group-item" style="cursor: pointer;"><span class="state-icon glyphicon glyphicon-unchecked"></span>'+customSymptom+'</li><div class="drop-scoring">'+dropContent+'</div>';
 		$("#symptomListCustom").append(newSymptomInList);	  
 		 ///////////////////WARNING THIS RESETS CHECKBOXES (TO FIX AFTER DB LOAD SYMPTOMS) ///////////////////
 	     setUpCheckbox();
-	 	$('ol').click(function(){
+	 	$('li').click(function(){
 			var target = $(this).next(".drop-scoring");	
 		$(target).slideDown('slow');
 		});
@@ -143,41 +143,81 @@ var symptomComments = $('#symptomComment').val();
 var symptomComments= $(".comments").map(function() {
 	   return $(this).val();
 	}).get();
-console.log(symptomComments);
 	   
     var checkedItems = {}, counter = 0;
-    $("#symptomList li.active").each(function(idx, li) {
+    $(".symptoms li.active").each(function(idx, li) {
         checkedItems[counter] = $(li).text();
-        console.log($(li).text());
+       // console.log($(li).text());
         counter++;
 
     });
-    $("#symptomListCustom li.active").each(function(idx, li) {
-        checkedItems[counter] = $(li).text();
-        console.log($(li).text());
-        counter++;
-    });
-    console.log(checkedItems);
-    console.log(discomfortScores);
-    console.log(symptomComments); 
 
-    alert(JSON.stringify(checkedItems) + discomfortScores + symptomComments);
+    //GETS SELECTED SYMPTOM RATINGS IN JSON
+    var ratingComplete = [];
+    var selectedScores = discomfortScores.toString().split('');
+    
+    var arrayLength = selectedScores.length;
+    for (var i = 0; i < arrayLength; i++) {
+
+        var index = selectedScores.indexOf(selectedScores[i]);
+        if((selectedScores[i]) !=1){
+        	ratingComplete.push(selectedScores[i]); 
+     }
+        }
+    //GETS SELECTED SYMPTOM COMMENTS IN JSON
+    var commentsComplete = [];
+    var selectedComments = symptomComments.toString().split(',');
+   // console.log(selectedComments);
+    
+    var arrayLength = selectedComments.length;
+    for (var i = 0; i < arrayLength; i++) {
+    	
+    	if(selectedComments[i].length > 1){
+    		 commentsComplete.push(selectedComments[i]);
+    	}
+     }   
+    
+    //PRINT OUT VALUES SENT TO DB
+    console.log(JSON.stringify(checkedItems));   
+    console.log(JSON.stringify(ratingComplete));
+    console.log(commentsComplete);
+    
+    // commentsComplete is already in JSON form: 
+    // var symptomCommentsJSON = (JSON.stringify(commentsComplete));
+    
+    /*
+     * THIS CONVERTS SELECTED SYMPTOM INTO A NUMBER
+    var arrayLength = selectedScores.length;
+    for (var i = 0; i < arrayLength; i++) {
+
+        var index = selectedScores.indexOf(selectedScores[i]);
+        console.log(index);
+        
+        if(index == 0){
+        	console.log("cut");
+        } else{
+        	 var selectedScoresJSON = (JSON.stringify(index));
+        }
+      
+    }
+    console.log(JSON.stringify(selectedScoresJSON));*/
+    
+
+    
+   // console.log(selectedScores);
+    
+    
+
+    
+
+    alert(JSON.stringify(checkedItems) + JSON.stringify(ratingComplete) + JSON.stringify(commentsComplete));
 });
+
+
 
 
 
 ////////////////////////////////SUBMIT NEW SYMPTOMS TO JSON///////////////////////////////////////////////
-
-$(".submitNewSymptoms").click(function(){
-    var checkedItems = {}, counter = 0;
-    $("#newSymptomList li.active").each(function(idx, li) {
-        checkedItems[counter] = $(li).text();
-        console.log($(li).text());
-        counter++;
-    });
-    console.log(checkedItems);
-    alert(JSON.stringify(checkedItems));
-});
 
 
 	$("#saveWeight").click(function(){

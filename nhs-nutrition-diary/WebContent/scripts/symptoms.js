@@ -126,6 +126,16 @@ var dropContent = 'Rate discomfort 1-5 (low to high)<select class="discomfortRat
        // event.preventDefault(); 
 	
 	$('#revealHiddenCustomSymptoms').click(function() {
+		var userid = SubmitController.prototype.getUserID();
+		var customSymptomsRequestJSON = {
+				"action": "get",
+				"table": "usersymptomlist",
+				"where": "userid,=," + userid
+		};
+		
+		var customSymptoms = ServerDBAdapter.prototype.get(customSymptomsRequestJSON)[0];
+		alert(customSymptoms.symptom);
+		
 		$(".hiddenSymptomContainer").toggle(400);
 	});
 	

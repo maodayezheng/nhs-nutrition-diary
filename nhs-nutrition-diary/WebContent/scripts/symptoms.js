@@ -138,6 +138,11 @@ var dropContent = 'Rate discomfort 1-5 (low to high)<select class="discomfortRat
 			var singleCustomSymptom = customSymptoms[index];
 			var newSymptomInList = '<li class="list-group-item" style="cursor: pointer;"><span class="state-icon glyphicon glyphicon-unchecked"></span>'+singleCustomSymptom.symptom+'</li><div class="drop-scoring">'+dropContent+'</div>';
 			$("#symptomListCustom").append(newSymptomInList);
+			setUpCheckbox();
+			$('li').click(function(){
+				var target = $(this).next(".drop-scoring");	
+				$(target).slideDown('slow');
+			});
 		}
 		
 		$(".hiddenSymptomContainer").toggle(400);

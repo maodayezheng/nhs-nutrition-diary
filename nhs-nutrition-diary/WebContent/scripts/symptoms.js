@@ -175,11 +175,13 @@ var dropContent = 'Rate discomfort 1-5 (low to high)<select class="discomfortRat
 		
 		var newSymptomInList = '<li class="list-group-item customSymptom" style="cursor: pointer;"><span class="state-icon glyphicon glyphicon-unchecked"></span>'+customSymptom+'</li><div class="drop-scoring">'+dropContent+'</div>';
 		$("#symptomListCustom").append(newSymptomInList);	  
+		 ///////////////////WARNING THIS RESETS CHECKBOXES (TO FIX AFTER DB LOAD SYMPTOMS) ///////////////////
 	     setUpCheckbox2();
-	 	$('newSymptomInList').click(function(){
+	  	$('.customSymptom').click(function(){
 			var target = $(this).next(".drop-scoring");	
 		$(target).slideDown('slow');
 		});
+
 	};
 	});
 
@@ -205,11 +207,11 @@ var dropContent = 'Rate discomfort 1-5 (low to high)<select class="discomfortRat
 			var singleCustomSymptom = customSymptoms[index];
 			var newSymptomInList = '<li class="list-group-item" style="cursor: pointer;"><span class="state-icon glyphicon glyphicon-unchecked"></span>'+singleCustomSymptom.symptom+'</li><div class="drop-scoring">'+dropContent+'</div>';
 			$("#symptomListCustom").append(newSymptomInList);
-			setUpCheckbox();
+			/*setUpCheckbox();
 			$('li').click(function(){
 				var target = $(this).next(".drop-scoring");	
 				$(target).slideDown('slow');
-			});
+			});*/
 		}
 		
 		$(".hiddenSymptomContainer").toggle(400);
@@ -221,17 +223,15 @@ var dropContent = 'Rate discomfort 1-5 (low to high)<select class="discomfortRat
 	$("#saveWeight").click(function(){
 		$('p').html("#currentWeight");
 	});
-
-});
-
-////////////////////////////Enables drop scoring for non custom symptom list
-
-$( window ).load(function() { 	$('li').click(function(){
+	
+	$('li').click(function(){
 		var target = $(this).next(".drop-scoring");	
 	$(target).slideToggle('slow');
-	}); 
+	});
+	
 
-})
+
+});
 
 //---- method to combine data with DOMs----
 

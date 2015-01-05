@@ -338,6 +338,27 @@ SubmitController.prototype.submitSymptoms = function() {
 		counter++;
 	});
 	
+	var discomfortScores = $('.discomfortRating :selected').text();
+	var ratingComplete = [];
+    var selectedScores = discomfortScores.toString().split('');
+    for (var i = 0; i < selectedScores.length; i++) {
+    	var index = selectedScores.indexOf(selectedScores[i]);
+        if((selectedScores[i]) !=1) {
+        	ratingComplete.push(selectedScores[i]); 
+        }
+    }
+    
+    var symptomComments= $(".comments").map(function() {
+    	return $(this).val();
+ 		}).get();
+    var commentsComplete = [];
+    var selectedComments = symptomComments.toString().split(',');
+    for (var i = 0; i < selectedComments.length; i++) {
+    	if(selectedComments[i].length > 1) {
+    		 commentsComplete.push(selectedComments[i]);
+    	}
+     }
+	
 	for(var index = 0; index < counter; index++) {
 		var symptom = checkedSymptoms[index];
 		var symptomTable = "";
@@ -364,10 +385,8 @@ SubmitController.prototype.submitSymptoms = function() {
 			symptomId = userSymptomDetails.id;
 		}
 		
-		//TODO find rating
-		var rating = 3;
-		//TODO find comment
-		var comment = "test comment";
+		var rating = ratingComplete[index];
+		var comment = commentsComplete[index];
 		
 		var dataToServer = {
 				"table": table,

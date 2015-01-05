@@ -271,21 +271,10 @@ function loadSaveMealView(){
 		"text":"Save",
 		"id":"btn_save_meals"
 	}).bind('click',function(){
-		var meal = newMeal();
 		SubmitController.prototype.submitMeal(this.id);
 		
 	}).appendTo('#modal-info-footer');
 }
-
-function newMeal(){
-		var newMeal = {};
-		newMeal['mealname']=$('#mealName').text();
-		newMeal['mealtotalcalories'] =$('#calories').text();
-		newMeal['mealtotalprotein']=$('#protein').text();
-		newMeal['mealtotalfluid']=$('#fluid').text();
-		return newMeal;
-}
-
 
 function displaySelection(selection){
 	

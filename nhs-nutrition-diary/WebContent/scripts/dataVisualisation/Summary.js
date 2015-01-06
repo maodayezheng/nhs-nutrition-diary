@@ -7,11 +7,18 @@ Summary.prototype.manageSummary = function(presentedParameter, dateFrom, dateTo)
 		return false;
 	}
 	
-	var database = new LocalDbSingleton();
-	var data = database.databaseOpen(LocalDbSingleton.prototype.localDbGet, 'foodManifestStore', dateFrom, dateTo, presentedParameter, this.makeSummary);
+	var userId = this.getUserID();
+	var historyRequestJSON = {
+			"action": "get",
+			"table": "userfoodmanifest",
+			"where": "userid,=," + userId
+	};
+	var history = ServerDBAdapter.prototype.get(historyRequestJSON);
+	
+	this.makeSummary(presentedParameter, dateFrom, dateTo, history);
 }
 
-Summary.prototype.makeSummary = function(presentedParameter, dateFrom, dateTo, jsonInput) {
+Summary.prototype.makeSummary = function(presentedParameter, dateFrom, dateTo, history) {
 	
 	$('#table').html("");
 	d3.select('#graph').attr("width", 0).attr("height", 0);

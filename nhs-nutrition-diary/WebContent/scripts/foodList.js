@@ -13,18 +13,19 @@ $(document).ready(function(){
 			$('#search').autocomplete({
 			source:function (request, response) {
 				
-            var term = $.ui.autocomplete.escapeRegex(request.term)
-                , startsWithMatcher = new RegExp("^" + term, "i")
-                , startsWith = $.grep(data, function(value) {
-                    return startsWithMatcher.test(value.label || value.value || value);
+            var term = $.ui.autocomplete.escapeRegex(request.term);
+                startsWithMatcher = new RegExp("^" + term, "i");
+                console.log(term);
+                 startsWith = $.grep(data, function(value) {
+                    return startsWithMatcher.test(value.label);
                 })
-                , containsMatcher = new RegExp(term, "i")
+                /*, containsMatcher = new RegExp(term, "i")
                 , contains = $.grep(data, function (value) {
                     return $.inArray(value, startsWith) < 0 && 
-                        containsMatcher.test(value.label || value.value || value);
-                });
-            
-            response(startsWith.concat(contains));
+                        containsMatcher.test(value.label);
+                })*/;
+            response(startsWith);
+            //response(startsWith.concat(contains));
         },
 			select:function(event,ui){
 				var selection = ui.item;

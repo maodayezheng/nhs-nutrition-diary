@@ -389,8 +389,9 @@ SubmitController.prototype.submitWeight = function() {
 		"table": table,
 		"userid" : userid,
 		"datetime": datetime,
-		"weight": weight
+		"weight": weight 
 	};
+	
 	
 	ServerDBAdapter.prototype.submit(dataToServer, "save");
 	

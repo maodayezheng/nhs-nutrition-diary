@@ -7,15 +7,23 @@ Table.prototype.manageTable = function(presentedParameter, dateFrom, dateTo) {
 		return false;
 	}
 	
-	var database = new LocalDbSingleton();
-	var data = database.databaseOpen(LocalDbSingleton.prototype.localDbGet, 'foodManifestStore', dateFrom, dateTo, presentedParameter, this.drawTable);
+	var userId = this.getUserID();
+	var historyRequestJSON = {
+			"action": "get",
+			"table": "userfoodmanifest",
+			"where": "userid,=," + userId
+	};
+	var history = ServerDBAdapter.prototype.get(historyRequestJSON);
+	
+	this.drawTable(presentedParameter, dateFrom, dateTo, history);
 }
 
-Table.prototype.drawTable = function(presentedParameter, dateFrom, dateTo, jsonInput) {
+Table.prototype.drawTable = function(presentedParameter, dateFrom, dateTo, history) {
 	
 	$('#summary').html("");
 	d3.select('#graph').attr("width", 0).attr("height", 0);
 	
+	//TODO visualise data
 	var colTitles;
 	var rows;
 	

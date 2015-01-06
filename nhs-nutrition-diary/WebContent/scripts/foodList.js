@@ -261,7 +261,7 @@ function loadSaveMealView(){
 		"class":"form-control",
 		"type":"text",
 		"id":"mealName",
-		"placeholder":"meal name",
+		"placeholder":"Meal name",
 	}).appendTo(form);
 	// construct new footer
 	$('#modal-info-footer').empty();
@@ -269,24 +269,13 @@ function loadSaveMealView(){
 		"type":"button",
 		"class":"btn btn-success",
 		"data-dismiss":"modal",
-		"text":"save",
-		"id":"button-saveMeals"
+		"text":"Save",
+		"id":"btn_save_meals"
 	}).bind('click',function(){
-		var meal = newMeal();
-		SubmitController.prototype.submitMeal(meal);
+		SubmitController.prototype.submitMeal(this.id);
 		
 	}).appendTo('#modal-info-footer');
 }
-
-function newMeal(){
-		var newMeal = {};
-		newMeal['mealname']=$('#mealName').text();
-		newMeal['mealtotalcalories'] =$('#calories').text();
-		newMeal['mealtotalprotein']=$('#protein').text();
-		newMeal['mealtotalfluid']=$('#fluid').text();
-		return newMeal;
-}
-
 
 function displaySelection(selection){
 	

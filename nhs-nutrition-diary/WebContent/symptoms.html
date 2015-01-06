@@ -47,7 +47,6 @@
 				</div>
 				<div class="collapse navbar-collapse" id="navbar-collapse">
 					<ul class="nav navbar-nav navbar-right">
-						<li onclick="Navigator.prototype.setting()"><a href="#">setting</a></li>
 						<li><a href="#">Log out</a></li>
 					</ul>
 				</div>
@@ -68,18 +67,18 @@
 							</div>
 						</div>
 					</form>			
-					<ul class="list-group checked-list-box" id="symptomList" data-bind="foreach:symptoms"><li class="list-group-item"><label data-bind="text:Symptom"></label></li>
+					<ul class="list-group checked-list-box symptoms" id="symptomList" data-bind="foreach:symptoms"><li class="list-group-item"><label data-bind="text:Symptom"></label></li>
 
 
 					<div class="drop-scoring">
-						Rate discomfort 0-4 (low to high)
+						Rate discomfort 1-5 (low to high)
 						<select
 							class="discomfortRating">
-							<option>0</option>
 							<option>1</option>
 							<option>2</option>
 							<option>3</option>
 							<option>4</option>
+							<option>5</option>
 						</select> <br>
 						<br> 
 						<input type="text" class="form-control comments"
@@ -105,14 +104,7 @@
 				</div>
 
 				<h4>Custom Symptoms</h4>
-				<ul class="list-group checked-list-box" id="symptomListCustom">
-							
-					<li class="list-group-item" style="cursor: pointer;"><span
-						class="state-icon glyphicon glyphicon-unchecked"></span>Headache</li>
-					<li class="list-group-item" style="cursor: pointer;"><span
-						class="state-icon glyphicon glyphicon-unchecked"></span>Back pain</li>
-					
-				</ul>
+				<ul class="list-group checked-list-box symptoms" id="symptomListCustom"></ul>
 				<br>
 			</div>
 		</form>
@@ -120,7 +112,7 @@
 	<!--  <button id="btn_symptoms_to_symptomNotInList" class="btn btn-lg btn-primary btn-block"
 				onclick="Navigator.prototype.navigate(this.id)">Symptom not in list
 			</button>-->
-		<div class = "buttonGroup">
+		<div class = "container" style="max-width: 800px;">
 			
 			<button id="revealHiddenCustomSymptoms" class="btn btn-lg btn-primary btn-block">
 			 Symptom not in list

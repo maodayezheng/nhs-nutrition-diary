@@ -5,8 +5,7 @@ SubmitController.prototype.submit = function(submitter) {
 		case 'btn_submit_signUpDetails': this.submitSignUpDetails(); break;
 		case 'btn_submit_foods': this.submitFoods(); break;
 		case 'btn_submit_newFood': this.submitNewFood(); break;
-		//TODO set button id
-//		case '': this.submitMeal(); break;
+		case 'btn_save_meals': this.submitMeal(); break;
 		case 'btn_submit_symptoms': this.submitSymptoms(); break;
 		case 'btn_save_newCustomSymptom': this.submitNewCustomSymptom(); break;
 		case 'btn_submit_weight': this.submitWeight(); break;
@@ -44,6 +43,23 @@ SubmitController.prototype.formatDateTime = function(date, time) {
 	return dateTime;
 }
 
+SubmitController.prototype.getAge = function(dateOfBirth) {
+	var today = new Date();
+	var dateOfBirthParts = dateOfBirth.split(' ');
+	var dateOfBirthYMD = dateOfBirthParts[0].split('-');
+	var month = "" + dateOfBirthYMD[1];
+	var monthCleared = month.replace("0", "");
+	var birthDate = new Date(dateOfBirthYMD[0], parseInt(dateOfBirthYMD[1]) - 1, dateOfBirthYMD[2]);
+    
+	var age = today.getFullYear() - birthDate.getFullYear();
+    var m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+    }
+    
+    return age;
+}
+
 SubmitController.prototype.updateRequirements = function() {
 	var table = "userrequirementsmanifest";
 	
@@ -58,31 +74,17 @@ SubmitController.prototype.updateRequirements = function() {
 	};
 	var weight = ServerDBAdapter.prototype.get(weightRequestJSON).weight;
 	
-	
-/////////////////START OF TESTING BLOCK
-	//TODO get age, gender and activityLevel from database --> ONLY TABLE 'USERS' HAS PROBLEMS RETURNING ENTRIES
-	///needs to be commented out once data can be retrieved from table 'users'
-	console.log("in update requirements"); 
 	var userInfoRequestJSON = {
 			"action": "getUserProfile",
 			"table": "users",
 			"where": "id,=," + userId
 	};
-	var userInfoResponseJSON = ServerDBAdapter.prototype.get(userInfoRequestJSON);
-	console.log("Showing the userInfoResponseJSON"); 
-	console.log(userInfoResponseJSON); 
+	var userInfoResponseJSON = ServerDBAdapter.prototype.get(userInfoRequestJSON)[0];
 	
 	var gender = userInfoResponseJSON.gender;
 	var dateOfBirth = userInfoResponseJSON.dateofbirth;
 	var activityLevel = userInfoResponseJSON.activitylevel;
-	
-	
-/////////END OF BLOCK WHICH IS BEING TESTED
-	
-		
-	var gender = "female";
-	var age = 45;
-	var activityLevel = 1.1;
+	var age = this.getAge(dateOfBirth);
 	
 	var previousRequirementsRequestJSON = {
 			"action": "getLast",
@@ -131,55 +133,6 @@ SubmitController.prototype.updateRequirements = function() {
 	ServerDBAdapter.prototype.submit(dataToServer, "save");
 }
 
-SubmitController.prototype.signIn = function() {
-	//TODO authorise user (verify user name and passcode)
-}
-
-SubmitController.prototype.submitSignUpDetails = function() {
-	var table = "users";
-	
-	var userId = this.getUserID();
-	var date = new Date();
-	var dateTime = this.formatDateTime(date.dateFormat('d/m/Y'), null);
-	//TODO get priviledge
-	var priviledge = "dietician";
-	//TODO pw needs to be salted on the server
-	var hashedsaltedpw = 0;
-	var nhsNumber = $('#nhs-number').val();
-	//TODO include hospital number to registration form
-	var hospitalNumber = 0;
-	var weight = $('#weight').val();
-	var dateOfBirth = $('#age').val();;
-	var activityLevel = $('#activity-level').val();;
-	//TODO check which radio button is selected
-	var gender = "";
-	if($('#user_basic_sex_male').is(':checked')) {
-		gender = "male";
-		alert("male");
-	} else if($('#user_basic_sex_female').is(':checked')){
-		gender = "female";
-		alert("female");
-	} else {
-		alert("error: no gender selected");
-	}
-	
-	var dataToServer = {
-		"table": table,
-		"priviledge": priviledge,
-		"hashedsaltedpw": hashedsaltedpw,
-		"nhsnumber": nhsNumber,
-		"hospitalnumber": hospitalNumber,
-		"dateofbirth": dateOfBirth,
-		"gender": gender,
-		"activitylevel": activityLevel,
-		"registrationtimestamp": dateTime
-	}
-	
-	ServerDBAdapter.prototype.submit(dataToServer, "save");
-	
-	this.updateRequirements();
-}
-
 SubmitController.prototype.submitFoods = function() {
 	var table = "userfoodmanifest"; 
 	
@@ -224,7 +177,7 @@ SubmitController.prototype.submitFoods = function() {
 			var userFoodDetailsRequestJSON = {
 					"action": "get",
 					"table": "userfoodlist",
-					"where": "label,=," + foodLabel
+					"where": "userid,=," + userid + ",label,=," + foodLabel
 			};
 			var userFoodDetails = ServerDBAdapter.prototype.get(userFoodDetailsRequestJSON)[0];
 			foodTable = "userfoodlist";
@@ -253,20 +206,15 @@ SubmitController.prototype.submitFoods = function() {
 		ServerDBAdapter.prototype.submit(dataToServer, "save");
 	});
 	
-	if($('#checkbox_saveAsMeal').is(':selected')) {
-		//TODO store data in meal table --> call submitMeal
-	}
-	
 	var warning = $('<div>',{
 		"class":"alert alert-success center",
 		"role":"alert",
-		"text":"update success"
+		"text":"Foods submitted."
 	});
 	$('body').append(warning);
 	setTimeout(function(){warning.remove()},3000);
 	
-	// TODO warning is not on the center of page
-	//window.location.href = 'home.html';
+	window.location.href = 'home.html';
 }
 
 SubmitController.prototype.submitNewFood = function() {
@@ -298,17 +246,77 @@ SubmitController.prototype.submitNewFood = function() {
 	ServerDBAdapter.prototype.submit(dataToServer, "save");
 }
 
-SubmitController.prototype.submitMeal = function(data) {
+SubmitController.prototype.submitMeal = function() {
+	var table = "usermeallist";
+	
 	var userid = this.getUserID();
 	var date = new Date();
 	var dateTime = this.formatDateTime(date.dateFormat('d/m/Y'), date.dateFormat('H:i'));
 	
-	console.log(data.mealname);
-	console.log(data.mealtotalcalories);
-	console.log(data.mealtotalprotein);
-	console.log(data.mealtotalfluid);
+	var mealName = $('#mealName').val();
 	
-	
+	var foodList =[];
+	var counter = 0;
+	$('.selection-list li').each(function(idx, li) {
+		var food  = $(li).data('data');
+		var foodLabel = food['label'];
+		var quantity = food['portion'];
+		counter++;
+		
+		var foodTable = "";
+		var foodId = 0;
+		var calories = 0;
+		var protein = 0;
+		var fluid = 0;
+		var fat = 0;
+		
+		var foodDetailsRequestJSON = {
+				"action": "get",
+				"table": "foodlist",
+				"where": "label,=," + foodLabel
+		};
+		var foodDetails = ServerDBAdapter.prototype.get(foodDetailsRequestJSON)[0];
+		
+		if(foodDetails != null) {
+			foodTable = "foodlist";
+			
+			foodId = foodDetails.foodcode;
+			calories = foodDetails.energy_kcal;
+			protein = foodDetails.protein_g;
+			fluid = foodDetails.water_g;
+			fat = foodDetails.fat_g;
+		} else {
+			var userFoodDetailsRequestJSON = {
+					"action": "get",
+					"table": "userfoodlist",
+					"where": "userid,=," + userid + ",label,=," + foodLabel
+			};
+			var userFoodDetails = ServerDBAdapter.prototype.get(userFoodDetailsRequestJSON)[0];
+			foodTable = "userfoodlist";
+			foodId = userFoodDetails.id;
+			calories = userFoodDetails.calories;
+			protein = userFoodDetails.protein;
+			fluid = userFoodDetails.fluid;
+			fat = userFoodDetails.fat;
+		}
+		
+		var dataToServer = {
+				"table": table,
+				"userid" : userid,
+				"datetime": dateTime,
+				"mealname": mealName,
+				"foodtable": foodTable,
+				"foodid": foodId,
+				"foodname": foodLabel,
+				"quantity": quantity,
+				"calories": calories,
+				"protein": protein,
+				"fluid": fluid,
+				"fat": fat
+		};
+		
+		ServerDBAdapter.prototype.submit(dataToServer, "save");
+	});	
 }
 
 SubmitController.prototype.submitSymptoms = function() {
@@ -330,15 +338,55 @@ SubmitController.prototype.submitSymptoms = function() {
 		counter++;
 	});
 	
+	var discomfortScores = $('.discomfortRating :selected').text();
+	var ratingComplete = [];
+    var selectedScores = discomfortScores.toString().split('');
+    for (var i = 0; i < selectedScores.length; i++) {
+    	var index = selectedScores.indexOf(selectedScores[i]);
+        if((selectedScores[i]) !=1) {
+        	ratingComplete.push(selectedScores[i]); 
+        }
+    }
+    
+    var symptomComments= $(".comments").map(function() {
+    	return $(this).val();
+ 		}).get();
+    var commentsComplete = [];
+    var selectedComments = symptomComments.toString().split(',');
+    for (var i = 0; i < selectedComments.length; i++) {
+    	if(selectedComments[i].length > 1) {
+    		 commentsComplete.push(selectedComments[i]);
+    	}
+     }
+	
 	for(var index = 0; index < counter; index++) {
 		var symptom = checkedSymptoms[index];
-		//TODO find symptom table and symptom id --> call GET function for DB (needs to be implemented)
-		var symptomTable = "testTable";
-		var symptomId = 5;
-		//TODO find rating
-		var rating = 3;
-		//TODO find comment
-		var comment = "test comment";
+		var symptomTable = "";
+		var symptomId = "";
+		
+		var symptomDetailsRequestJSON = {
+				"action": "get",
+				"table": "symptomlist",
+				"where": "symptom,=," + symptom
+		};
+		var symptomDetails = ServerDBAdapter.prototype.get(symptomDetailsRequestJSON)[0];
+		
+		if(symptomDetails != null) {
+			symptomTable = "symptomlist";
+			symptomId = symptomDetails.id;
+		} else {
+			var userSymptomDetailsRequestJSON = {
+					"action": "get",
+					"table": "usersymptomlist",
+					"where": "userid,=," + userid + ",symptom,=," + symptom
+			};
+			var userSymptomDetails = ServerDBAdapter.prototype.get(userSymptomDetailsRequestJSON)[0];
+			symptomTable = "usersymptomlist";
+			symptomId = userSymptomDetails.id;
+		}
+		
+		var rating = ratingComplete[index];
+		var comment = commentsComplete[index];
 		
 		var dataToServer = {
 				"table": table,
@@ -353,6 +401,16 @@ SubmitController.prototype.submitSymptoms = function() {
 		
 		ServerDBAdapter.prototype.submit(dataToServer, "save");
 	}
+	
+	var warning = $('<div>',{
+		"class":"alert alert-success center",
+		"role":"alert",
+		"text":"Symptoms submitted."
+	});
+	$('body').append(warning);
+	setTimeout(function(){warning.remove()},3000);
+	
+	window.location.href = 'home.html';
 }
 
 SubmitController.prototype.submitNewCustomSymptom = function() {
@@ -363,15 +421,12 @@ SubmitController.prototype.submitNewCustomSymptom = function() {
 	var datetime = this.formatDateTime(date, time);
 	
 	var symptom = $("#newSymptom").val();
-	//TODO find symptom description
-	var symptomDescription = "testDescription";
 	
 	var dataToServer = {
 			"table": table,
 			"userid" : userid,
 			"datetime": datetime,
 			"symptom": symptom,
-			"symptomdescription": symptomDescription,
 	};
 	
 	ServerDBAdapter.prototype.submit(dataToServer, "save");	
@@ -396,6 +451,16 @@ SubmitController.prototype.submitWeight = function() {
 	ServerDBAdapter.prototype.submit(dataToServer, "save");
 	
 	this.updateRequirements();
+	
+	var warning = $('<div>',{
+		"class":"alert alert-success center",
+		"role":"alert",
+		"text":"Weight submitted."
+	});
+	$('body').append(warning);
+	setTimeout(function(){warning.remove()},3000);
+	
+	window.location.href = 'home.html';
 }
 
 SubmitController.prototype.submitSettings = function() {
@@ -412,21 +477,17 @@ SubmitController.prototype.submitSettings = function() {
 	};
 	var weight = ServerDBAdapter.prototype.get(weightRequestJSON).weight;
 	
-	//TODO get age, gender and activityLevel from database --> ONLY TABLE 'USERS' HAS PROBLEMS RETURNING ENTRIES
-	/* needs to be commented out once data can be retrieved from table 'users'
 	var userInfoRequestJSON = {
-			"action": "get",
+			"action": "getUserProfile",
 			"table": "users",
 			"where": "id,=," + userId
 	};
-	var userInfoResponseJSON = ServerDBAdapter.prototype.get(userInfoRequestJSON);
+	var userInfoResponseJSON = ServerDBAdapter.prototype.get(userInfoRequestJSON)[0];
+	
 	var gender = userInfoResponseJSON.gender;
 	var dateOfBirth = userInfoResponseJSON.dateofbirth;
 	var activityLevel = userInfoResponseJSON.activitylevel;
-	*/
-	var gender = "female";
-	var age = 45;
-	var activityLevel = 1.1;
+	var age = this.getAge(dateOfBirth);
 	
 	var additionalActivity = $('#activity').val();
 	var finalActivityLevel = parseFloat(activityLevel) + parseFloat(additionalActivity);
@@ -461,4 +522,14 @@ SubmitController.prototype.submitSettings = function() {
 	}
 	
 	ServerDBAdapter.prototype.submit(dataToServer, "save");
+	
+	var warning = $('<div>',{
+		"class":"alert alert-success center",
+		"role":"alert",
+		"text":"Amendments submitted."
+	});
+	$('body').append(warning);
+	setTimeout(function(){warning.remove()},3000);
+	
+	window.location.href = 'home.html';
 }

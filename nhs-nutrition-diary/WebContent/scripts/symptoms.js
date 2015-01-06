@@ -28,7 +28,7 @@ $(".passwordButton")
 	
     var setUpCheckbox = function() {
 		
-		 $('.list-group.checked-list-box .list-group-item').each(function () {
+		 $('.list-group-item').each(function () {
 		        // Settings
 		        var $widget = $(this),
 		            $checkbox = $('<input type="checkbox" class="hidden"/>'),
@@ -93,12 +93,145 @@ $(".passwordButton")
 		    });
 	     };
 	     
+	     var setUpCheckbox2 = function() {
+	 		
+			 $('.loadedCustomSymptoms').each(function () {
+			        // Settings
+			        var $widget = $(this),
+			            $checkbox = $('<input type="checkbox" class="hidden"/>'),
+			            color = ($widget.data('color') ? $widget.data('color') : "primary"),
+			            style = ($widget.data('style') == "button" ? "btn-" : "list-group-item-"),
+			            settings = {
+			                on: {
+			                    icon: 'glyphicon glyphicon-check'
+			                },
+			                off: {
+			                    icon: 'glyphicon glyphicon-unchecked'
+			                }
+			            };
+			            
+			        $widget.css('cursor', 'pointer')
+			        $widget.append($checkbox);
+
+			        // Event Handlers
+			        $widget.on('click', function () {
+			            $checkbox.prop('checked', !$checkbox.is(':checked'));
+			            $checkbox.triggerHandler('change');
+			            updateDisplay();
+			        });
+			        $checkbox.on('change', function () {
+			            updateDisplay();
+			        });
+			          
+			        // Actions
+			        function updateDisplay() {
+			            var isChecked = $checkbox.is(':checked');
+
+			            // Set the button's state
+			            $widget.data('state', (isChecked) ? "on" : "off");
+
+			            // Set the button's icon
+			            $widget.find('.state-icon')
+			                .removeClass()
+			                .addClass('state-icon ' + settings[$widget.data('state')].icon);
+
+			            // Update the button's color
+			            if (isChecked) {
+			                $widget.addClass(style + color + ' active');
+			            } else {
+			                $widget.removeClass(style + color + ' active');
+			            }
+			        }
+
+			        function init() {
+			            
+			            if ($widget.data('checked') == true) {
+			                $checkbox.prop('checked', !$checkbox.is(':checked'));
+			            }
+			            
+			            updateDisplay();
+
+			            // Inject the icon if applicable
+			            if ($widget.find('.state-icon').length == 0) {
+			                $widget.prepend('<span class="state-icon ' + settings[$widget.data('state')].icon + '"></span>');
+			            }
+			        }
+			        init();
+			    });
+		     };
+		     var setUpCheckbox3 = function() {
+			 		
+				 $('.newCustomSymptom').each(function () {
+				        // Settings
+				        var $widget = $(this),
+				            $checkbox = $('<input type="checkbox" class="hidden"/>'),
+				            color = ($widget.data('color') ? $widget.data('color') : "primary"),
+				            style = ($widget.data('style') == "button" ? "btn-" : "list-group-item-"),
+				            settings = {
+				                on: {
+				                    icon: 'glyphicon glyphicon-check'
+				                },
+				                off: {
+				                    icon: 'glyphicon glyphicon-unchecked'
+				                }
+				            };
+				            
+				        $widget.css('cursor', 'pointer')
+				        $widget.append($checkbox);
+
+				        // Event Handlers
+				        $widget.on('click', function () {
+				            $checkbox.prop('checked', !$checkbox.is(':checked'));
+				            $checkbox.triggerHandler('change');
+				            updateDisplay();
+				        });
+				        $checkbox.on('change', function () {
+				            updateDisplay();
+				        });
+				          
+				        // Actions
+				        function updateDisplay() {
+				            var isChecked = $checkbox.is(':checked');
+
+				            // Set the button's state
+				            $widget.data('state', (isChecked) ? "on" : "off");
+
+				            // Set the button's icon
+				            $widget.find('.state-icon')
+				                .removeClass()
+				                .addClass('state-icon ' + settings[$widget.data('state')].icon);
+
+				            // Update the button's color
+				            if (isChecked) {
+				                $widget.addClass(style + color + ' active');
+				            } else {
+				                $widget.removeClass(style + color + ' active');
+				            }
+				        }
+
+				        function init() {
+				            
+				            if ($widget.data('checked') == true) {
+				                $checkbox.prop('checked', !$checkbox.is(':checked'));
+				            }
+				            
+				            updateDisplay();
+
+				            // Inject the icon if applicable
+				            if ($widget.find('.state-icon').length == 0) {
+				                $widget.prepend('<span class="state-icon ' + settings[$widget.data('state')].icon + '"></span>');
+				            }
+				        }
+				        init();
+				    });
+			     };
+	     
 	/* "#saveNewSymptom" is used on the "symptomNotOnList page"
 	 * it is used when the user enters a custom symptom 
 	 * which is then appended to the $("#newSymptomList")
 	 * */
 	     
-var dropContent = 'Rate discomfort 0-4 (low to high)<select class="discomfortRating"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option></select> <br><br> <input type="text" class="form-control comments"id="symptomComment" placeholder="Optional comment">';
+var dropContent = 'Rate discomfort 1-5 (low to high)<select class="discomfortRating"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select> <br><br> <input type="text" class="form-control comments symptoms"id="symptomComment" placeholder="Optional comment">';
 
 	$("#btn_save_newCustomSymptom").click(function(){	
 		var customSymptom = $('#newSymptom').val();
@@ -106,11 +239,10 @@ var dropContent = 'Rate discomfort 0-4 (low to high)<select class="discomfortRat
 			alert("Please enter a valid symptom");
 		} else{
 		
-		var newSymptomInList = '<ol class="list-group-item" style="cursor: pointer;"><span class="state-icon glyphicon glyphicon-unchecked"></span>'+customSymptom+'</ol><div class="drop-scoring">'+dropContent+'</div>';
+		var newSymptomInList = '<li class="list-group-item newCustomSymptom" style="cursor: pointer;"><span class="state-icon glyphicon glyphicon-unchecked"></span>'+customSymptom+'</li><div class="drop-scoring">'+dropContent+'</div>';
 		$("#symptomListCustom").append(newSymptomInList);	  
-		 ///////////////////WARNING THIS RESETS CHECKBOXES (TO FIX AFTER DB LOAD SYMPTOMS) ///////////////////
-	     setUpCheckbox();
-	 	$('ol').click(function(){
+	     setUpCheckbox3();
+	 	$('.newCustomSymptom').click(function(){
 			var target = $(this).next(".drop-scoring");	
 		$(target).slideDown('slow');
 		});
@@ -126,69 +258,46 @@ var dropContent = 'Rate discomfort 0-4 (low to high)<select class="discomfortRat
        // event.preventDefault(); 
 	
 	$('#revealHiddenCustomSymptoms').click(function() {
+		
+		var userid = SubmitController.prototype.getUserID();
+		var customSymptomsRequestJSON = {
+				"action": "get",
+				"table": "usersymptomlist",
+				"where": "userid,=," + userid
+		};
+		
+		var customSymptoms = ServerDBAdapter.prototype.get(customSymptomsRequestJSON);
+		for(var index = 0; index < customSymptoms.length; index++) {
+			var singleCustomSymptom = customSymptoms[index];
+			var newSymptomInList = '<li class="list-group-item loadedCustomSymptoms" style="cursor: pointer;"><span class="state-icon glyphicon glyphicon-unchecked"></span>'+singleCustomSymptom.symptom+'</li><div class="drop-scoring">'+dropContent+'</div>';
+			$("#symptomListCustom").append(newSymptomInList);
+			setUpCheckbox2();
+			$('.loadedCustomSymptoms').click(function(){
+				var target = $(this).next(".drop-scoring");	
+				$(target).slideDown('slow');
+			});
+		}
+		
 		$(".hiddenSymptomContainer").toggle(400);
 	});
 	
-	 ////////////////////////////////SUBMIT SYMPTOMS TO JSON///////////////////////////////////////////////
-	
-	
-$(".submitSymptoms").click(function(){
-	   
-
-var discomfortScores = $('.discomfortRating :selected').text();
-var symptomComments = $('#symptomComment').val();
-
-///////////Saves comments///////////////////
-
-var symptomComments= $(".comments").map(function() {
-	   return $(this).val();
-	}).get();
-console.log(symptomComments);
-	   
-    var checkedItems = {}, counter = 0;
-    $("#symptomList li.active").each(function(idx, li) {
-        checkedItems[counter] = $(li).text();
-        console.log($(li).text());
-        counter++;
-
-    });
-    $("#symptomListCustom li.active").each(function(idx, li) {
-        checkedItems[counter] = $(li).text();
-        console.log($(li).text());
-        counter++;
-    });
-    console.log(checkedItems);
-    console.log(discomfortScores);
-    console.log(symptomComments); 
-
-    alert(JSON.stringify(checkedItems) + discomfortScores + symptomComments);
-});
-
-
 
 ////////////////////////////////SUBMIT NEW SYMPTOMS TO JSON///////////////////////////////////////////////
-
-$(".submitNewSymptoms").click(function(){
-    var checkedItems = {}, counter = 0;
-    $("#newSymptomList li.active").each(function(idx, li) {
-        checkedItems[counter] = $(li).text();
-        console.log($(li).text());
-        counter++;
-    });
-    console.log(checkedItems);
-    alert(JSON.stringify(checkedItems));
-});
-
 
 	$("#saveWeight").click(function(){
 		$('p').html("#currentWeight");
 	});
-	
-	$('li').click(function(){
+
+});
+
+////////////////////////////Enables drop scoring for non custom symptom list
+
+$( window ).load(function() { 	$('li').click(function(){
 		var target = $(this).next(".drop-scoring");	
 	$(target).slideToggle('slow');
-	});
-});
+	}); 
+
+})
 
 //---- method to combine data with DOMs----
 

@@ -24,6 +24,7 @@ function toggleHistoryVisualisationButton(id) {
 	var dateTo = $('#datepickerTo').val();
 	
 	if(id == 'graphSelectorLabel') {
+		//TODO fix graph
 		manageGraph(presentedParameter, dateFrom, dateTo);
 	} else if (id == 'tableSelectorLabel') {
 		var table = new Table();

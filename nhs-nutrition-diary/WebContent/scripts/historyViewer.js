@@ -13,6 +13,8 @@ function toggleHistoryVisualisation() {
 	} else if($('#summarySelector').is(':checked')) {
 		var summary = new Summary();
 		summary.manageSummary(presentedParameter, dateFrom, dateTo);
+	} else if ($('#flagsSelectorLabel').is(':checked')) {
+		//TODO display the flags
 	}
 }
 

@@ -48,7 +48,8 @@ if(Input::exists('post'))
 					'password' 				=> Hash::make(Input::get('password'),$salt),
 					'salt' 					=> $salt,
 					'dateofbirth' 			=> Input::get('dob'),
-					//'gender' 				=> Input::get('gender'),
+					//TODO fetch gender from registration form
+					'gender' 				=> "male",//Input::get('gender'),
 					'weight' 				=> Input::get('weight'),
 					'activitylevel' 		=> Input::get('activity-level'),
 					'registrationtimestamp' => date('Y-m-d H:i:s'),

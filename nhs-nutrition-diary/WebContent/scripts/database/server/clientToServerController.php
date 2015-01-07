@@ -52,6 +52,12 @@ if(isset($dataDecoded['group']))
 	unset($dataDecoded['group']);
 }
 
+if(isset($dataDecoded['number']))
+{
+	$number = $dataDecoded['number'];
+	unset($dataDecoded['number']);
+}
+
 $results = null;
 
 switch($action)
@@ -59,7 +65,7 @@ switch($action)
 	case 'get':						get($db, $table, $where); break;
 	case 'getUserProfile':			getUserProfile($db, $table, $where); break; 
 	case 'getLast':					getLast($db, $table, $where); break;
-	case 'getTenMostFrequent':		getTenMostFrequent($db, $table, $where); break; 
+	case 'getTenMostFrequent':		getTenMostFrequent($db, $table, $where, $number); break; 
 	case 'save': 					$db->insert($table, $dataDecoded); break; 
 }
 
@@ -85,11 +91,12 @@ function getLast($db, $table, $where) {
 	$resultsJSON = null;
 }
 
-function getTenMostFrequent($db, $table, $where) {
-	$db->getTenMostFrequent($table, $where);
+function getTenMostFrequent($db, $table, $where, $number) {
+	$db->tenMostFrequent($table, $where, $number);
 	$results = $db->results();
 	$resultsJSON = json_encode($results);
-	//echo($resultsJSON);
-	echo("test");
+	echo("before...");
+	echo($resultsJSON);
+	echo("after...");
 	$resultsJSON = null;
 }

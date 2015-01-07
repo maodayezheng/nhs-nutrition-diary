@@ -8,10 +8,10 @@ function manageGraph(presentedParameter, dateFrom, dateTo) {
 	
 	var data = { "dateFrom": dateFrom, "dateTo": dateTo, "presentedParameter": presentedParameter }; //store the dates in an array to send to the getter. 
 	
-	var userId = this.getUserID();
+	var userId = SubmitController.prototype.getUserID();
 	
-	var dateFromFormatted = SubmitController.prototype.formatDateOnly(dateFrom.dateFormat('d/m/Y'));
-	var dateToFormatted = SubmitController.prototype.formatDateOnly(dateTo.dateFormat('d/m/Y'));
+	var dateFromFormatted = SubmitController.prototype.formatDateOnly(dateFrom);
+	var dateToFormatted = SubmitController.prototype.formatDateOnly(dateTo);
 	
 	var historyRequestJSON = {
 			"action": "get",
@@ -19,25 +19,28 @@ function manageGraph(presentedParameter, dateFrom, dateTo) {
 			"where": "userid,=," + userId + ",datetime,>=," + dateFromFormatted + " 00:00:00," + "datetime,<=," + dateToFormatted + " 23:59:59"
 	};
 	var history = ServerDBAdapter.prototype.get(historyRequestJSON);
+	console.log(history);
 	
+	makeGraph(presentedParameter, dateFrom, dateTo, history);
+}
+
+//TODO draw requirements as well
+
+function makeGraph(presentedParameter, dateFrom, dateTo, history) {
 	var caloriesCurrent = 0;
 	var proteinCurrent = 0;
 	var fluidCurrent = 0;
 	
 	for(var index = 0; index < history.length; index++) {
-        var entry = history[index];
-        caloriesCurrent += parseFloat(entry.calories) * parseFloat(entry.quantity);
-        proteinCurrent += parseFloat(entry.protein) * parseFloat(entry.quantity);
-        fluidCurrent += parseFloat(entry.fluid) * parseFloat(entry.quantity);
-    }
+		var entry = history[index];
+		caloriesCurrent += parseFloat(entry.calories) * parseFloat(entry.quantity);
+		proteinCurrent += parseFloat(entry.protein) * parseFloat(entry.quantity);
+		fluidCurrent += parseFloat(entry.fluid) * parseFloat(entry.quantity);
+	}
+	alert("calories: " + caloriesCurrent);
+	alert("protein: " + proteinCurrent);
+	alert("fluid: " + fluidCurrent);
 	
-	//FOLLOWING CODE SHOULD EVENTUALLy BE ITS OWN FUNCTION. JUST TESTING PLAYING AROUND WITH THE RECEIVED JSON DATA
-	console.log(JSON.stringify(result));
-}
-
-//TODO draw requirements as well
-
-function makeGraph(presentedParameter, dateFrom, dateTo, jsonInput) {
 	$('#table').html("");
 	$('#summary').html("");
 	d3.select("svg").text("");
@@ -55,16 +58,16 @@ function makeGraph(presentedParameter, dateFrom, dateTo, jsonInput) {
     	},
     	
         xRange = d3.time.scale().range([MARGINS.left, WIDTH - MARGINS.right]).domain([
-            d3.min(jsonInput, function(d) {
+            d3.min(history, function(d) {
             	return parseDate(d.timestamp);
             }),
-    	    d3.max(jsonInput, function(d) {
+    	    d3.max(history, function(d) {
     	    	return parseDate(d.timestamp);
     	    })
     	]),
     	
     	yRange = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([
-            d3.min(jsonInput, function(d) {
+            d3.min(history, function(d) {
             	if(presentedParameter == "Calories (kcal)")
             		return d.calories;
             	else if(presentedParameter == "Protein (g)")
@@ -74,7 +77,7 @@ function makeGraph(presentedParameter, dateFrom, dateTo, jsonInput) {
             	else if(presentedParameter == "Weight (kg)")
             		return d.weight;
             }),
-            d3.max(jsonInput, function(d) {
+            d3.max(history, function(d) {
             	if(presentedParameter == "Calories (kcal)")
             		return d.calories;
             	else if(presentedParameter == "Protein (g)")
@@ -132,7 +135,7 @@ function makeGraph(presentedParameter, dateFrom, dateTo, jsonInput) {
 	  .interpolate('linear');
 	
 	vis.append('svg:path')
-	  .attr('d', lineFunc(jsonInput))
+	  .attr('d', lineFunc(history))
 	  .attr('stroke', 'blue')
 	  .attr('stroke-width', 2)
 	  .attr('fill', 'none');
@@ -156,7 +159,7 @@ Graph.prototype.create = function() {
 	//TODO code for creating a graph goes here
 	d3.select("svg").text("");
 	
-	var jsonInput = retrieveData();
+	var history = retrieveData();
 	
 	var parseDate = d3.time.format("%Y%m%d").parse;
 	
@@ -171,16 +174,16 @@ Graph.prototype.create = function() {
     	},
     	
         xRange = d3.time.scale().range([MARGINS.left, WIDTH - MARGINS.right]).domain([
-            d3.min(jsonInput, function(d) {
+            d3.min(history, function(d) {
             	return parseDate(d.timestamp);
             }),
-    	    d3.max(jsonInput, function(d) {
+    	    d3.max(history, function(d) {
     	    	return parseDate(d.timestamp);
     	    })
     	]),
     	
     	yRange = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([
-            d3.min(jsonInput, function(d) {
+            d3.min(history, function(d) {
             	if(this.presentedParameter == "Calories (kcal)")
             		return d.calories;
             	else if(this.presentedParameter == "Protein (g)")
@@ -190,7 +193,7 @@ Graph.prototype.create = function() {
             	else if(this.presentedParameter == "Weight (kg)")
             		return d.weight;
             }),
-            d3.max(jsonInput, function(d) {
+            d3.max(history, function(d) {
             	if(this.presentedParameter == "Calories (kcal)")
             		return d.calories;
             	else if(this.presentedParameter == "Protein (g)")
@@ -248,7 +251,7 @@ Graph.prototype.create = function() {
 	  .interpolate('linear');
 	
 	vis.append('svg:path')
-	  .attr('d', lineFunc(jsonInput))
+	  .attr('d', lineFunc(history))
 	  .attr('stroke', 'blue')
 	  .attr('stroke-width', 2)
 	  .attr('fill', 'none');

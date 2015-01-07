@@ -7,10 +7,10 @@ Table.prototype.manageTable = function(presentedParameter, dateFrom, dateTo) {
 		return false;
 	}
 	
-	var userId = this.getUserID();
+	var userId = SubmitController.prototype.getUserID();
 	
-	var dateFromFormatted = SubmitController.prototype.formatDateOnly(dateFrom.dateFormat('d/m/Y'));
-	var dateToFormatted = SubmitController.prototype.formatDateOnly(dateTo.dateFormat('d/m/Y'));
+	var dateFromFormatted = SubmitController.prototype.formatDateOnly(dateFrom);
+	var dateToFormatted = SubmitController.prototype.formatDateOnly(dateTo);
 	
 	var historyRequestJSON = {
 			"action": "get",
@@ -18,11 +18,25 @@ Table.prototype.manageTable = function(presentedParameter, dateFrom, dateTo) {
 			"where": "userid,=," + userId + ",datetime,>=," + dateFromFormatted + " 00:00:00," + "datetime,<=," + dateToFormatted + " 23:59:59"
 	};
 	var history = ServerDBAdapter.prototype.get(historyRequestJSON);
+	console.log(history);
 	
 	this.drawTable(presentedParameter, dateFrom, dateTo, history);
 }
 
 Table.prototype.drawTable = function(presentedParameter, dateFrom, dateTo, history) {
+	var caloriesCurrent = 0;
+	var proteinCurrent = 0;
+	var fluidCurrent = 0;
+	
+	for(var index = 0; index < history.length; index++) {
+		var entry = history[index];
+		caloriesCurrent += parseFloat(entry.calories) * parseFloat(entry.quantity);
+		proteinCurrent += parseFloat(entry.protein) * parseFloat(entry.quantity);
+		fluidCurrent += parseFloat(entry.fluid) * parseFloat(entry.quantity);
+	}
+	alert("calories: " + caloriesCurrent);
+	alert("protein: " + proteinCurrent);
+	alert("fluid: " + fluidCurrent);
 	
 	$('#summary').html("");
 	d3.select('#graph').attr("width", 0).attr("height", 0);

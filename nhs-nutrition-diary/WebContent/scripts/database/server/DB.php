@@ -179,7 +179,8 @@ class DB
 	}
 	
 	/**
-	 * Inserts a record into a given table. Uses the backtick character '`' to increase security by preventing SQL injections. 
+	 * Inserts a record into a given table. Uses the backtick character '`' to increase security by preventing SQL injections. The backtick character 
+	 * is valid for MySQL only. Other DBMS do not allow it.  
 	 * Usage example: DB::getInstance()->insert('users',array('nhsnumber' => '123456', 'dateofbirth' => '20141222', 'group' => '1'));
 	 * 
 	 */
@@ -206,7 +207,7 @@ class DB
 			
 			if(!$this->query($sql,$fields)->error())
 			{
- 				echo "<br />Inserting into the database was a success!";
+ 				//echo "<br />Inserting into the database was a success!";
 				return true;
 			} else 
 			{ 

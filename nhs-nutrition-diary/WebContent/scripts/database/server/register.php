@@ -50,11 +50,20 @@ if(Input::exists('post'))
 					'dateofbirth' 			=> Input::get('dob'),
 					//TODO fetch gender from registration form
 					'gender' 				=> "male",//Input::get('gender'),
-					//'weight' 				=> Input::get('weight'),
+					 
 					'activitylevel' 		=> Input::get('activity_level'),
 					'registrationtimestamp' => date('Y-m-d H:i:s'),
 					'group' 				=> 1
 			));
+			
+			$userID = DB::getInstance()->get('users', array('nhsnumber','=',Input::get('nhsnumber')))->first()->id; 
+			
+			DB::getInstance()->insert('userweightmanifest',array(
+					'userid'				=> $userID,
+					'datetime' 				=> date('Y-m-d H:i:s'),
+					'weight'				=> Input::get('weight')
+					));
+			
 			$login = $user -> login(Input::get('nhsnumber'), Input::get('password'), true);
 		} catch(Exception $e)
 		{

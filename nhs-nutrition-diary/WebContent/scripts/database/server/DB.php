@@ -253,11 +253,11 @@ class DB
 	}
 	
 	/**
-	 * Return the first result of a query only. 
+	 * Return the first result of a query only. Intended to be chained on to 
+	 * a query e.g. DB::getInstance()->get('users_session', array('hash','=',$hash))->first(). 
 	 */
-	public function first($table, $where)
+	public function first()
 	{
-		$this->get($table, $where);
 		return $this->results()[0];
 	}
 	

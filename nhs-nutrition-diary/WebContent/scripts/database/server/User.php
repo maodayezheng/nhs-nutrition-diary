@@ -57,7 +57,7 @@ class User
 	{
 		if(!$this->_db->insert('users', $fields))
 		{
-			//echo var_dump($fields); //For DEBUGGING
+			echo var_dump($fields); //For DEBUGGING
 			throw new Exception('There was a problem creating an account.');
 		}
 	}

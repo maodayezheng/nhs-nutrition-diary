@@ -50,8 +50,8 @@ if(Input::exists('post'))
 					'dateofbirth' 			=> Input::get('dob'),
 					//TODO fetch gender from registration form
 					'gender' 				=> "male",//Input::get('gender'),
-					'weight' 				=> Input::get('weight'),
-					'activitylevel' 		=> Input::get('activity-level'),
+					//'weight' 				=> Input::get('weight'),
+					'activitylevel' 		=> Input::get('activity_level'),
 					'registrationtimestamp' => date('Y-m-d H:i:s'),
 					'group' 				=> 1
 			));
@@ -63,7 +63,7 @@ if(Input::exists('post'))
 		
 		echo "You have registered successfully! You will be redirected in 5 seconds. <br/>
 				If you are not redirected please ".'<a href="../../../home.html">'. 'click here'.'</a>';
-		header( "refresh:5;url=../../../home.html");
+		//header( "refresh:5;url=../../../home.html");
 		//Redirect::to('../../../home.html');
 	} else 
 	{

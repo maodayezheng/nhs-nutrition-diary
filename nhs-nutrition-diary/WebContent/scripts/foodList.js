@@ -6,7 +6,6 @@ $(document).ready(function(){
 	
 	// load data
 	var data =new FoodDataSingleton().foodData;
-	var aMeal =[{"id":"meal","label":"John Sandwich","portion":1,"mealtotalcalories":400.0,"mealtotalprotien":30.3,"mealtotalfat":12.2,"mealtotalfluid":100}];
 	// TODO replace customMeals and frequentFood with real data
 	// search 
 	
@@ -37,7 +36,7 @@ $(document).ready(function(){
 			
 	// click events		
 		$('#myMeals').click(function(){
-			loadCustomMealView(aMeal)
+			loadCustomMealView()
 		});
 		
 	$('#newFood').click(function(){
@@ -217,8 +216,14 @@ function loadFrequentFoodView(){
 }
 
 
-function loadCustomMealView(data){
-	
+function loadCustomMealView(){
+	var userId = SubmitController.prototype.getUserID();
+	var mealsRequestJSON = {
+			"action": "get",
+			"table": "usermeallist",
+			"where": "userid,=," + userId
+	};
+	var data = ServerDBAdapter.prototype.get(mealsRequestJSON);
 
 	$('#modal-info-title').text("My meals");
 	// construct body
@@ -231,9 +236,9 @@ function loadCustomMealView(data){
 		console.log(item);
 		var li =$('<li>',{
 			"class":"list-group-item",
-			"text":	item["label"]
+			"text":	item["mealname"]
 		}).data('data',item).bind('click',function(){
-			displaySelection(item);
+			displayCustomMealSelection(item);
 			// TODO parse the meal JSON
 		});
 		li.appendTo(list);
@@ -311,6 +316,37 @@ function displaySelection(selection){
 			alert("Selection already in list");
 			
 		}
+}
+
+function displayCustomMealSelection(selection){
+	var userId = SubmitController.prototype.getUserID();
+	
+	var mealComponentsRequestJSON = {
+			"action": "get",
+			"table": "usermeallist",
+			"where": "userid,=," + userId + ",mealname,=," + selection.mealname
+	};
+	var mealComponents = ServerDBAdapter.prototype.get(mealComponentsRequestJSON);
+	
+	for(var food = 0; food < mealComponents.length; food++) {
+		var li = new createBasicLi(mealComponents[food]);
+		var controlPanel = new createControlPanel();
+		var deleteButton = new createDeleteButton('li');
+		deleteButton.bind('click',updateNutritionBreakDown);
+		var reduceButton = new createReduceButton(mealComponents[food]);
+		reduceButton.bind('click',updateNutritionBreakDown);
+		var accountButton = new createAccountButton(mealComponents[food]);
+		var increaseButton = new createIncreaseButton(mealComponents[food]);
+		increaseButton.bind('click',updateNutritionBreakDown);
+		controlPanel.addItems([reduceButton,accountButton,increaseButton]);
+		li.addItemToLeft(deleteButton);
+		var	amount = " (" + parseInt(mealComponents[food].quantity) * 100 + " g)";
+		var displayContent = mealComponents[food].foodname + amount;
+		li.addItemToLeft(displayContent);
+		li.addItemToRight(controlPanel);
+		$('.selection-list').append(li);
+		updateNutritionBreakDown();
+	}
 }
 
 // render the search result here

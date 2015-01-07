@@ -63,7 +63,7 @@ if(Input::exists('post'))
 		
 		echo "You have registered successfully! You will be redirected in 5 seconds. <br/>
 				If you are not redirected please ".'<a href="../../../home.html">'. 'click here'.'</a>';
-		//header( "refresh:5;url=../../../home.html");
+		header( "refresh:5;url=../../../home.html");
 		//Redirect::to('../../../home.html');
 	} else 
 	{

@@ -18,7 +18,6 @@ Summary.prototype.manageSummary = function(presentedParameter, dateFrom, dateTo)
 			"where": "userid,=," + userId + ",datetime,>=," + dateFromFormatted + " 00:00:00," + "datetime,<=," + dateToFormatted + " 23:59:59"
 	};
 	var history = ServerDBAdapter.prototype.get(historyRequestJSON);
-	console.log(history);
 	
 	this.makeSummary(presentedParameter, dateFrom, dateTo, history);
 }
@@ -27,13 +26,13 @@ Summary.prototype.makeSummary = function(presentedParameter, dateFrom, dateTo, h
 	var caloriesCurrent = 0;
 	var proteinCurrent = 0;
 	var fluidCurrent = 0;
-	
+	if(history !== null){
 	for(var index = 0; index < history.length; index++) {
 		var entry = history[index];
 		caloriesCurrent += parseFloat(entry.calories) * parseFloat(entry.quantity);
 		proteinCurrent += parseFloat(entry.protein) * parseFloat(entry.quantity);
 		fluidCurrent += parseFloat(entry.fluid) * parseFloat(entry.quantity);
-	}
+	}}
 	alert("calories: " + caloriesCurrent);
 	alert("protein: " + proteinCurrent);
 	alert("fluid: " + fluidCurrent);
@@ -42,4 +41,34 @@ Summary.prototype.makeSummary = function(presentedParameter, dateFrom, dateTo, h
 	d3.select('#graph').attr("width", 0).attr("height", 0);
 	
 	//TODO make summary
+	var startWeight =80;
+	$('#summary').append($('<p>Patient start weight: </p>').css('text-align','center').append($('<strong>',{
+		"text": startWeight+"kg"
+	})));
+	
+	var currentWeight = 90;
+	$('#summary').append($('<p>Patient current weight: </p>').css('text-align','center').append($('<strong>',{
+		"text": currentWeight+"kg"
+	})));
+	
+	
+	$('#summary').append($('<p>requirements base on  weight:</p>').css('text-align','center').append($('<strong>',{
+		"text": caloriesCurrent+" kcal " +proteinCurrent +" g " + fluidCurrent+" ml"
+	})));
+	
+	
+	$('#summary').append($('<p>after addtion:</p>').css('text-align','center').append($('<strong>',{
+		"text": caloriesCurrent+" kcal " +proteinCurrent +" g " + fluidCurrent+" ml"
+	})));
+	
+	var sympOne = "Nause";
+	
+	$('#summary').append($('<p>top Symptoms:</p>').css('text-align','center').append($('<strong>',{
+		"text": sympOne+", " +sympOne +", " + sympOne
+	})));
+	
 }
+
+
+
+

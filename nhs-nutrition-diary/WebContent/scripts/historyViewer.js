@@ -1,6 +1,5 @@
 function toggleHistoryVisualisation() {
 	fillEmptyDates();
-	
 	var presentedParameter = $('#foodComponents').val();
 	var dateFrom = $('#datepickerFrom').val();
 	var dateTo = $('#datepickerTo').val();

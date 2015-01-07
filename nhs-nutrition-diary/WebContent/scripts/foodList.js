@@ -9,17 +9,18 @@ $(document).ready(function(){
 	var data = OnLoad.prototype.load('foodList');
 	var userFoodList = OnLoad.prototype.load('userFoodList');
 	var customiseMeal = OnLoad.prototype.customiseMeals();
-	// TODO replace customMeals and frequentFood with real data
-	// search 
 	
+	
+	// search 
 			$('#search').autocomplete({
 			source:function (request, response) {
             var term = $.ui.autocomplete.escapeRegex(request.term);
+            // remove unnecessary search result 
                 startsWithMatcher = new RegExp("^" + term, "i");
                 console.log(term);
                  startsWith = $.grep(data, function(value) {
                     return startsWithMatcher.test(value.label);
-                })
+                });
             response(startsWith);
         },
 			select:function(event,ui){

@@ -1,6 +1,7 @@
 function SubmitController() {}
 
 SubmitController.prototype.submit = function(submitter) {
+
 	switch(submitter) {
 		case 'btn_submit_signUpDetails': this.submitSignUpDetails(); break;
 		case 'btn_submit_foods': this.submitFoods(); break;

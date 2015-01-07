@@ -6,25 +6,19 @@ $(document).ready(function(){
 	
 	// load data
 	var data =new FoodDataSingleton().foodData;
+	var customiseMeal = OnLoad.prototype.customiseMeals();
 	// TODO replace customMeals and frequentFood with real data
 	// search 
 	
 			$('#search').autocomplete({
 			source:function (request, response) {
-				
             var term = $.ui.autocomplete.escapeRegex(request.term);
                 startsWithMatcher = new RegExp("^" + term, "i");
                 console.log(term);
                  startsWith = $.grep(data, function(value) {
                     return startsWithMatcher.test(value.label);
                 })
-                /*, containsMatcher = new RegExp(term, "i")
-                , contains = $.grep(data, function (value) {
-                    return $.inArray(value, startsWith) < 0 && 
-                        containsMatcher.test(value.label);
-                })*/;
             response(startsWith);
-            //response(startsWith.concat(contains));
         },
 			select:function(event,ui){
 				var selection = ui.item;
@@ -36,11 +30,10 @@ $(document).ready(function(){
 			
 	// click events		
 		$('#myMeals').click(function(){
-			loadCustomMealView()
+			loadCustomMealView(customiseMeal)
 		});
 		
 	$('#newFood').click(function(){
-		console.log('clicked new food');
 			loadNewFoodView();
 		});
 	
@@ -52,17 +45,13 @@ $(document).ready(function(){
 		loadFrequentFoodView();
 	});
 	
+	
 	$('#searchButton').click(function() {
 		$('#search').focus();
 	    $('#search').autocomplete('search');
 	});
 	
-	$('#checkbox_saveAsMeal').change(function(){
-		var saveMeal = $(this).prop("checked");
-		if(saveMeal){
-			$("#modal-saveMeal").modal("show");
-		}
-	});
+	
 	
 	//TODO evaluate frequent food
 });
@@ -114,9 +103,8 @@ function parseNutritionData(nutrition){
 	
 }
 
-function loadNewFoodView(data){
+function loadNewFoodView(){
 	// change the title
-	
 	$('#modal-info-title').text("New food");
 	
 	// construct new body
@@ -168,15 +156,10 @@ function loadNewFoodView(data){
 	}).appendTo(form);
 	
 	// construct new footer
-	$('#modal-info-footer').empty();
-	var doneButton = $('<button>',{
-		"type":"button",
-		"class":"btn btn-success",
-		"data-dismiss":"modal",
-		"text":"Done",
-		"id":"btn_submit_newFood",
-		"onclick":"SubmitController.prototype.submit(this.id)"
-	}).appendTo('#modal-info-footer');
+	var doneButton = $('.modal-button');
+		doneButton.unbind('click');
+		doneButton.attr('id','btn_submit_newFood');
+		doneButton.bind('click',function(){SubmitController.prototype.submit(this.id)});
 }
 
 function loadFrequentFoodView(){
@@ -203,28 +186,16 @@ function loadFrequentFoodView(){
 		li.appendTo(list);
 	})
 	
-	
-	// construct new footer of the 
-	$('#modal-info-footer').empty();
-	var doneButton = $('<button>',{
-		"type":"button",
-		"class":"btn btn-success",
-		"data-dismiss":"modal",
-		"text":"Done",
-		"id":""
-	}).appendTo('#modal-info-footer')
+	// construct new footer of 
+	var doneButton = $('.modal-button');
+		doneButton.attr('id','btn_frequentFood');
+		doneButton.unbind('click');
+		
 }
 
 
-function loadCustomMealView(){
-	var userId = SubmitController.prototype.getUserID();
-	var mealsRequestJSON = {
-			"action": "get",
-			"table": "usermeallist",
-			"where": "userid,=," + userId//,
-			//"group": "GROUP BY mealname"
-	};
-	var data = ServerDBAdapter.prototype.get(mealsRequestJSON);
+function loadCustomMealView(data){
+	
 
 	$('#modal-info-title').text("My meals");
 	// construct body
@@ -233,14 +204,18 @@ function loadCustomMealView(){
 		"class":"list-group",
 		"role":"menu"
 	}).appendTo('#modal-info-body');
-	$.each(data,function(index,item){
-		console.log(item);
+	$.each(data,function(index){
 		var li =$('<li>',{
 			"class":"list-group-item",
-			"text":	item["mealname"]
-		}).data('data',item).bind('click',function(){
-			displayCustomMealSelection(item);
-			// TODO parse the meal JSON
+			"text":	data[index].mealname
+		}).data('data',data).bind('click',function(){
+			var mealComponents = OnLoad.prototype.mealComponents(data[index].mealname);
+			$.each(mealComponents,function(index){
+				var component = mealComponents[index];
+				component["label"] = component.foodname;
+				component["EdibleProportion"] = component.quantity;
+				displaySelection(mealComponents[index]);
+			});
 		});
 		li.appendTo(list);
 	})	
@@ -279,16 +254,12 @@ function loadSaveMealView(){
 		"id":"btn_save_meals"
 	}).bind('click',function(){
 		SubmitController.prototype.submitMeal(this.id);
-		
 	}).appendTo('#modal-info-footer');
 }
 
 function displaySelection(selection){
 	
 	selection['portion'] = 1;
-	if(selection['id']!== 'meal'){
-		selection['id'] ='food';
-	}
 	if(!compareWithCurrentSelections(selection)){
 			
 		var li = new createBasicLi(selection);
@@ -302,10 +273,7 @@ function displaySelection(selection){
 		increaseButton.bind('click',updateNutritionBreakDown);
 		controlPanel.addItems([reduceButton,accountButton,increaseButton]);
 		li.addItemToLeft(deleteButton);
-		var amount = '';
-		if(selection['id']==='food'){
-			amount = " (" +parseInt(selection.EdibleProportion)*100 +" g)";
-		}
+		var amount = " (" +parseInt(selection.EdibleProportion)*100 +" g)";
 		var displayContent = selection.label +amount;
 		li.addItemToLeft(displayContent);
 		li.addItemToRight(controlPanel);
@@ -317,37 +285,6 @@ function displaySelection(selection){
 			alert("Selection already in list");
 			
 		}
-}
-
-function displayCustomMealSelection(selection){
-	var userId = SubmitController.prototype.getUserID();
-	
-	var mealComponentsRequestJSON = {
-			"action": "get",
-			"table": "usermeallist",
-			"where": "userid,=," + userId + ",mealname,=," + selection.mealname
-	};
-	var mealComponents = ServerDBAdapter.prototype.get(mealComponentsRequestJSON);
-	
-	for(var food = 0; food < mealComponents.length; food++) {
-		var li = new createBasicLi(mealComponents[food]);
-		var controlPanel = new createControlPanel();
-		var deleteButton = new createDeleteButton('li');
-		deleteButton.bind('click',updateNutritionBreakDown);
-		var reduceButton = new createReduceButton(mealComponents[food]);
-		reduceButton.bind('click',updateNutritionBreakDown);
-		var accountButton = new createAccountButton(mealComponents[food]);
-		var increaseButton = new createIncreaseButton(mealComponents[food]);
-		increaseButton.bind('click',updateNutritionBreakDown);
-		controlPanel.addItems([reduceButton,accountButton,increaseButton]);
-		li.addItemToLeft(deleteButton);
-		var	amount = " (" + parseInt(mealComponents[food].quantity) * 100 + " g)";
-		var displayContent = mealComponents[food].foodname + amount;
-		li.addItemToLeft(displayContent);
-		li.addItemToRight(controlPanel);
-		$('.selection-list').append(li);
-		updateNutritionBreakDown();
-	}
 }
 
 // render the search result here

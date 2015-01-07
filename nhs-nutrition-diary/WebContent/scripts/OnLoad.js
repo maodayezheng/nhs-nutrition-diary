@@ -81,6 +81,34 @@ OnLoad.prototype.frequentFoods = function() {
 	return frequentFoods;
 }
 
+OnLoad.prototype.customiseMeals = function(){
+	var userId = SubmitController.prototype.getUserID();
+	var mealsRequestJSON = {
+			"action": "get",
+			"table": "usermeallist",
+			"where": "userid,=," + userId//,
+			//"group": "GROUP BY mealname"
+	};
+	
+	return ServerDBAdapter.prototype.get(mealsRequestJSON);
+	
+}
+
+OnLoad.prototype.mealComponents = function(mealName){
+	
+	alert(mealName);
+var userId = SubmitController.prototype.getUserID();
+	
+	var mealComponentsRequestJSON = {
+			"action": "get",
+			"table": "usermeallist",
+			"where": "userid,=," + userId + ",mealname,=," + mealName
+	};
+	
+	return ServerDBAdapter.prototype.get(mealComponentsRequestJSON);
+	
+	}
+
 OnLoad.prototype.updateSymptoms = function() {
 	var date = new Date();
 	$('#symptomDate').val(date.dateFormat('d/m/Y'));
@@ -101,6 +129,8 @@ OnLoad.prototype.updateWeight = function() {
 	$('#currentWeight').html('' + weight + ' kg');
 	$('#newWeight').val(weight);
 }
+
+
 
 OnLoad.prototype.updateSettings = function() {
 	var userId = SubmitController.prototype.getUserID();

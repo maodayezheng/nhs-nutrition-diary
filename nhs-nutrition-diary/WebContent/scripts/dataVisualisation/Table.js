@@ -8,10 +8,14 @@ Table.prototype.manageTable = function(presentedParameter, dateFrom, dateTo) {
 	}
 	
 	var userId = this.getUserID();
+	
+	var dateFromFormatted = SubmitController.prototype.formatDateOnly(dateFrom.dateFormat('d/m/Y'));
+	var dateToFormatted = SubmitController.prototype.formatDateOnly(dateTo.dateFormat('d/m/Y'));
+	
 	var historyRequestJSON = {
 			"action": "get",
 			"table": "userfoodmanifest",
-			"where": "userid,=," + userId
+			"where": "userid,=," + userId + ",datetime,>=," + dateFromFormatted + " 00:00:00," + "datetime,<=," + dateToFormatted + " 23:59:59"
 	};
 	var history = ServerDBAdapter.prototype.get(historyRequestJSON);
 	

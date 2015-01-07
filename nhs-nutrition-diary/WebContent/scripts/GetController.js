@@ -4,24 +4,16 @@
 
 function GetController() {};
 
-GetController.prototype.get = function(getter, data) 
-{
-	switch(getter) 
-	{
+GetController.prototype.get = function(getter, data) {
+	switch(getter) {
 		case 'manageGraph': return GetController.prototype.getUserData(data); break;
 	}
 }
 
-
-
-
-
 /**
- * Returns the user hash which needs to be included when sent to the server. 
- * @returns
+ * @returns user hash which needs to be included when sent to the server
  */
-GetController.prototype.getUserHash = function() 
-{
+GetController.prototype.getUserHash = function() {
 	return Cookies.prototype.getUserHash(); 	
 }
 
@@ -44,9 +36,16 @@ GetController.prototype.getUserData = function(data)
 	var dateToFormatted   = GetController.prototype.formatDate(data.dateTo); 
 	
 	//fields are all MANDATORY to be sent to the server
-	dataToServer =
+	var weightRequestJSON = {
+			"action": "getLast",
+			"table": "userweightmanifest",
+			"where": "userid,=," + userId
+	};
+	var weight = ServerDBAdapter.prototype.get(weightRequestJSON).weight;
+	
+	var dataToServer =
 	{
-		"action": "getUserData", 
+		"action": "get", 
 		"userHash": this.getUserHash(), //sending hash rather than userID for security purposes
 		"dateFrom": dateFromFormatted,
 		"dateTo": dateToFormatted

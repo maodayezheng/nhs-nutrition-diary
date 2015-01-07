@@ -53,9 +53,15 @@ switch($action)
 	case 'get':						get($db, $table, $where); break;
 	case 'getUserProfile':			getUserProfile($db, $table, $where); break; 
 	case 'getLast':					getLast($db, $table, $where); break;
-	case 'getTenMostFrequent':		getTenMostFrequent($db, $table, $where); break;
+	case 'getTenMostFrequent':		getTenMostFrequent($db, $table, $where); break; 
 	case 'save': 					$db->insert($table, $dataDecoded); break; 
-	case 'getUserData':				echo json_encode($db->getUserData($dataDecoded)); break; 
+}
+
+function get($db, $table, $where) {
+	$results = $db->get($table, $where)->results();
+	$resultsJSON = json_encode($results);
+	echo($resultsJSON);
+	//$resultsJSON = null;
 }
 
 function getUserProfile($db, $table, $where)
@@ -64,14 +70,6 @@ function getUserProfile($db, $table, $where)
 	$results = $db->action("SELECT gender$comma dateofbirth$comma activitylevel", $table, $where)->results(); 
 	$resultsJSON = json_encode($results);
 	echo($resultsJSON);
-}
-
-
-function get($db, $table, $where) {
-	$results = $db->get($table, $where)->results();
-	$resultsJSON = json_encode($results);
-	echo($resultsJSON);
-	//$resultsJSON = null;
 }
 
 function getLast($db, $table, $where) {

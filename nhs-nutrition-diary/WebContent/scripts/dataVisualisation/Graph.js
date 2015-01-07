@@ -6,31 +6,33 @@ function manageGraph(presentedParameter, dateFrom, dateTo) {
 		return false;
 	}
 	
-	console.log("in manage graph");
-	console.log(dateFrom);
-	console.log(dateTo);
-	
 	var data = { "dateFrom": dateFrom, "dateTo": dateTo, "presentedParameter": presentedParameter }; //store the dates in an array to send to the getter. 
 	
-	var result = GetController.prototype.get('manageGraph', data); //synchronous call which times out after 5 seconds if no response from the server. 
+	var userId = this.getUserID();
+	
+	var dateFromFormatted = SubmitController.prototype.formatDateOnly(dateFrom.dateFormat('d/m/Y'));
+	var dateToFormatted = SubmitController.prototype.formatDateOnly(dateTo.dateFormat('d/m/Y'));
+	
+	var historyRequestJSON = {
+			"action": "get",
+			"table": "userfoodmanifest",
+			"where": "userid,=," + userId + ",datetime,>=," + dateFromFormatted + " 00:00:00," + "datetime,<=," + dateToFormatted + " 23:59:59"
+	};
+	var history = ServerDBAdapter.prototype.get(historyRequestJSON);
+	
+	var caloriesCurrent = 0;
+	var proteinCurrent = 0;
+	var fluidCurrent = 0;
+	
+	for(var index = 0; index < history.length; index++) {
+        var entry = history[index];
+        caloriesCurrent += parseFloat(entry.calories) * parseFloat(entry.quantity);
+        proteinCurrent += parseFloat(entry.protein) * parseFloat(entry.quantity);
+        fluidCurrent += parseFloat(entry.fluid) * parseFloat(entry.quantity);
+    }
 	
 	//FOLLOWING CODE SHOULD EVENTUALLy BE ITS OWN FUNCTION. JUST TESTING PLAYING AROUND WITH THE RECEIVED JSON DATA
-	console.log(JSON.stringify(result)); 
-	
-	for (var i = 0; i < result.length; i++)
-	{
-		var name = result[i][1]; 
-		console.log(result[i]); 
-	}
-	console.log(result[2].usersymptommanifest);
-	
-	
-	
-	
-	
-	//var database = new LocalDbSingleton();
-	//var data = database.databaseOpen(LocalDbSingleton.prototype.localDbGet, 'foodManifestStore', dateFrom, dateTo, presentedParameter, makeGraph);
-	
+	console.log(JSON.stringify(result));
 }
 
 //TODO draw requirements as well

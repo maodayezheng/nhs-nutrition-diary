@@ -2,12 +2,14 @@ function OnLoad() {}
 
 OnLoad.prototype.load = function(pageName) {
 	switch(pageName) {
-		case 'home': this.updateTodaysBalance(); break;
-		case 'food': this.updateFood(); break;
-		case 'symptoms': this.updateSymptoms(); break;
-		case 'history': toggleHistoryVisualisation(); break;
-		case 'weight': this.updateWeight(); break;
-		case 'settings': this.updateSettings(); break;
+		case 'home':			this.updateTodaysBalance(); break;
+		case 'food':			this.updateFood(); break;
+		case 'foodList':		this.updateFoodList(); break;
+		case 'userFoodList':	this.updateUserFoodList(); break;
+		case 'symptoms':		this.updateSymptoms(); break;
+		case 'history':			toggleHistoryVisualisation(); break;
+		case 'weight':			this.updateWeight(); break;
+		case 'settings':		this.updateSettings(); break;
 		default: console.log('pageName does not exist.');
 	}
 }
@@ -64,6 +66,29 @@ OnLoad.prototype.updateFood = function() {
 	var date = new Date();
 	$('#Date').val(date.dateFormat('d/m/Y'));
 	$('#Time').val(date.dateFormat('H:i'));
+}
+
+OnLoad.prototype.updateFoodList = function() {
+	var foodListRequestJSON = {
+			"action": "get",
+			"table": "foodlist",
+			"where": "id,=," + 0
+	};
+	var foodList = ServerDBAdapter.prototype.get(foodListRequestJSON);
+	
+	return foodList;
+}
+
+OnLoad.prototype.updateUserFoodList = function() {
+	var userId = SubmitController.prototype.getUserID();
+	var userFoodListRequestJSON = {
+			"action": "get",
+			"table": "userfoodlist",
+			"where": "userid,=," + userId
+	};
+	var userFoodList = ServerDBAdapter.prototype.get(userFoodListRequestJSON);
+	
+	return userFoodList;
 }
 
 OnLoad.prototype.frequentFoods = function() {

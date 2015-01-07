@@ -5,7 +5,9 @@
 $(document).ready(function(){
 	
 	// load data
-	var data =new FoodDataSingleton().foodData;
+	//var data =new FoodDataSingleton().foodData;
+	var data = OnLoad.prototype.load('foodList');
+	var userFoodList = OnLoad.prototype.load('userFoodList');
 	var customiseMeal = OnLoad.prototype.customiseMeals();
 	// TODO replace customMeals and frequentFood with real data
 	// search 

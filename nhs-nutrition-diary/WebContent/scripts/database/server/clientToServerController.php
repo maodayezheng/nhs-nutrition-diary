@@ -56,7 +56,7 @@ $results = null;
 
 switch($action)
 {
-	case 'get':						get($db, $table, $where, $group); break;
+	case 'get':						get($db, $table, $where); break;
 	case 'getUserProfile':			getUserProfile($db, $table, $where); break; 
 	case 'getLast':					getLast($db, $table, $where); break;
 	case 'getTenMostFrequent':		getTenMostFrequent($db, $table, $where); break; 

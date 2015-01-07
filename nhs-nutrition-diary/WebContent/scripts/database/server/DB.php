@@ -96,7 +96,7 @@ class DB
 	 * This method utilises the query method (also in this class) to abstract away actions (e.g. get, delete) etc. It is intended to be called by a given action method (such as GET or DELETE or UPDATE). It tries to prevent
 	 * potential SQL injections by specifying a list of allowed operators.  
 	 */
-	public function action($action, $table, $where = array(), $endSql = null) //$action e.g. SELECT *
+	public function action($action, $table, $where = array()) //$action e.g. SELECT *
 	{
 		if(sizeof($where)%3==0) // The correct number of entries in the $where array should be divisible by 3 otherwise an exception will be thrown. 
 		{
@@ -121,11 +121,6 @@ class DB
 				}
 			}
  
-			if($endSql)
-			{ 
-				$sql .= " ".$endSql;
-			}
-			
 			if(!$this->query($sql, $value)->error()) 
 			{
 				return $this;
@@ -169,9 +164,9 @@ class DB
 	/**
 	 * Utilises the action method to carry out a GET action. 
 	 */
-	public function get($table, $where, $endsql = null)
+	public function get($table, $where)
 	{ 
-		return $this->action('SELECT *', $table, $where, $endsql); //assume that the action is always SELECT * because we want to return all rows. 
+		return $this->action('SELECT *', $table, $where); //assume that the action is always SELECT * because we want to return all rows. 
 	}
 	
 	

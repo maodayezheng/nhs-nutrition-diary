@@ -23,52 +23,63 @@ Summary.prototype.manageSummary = function(presentedParameter, dateFrom, dateTo)
 }
 
 Summary.prototype.makeSummary = function(presentedParameter, dateFrom, dateTo, history) {
-	var caloriesCurrent = 0;
-	var proteinCurrent = 0;
-	var fluidCurrent = 0;
-	if(history !== null){
-	for(var index = 0; index < history.length; index++) {
-		var entry = history[index];
-		caloriesCurrent += parseFloat(entry.calories) * parseFloat(entry.quantity);
-		proteinCurrent += parseFloat(entry.protein) * parseFloat(entry.quantity);
-		fluidCurrent += parseFloat(entry.fluid) * parseFloat(entry.quantity);
-	}}
-	alert("calories: " + caloriesCurrent);
-	alert("protein: " + proteinCurrent);
-	alert("fluid: " + fluidCurrent);
+	/*if(history !== null){
+		for(var index = 0; index < history.length; index++) {
+			var entry = history[index];
+			caloriesCurrent += parseFloat(entry.calories) * parseFloat(entry.quantity);
+			proteinCurrent += parseFloat(entry.protein) * parseFloat(entry.quantity);
+			fluidCurrent += parseFloat(entry.fluid) * parseFloat(entry.quantity);
+		}
+	}*/
 	
 	$('#table').html("");
 	d3.select('#graph').attr("width", 0).attr("height", 0);
 	
 	//TODO make summary
-	var startWeight =80;
-	$('#summary').append($('<p>Patient start weight: </p>').css('text-align','center').append($('<strong>',{
-		"text": startWeight+"kg"
+	var startWeight = 80;
+	$('#summary').append($('<p>Patient\'s start weight: </p>').css('text-align','center').append($('<strong>',{
+		"text": startWeight + " kg"
 	})));
 	
 	var currentWeight = 90;
-	$('#summary').append($('<p>Patient current weight: </p>').css('text-align','center').append($('<strong>',{
-		"text": currentWeight+"kg"
+	$('#summary').append($('<p>Patient\'s current weight: </p>').css('text-align','center').append($('<strong>',{
+		"text": currentWeight + " kg"
 	})));
 	
-	
-	$('#summary').append($('<p>requirements base on  weight:</p>').css('text-align','center').append($('<strong>',{
-		"text": caloriesCurrent+" kcal " +proteinCurrent +" g " + fluidCurrent+" ml"
+	var weightChangeOneMonth = 3.5;
+	$('#summary').append($('<p>Weight change in 1 month: </p>').css('text-align','center').append($('<strong>',{
+		"text": weightChangeOneMonth + " %"
 	})));
 	
-	
-	$('#summary').append($('<p>after addtion:</p>').css('text-align','center').append($('<strong>',{
-		"text": caloriesCurrent+" kcal " +proteinCurrent +" g " + fluidCurrent+" ml"
+	var weightChangeThreeMonth = 15.4;
+	$('#summary').append($('<p>Weight change in 3 months: </p>').css('text-align','center').append($('<strong>',{
+		"text": weightChangeThreeMonth + " %"
 	})));
 	
-	var sympOne = "Nause";
-	
-	$('#summary').append($('<p>top Symptoms:</p>').css('text-align','center').append($('<strong>',{
-		"text": sympOne+", " +sympOne +", " + sympOne
+	var weightChangeSixMonth = 7.3;
+	$('#summary').append($('<p>Weight change in 6 months: </p>').css('text-align','center').append($('<strong>',{
+		"text": weightChangeSixMonth + " %"
 	})));
 	
+	var caloriesCurrent = 2320;
+	var proteinCurrent = 86;
+	var fluidCurrent = 1550;
+	$('#summary').append($('<p>Current requirements: </p>').css('text-align','center').append($('<strong>',{
+		"text": caloriesCurrent + " kcal, " + proteinCurrent + " g protein, " + fluidCurrent + " ml fluid"
+	})));
+	
+	var caloriesAmendments = -150;
+	var proteinAmendments = 30;
+	var fluidAmendments = 200;
+	$('#summary').append($('<p>Amendments: </p>').css('text-align','center').append($('<strong>',{
+		"text": caloriesAmendments + " kcal, " + proteinAmendments + " g protein, " + fluidAmendments + " ml fluid"
+	})));
+	
+	var topOneSymptom = "Vomiting";
+	var topTwoSymptom = "Loss of appetite";
+	var topThreeSymptom = "Taste changes";
+	
+	$('#summary').append($('<p>Top three symptoms: </p>').css('text-align','center').append($('<strong>',{
+		"text": "1. " + topOneSymptom + ", 2. " + topTwoSymptom + ", 3. " + topThreeSymptom
+	})));	
 }
-
-
-
-

@@ -12,9 +12,9 @@ function toggleHistoryVisualisation() {
 	} else if($('#summarySelector').is(':checked')) {
 		var summary = new Summary();
 		summary.manageSummary(presentedParameter, dateFrom, dateTo);
-	} else if ($('#flagsSelectorLabel').is(':checked')) {
+	}/* else if ($('#flagsSelectorLabel').is(':checked')) {
 		//TODO display the flags
-	}
+	}*/
 }
 
 function toggleHistoryVisualisationButton(id) {
@@ -33,9 +33,9 @@ function toggleHistoryVisualisationButton(id) {
 	} else if (id == 'summarySelectorLabel') {
 		var summary = new Summary();
 		summary.manageSummary(presentedParameter, dateFrom, dateTo);
-	} else if (id == 'flagsSelectorLabel') {
+	}/* else if (id == 'flagsSelectorLabel') {
 		//TODO display the flags
-	}
+	}*/
 }
 
 function fillEmptyDates() {

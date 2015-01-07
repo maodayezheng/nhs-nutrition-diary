@@ -47,7 +47,7 @@ Table.prototype.drawTable = function(presentedParameter, dateFrom, dateTo, histo
 			var caloriesCurrent = parseFloat(entry.calories) * parseFloat(entry.quantity);
 			var dateTime = "" + entry.datetime;
 			var dateTimeParts = dateTime.split(' ');
-			rows[index] = new Array('' + dateTimeParts[0], '' + dateTimeParts[1], '' + entry.foodid, '' + caloriesCurrent);
+			rows[index] = new Array('' + dateTimeParts[0], '' + dateTimeParts[1], '' + entry.foodname, '' + caloriesCurrent);
 		}
 	} else if(presentedParameter == "Protein (g)") {
 		colTitles = ['Date', 'Time', 'Food', 'Protein (g)'];
@@ -56,7 +56,7 @@ Table.prototype.drawTable = function(presentedParameter, dateFrom, dateTo, histo
 			var proteinCurrent = parseFloat(entry.protein) * parseFloat(entry.quantity);
 			var dateTime = "" + entry.datetime;
 			var dateTimeParts = dateTime.split(' ');
-			rows[index] = new Array('' + dateTimeParts[0], '' + dateTimeParts[1], '' + entry.foodid, '' + proteinCurrent);
+			rows[index] = new Array('' + dateTimeParts[0], '' + dateTimeParts[1], '' + entry.foodname, '' + proteinCurrent);
 		}
 	} else if(presentedParameter == "Fluid (ml)") {
 		colTitles = ['Date', 'Time', 'Food', 'Fluid (ml)'];
@@ -65,10 +65,10 @@ Table.prototype.drawTable = function(presentedParameter, dateFrom, dateTo, histo
 			var fluidCurrent = parseFloat(entry.fluid) * parseFloat(entry.quantity);
 			var dateTime = "" + entry.datetime;
 			var dateTimeParts = dateTime.split(' ');
-			rows[index] = new Array('' + dateTimeParts[0], '' + dateTimeParts[1], '' + entry.foodid, '' + fluidCurrent);
+			rows[index] = new Array('' + dateTimeParts[0], '' + dateTimeParts[1], '' + entry.foodname, '' + fluidCurrent);
 		}
 	} else if(presentedParameter == "Weight (kg)") {
-		colTitles = ['Date', 'Time', 'Weight'];
+		colTitles = ['Date', 'Time', 'Weight (kg)'];
 		for(var index = 0; index < history.length; index++) {
 			var entry = history[index];
 			var dateTime = "" + entry.datetime;

@@ -46,19 +46,25 @@ if(isset($dataDecoded['where']))
 	unset($dataDecoded['where']);
 }
 
+if(isset($dataDecoded['group']))
+{
+	$group = $dataDecoded['group'];  
+	unset($dataDecoded['group']);
+}
+
 $results = null;
 
 switch($action)
 {
-	case 'get':						get($db, $table, $where); break;
+	case 'get':						get($db, $table, $where, $group); break;
 	case 'getUserProfile':			getUserProfile($db, $table, $where); break; 
 	case 'getLast':					getLast($db, $table, $where); break;
 	case 'getTenMostFrequent':		getTenMostFrequent($db, $table, $where); break; 
 	case 'save': 					$db->insert($table, $dataDecoded); break; 
 }
 
-function get($db, $table, $where) {
-	$results = $db->get($table, $where)->results();
+function get($db, $table, $where, $group = null) {
+	$results = $db->get($table, $where, $group)->results();
 	$resultsJSON = json_encode($results);
 	echo($resultsJSON);
 	//$resultsJSON = null;

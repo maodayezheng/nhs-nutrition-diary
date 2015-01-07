@@ -19,7 +19,7 @@ echo $comma;
 $sql = "SELECT group$comma test"; 
 echo $sql;
 
-$results5 = $db->get('users', array('id','=','1'))->results();
+$results5 = $db->get('users', array('id','=','6'))->results();
 echo '<br /> Var dump of the set of results received from the database'.'<br />';
 var_dump($results5).'<br />';
 $results5JSON = json_encode($results5);
@@ -27,21 +27,21 @@ echo '<br /> The JSON encoded results: <br />'.$results5JSON.'<br />';
 
 
 
-$results6 = $db->action("SELECT nhsnumber$comma dateofbirth", 'users', array('id','=','1'))->results();
+$results6 = $db->action("SELECT nhsnumber$comma dateofbirth", 'users', array('id','=','6'))->results();
 echo '<br /> Var dump of the set of results received from the database'.'<br />';
 var_dump($results6).'<br />';
 $results6JSON = json_encode($results6);
 echo '<br /> The JSON encoded results: <br />'.$results6JSON.'<br />';
 
 
-$results4 = $db->get('usersymptommanifest', array('userid','=','2','datetime','>=','2014-12-22','datetime','<=','2014-12-25'))->results();
+$results4 = $db->get('usersymptommanifest', array('userid','=','6','datetime','>=','2014-12-22','datetime','<=','2014-12-25'))->results();
 echo '<br /> Var dump of the set of results received from the database'.'<br />';
 var_dump($results4).'<br />';
 $results4JSON = json_encode($results4);
 echo '<br /> The JSON encoded results: <br />'.$results4JSON.'<br />';
 
 
-$results = $db->get('usersymptommanifest', array('userid','=','2'))->results();
+$results = $db->get('usersymptommanifest', array('userid','=','6'))->results();
 echo '<br /> Var dump of the set of results received from the database'.'<br />';
 var_dump($results).'<br />'; 
 $resultsJSON = json_encode($results); 
@@ -49,14 +49,14 @@ echo '<br /> The JSON encoded results: <br />'.$resultsJSON.'<br />';
 
 
 
-$results2 = $db->get('usersymptommanifest', array('userid','=','2','symptom','=','Constipation'))->results();
+$results2 = $db->get('usersymptommanifest', array('userid','=','6','symptom','=','Constipation'))->results();
 echo '<br /> Var dump of the set of results received from the database'.'<br />';
 var_dump($results2).'<br />';
 $results2JSON = json_encode($results2);
 echo '<br /> The JSON encoded results: <br />'.$results2JSON.'<br />';
 
 
-$results3 = $db->get('usersymptommanifest', array('userid','=','2','symptom','=','Constipation','comment','=','test comment'))->results();
+$results3 = $db->get('usersymptommanifest', array('userid','=','6','symptom','=','Constipation','comment','=','test comment'))->results();
 echo '<br /> Var dump of the set of results received from the database'.'<br />';
 var_dump($results3).'<br />';
 $results3JSON = json_encode($results3);

@@ -221,7 +221,8 @@ function loadCustomMealView(){
 	var mealsRequestJSON = {
 			"action": "get",
 			"table": "usermeallist",
-			"where": "userid,=," + userId
+			"where": "userid,=," + userId,
+			"group": "GROUP BY mealname"
 	};
 	var data = ServerDBAdapter.prototype.get(mealsRequestJSON);
 

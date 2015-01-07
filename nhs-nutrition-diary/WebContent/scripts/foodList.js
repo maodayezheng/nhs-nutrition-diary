@@ -5,11 +5,9 @@
 $(document).ready(function(){
 	
 	// load data
-	//var data =new FoodDataSingleton().foodData;
-	var data = OnLoad.prototype.load('foodList');
-	var userFoodList = OnLoad.prototype.load('userFoodList');
-	var customiseMeal = OnLoad.prototype.customiseMeals();
-	
+	var data =new FoodDataSingleton().foodData;
+	//var data = OnLoad.prototype.load('foodList');
+	//var userFoodList = OnLoad.prototype.load('userFoodList');
 	
 	// search 
 			$('#search').autocomplete({
@@ -33,7 +31,7 @@ $(document).ready(function(){
 			
 	// click events		
 		$('#myMeals').click(function(){
-			loadCustomMealView(customiseMeal)
+			loadCustomMealView()
 		});
 		
 	$('#newFood').click(function(){
@@ -197,8 +195,17 @@ function loadFrequentFoodView(){
 }
 
 
-function loadCustomMealView(data){
+function loadCustomMealView(){
 	
+	var userId = SubmitController.prototype.getUserID();
+	var mealsRequestJSON = {
+			"action": "get",
+			"table": "usermeallist",
+			"where": "userid,=," + userId//,
+			//"group": "GROUP BY mealname"
+	};
+	
+	var data = ServerDBAdapter.prototype.get(mealsRequestJSON);
 
 	$('#modal-info-title').text("My meals");
 	// construct body

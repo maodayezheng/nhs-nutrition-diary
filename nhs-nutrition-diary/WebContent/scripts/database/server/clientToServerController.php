@@ -63,8 +63,8 @@ switch($action)
 	case 'save': 					$db->insert($table, $dataDecoded); break; 
 }
 
-function get($db, $table, $where, $group = null) {
-	$results = $db->get($table, $where, $group)->results();
+function get($db, $table, $where) {
+	$results = $db->get($table, $where)->results();
 	$resultsJSON = json_encode($results);
 	echo($resultsJSON);
 	//$resultsJSON = null;

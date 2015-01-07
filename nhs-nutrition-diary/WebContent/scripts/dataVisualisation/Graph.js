@@ -6,8 +6,6 @@ function manageGraph(presentedParameter, dateFrom, dateTo) {
 		return false;
 	}
 	
-	var data = { "dateFrom": dateFrom, "dateTo": dateTo, "presentedParameter": presentedParameter }; //store the dates in an array to send to the getter. 
-	
 	var userId = SubmitController.prototype.getUserID();
 	
 	var dateFromFormatted = SubmitController.prototype.formatDateOnly(dateFrom);

@@ -11,80 +11,79 @@ Table.prototype.manageTable = function(presentedParameter, dateFrom, dateTo) {
 	
 	var dateFromFormatted = SubmitController.prototype.formatDateOnly(dateFrom);
 	var dateToFormatted = SubmitController.prototype.formatDateOnly(dateTo);
+	var history;
 	
-	var historyRequestJSON = {
-			"action": "get",
-			"table": "userfoodmanifest",
-			"where": "userid,=," + userId + ",datetime,>=," + dateFromFormatted + " 00:00:00," + "datetime,<=," + dateToFormatted + " 23:59:59"
-	};
-	var history = ServerDBAdapter.prototype.get(historyRequestJSON);
+	if(presentedParameter == "Weight (kg)") {
+		var weightHistoryRequestJSON = {
+				"action": "get",
+				"table": "userweightmanifest",
+				"where": "userid,=," + userId
+		};
+		history = ServerDBAdapter.prototype.get(weightHistoryRequestJSON);
+	} else {
+		var historyRequestJSON = {
+				"action": "get",
+				"table": "userfoodmanifest",
+				"where": "userid,=," + userId + ",datetime,>=," + dateFromFormatted + " 00:00:00," + "datetime,<=," + dateToFormatted + " 23:59:59"
+		};
+		history = ServerDBAdapter.prototype.get(historyRequestJSON);
+	}
 	console.log(history);
 	
 	this.drawTable(presentedParameter, dateFrom, dateTo, history);
 }
 
 Table.prototype.drawTable = function(presentedParameter, dateFrom, dateTo, history) {
-	var caloriesCurrent = 0;
-	var proteinCurrent = 0;
-	var fluidCurrent = 0;
-	
-	for(var index = 0; index < history.length; index++) {
-		var entry = history[index];
-		caloriesCurrent += parseFloat(entry.calories) * parseFloat(entry.quantity);
-		proteinCurrent += parseFloat(entry.protein) * parseFloat(entry.quantity);
-		fluidCurrent += parseFloat(entry.fluid) * parseFloat(entry.quantity);
-	}
-	alert("calories: " + caloriesCurrent);
-	alert("protein: " + proteinCurrent);
-	alert("fluid: " + fluidCurrent);
-	
 	$('#summary').html("");
 	d3.select('#graph').attr("width", 0).attr("height", 0);
 	
-	//TODO visualise data
-	var colTitles;
-	var rows;
+	var colTitles = new Array();
+	var rows = new Array();
 	
 	if(presentedParameter == "Calories (kcal)") {
 		colTitles = ['Date', 'Time', 'Food', 'Calories (kcal)'];
-		rows = [
-            ['02/12/2014', '14:02', 'German sausage', '340'],
-            ['03/12/2014', '15:14', 'German beer', '240'],
-            ['24/12/2014', '05:24', 'German bread', '589'],
-		];
-	}
-	else if(presentedParameter == "Protein (g)") {
+		for(var index = 0; index < history.length; index++) {
+			var entry = history[index];
+			var caloriesCurrent = parseFloat(entry.calories) * parseFloat(entry.quantity);
+			var dateTime = "" + entry.datetime;
+			var dateTimeParts = dateTime.split(' ');
+			rows[index] = new Array('' + dateTimeParts[0], '' + dateTimeParts[1], '' + entry.foodid, '' + caloriesCurrent);
+		}
+	} else if(presentedParameter == "Protein (g)") {
 		colTitles = ['Date', 'Time', 'Food', 'Protein (g)'];
-		rows = [
-	            ['02/12/2014', '14:02', 'German sausage', '17'],
-	            ['03/12/2014', '15:14', 'German beer', '24'],
-	            ['24/12/2014', '05:24', 'German bread', '38'],
-			];
-	}
-	else if(presentedParameter == "Fluid (ml)") {
+		for(var index = 0; index < history.length; index++) {
+			var entry = history[index];
+			var proteinCurrent = parseFloat(entry.protein) * parseFloat(entry.quantity);
+			var dateTime = "" + entry.datetime;
+			var dateTimeParts = dateTime.split(' ');
+			rows[index] = new Array('' + dateTimeParts[0], '' + dateTimeParts[1], '' + entry.foodid, '' + proteinCurrent);
+		}
+	} else if(presentedParameter == "Fluid (ml)") {
 		colTitles = ['Date', 'Time', 'Food', 'Fluid (ml)'];
-		rows = [
-	            ['02/12/2014', '14:02', 'German sausage', '100'],
-	            ['03/12/2014', '15:14', 'German beer', '110'],
-	            ['24/12/2014', '05:24', 'German bread', '120'],
-			];
-	}
-	else if(presentedParameter == "Weight (kg)") {
+		for(var index = 0; index < history.length; index++) {
+			var entry = history[index];
+			var fluidCurrent = parseFloat(entry.fluid) * parseFloat(entry.quantity);
+			var dateTime = "" + entry.datetime;
+			var dateTimeParts = dateTime.split(' ');
+			rows[index] = new Array('' + dateTimeParts[0], '' + dateTimeParts[1], '' + entry.foodid, '' + fluidCurrent);
+		}
+	} else if(presentedParameter == "Weight (kg)") {
 		colTitles = ['Date', 'Time', 'Weight'];
-		rows = [
-	            ['02/12/2014', '14:02', '74'],
-	            ['03/12/2014', '15:14', '75'],
-	            ['24/12/2014', '05:24', '72'],
-			];
+		for(var index = 0; index < history.length; index++) {
+			var entry = history[index];
+			var dateTime = "" + entry.datetime;
+			var dateTimeParts = dateTime.split(' ');
+			rows[index] = new Array('' + dateTimeParts[0], '' + dateTimeParts[1], '' + entry.weight);
+		}
 	}
-	else if(presentedParameter == "Symptoms") {
+	/*else if(presentedParameter == "Symptoms") {
 		colTitles = ['Date', 'Time', 'Food', 'Symptom'];
 		rows = [
 	            ['02/12/2014', '14:02', 'German sausage', 'Feeling good'],
 	            ['03/12/2014', '15:14', 'German beer', 'Feeling good'],
 	            ['24/12/2014', '05:24', 'German bread', 'Feeling good'],
 			];
-	}
+	}*/
 	var block = $('#table').TidyTable({
 		//enableCheckbox: true,
 		//enableMenu:     true

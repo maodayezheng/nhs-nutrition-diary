@@ -68,12 +68,12 @@ Table.prototype.drawTable = function(presentedParameter, dateFrom, dateTo, histo
 			rows[index] = new Array('' + dateTimeParts[0], '' + dateTimeParts[1], '' + entry.foodname, '' + fluidCurrent);
 		}
 	} else if(presentedParameter == "Weight (kg)") {
-		colTitles = ['Date', 'Time', 'Weight (kg)'];
+		colTitles = ['Date', 'Weight (kg)'];
 		for(var index = 0; index < history.length; index++) {
 			var entry = history[index];
 			var dateTime = "" + entry.datetime;
 			var dateTimeParts = dateTime.split(' ');
-			rows[index] = new Array('' + dateTimeParts[0], '' + dateTimeParts[1], '' + entry.weight);
+			rows[index] = new Array('' + dateTimeParts[0], '' + entry.weight);
 		}
 	}
 	/*else if(presentedParameter == "Symptoms") {

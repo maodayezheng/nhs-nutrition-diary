@@ -235,9 +235,7 @@ var dropContent = 'Rate discomfort 1-5 (low to high)<select class="discomfortRat
 
 	$("#btn_save_newCustomSymptom").click(function(){	
 		var customSymptom = $('#newSymptom').val();
-		if(customSymptom == ""){
-			alert("Please enter a valid symptom");
-		} else{
+		if(customSymptom != ""){
 		
 		var newSymptomInList = '<li class="list-group-item newCustomSymptom" style="cursor: pointer;"><span class="state-icon glyphicon glyphicon-unchecked"></span>'+customSymptom+'</li><div class="drop-scoring">'+dropContent+'</div>';
 		$("#symptomListCustom").append(newSymptomInList);	  
@@ -246,7 +244,7 @@ var dropContent = 'Rate discomfort 1-5 (low to high)<select class="discomfortRat
 			var target = $(this).next(".drop-scoring");	
 		$(target).slideDown('slow');
 		});
-	};
+		} 
 	});
 
 	var symptoms = new SymptomListSingleton().symptomList;
@@ -269,6 +267,9 @@ var dropContent = 'Rate discomfort 1-5 (low to high)<select class="discomfortRat
 		var customSymptoms = ServerDBAdapter.prototype.get(customSymptomsRequestJSON);
 		for(var index = 0; index < customSymptoms.length; index++) {
 			var singleCustomSymptom = customSymptoms[index];
+			if(singleCustomSymptom.symptom != ""){
+				//singleCustomSymptom.symptom = "caught";
+			
 			var newSymptomInList = '<li class="list-group-item loadedCustomSymptoms" style="cursor: pointer;"><span class="state-icon glyphicon glyphicon-unchecked"></span>'+singleCustomSymptom.symptom+'</li><div class="drop-scoring">'+dropContent+'</div>';
 			$("#symptomListCustom").append(newSymptomInList);
 			setUpCheckbox2();
@@ -276,7 +277,9 @@ var dropContent = 'Rate discomfort 1-5 (low to high)<select class="discomfortRat
 				var target = $(this).next(".drop-scoring");	
 				$(target).slideDown('slow');
 			});
+			}
 		}
+		
 		
 		$(".hiddenSymptomContainer").toggle(400);
 	});

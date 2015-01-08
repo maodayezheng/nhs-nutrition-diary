@@ -41,7 +41,7 @@ function manageGraph(presentedParameter, dateFrom, dateTo) {
 	makeGraph(presentedParameter, dateFrom, dateTo, history);
 }
 
-//TODO draw requirements as well
+//TODO draw current requirements as well (as a horizontal line)
 
 function makeGraph(presentedParameter, dateFrom, dateTo, history) {
 	/*var caloriesCurrent = 0;

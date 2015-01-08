@@ -85,6 +85,7 @@ SubmitController.prototype.updateRequirements = function() {
 	var gender = userInfoResponseJSON.gender;
 	var dateOfBirth = userInfoResponseJSON.dateofbirth;
 	var activityLevel = userInfoResponseJSON.activitylevel;
+
 	var age = this.getAge(dateOfBirth);
 	
 	var previousRequirementsRequestJSON = {
@@ -98,19 +99,19 @@ SubmitController.prototype.updateRequirements = function() {
 	var additionalProtein = 0;
 	var additionalFluid = 0;
 	if(previousRequirements != null) {
-		additionalActivity = parseFloat(previousRequirements.additionalactivitylevel);
-		additionalCalories = parseFloat(previousRequirements.additionalcalories);
-		additionalProtein = parseFloat(previousRequirements.additionalprotein);
-		additionalFluid = parseFloat(previousRequirements.additionalfluid);
+		additionalActivity = Math.round(parseFloat(previousRequirements.additionalactivitylevel));
+		additionalCalories = Math.round(parseFloat(previousRequirements.additionalcalories));
+		additionalProtein = Math.round(parseFloat(previousRequirements.additionalprotein));
+		additionalFluid = Math.round(parseFloat(previousRequirements.additionalfluid));
 	}
 	var finalActivityLevel = parseFloat(activityLevel) + parseFloat(additionalActivity);
 	var requirementsCalculator = new RequirementsCalculator();
-	var formulaCalories = requirementsCalculator.calcCalories(gender, weight, age, finalActivityLevel);
-	var formulaProtein = requirementsCalculator.calcProtein(weight, age, finalActivityLevel);
-	var formulaFluid = requirementsCalculator.calcFluid(weight, age, finalActivityLevel);
-	var finalCalories = parseFloat(formulaCalories) + parseFloat(additionalCalories);
-	var finalProtein = parseFloat(formulaProtein) + parseFloat(additionalProtein);
-	var finalFluid = parseFloat(formulaFluid) + parseFloat(additionalFluid);
+	var formulaCalories = Math.round(requirementsCalculator.calcCalories(gender, weight, age));
+	var formulaProtein = Math.round(requirementsCalculator.calcProtein(weight, age));
+	var formulaFluid = Math.round(requirementsCalculator.calcFluid(weight, age));
+	var finalCalories = Math.round(parseFloat(formulaCalories) * finalActivityLevel + parseFloat(additionalCalories));
+	var finalProtein = Math.round(parseFloat(formulaProtein) * finalActivityLevel + parseFloat(additionalProtein));
+	var finalFluid = Math.round(parseFloat(formulaFluid) * finalActivityLevel + parseFloat(additionalFluid));
 	
 	var dataToServer = {
 		"table": table,
@@ -497,15 +498,15 @@ SubmitController.prototype.submitSettings = function() {
 	var additionalActivity = $('#activity').val();
 	var finalActivityLevel = parseFloat(activityLevel) + parseFloat(additionalActivity);
 	var requirementsCalculator = new RequirementsCalculator();
-	var formulaCalories = requirementsCalculator.calcCalories(gender, weight, age, finalActivityLevel);
-	var formulaProtein = requirementsCalculator.calcProtein(weight, age, finalActivityLevel);
-	var formulaFluid = requirementsCalculator.calcFluid(weight, age, finalActivityLevel);
-	var additionalCalories = $('#cals').val();
-	var additionalProtein = $('#protein').val();
-	var additionalFluid = $('#fluid').val();
-	var finalCalories = parseFloat(formulaCalories) + parseFloat(additionalCalories);
-	var finalProtein = parseFloat(formulaProtein) + parseFloat(additionalProtein);
-	var finalFluid = parseFloat(formulaFluid) + parseFloat(additionalFluid);
+	var formulaCalories = Math.round(requirementsCalculator.calcCalories(gender, weight, age));
+	var formulaProtein = Math.round(requirementsCalculator.calcProtein(weight, age));
+	var formulaFluid = Math.round(requirementsCalculator.calcFluid(weight, age));
+	var additionalCalories = Math.round($('#cals').val());
+	var additionalProtein = Math.round($('#protein').val());
+	var additionalFluid = Math.round($('#fluid').val());
+	var finalCalories = Math.round(parseFloat(formulaCalories) * finalActivityLevel + parseFloat(additionalCalories));
+	var finalProtein = Math.round(parseFloat(formulaProtein) * finalActivityLevel + parseFloat(additionalProtein));
+	var finalFluid = Math.round(parseFloat(formulaFluid) * finalActivityLevel + parseFloat(additionalFluid));
 	
 	var dataToServer = {
 		"table": table,

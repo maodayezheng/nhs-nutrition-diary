@@ -1,16 +1,14 @@
-function RequirementsCalculator() {
-	//TODO consider activity level
-}
+function RequirementsCalculator() {}
 
-RequirementsCalculator.prototype.calcCalories = function(gender, weight, age, activityLevel) {
+RequirementsCalculator.prototype.calcCalories = function(gender, weight, age) {
 	if(gender == "female") {
-		return this.calcCaloriesFemale(weight, age, activityLevel);
+		return this.calcCaloriesFemale(weight, age);
 	} else {
-		return this.calcCaloriesMale(weight, age, activityLevel);
+		return this.calcCaloriesMale(weight, age);
 	}	
 }
 
-RequirementsCalculator.prototype.calcCaloriesFemale = function(weight, age, activityLevel) {
+RequirementsCalculator.prototype.calcCaloriesFemale = function(weight, age) {
 	if(age < 17) {
 		return weight * 13.4 + 692;
 	} else if(age >= 17 && age < 30) {
@@ -24,7 +22,7 @@ RequirementsCalculator.prototype.calcCaloriesFemale = function(weight, age, acti
 	}
 }
 
-RequirementsCalculator.prototype.calcCaloriesMale = function(weight, age, activityLevel) {
+RequirementsCalculator.prototype.calcCaloriesMale = function(weight, age) {
 	if(age < 17) {
 		return weight * 17.7 + 657;
 	} else if(age >= 17 && age < 30) {
@@ -38,11 +36,11 @@ RequirementsCalculator.prototype.calcCaloriesMale = function(weight, age, activi
 	}
 }
 
-RequirementsCalculator.prototype.calcProtein = function(weight, age, activityLevel) {
+RequirementsCalculator.prototype.calcProtein = function(weight, age) {
 	return weight * 0.17 * 6.25;
 }
 
-RequirementsCalculator.prototype.calcFluid = function(weight, age, activityLevel) {
+RequirementsCalculator.prototype.calcFluid = function(weight, age) {
 	if(weight <= 60) {
 		return weight * 30;
 	} else {

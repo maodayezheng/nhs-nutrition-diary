@@ -38,6 +38,10 @@ OnLoad.prototype.updateTodaysBalance = function() {
         fluidCurrent += parseFloat(entry.fluid) * parseFloat(entry.quantity);
     }
 	
+	caloriesCurrent = Math.round(caloriesCurrent);
+	proteinCurrent = Math.round(proteinCurrent);
+	fluidCurrent = Math.round(fluidCurrent);
+	
 	var previousRequirementsRequestJSON = {
 			"action": "getLast",
 			"table": "userrequirementsmanifest",
@@ -47,19 +51,18 @@ OnLoad.prototype.updateTodaysBalance = function() {
 	var caloriesRequirement = parseFloat(previousRequirements.finalcalories);
 	var proteinRequirement = parseFloat(previousRequirements.finalprotein);
 	var fluidRequirement = parseFloat(previousRequirements.finalfluid);
-	var activityLevel = parseFloat(previousRequirements.activitylevel) + parseFloat(previousRequirements.additionalactivitylevel);
 
 	var caloriesProgress = (caloriesCurrent/caloriesRequirement) * 100;
 	$('#progressBar_calories').css('width', '' + caloriesProgress + '%');
-	$('#progressBar_calories').html('' + caloriesCurrent + '/' + caloriesRequirement + ' kcal');
+	$('#progressBar_calories').html('' + caloriesCurrent + ' / ' + caloriesRequirement + ' kcal');
 	
 	var proteinProgress = (proteinCurrent/proteinRequirement) * 100;
 	$('#progressBar_protein').css('width', '' + proteinProgress + '%');
-	$('#progressBar_protein').html('' + proteinCurrent + '/' + proteinRequirement + ' g');
+	$('#progressBar_protein').html('' + proteinCurrent + ' / ' + proteinRequirement + ' g');
 	
 	var fluidProgress = (fluidCurrent/fluidRequirement) * 100;
 	$('#progressBar_fluid').css('width', '' + fluidProgress + '%');
-	$('#progressBar_fluid').html('' + fluidCurrent + '/' + fluidRequirement + ' ml');
+	$('#progressBar_fluid').html('' + fluidCurrent + ' / ' + fluidRequirement + ' ml');
 }
 
 OnLoad.prototype.updateFood = function() {

@@ -453,7 +453,6 @@ SubmitController.prototype.submitWeight = function() {
 		"weight": weight 
 	};
 	
-	
 	ServerDBAdapter.prototype.submit(dataToServer, "save");
 	
 	this.updateRequirements();

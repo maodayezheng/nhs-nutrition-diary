@@ -235,6 +235,9 @@ var dropContent = 'Rate discomfort 1-5 (low to high)<select class="discomfortRat
 
 	$("#btn_save_newCustomSymptom").click(function(){	
 		var customSymptom = $('#newSymptom').val();
+		if(customSymptom == ""){
+			alert("Please enter a valid symptom");
+		}
 		if(customSymptom != ""){
 		
 		var newSymptomInList = '<li class="list-group-item newCustomSymptom" style="cursor: pointer;"><span class="state-icon glyphicon glyphicon-unchecked"></span>'+customSymptom+'</li><div class="drop-scoring">'+dropContent+'</div>';

@@ -79,7 +79,7 @@ Summary.prototype.makeSummary = function(presentedParameter, dateFrom, dateTo, h
 	var topTwoSymptom = "Loss of appetite";
 	var topThreeSymptom = "Taste changes";
 	
-	$('#summary').append($('<p>Top three symptoms: </p>').css('text-align','center').append($('<strong>',{
+	$('#summary').append($('<p>Most Frequent Symptoms: </p>').css('text-align','center').append($('<strong>',{
 		"text": "1. " + topOneSymptom + ", 2. " + topTwoSymptom + ", 3. " + topThreeSymptom
 	})));	
 }

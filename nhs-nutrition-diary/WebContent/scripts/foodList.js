@@ -65,7 +65,7 @@ function compareWithCurrentSelections(selection){
 			var obj= $(item);
 			var currentSelection = obj.data('data');
 			if(currentSelection.label === selection.label){
-				currentSelection.portion = currentSelection.portion+1;
+				currentSelection.portion = currentSelection.portion+selection.portion;
 				var accountButton = obj.find('[name=accountButton]');
 				accountButton.text(currentSelection.portion);
 				updateNutritionBreakDown();
@@ -222,14 +222,14 @@ function loadCustomMealView(){
 				var component = mealComponents[index];
 				var food ={};
 				food["id"] = component["id"]
-				//food["EdibleProportion"]= component["quantity"];
+				food["EdibleProportion"]= component["edibleproportion"];
 				food["Energy.kcal"] = component["calories"];
 				food["Fat.g"] = component["fat"];
 				food["FoodCode"] = component["foodid"];
 				food["Protein.g"]= component["protein"];
 				food["Water.g"]= component["fluid"];
 				food["label"]= component["foodname"];
-				food["portion"]= component["quantity"];
+				food["portion"]= parseInt(component["quantity"]);
 				displaySelection(food);
 			});
 		});
@@ -275,7 +275,9 @@ function loadSaveMealView(){
 
 function displaySelection(selection){
 	
-	selection['portion'] = 1;
+	if(!selection.hasOwnProperty('portion')){
+		selection["portion"] = 1;
+	}
 	if(!compareWithCurrentSelections(selection)){
 			
 		var li = new createBasicLi(selection);

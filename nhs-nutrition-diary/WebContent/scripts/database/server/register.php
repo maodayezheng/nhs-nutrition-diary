@@ -31,8 +31,12 @@ if(Input::exists('post'))
 			'weight' => array(
 				'required' => true
 			),
-			'dob' => array(),
-			'activitylevel' => array()
+			'dob' => array(
+				'required' => true
+			),
+			'activitylevel' => array(
+				'required' => true
+			)
 	));
 	
 	if($validation->passed())

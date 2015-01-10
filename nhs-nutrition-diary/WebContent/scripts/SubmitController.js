@@ -271,6 +271,7 @@ SubmitController.prototype.submitMeal = function() {
 		
 		var foodTable = "";
 		var foodId = 0;
+		var edibleProportion = 0;
 		var calories = 0;
 		var protein = 0;
 		var fluid = 0;
@@ -287,6 +288,7 @@ SubmitController.prototype.submitMeal = function() {
 			foodTable = "foodlist";
 			
 			foodId = foodDetails.foodcode;
+			edibleProportion = foodDetails.edibleproportion;
 			calories = foodDetails.energy_kcal;
 			protein = foodDetails.protein_g;
 			fluid = foodDetails.water_g;
@@ -300,6 +302,7 @@ SubmitController.prototype.submitMeal = function() {
 			var userFoodDetails = ServerDBAdapter.prototype.get(userFoodDetailsRequestJSON)[0];
 			foodTable = "userfoodlist";
 			foodId = userFoodDetails.id;
+			edibleProportion = userFoodDetails.quantity_g;
 			calories = userFoodDetails.calories;
 			protein = userFoodDetails.protein;
 			fluid = userFoodDetails.fluid;
@@ -313,6 +316,7 @@ SubmitController.prototype.submitMeal = function() {
 				"mealname": mealName,
 				"foodtable": foodTable,
 				"foodid": foodId,
+				"edibleproportion": edibleProportion,
 				"foodname": foodLabel,
 				"quantity": quantity,
 				"calories": calories,

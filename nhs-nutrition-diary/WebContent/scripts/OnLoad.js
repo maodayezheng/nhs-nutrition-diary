@@ -4,8 +4,8 @@ OnLoad.prototype.load = function(pageName) {
 	switch(pageName) {
 		case 'home':			this.updateTodaysBalance(); break;
 		case 'food':			this.updateFood(); break;
-		case 'foodList':		this.updateFoodList(); break;
-		case 'userFoodList':	this.updateUserFoodList(); break;
+		case 'foodList':		return this.updateFoodList(); break;
+		case 'userFoodList':	return this.updateUserFoodList(); break;
 		case 'symptoms':		this.updateSymptoms(); break;
 		case 'history':			toggleHistoryVisualisation(); break;
 		case 'weight':			this.updateWeight(); break;

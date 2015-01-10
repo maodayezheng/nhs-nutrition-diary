@@ -163,7 +163,7 @@ SubmitController.prototype.submitFoods = function() {
 		var foodDetailsRequestJSON = {
 				"action": "get",
 				"table": "foodlist",
-				"where": "label,=," + foodLabel
+				"where": "foodname,=," + foodLabel
 		};
 		var foodDetails = ServerDBAdapter.prototype.get(foodDetailsRequestJSON)[0];
 		
@@ -171,7 +171,7 @@ SubmitController.prototype.submitFoods = function() {
 			foodTable = "foodlist";
 			
 			foodId = foodDetails.foodcode;
-			foodName = foodDetails.label;
+			foodName = foodDetails.foodname;
 			calories = foodDetails.energy_kcal;
 			protein = foodDetails.protein_g;
 			fluid = foodDetails.water_g;
@@ -181,7 +181,7 @@ SubmitController.prototype.submitFoods = function() {
 			var userFoodDetailsRequestJSON = {
 					"action": "get",
 					"table": "userfoodlist",
-					"where": "userid,=," + userid + ",label,=," + foodLabel
+					"where": "userid,=," + userid + ",foodname,=," + foodLabel
 			};
 			var userFoodDetails = ServerDBAdapter.prototype.get(userFoodDetailsRequestJSON)[0];
 			foodTable = "userfoodlist";
@@ -280,7 +280,7 @@ SubmitController.prototype.submitMeal = function() {
 		var foodDetailsRequestJSON = {
 				"action": "get",
 				"table": "foodlist",
-				"where": "label,=," + foodLabel
+				"where": "foodname,=," + foodLabel
 		};
 		var foodDetails = ServerDBAdapter.prototype.get(foodDetailsRequestJSON)[0];
 		
@@ -297,7 +297,7 @@ SubmitController.prototype.submitMeal = function() {
 			var userFoodDetailsRequestJSON = {
 					"action": "get",
 					"table": "userfoodlist",
-					"where": "userid,=," + userid + ",label,=," + foodLabel
+					"where": "userid,=," + userid + ",foodname,=," + foodLabel
 			};
 			var userFoodDetails = ServerDBAdapter.prototype.get(userFoodDetailsRequestJSON)[0];
 			foodTable = "userfoodlist";

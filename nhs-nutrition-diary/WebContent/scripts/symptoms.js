@@ -230,8 +230,8 @@ $(".passwordButton")
 	 * it is used when the user enters a custom symptom 
 	 * which is then appended to the $("#newSymptomList")
 	 * */
-	     
-var dropContent = 'Rate discomfort 1-5 (low to high)<select class="discomfortRating"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select> <br><br> <input type="text" class="form-control comments symptoms"id="symptomComment" placeholder="Optional comment">';
+	     //Rate discomfort 1-5 (low to high)<select class="discomfortRating"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select> <br>
+var dropContent = '<br> <input type="text" class="form-control comments symptoms"id="symptomComment" placeholder="Optional comment">';
 
 	$("#btn_save_newCustomSymptom").click(function(){	
 		var customSymptom = $('#newSymptom').val();

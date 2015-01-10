@@ -16,7 +16,7 @@ OnLoad.prototype.load = function(pageName) {
 
 OnLoad.prototype.updateTodaysBalance = function() {
 	var userId = SubmitController.prototype.getUserID();
-	
+	console.log("in update");
 	var date = new Date();
 	var dateFormatted = SubmitController.prototype.formatDateOnly(date.dateFormat('d/m/Y'));
 	
@@ -51,16 +51,20 @@ OnLoad.prototype.updateTodaysBalance = function() {
 	var caloriesRequirement = parseFloat(previousRequirements.finalcalories);
 	var proteinRequirement = parseFloat(previousRequirements.finalprotein);
 	var fluidRequirement = parseFloat(previousRequirements.finalfluid);
-
-	var caloriesProgress = (caloriesCurrent/caloriesRequirement) * 100;
+	
+	var caloriesPercentage = caloriesCurrent/caloriesRequirement;
+	var proteinPercentage = proteinCurrent/proteinRequirement;
+	var fluidPercentage = fluidCurrent/fluidRequirement;
+	
+	var caloriesProgress = (caloriesPercentage) * 100;
 	$('#progressBar_calories').css('width', '' + caloriesProgress + '%');
 	$('#progressBar_calories').html('' + caloriesCurrent + ' / ' + caloriesRequirement + ' kcal');
 	
-	var proteinProgress = (proteinCurrent/proteinRequirement) * 100;
+	var proteinProgress = (proteinPercentage) * 100;
 	$('#progressBar_protein').css('width', '' + proteinProgress + '%');
 	$('#progressBar_protein').html('' + proteinCurrent + ' / ' + proteinRequirement + ' g');
 	
-	var fluidProgress = (fluidCurrent/fluidRequirement) * 100;
+	var fluidProgress = (fluidPercentage) * 100;
 	$('#progressBar_fluid').css('width', '' + fluidProgress + '%');
 	$('#progressBar_fluid').html('' + fluidCurrent + ' / ' + fluidRequirement + ' ml');
 }

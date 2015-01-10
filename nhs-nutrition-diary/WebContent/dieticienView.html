@@ -8,7 +8,6 @@
     	<link href="lib/bootstrap/bootstrap.min.css" rel="stylesheet"/>
     	<link href="lib/jquery/jquery-ui-1.11.2.min.css" rel="stylesheet" />
     	<link href="css/standardPage.css" rel="stylesheet">
-    	<link href="css/timepicker.css" rel="stylesheet">
     	
     	<script src="lib/jquery/jquery-2.1.1.min.js"></script>
 		<script src="lib/jquery/jquery-ui-1.11.2.min.js"></script>
@@ -16,18 +15,27 @@
     	
     	<script src="scripts/OnLoad.js"></script>
     	<script src="scripts/cookie.js"></script>
-    	<script src="scripts/util/Validator.js"></script>
     	<script src="scripts/SubmitController.js"></script>
 		<script src="scripts/database/server/ServerDBAdapter.js"></script>
-    	<script src="scripts/database/local/symptomJSON.js"></script>
-    	<script src="scripts/database/local/foodDataJSON.js"></script>
-    	<script src="scripts/utiltyItems.js"></script>
-    	<script src="scripts/foodList.js"></script>
-    	<script src="scripts/timepicker.js"></script>
-    	<script src="scripts/util/dateTimePicker.js"></script>
     	<script src="scripts/Navigator.js"></script>
     	
-    	<title>Dieticien</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+  <link rel="stylesheet" href="/resources/demos/style.css">
+ 
+  <style>
+  #feedback { font-size: 1.4em; }
+  #selectable .ui-selecting { background: #FECA40; }
+  #selectable .ui-selected { background: #F39814; color: white; }
+  #selectable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+  #selectable li { margin: 3px; padding: 0.4em; font-size: 1.4em; height: 18px; }
+  </style>
+  <script>
+  $(function() {
+    $( "#selectable" ).selectable();
+  });
+  </script>
   	</head>
   	<body>
  		<nav class="navbar navbar-default" role="navigation">
@@ -51,7 +59,7 @@
     	<div class="container">
     		<div class="search-field">
       			<div class="input-group input-group-lg">
-  					<input type="text" class="form-control"  placeholder="Select NHS Number" id="search">
+  					<input type="text" class="form-control"  placeholder="Search NHS Number" id="search">
   					<span class="input-group-btn">
     					<button class="btn btn-default" type="button" id="searchButton">
     						<span class="glyphicon glyphicon-search"></span>
@@ -68,34 +76,23 @@
 	  					</div>
 	  				</div>
   				</div>
-				<div class="panel-body selection-body">
-					<ul class="list-group selection-list" role="menu"></ul>
+				<div class="panel-body selection-body" overflow: auto;>
+					<ul class="list-group selection-list" role="menu" id="selectable">
+  <li class="ui-widget-content">Item 1</li>
+  <li class="ui-widget-content">Item 2</li>
+  <li class="ui-widget-content">Item 3</li>
+  <li class="ui-widget-content">Item 4</li>
+  <li class="ui-widget-content">Item 5</li>
+  <li class="ui-widget-content">Item 6</li>
+  <li class="ui-widget-content">Item 7</li>
+  </ul>
 				</div>
 			</div>
 			
 		    <div id="submitSession">
 		    	<button class="btn btn-lg btn-success btn-block" id="btn_submit_foods"
-		    		onclick="SubmitController.prototype.submit(this.id)">Submit</button> 
+		    		onclick="SubmitController.prototype.submit(this.id)">Select Patient</button> 
 		    </div>
     	</div>
-    	<div class="modal fade" id="modalInfo" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
-  			<div class="modal-dialog">
-    			<div class="modal-content">
-      				<div class="modal-header">
-        				<button type="button" class="close" data-dismiss="modal">
-        					<span aria-hidden="true">&times;</span>
-        					<span class="sr-only">Close</span>
-        				</button>
-        				<h4 class="modal-title" id="modal-info-title"></h4>
-      				</div>
-      				<div class="modal-body" id="modal-info-body"></div>
-      				<div class="modal-footer" id="modal-info-footer">
-      				
-      				<button type="button" class="modal-button btn btn-success" id="" data-dismiss="modal">Done</button>
-      				
-      				</div>
-    			</div>
-  			</div>
-		</div>
   	</body>
 </html>

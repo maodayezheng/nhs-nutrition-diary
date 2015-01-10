@@ -81,9 +81,8 @@ OnLoad.prototype.updateFoodList = function() {
 			"table": "foodlist",
 			"where": "id,=," + 0
 	};
-	var foodList = ServerDBAdapter.prototype.get(foodListRequestJSON);
 	
-	return foodList;
+	return ServerDBAdapter.prototype.get(foodListRequestJSON);
 }
 
 OnLoad.prototype.updateUserFoodList = function() {
@@ -93,9 +92,8 @@ OnLoad.prototype.updateUserFoodList = function() {
 			"table": "userfoodlist",
 			"where": "userid,=," + userId
 	};
-	var userFoodList = ServerDBAdapter.prototype.get(userFoodListRequestJSON);
 	
-	return userFoodList;
+	return ServerDBAdapter.prototype.get(userFoodListRequestJSON);
 }
 
 OnLoad.prototype.frequentFoods = function() {

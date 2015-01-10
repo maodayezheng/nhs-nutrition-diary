@@ -6,8 +6,8 @@ $(document).ready(function(){
 	
 	// load data
 	var data =new FoodDataSingleton().foodData;
-	//var data = OnLoad.prototype.load('foodList');
-	//var userFoodList = OnLoad.prototype.load('userFoodList');
+	console.log(OnLoad.prototype.load('foodList'));
+	console.log(OnLoad.prototype.load('userFoodList'));
 	
 	// search 
 			$('#search').autocomplete({

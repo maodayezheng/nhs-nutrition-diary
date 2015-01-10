@@ -61,6 +61,18 @@ SubmitController.prototype.getAge = function(dateOfBirth) {
     return age;
 }
 
+SubmitController.prototype.submitSignUpDetails = function() {
+	console.log("in submit details");
+	var userId = this.getUserID();
+	var registerRequestJSON = {
+			"table": "userweightmanifest",
+			"where": "userid,=," + userId
+	};
+	
+	ServerDBAdapter.prototype.submit(registerRequestJSON, 'register');
+	
+}
+
 SubmitController.prototype.updateRequirements = function() {
 	var table = "userrequirementsmanifest";
 	
@@ -514,10 +526,10 @@ SubmitController.prototype.submitSettings = function() {
 SubmitController.prototype.successMessage = function(message) {
 
 	var warning = $('<div>',{
-		"class":"col-xs-4 col-xs-offset-4 alert alert-success center ",
+		"class":"alert alert-success center",
 		"role":"alert",
 		"text":message
-	}).css('text-align','center');
+	});
 	$('body').append(warning);
 	
 	setTimeout(function(){warning.remove(); window.location.href = 'home.html';},1000);

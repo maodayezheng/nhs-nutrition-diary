@@ -36,7 +36,7 @@
       		</div>
 		</nav>
     	<div class="container">
-      		<form class="form-signup" role="form" method="post" action="scripts/database/server/register.php">
+      		<form role="form" class="form-signup"><!--  ><!-- method="post" action="scripts/database/server/register.php"-->
 				<table class="regester-table">
 				  <tr>
 				    <td align="left"><label for="nhsnumber">NHS Number:</label></td>
@@ -56,7 +56,7 @@
 				  </tr>
 				  <tr>
 				    <td align="left"><label for="dob">Date of Birth:</label></td>
-				    <td><input type="text" id="symptomDate" name="dob" class="form-control date" placeholder="  Enter Your Date of Birth"></td>
+				    <td><input type="text" id="symptomDate" name="dob" class="form-control date" placeholder="  Enter Your Date of Birth" required></td>
 				  </tr>
 				  <tr>
 				    <td align="left"><label for="activity_level">Activity Level:</label></td>
@@ -69,9 +69,7 @@
 		      			<input class="radio_buttons optional" id="user_basic_sex_female" name="user_basic[sex]" type="radio" value="Female"> Female</td>
 				  </tr>
 				</table>
-				<!-- Mandatory hidden input --><input type="hidden" name="token" value="">
-        		<button id="btn_submit_signUpDetails" class="btn btn-lg btn-success btn-block">Submit</button>
-        			<!-- onclick="SubmitController.prototype.submit(this.id)">Submit</button-->
+        		<button id="btn_submit_signUpDetails" class="btn btn-lg btn-success btn-block" onclick="SubmitController.prototype.submit(this.id)">Submit</button>
       		</form>
     	</div>
   	</body>

@@ -60,11 +60,9 @@ function createReduceButton(data){
 		var accountButton = $(this).siblings('[name=accountButton]');
 		var food = $(this).data('data');
 		food.portion = food.portion -1;
-		 
 		if (food.portion <1){
 			food.portion = 1;
 		}
-		
 		accountButton.text(data.portion);
 	});
 	

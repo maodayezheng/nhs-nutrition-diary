@@ -212,15 +212,7 @@ SubmitController.prototype.submitFoods = function() {
 		ServerDBAdapter.prototype.submit(dataToServer, "save");
 	});
 	
-	var warning = $('<div>',{
-		"class":"alert alert-success center",
-		"role":"alert",
-		"text":"Foods submitted."
-	});
-	$('body').append(warning);
-	setTimeout(function(){warning.remove()},3000);
-	
-	window.location.href = 'home.html';
+	this.successMessage("Foods submitted.");
 }
 
 SubmitController.prototype.submitNewFood = function() {
@@ -412,17 +404,9 @@ SubmitController.prototype.submitSymptoms = function() {
 		ServerDBAdapter.prototype.submit(dataToServer, "save");
 	}
 	
-	var warning = $('<div>',{
-		"class":"alert alert-success center",
-		"role":"alert",
-		"text":"Symptoms submitted."
-	});
-	$('body').append(warning);
-	setTimeout(function(){warning.remove()},3000);
-	
-	window.location.href = 'home.html';
+	this.successMessage("Symptoms submitted.");
 }
-
+	
 SubmitController.prototype.submitNewCustomSymptom = function() {
 	table = "usersymptomlist";
 	userid = this.getUserID();
@@ -461,15 +445,7 @@ SubmitController.prototype.submitWeight = function() {
 	
 	this.updateRequirements();
 	
-	var warning = $('<div>',{
-		"class":"alert alert-success center",
-		"role":"alert",
-		"text":"Weight submitted."
-	});
-	$('body').append(warning);
-	setTimeout(function(){warning.remove()},3000);
-	
-	window.location.href = 'home.html';
+	this.successMessage("Weight submitted.");
 }
 
 SubmitController.prototype.submitSettings = function() {
@@ -532,13 +508,17 @@ SubmitController.prototype.submitSettings = function() {
 	
 	ServerDBAdapter.prototype.submit(dataToServer, "save");
 	
+	this.successMessage("Amendments submitted.");
+}
+
+SubmitController.prototype.successMessage = function(message) {
+
 	var warning = $('<div>',{
 		"class":"alert alert-success center",
 		"role":"alert",
-		"text":"Amendments submitted."
+		"text":message
 	});
 	$('body').append(warning);
-	setTimeout(function(){warning.remove()},3000);
 	
-	window.location.href = 'home.html';
+	setTimeout(function(){warning.remove(); window.location.href = 'home.html';},1000);
 }

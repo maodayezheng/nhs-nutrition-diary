@@ -17,7 +17,7 @@ Table.prototype.manageTable = function(presentedParameter, dateFrom, dateTo) {
 		var weightHistoryRequestJSON = {
 				"action": "get",
 				"table": "userweightmanifest",
-				"where": "userid,=," + userId
+				"where": "userid,=," + userId + ",datetime,>=," + dateFromFormatted + " 00:00:00," + "datetime,<=," + dateToFormatted + " 23:59:59"
 		};
 		history = ServerDBAdapter.prototype.get(weightHistoryRequestJSON);
 	} else {

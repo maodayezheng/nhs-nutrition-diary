@@ -5,28 +5,43 @@
 $(document).ready(function(){
 	
 	// load data
-	var data =new FoodDataSingleton().foodData;
-	console.log(OnLoad.prototype.load('foodList'));
-	console.log(OnLoad.prototype.load('userFoodList'));
-	
+	var data = OnLoad.prototype.load('foodList');
+		data = data.concat(OnLoad.prototype.load('userFoodList'));
 	// search 
 			$('#search').autocomplete({
 			source:function (request, response) {
             var term = $.ui.autocomplete.escapeRegex(request.term);
+            //console.log(response);
             // remove unnecessary search result 
                 startsWithMatcher = new RegExp("^" + term, "i");
-                console.log(term);
                  startsWith = $.grep(data, function(value) {
-                    return startsWithMatcher.test(value.label);
+                	 var macther = startsWithMatcher.test(value.foodname);
+                    return macther;
                 });
-            response(startsWith);
+                 response(startsWith);
         },
 			select:function(event,ui){
 				var selection = ui.item;
 				displaySelection(selection);
 			},
 			minLength: 3,
-			
+			response:function(event,response){
+				var customiseFood =[];
+				var food = [];
+				$.each(response,function(index,value){
+					var items = value;
+				$.each(items,function(index,value){
+					console.log(value);
+					if(value.id === "0"){
+						food.push(value);
+					}else{
+						customiseFood.push(value);
+					}
+				});
+				});
+				var results = customiseFood.concat(food);
+				return results;
+			}
 		});
 			
 	// click events		
@@ -58,7 +73,6 @@ $(document).ready(function(){
 });
 
 function compareWithCurrentSelections(selection){
-	console.log(selection);
 	var present = false;
 	var children = $('.selection-list').children('li');
 		children.each(function(index,item){
@@ -70,7 +84,6 @@ function compareWithCurrentSelections(selection){
 				accountButton.text(currentSelection.portion);
 				updateNutritionBreakDown();
 				present = true;
-			
 			}
 		});
 	return present;
@@ -228,7 +241,7 @@ function loadCustomMealView(){
 				food["FoodCode"] = component["foodid"];
 				food["Protein.g"]= component["protein"];
 				food["Water.g"]= component["fluid"];
-				food["label"]= component["foodname"];
+				food["foodname"]= component["foodname"];
 				food["portion"]= parseInt(component["quantity"]);
 				displaySelection(food);
 			});
@@ -292,7 +305,7 @@ function displaySelection(selection){
 		controlPanel.addItems([reduceButton,accountButton,increaseButton]);
 		li.addItemToLeft(deleteButton);
 		var amount = " (" +parseInt(selection.EdibleProportion)*100 +" g)";
-		var displayContent = "  "+selection.label +amount;
+		var displayContent = "  "+selection.foodname +amount;
 		li.addItemToLeft(displayContent);
 		li.addItemToRight(controlPanel);
 		$('.selection-list').append(li);
@@ -310,6 +323,10 @@ $(function(){
 	
 	//$.ui.autocomplete.prototype._renderItemData = function(){}
 	
-	//$.ui.autocomplete.prototype._renderItem = function(table, item) {}
+	$.ui.autocomplete.prototype._renderItem = function(ul, item) {
+		
+	return $('<li>').append(item.foodname).appendTo(ul);
+		
+	}
 	
 })

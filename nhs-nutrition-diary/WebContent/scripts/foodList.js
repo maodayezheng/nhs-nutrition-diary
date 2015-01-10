@@ -58,14 +58,19 @@ $(document).ready(function(){
 });
 
 function compareWithCurrentSelections(selection){
-	
+	console.log(selection);
 	var present = false;
 	var children = $('.selection-list').children('li');
 		children.each(function(index,item){
 			var obj= $(item);
 			var currentSelection = obj.data('data');
 			if(currentSelection.label === selection.label){
+				currentSelection.portion = currentSelection.portion+1;
+				var accountButton = obj.find('[name=accountButton]');
+				accountButton.text(currentSelection.portion);
+				updateNutritionBreakDown();
 				present = true;
+			
 			}
 		});
 	return present;
@@ -80,17 +85,9 @@ function updateNutritionBreakDown(){
 		var obj = $(item);
 		var data = obj.data('data');
 		var portion = data['portion'];
-		if(data['id']==='food'){
 		protein += portion*parseNutritionData(data['Protein.g']);
 		fluid += portion*parseNutritionData(data['Water.g']);
 		calories +=portion*parseNutritionData(data['Energy.kcal']);
-		}else{
-			protein += portion*parseNutritionData(data['mealtotalprotien']);
-			fluid += portion*parseNutritionData(data['mealtotalfluid']);
-			calories +=portion*parseNutritionData(data['mealtotalcalories']);
-			
-			
-		}
 	});
 	
 	$('#calories').text(calories);
@@ -100,7 +97,7 @@ function updateNutritionBreakDown(){
 
 function parseNutritionData(nutrition){
 	
-	return (nutrition ==="N")? 0:parseInt(nutrition);
+	return (isNaN(parseInt(nutrition)))? 0:parseInt(nutrition);
 	
 }
 
@@ -220,11 +217,20 @@ function loadCustomMealView(){
 			"text":	data[index].mealname
 		}).data('data',data).bind('click',function(){
 			var mealComponents = OnLoad.prototype.mealComponents(data[index].mealname);
+			console.log(mealComponents);
 			$.each(mealComponents,function(index){
 				var component = mealComponents[index];
-				component["label"] = component.foodname;
-				component["EdibleProportion"] = component.quantity;
-				displaySelection(mealComponents[index]);
+				var food ={};
+				food["id"] = component["id"]
+				//food["EdibleProportion"]= component["quantity"];
+				food["Energy.kcal"] = component["calories"];
+				food["Fat.g"] = component["fat"];
+				food["FoodCode"] = component["foodid"];
+				food["Protein.g"]= component["protein"];
+				food["Water.g"]= component["fluid"];
+				food["label"]= component["foodname"];
+				food["portion"]= component["quantity"];
+				displaySelection(food);
 			});
 		});
 		li.appendTo(list);
@@ -290,10 +296,6 @@ function displaySelection(selection){
 		$('.selection-list').append(li);
 		updateNutritionBreakDown();
 		
-		}else{
-			
-			alert("Selection already in list");
-			
 		}
 }
 

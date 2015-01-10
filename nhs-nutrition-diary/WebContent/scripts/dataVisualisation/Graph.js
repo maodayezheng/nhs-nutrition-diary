@@ -19,6 +19,13 @@ function manageGraph(presentedParameter, dateFrom, dateTo) {
 	var history = ServerDBAdapter.prototype.get(historyRequestJSON);
 	console.log(history);*/
 	
+	var requirementsRequestJSON = {
+			"action": "getLast",
+			"table": "userrequirementsmanifest",
+			"where": "userid,=," + userId
+	};
+	var requirements = ServerDBAdapter.prototype.get(requirementsRequestJSON);
+	
 	var history = 
 		[
 			{
@@ -38,12 +45,12 @@ function manageGraph(presentedParameter, dateFrom, dateTo) {
 			}  
 		];
 	
-	makeGraph(presentedParameter, dateFrom, dateTo, history);
+	makeGraph(presentedParameter, dateFrom, dateTo, history, requirements);
 }
 
 //TODO draw current requirements as well (as a horizontal line)
 
-function makeGraph(presentedParameter, dateFrom, dateTo, history) {
+function makeGraph(presentedParameter, dateFrom, dateTo, history, requirements) {
 	/*var caloriesCurrent = 0;
 	var proteinCurrent = 0;
 	var fluidCurrent = 0;
@@ -157,6 +164,12 @@ function makeGraph(presentedParameter, dateFrom, dateTo, history) {
 	  .attr('stroke', 'blue')
 	  .attr('stroke-width', 2)
 	  .attr('fill', 'none');
+	
+	/*vis.append('svg:path')
+	  .attr('d', lineFunc(requirements))
+	  .attr('stroke', 'blue')
+	  .attr('stroke-width', 2)
+	  .attr('fill', 'none');*/
 	
 	d3.select('svg').attr("width", "100%").attr("height", 500);
 }

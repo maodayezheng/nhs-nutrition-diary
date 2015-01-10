@@ -89,9 +89,9 @@ function updateNutritionBreakDown(){
 		var obj = $(item);
 		var data = obj.data('data');
 		var portion = data['portion'];
-		protein += portion*parseNutritionData(data['Protein.g']);
-		fluid += portion*parseNutritionData(data['Water.g']);
-		calories +=portion*parseNutritionData(data['Energy.kcal']);
+		protein += portion*parseNutritionData(data['protein_g']);
+		fluid += portion*parseNutritionData(data['water_g']);
+		calories +=portion*parseNutritionData(data['energy_kcal']);
 	});
 	
 	$('#calories').text(calories);
@@ -226,12 +226,12 @@ function loadCustomMealView(){
 				var component = mealComponents[index];
 				var food ={};
 				food["id"] = component["id"]
-				food["EdibleProportion"]= component["edibleproportion"];
-				food["Energy.kcal"] = component["calories"];
-				food["Fat.g"] = component["fat"];
-				food["FoodCode"] = component["foodid"];
-				food["Protein.g"]= component["protein"];
-				food["Water.g"]= component["fluid"];
+				food["edibleproportion"]= component["edibleproportion"];
+				food["energy_kcal"] = component["calories"];
+				food["fat_g"] = component["fat"];
+				food["foodcode"] = component["foodid"];
+				food["protein_g"]= component["protein"];
+				food["water_g"]= component["fluid"];
 				food["foodname"]= component["foodname"];
 				food["portion"]= parseInt(component["quantity"]);
 				displaySelection(food);
@@ -295,7 +295,7 @@ function displaySelection(selection){
 		increaseButton.bind('click',updateNutritionBreakDown);
 		controlPanel.addItems([reduceButton,accountButton,increaseButton]);
 		li.addItemToLeft(deleteButton);
-		var amount = " (" +parseInt(selection.EdibleProportion)*100 +" g)";
+		var amount = " (" +parseInt(selection.edibleproportion)*100 +" g)";
 		var displayContent = "  "+selection.foodname +amount;
 		li.addItemToLeft(displayContent);
 		li.addItemToRight(controlPanel);

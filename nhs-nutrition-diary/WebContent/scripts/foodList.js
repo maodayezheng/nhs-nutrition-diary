@@ -9,9 +9,9 @@ $(document).ready(function(){
 	// search 
 			$('#search').autocomplete({
 			source:function (request, response) {
-				var dataSetOne = OnLoad.prototype.load('foodList');
-				var dataSetTwo = OnLoad.prototype.load('userFoodList');
-				var data = dataSetTwo.concat(dataSetOne);
+			var dataSetOne = OnLoad.prototype.load('foodList');
+			var dataSetTwo = OnLoad.prototype.load('userFoodList');
+			var data = dataSetTwo.concat(dataSetOne);
             var term = $.ui.autocomplete.escapeRegex(request.term);
             //console.log(response);
             // remove unnecessary search result 
@@ -20,7 +20,13 @@ $(document).ready(function(){
                 	 var macther = startsWithMatcher.test(value.foodname);
                     return macther;
                 });
-                 response(startsWith);
+                 containsMatcher = new RegExp(term, "i")
+                , contains = $.grep(data, function (value) {
+                    return $.inArray(value, startsWith) < 0 &&
+                        containsMatcher.test(value.foodname);
+                });
+
+            response(startsWith.concat(contains));
         },
 			select:function(event,ui){
 				var selection = ui.item;

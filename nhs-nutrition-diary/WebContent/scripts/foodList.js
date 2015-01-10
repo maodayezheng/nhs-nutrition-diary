@@ -292,7 +292,7 @@ function displaySelection(selection){
 		controlPanel.addItems([reduceButton,accountButton,increaseButton]);
 		li.addItemToLeft(deleteButton);
 		var amount = " (" +parseInt(selection.EdibleProportion)*100 +" g)";
-		var displayContent = selection.label +amount;
+		var displayContent = "  "+selection.label +amount;
 		li.addItemToLeft(displayContent);
 		li.addItemToRight(controlPanel);
 		$('.selection-list').append(li);

@@ -5,11 +5,13 @@
 $(document).ready(function(){
 	
 	// load data
-	var data = OnLoad.prototype.load('foodList');
-		data = data.concat(OnLoad.prototype.load('userFoodList'));
+	
 	// search 
 			$('#search').autocomplete({
 			source:function (request, response) {
+				var dataSetOne = OnLoad.prototype.load('foodList');
+				var dataSetTwo = OnLoad.prototype.load('userFoodList');
+				var data = dataSetTwo.concat(dataSetOne);
             var term = $.ui.autocomplete.escapeRegex(request.term);
             //console.log(response);
             // remove unnecessary search result 
@@ -25,23 +27,6 @@ $(document).ready(function(){
 				displaySelection(selection);
 			},
 			minLength: 3,
-			response:function(event,response){
-				var customiseFood =[];
-				var food = [];
-				$.each(response,function(index,value){
-					var items = value;
-				$.each(items,function(index,value){
-					console.log(value);
-					if(value.id === "0"){
-						food.push(value);
-					}else{
-						customiseFood.push(value);
-					}
-				});
-				});
-				var results = customiseFood.concat(food);
-				return results;
-			}
 		});
 			
 	// click events		
@@ -324,7 +309,7 @@ $(function(){
 	//$.ui.autocomplete.prototype._renderItemData = function(){}
 	
 	$.ui.autocomplete.prototype._renderItem = function(ul, item) {
-		
+		console.log(item);
 	return $('<li>').append(item.foodname).appendTo(ul);
 		
 	}

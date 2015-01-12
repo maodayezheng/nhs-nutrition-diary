@@ -59,9 +59,7 @@
 		<div class="container">
 			<div class="panel-body">
 				<h4>It is recommended to enter your weight a maximum of once per week</h4>
-				<div class="col-sm-4">
-					<label>Please check the appropriate box below</label>
-				</div>
+
 				<div style="display: inline">
 					<div class="form-group">
 						<div class="row"></div>
@@ -77,29 +75,27 @@
 						</div>
 						<div class="container">
 							<div class="row">
+							<!--  
 								<div class="col-sm-4">
 									<div class="left-inner-addon ">
 										<i class ="glyphicon glyphicon-calendar"></i>
 											<input type="text" class="form-control date" placeholder="Date" id="datetime">
 									</div>
-								</div>
+								</div>-->
 							</div>
 						</div>
 						<br>
 						<div class="container">
 							<div class="row">
 								<label class="col-sm-2">Current Weight</label>
-								<label class="col-sm-1" id="currentWeight"></label>
+									<label class="col-sm-6" id="currentWeight"></label>
+									<span>
+										<label class="col-sm-2">Update Weight</label>
+										<input class="col-sm-1" id="newWeight" type="number">
+									</span>
 							</div>
-						</div>
-						<div class="container">
-							<div class="row">
-								<label class="col-sm-2">Update Weight</label>
-									<input class="col-sm-1" id="newWeight" type="number">
-							</div>
-						</div>
-					</div>
-					<div class=" col-sm-12">
+						</div><br>
+						<div class=" col-sm-12">
 						<button class="btn btn-lg btn-success btn-block" id="btn_submit_weight"
 							onclick="SubmitController.prototype.submit(this.id)">Save
 						</button>

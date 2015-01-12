@@ -331,7 +331,7 @@ function symptomsListView(symptoms){
 ////////////////////////////////NOT USED IN SYMPTOMS//////////////////////////////
 ////////////////////////////////USED IN WEIGHT//////////////////////////////
 
-$(document).on('click', '.panel-heading span.clickable', function (e) {
+/*$(document).on('click', '.panel-heading span.clickable', function (e) {
     var $this = $(this);
     if (!$this.hasClass('panel-collapsed')) {
         $this.parents('.panel').find('.panel-body').slideUp();
@@ -396,4 +396,4 @@ $(function() {
     }).mouseup(function(){
         clearInterval(action);
     });
-});
+});*/

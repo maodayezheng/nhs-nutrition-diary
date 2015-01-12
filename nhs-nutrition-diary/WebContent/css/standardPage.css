@@ -348,4 +348,7 @@ padding-left: 15%;
 padding-right: 15%;
 position: relative; }
 
-
+#btn_submit_weight{
+	width: 100%;
+    display: inline-block;
+}

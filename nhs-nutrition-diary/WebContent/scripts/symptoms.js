@@ -288,11 +288,19 @@ var dropContent = '<br> <input type="text" class="form-control comments symptoms
 	});
 	
 
-////////////////////////////////SUBMIT NEW SYMPTOMS TO JSON///////////////////////////////////////////////
+////////////////////////////////Get state of checkboxes weight///////////////////////////////////////////////
 
-	$("#saveWeight").click(function(){
-		$('p').html("#currentWeight");
-	});
+	/*$("#saveWeight").click(function(){
+		console.log("helo");
+		var checkedWeight = {};
+		var counter = 0;
+		$("#swellings li.active").each(function(idx, li) {
+	    	checkedWeight[counter] = $(li).text();
+	    	counter++;
+	    	console.log(checkedWeight);	
+		});	});*/
+	
+
 
 });
 

@@ -9,10 +9,9 @@
  * */
  
 require_once 'init.php';
-echo("before if");
+
 if(Input::exists('post'))
 {
-	echo("in if");
 	$validate = new Validate();
 	$validation = $validate -> check($_POST, array(
 			'nhsnumber' => array(

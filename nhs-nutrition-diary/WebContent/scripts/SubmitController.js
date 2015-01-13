@@ -159,7 +159,7 @@ SubmitController.prototype.submitFoods = function() {
 	var counter = 0;
 	$('.selection-list li').each(function(idx, li) {
 		var food  = $(li).data('data');
-		var foodLabel = food['label'];
+		var foodLabel = food['foodname'];
 		var quantity = food['portion'];
 		counter++;
 		
@@ -175,9 +175,11 @@ SubmitController.prototype.submitFoods = function() {
 		var foodDetailsRequestJSON = {
 				"action": "get",
 				"table": "foodlist",
-				"where": "foodname,=," + foodLabel
+				"where": "foodname,=," + foodLabel		
 		};
 		var foodDetails = ServerDBAdapter.prototype.get(foodDetailsRequestJSON)[0];
+		
+		console.log(foodDetails);
 		
 		if(foodDetails != null) {
 			foodTable = "foodlist";
@@ -269,7 +271,7 @@ SubmitController.prototype.submitMeal = function() {
 	var counter = 0;
 	$('.selection-list li').each(function(idx, li) {
 		var food  = $(li).data('data');
-		var foodLabel = food['label'];
+		var foodLabel = food['foodname'];
 		var quantity = food['portion'];
 		counter++;
 		

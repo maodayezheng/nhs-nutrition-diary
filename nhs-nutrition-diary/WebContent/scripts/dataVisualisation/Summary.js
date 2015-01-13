@@ -12,12 +12,13 @@ Summary.prototype.manageSummary = function(presentedParameter, dateFrom, dateTo)
 	var dateFromFormatted = SubmitController.prototype.formatDateOnly(dateFrom);
 	var dateToFormatted = SubmitController.prototype.formatDateOnly(dateTo);
 	
+	/*
 	var historyRequestJSON = {
 			"action": "get",
 			"table": "userfoodmanifest",
 			"where": "userid,=," + userId + ",datetime,>=," + dateFromFormatted + " 00:00:00," + "datetime,<=," + dateToFormatted + " 23:59:59"
 	};
-	var history = ServerDBAdapter.prototype.get(historyRequestJSON);
+	var history = ServerDBAdapter.prototype.get(historyRequestJSON);*/
 	
 	this.makeSummary(presentedParameter, dateFrom, dateTo, history);
 }

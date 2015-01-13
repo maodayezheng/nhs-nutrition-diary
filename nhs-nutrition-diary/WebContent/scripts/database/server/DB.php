@@ -144,21 +144,18 @@ class DB
 	 */
 	public function getUserData($dataDecoded) 
 	{
-// 		echo "in getGraphData in the DB class \n";
 		$queryResults = array(); //array the data will be pushed to. 
 		//echo "in get user data method in DB class.php";
 		if((isset($dataDecoded['userID']) && isset($dataDecoded['dateFrom']) && isset($dataDecoded['dateTo']) ) )
 		{
-			$dateFrom 	= $dataDecoded['dateFrom'];
-			$dateTo 	= $dataDecoded['dateTo'];
-			$userID		= $dataDecoded['userID'];
-			
-			$tables 	= array('userfoodmanifest', 'userweightmanifest','usersymptommanifest','userrequirementsmanifest'); //these are the tables we are retrieving the user's data from. 
+			$dateFrom = $dataDecoded['dateFrom']; $dateTo = $dataDecoded['dateTo']; $userID	= $dataDecoded['userID'];
+			$tables   = array('userfoodmanifest', 'userweightmanifest','usersymptommanifest','userrequirementsmanifest'); //these are the tables we are retrieving the user's data from. 
 			
 			for($i=0; $i<sizeof($tables); $i++)
 			{
 				array_push($queryResults, array($tables[$i] => $this->get($tables[$i],array('userid','=',$userID,'datetime','>=',$dateFrom,'datetime','<=',$dateTo))->results()));
 			}
+			
 			return $queryResults; 
 		} else 
 		{

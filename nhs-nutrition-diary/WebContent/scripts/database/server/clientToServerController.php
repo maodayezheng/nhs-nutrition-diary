@@ -64,6 +64,7 @@ switch($action)
 {
 	case 'get':						get($db, $table, $where, $endStatement); break;
 	case 'getUserProfile':			getUserProfile($db, $table, $where); break; 
+	case 'getVisualisationData':	getVisualisationData($db, $dataDecoded); break;
 	case 'getLast':					getLast($db, $table, $where); break;
 	case 'getTenMostFrequent':		getTenMostFrequent($db, $table, $where, $number); break; 
 	case 'save': 					$db->insert($table, $dataDecoded); break; 
@@ -74,6 +75,13 @@ function get($db, $table, $where, $endStatement = null) {
 	$resultsJSON = json_encode($results);
 	echo($resultsJSON);
 	//$resultsJSON = null;
+}
+
+function getVisualisationData($db, $dataDecoded)
+{
+	$queryResultArray = $db->getUserData($dataDecoded);
+	echo "in get vis";
+	var_dump($queryResultArray);
 }
 
 function getUserProfile($db, $table, $where)

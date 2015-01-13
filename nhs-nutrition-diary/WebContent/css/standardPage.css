@@ -4,16 +4,23 @@ body{
 	background-color:#eee;
 
 }
-
-.navbar-title{
+.row{
+	margin-right: -8px;
+	margin-left: -8px;
 	
+}
+.navbar-title{
 	padding-top:15px;
 	text-align:center;
 	color:white;
 	font-size:18px;
 	line-height:20px;
-	
 	}
+.navbar-margin{
+	margin-left:5px;
+	margin-right:5px
+	
+}
 	
 .space-margin{
 	margin-top:40px;

@@ -159,8 +159,9 @@ function loadNewFoodView(){
 		doneButton.unbind('click');
 		doneButton.attr('id','btn_submit_newFood');
 		doneButton.bind('click',function(){
+			
+			SubmitController.prototype.submit(this.id);
 			food = loadFoodData();
-			SubmitController.prototype.submit(this.id)
 			});
 }
 

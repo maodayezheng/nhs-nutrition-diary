@@ -103,8 +103,6 @@ function getTenMostFrequent($db, $table, $where, $number) {
 	$db->tenMostFrequent($table, $where, $number);
 	$results = $db->results();
 	$resultsJSON = json_encode($results);
-	echo("before...");
 	echo($resultsJSON);
-	echo("after...");
 	$resultsJSON = null;
 }

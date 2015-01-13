@@ -437,7 +437,7 @@ SubmitController.prototype.submitNewCustomSymptom = function() {
 			"symptom": symptom,
 	};
 	
-	ServerDBAdapter.prototype.submit(dataToServer, "save");	
+	ServerDBAdapter.prototype.submit(dataToServer, "save");
 }
 
 SubmitController.prototype.submitWeight = function() {

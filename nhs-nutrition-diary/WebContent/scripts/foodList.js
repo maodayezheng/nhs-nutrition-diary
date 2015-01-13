@@ -1,27 +1,24 @@
 /**
  * 
  */
-
+var food;
 $(document).ready(function(){
 	
 	// load data
-	
+	 food = loadFoodData();
 	// search 
 			$('#search').autocomplete({
 			source:function (request, response) {
-			var dataSetOne = OnLoad.prototype.load('foodList');
-			var dataSetTwo = OnLoad.prototype.load('userFoodList');
-			var data = dataSetTwo.concat(dataSetOne);
             var term = $.ui.autocomplete.escapeRegex(request.term);
             //console.log(response);
             // remove unnecessary search result 
                 startsWithMatcher = new RegExp("^" + term, "i");
-                 startsWith = $.grep(data, function(value) {
+                 startsWith = $.grep(food, function(value) {
                 	 var macther = startsWithMatcher.test(value.foodname);
                     return macther;
                 });
                  containsMatcher = new RegExp(term, "i")
-                , contains = $.grep(data, function (value) {
+                , contains = $.grep(food, function (value) {
                     return $.inArray(value, startsWith) < 0 &&
                         containsMatcher.test(value.foodname);
                 });
@@ -161,7 +158,10 @@ function loadNewFoodView(){
 	var doneButton = $('.modal-button');
 		doneButton.unbind('click');
 		doneButton.attr('id','btn_submit_newFood');
-		doneButton.bind('click',function(){SubmitController.prototype.submit(this.id)});
+		doneButton.bind('click',function(){
+			food = loadFoodData();
+			SubmitController.prototype.submit(this.id)
+			});
 }
 
 function loadFrequentFoodView(){
@@ -303,6 +303,14 @@ function displaySelection(selection){
 		updateNutritionBreakDown();
 		
 		}
+}
+
+function loadFoodData(){
+	console.log("load Data");
+	var dataSetOne = OnLoad.prototype.load('foodList');
+	var dataSetTwo = OnLoad.prototype.load('userFoodList');
+	var data = dataSetTwo.concat(dataSetOne);
+	return data;
 }
 
 // render the search result here

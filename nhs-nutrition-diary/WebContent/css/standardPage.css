@@ -1,6 +1,6 @@
 body{
-	
-	margin-bottom:40px;
+	display:block;
+	position: relative;
 	background-color:#eee;
 
 }
@@ -15,6 +15,13 @@ body{
 	
 	}
 	
+.space-margin{
+	margin-top:40px;
+}
+.element-margin{
+	margin-top:15px;
+}
+
 .back{
 	
 	vertical-align:central;
@@ -26,7 +33,7 @@ body{
 	font-size:16px;
 	
 	}
-	
+
 .ui-autocomplete {
     max-height: 250px;
     overflow-y: auto;

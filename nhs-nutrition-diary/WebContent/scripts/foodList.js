@@ -69,7 +69,7 @@ function compareWithCurrentSelections(selection){
 		children.each(function(index,item){
 			var obj= $(item);
 			var currentSelection = obj.data('data');
-			if(currentSelection.label === selection.label){
+			if(currentSelection.foodname === selection.foodname){
 				currentSelection.portion = currentSelection.portion+selection.portion;
 				var accountButton = obj.find('[name=accountButton]');
 				accountButton.text(currentSelection.portion);

@@ -11,6 +11,8 @@ SubmitController.prototype.submit = function(submitter) {
 		case 'btn_save_newCustomSymptom': this.submitNewCustomSymptom(); break;
 		case 'btn_submit_weight': this.submitWeight(); break;
 		case 'btn_submit_settings': this.submitSettings(); break;
+		case 'btn_submit_userSignUpDetails': this.submitUserSignUpDetails(); break; 
+		default: console.log("in default case"); break;
 	}
 }
 
@@ -71,6 +73,12 @@ SubmitController.prototype.submitSignUpDetails = function() {
 	console.log("at end of submit controller part"); 
 	ServerDBAdapter.prototype.submit(registerRequestJSON, 'register');
 	
+}
+
+
+SubmitController.prototype.submitUserSignUpDetails = function() 
+{
+	console.log("At submit user sign up details2"); 
 }
 
 SubmitController.prototype.updateRequirements = function() {

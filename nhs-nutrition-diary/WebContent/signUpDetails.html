@@ -37,12 +37,12 @@
 		</nav>
     	<div class="container">
       		<form role="form" class="form-signup"><!--  ><!-- method="post" action="scripts/database/server/register.php"-->
-				
 				<ul class="nav nav-tabs nav-justified">
     	<li role="presentation" class="active"><a href="#patient-pane" aria-controls="patient-pane" role="tab" data-toggle="tab">I am patient</a></li>
     	<li role="presentation"><a href="#doctor-pane" aria-controls="doctor-pane" role="tab" data-toggle="tab">I am Doctor</a></li>
     	</ul>
-    	<div class="tab-content">
+    	<div class="panel panel-default element-margin">
+    	<div class="tab-content panel-body tab-panel">
     	<div role="tabpanel" class="tab-pane active" id="patient-pane">
 				<table class="regester-table">
 				  <tr>
@@ -78,7 +78,7 @@
 				</table>
 				</div>
 				
-				<div role="tabpanel" class="tab-pane" id="doctor-pane">
+				<div role="tabpanel" class="tab-pane panel-body element-margin tab-panel" id="doctor-pane">
 					<table class="regester-table">
 	 			<tr>
 				    <td align="left"><label for="id">identify number:</label></td>
@@ -97,6 +97,7 @@
 				    <td><input type="text" id="symptomDate" name="dob" class="form-control date" placeholder="  Enter Your Date of Birth" required></td>
 				  </tr>
 				</table>
+				</div>
 				</div>
 				</div>
         		<button id="btn_submit_signUpDetails" class="btn btn-lg btn-success btn-block" onclick="SubmitController.prototype.submit(this.id)">Submit</button>

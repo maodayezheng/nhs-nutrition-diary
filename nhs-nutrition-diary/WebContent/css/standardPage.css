@@ -60,7 +60,8 @@ body{
 	
 }
 .login-table,
-.regester-table{
+.regester-table,
+{
 	border:0; 
 	width:100%; 
 	text-align: center;
@@ -80,7 +81,7 @@ body{
 }
 
 .form-signin,
-.form-signup
+.form-signup,
 {
 	align:center;
 	max-width:767px;

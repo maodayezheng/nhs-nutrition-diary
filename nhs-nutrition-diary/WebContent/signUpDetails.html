@@ -37,6 +37,13 @@
 		</nav>
     	<div class="container">
       		<form role="form" class="form-signup"><!--  ><!-- method="post" action="scripts/database/server/register.php"-->
+				
+				<ul class="nav nav-tabs nav-justified">
+    	<li role="presentation" class="active"><a href="#patient-pane" aria-controls="patient-pane" role="tab" data-toggle="tab">I am patient</a></li>
+    	<li role="presentation"><a href="#doctor-pane" aria-controls="doctor-pane" role="tab" data-toggle="tab">I am Doctor</a></li>
+    	</ul>
+    	<div class="tab-content">
+    	<div role="tabpanel" class="tab-pane active" id="patient-pane">
 				<table class="regester-table">
 				  <tr>
 				    <td align="left"><label for="nhsnumber">NHS Number:</label></td>
@@ -69,6 +76,29 @@
 		      			<input class="radio_buttons optional" id="user_basic_sex_female" name="user_basic[sex]" type="radio" value="Female"> Female</td>
 				  </tr>
 				</table>
+				</div>
+				
+				<div role="tabpanel" class="tab-pane" id="doctor-pane">
+					<table class="regester-table">
+	 			<tr>
+				    <td align="left"><label for="id">identify number:</label></td>
+				    <td><input class="form-control" name="id" id="id" type="text" placeholder="Enter Your identify number" required></td>
+				  </tr>
+				  <tr>
+				    <td align="left"><label for="password">Password:</label></td>
+				    <td><input class="form-control" name="password" id="password" type="password" placeholder="Enter Your Password" required></td>
+				  </tr>
+				  <tr>
+				    <td align="left"><label for="password_again">Confirm Password:</label></td>
+				    <td><input class="form-control" name="password_again" id="password-confirm" type="password" placeholder="Confirm Your Password" required></td>
+				  </tr>
+				  <tr>
+				    <td align="left"><label for="dob">Date of Birth:</label></td>
+				    <td><input type="text" id="symptomDate" name="dob" class="form-control date" placeholder="  Enter Your Date of Birth" required></td>
+				  </tr>
+				</table>
+				</div>
+				</div>
         		<button id="btn_submit_signUpDetails" class="btn btn-lg btn-success btn-block" onclick="SubmitController.prototype.submit(this.id)">Submit</button>
       		</form>
     	</div>

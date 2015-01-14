@@ -68,7 +68,7 @@ SubmitController.prototype.submitSignUpDetails = function() {
 			"table": "userweightmanifest",
 			"where": "userid,=," + userId
 	};
-	
+	console.log("at end of submit controller part"); 
 	ServerDBAdapter.prototype.submit(registerRequestJSON, 'register');
 	
 }

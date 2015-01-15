@@ -83,7 +83,7 @@ body{
 }
 
 .form-signin,
-.form-signup,
+.form-signup
 {
 	align:center;
 	max-width:767px;

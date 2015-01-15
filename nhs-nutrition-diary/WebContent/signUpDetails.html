@@ -43,73 +43,74 @@
 	    </ul>
     	<div class="tab-content tab-panel">
 		    	<div role="tabpanel" class="tab-pane active" id="patient-pane">
-		    	<div class="panel panel-default element-margin">
-    		<div class="panel-body tab-panel">
-					<form role="form" class="form-signup">	
-						<table class="register-table">
-						  <tr>
-						    <td align="left"><label for="nhsnumber">NHS Number:</label></td>
-						    <td><input class="form-control" name="nhsnumber" id="nhs-number" type="text" placeholder="Enter your NHS number"></td>
-						  </tr>
-						  <tr>
-						    <td align="left"><label for="password">Password:</label></td>
-						    <td><input class="form-control" name="password" id="password" type="password" placeholder="Enter your password"></td>
-						  </tr>
-						  <tr>
-						    <td align="left"><label for="password_again">Confirm Password:</label></td>
-						    <td><input class="form-control" name="password_again" id="password-confirm" type="password" placeholder="Confirm your password"></td>
-						  </tr>
-						  <tr>
-						    <td align="left"><label for="weight">Weight:</label></td>
-						    <td><input class="form-control" name="weight" id="weight" type="number" placeholder="Enter your weight"></td>
-						  </tr>
-						  <tr>
-						    <td align="left"><label for="dob">Date of Birth:</label></td>
-						    <td><input type="text" id="symptomDate" name="dob" class="form-control date" placeholder="   Enter your date of birth"></td>
-						  </tr>
-						  <tr>
-						    <td align="left"><label for="activity_level">Activity Level:</label></td>
-						    <td><input class="form-control" name="activity_level" id="activity-level" type="text" placeholder="Enter your activity level"></td>
-						  </tr>
-						  <tr>
-						    <td align="left"><label for="gender">Gender:</label></td>
-						    <td align="left">
-				      			<input class="radio_buttons optional" id="user_basic_sex_male" name="user_basic[sex]" type="radio" value="Male"> Male
-				      			<input class="radio_buttons optional" id="user_basic_sex_female" name="user_basic[sex]" type="radio" value="Female"> Female</td>
-						  </tr>
-						</table>
-						</form>
+		    		<div class="panel panel-default element-margin">
+    					<div class="panel-body tab-panel">
+							<form role="form" class="form-signup">	
+								<table class="register-table">
+								  <tr>
+								    <td align="left"><label for="nhsnumber">NHS Number:</label></td>
+								    <td><input class="form-control" name="nhsnumber" id="nhs-number" type="text" placeholder="Enter your NHS number"></td>
+								  </tr>
+								  <tr>
+								    <td align="left"><label for="password">Password:</label></td>
+								    <td><input class="form-control" name="password" id="password" type="password" placeholder="Enter your password"></td>
+								  </tr>
+								  <tr>
+								    <td align="left"><label for="password_again">Confirm Password:</label></td>
+								    <td><input class="form-control" name="password_again" id="password-confirm" type="password" placeholder="Confirm your password"></td>
+								  </tr>
+								  <tr>
+								    <td align="left"><label for="weight">Weight:</label></td>
+								    <td><input class="form-control" name="weight" id="weight" type="number" placeholder="Enter your weight"></td>
+								  </tr>
+								  <tr>
+								    <td align="left"><label for="dob">Date of Birth:</label></td>
+								    <td><input type="text" id="symptomDate" name="dob" class="form-control date" placeholder="   Enter your date of birth"></td>
+								  </tr>
+								  <tr>
+								    <td align="left"><label for="activity_level">Activity Level:</label></td>
+								    <td><input class="form-control" name="activity_level" id="activity-level" type="text" placeholder="Enter your activity level"></td>
+								  </tr>
+								  <tr>
+								    <td align="left"><label for="gender">Gender:</label></td>
+								    <td align="left">
+						      			<input class="radio_buttons optional" id="user_basic_sex_male" name="user_basic[sex]" type="radio" value="Male"> Male
+						      			<input class="radio_buttons optional" id="user_basic_sex_female" name="user_basic[sex]" type="radio" value="Female"> Female</td>
+								  </tr>
+								</table>
+							</form>
 						</div>
-						</div>
-						<button id="btn_submit_userSignUpDetails" class="btn btn-lg btn-success btn-block" onclick="SubmitController.prototype.submit(this.id)">Submit</button>
-						</div>
-						<div role="tabpanel" class="tab-pane panel-body element-margin tab-panel" id="doctor-pane">
-						<div class="panel panel-default element-margin">
-    						<div class="panel-body tab-panel">
+					</div>
+					<button id="btn_submit_userSignUpDetails" class="btn btn-lg btn-success btn-block" onclick="SubmitController.prototype.submit(this.id)">Submit</button>
+				</div>
+						
+				<div role="tabpanel" class="tab-pane panel-body element-margin tab-panel" id="doctor-pane">
+					<div class="panel panel-default element-margin">
+    					<div class="panel-body tab-panel">
 							<form role="form" class="form-signup">
-							<table class="register-table">
-			 			<tr>
-						    <td align="left"><label for="id">Identifying number:</label></td>
-						    <td><input class="form-control" name="id" id="id" type="text" placeholder="Enter your identifing number"></td>
-						  </tr>
-						  <tr>
-						    <td align="left"><label for="password">Password:</label></td>
-						    <td><input class="form-control" name="password" id="password" type="password" placeholder="Enter your password"></td>
-						  </tr>
-						  <tr>
-						    <td align="left"><label for="password_again">Confirm Password:</label></td>
-						    <td><input class="form-control" name="password_again" id="password-confirm" type="password" placeholder="Confirm your password"></td>
-						  </tr>
-						  <tr>
-						    <td align="left"><label for="dob">Date of Birth:</label></td>
-						    <td><input type="text" id="symptomDate" name="dob" class="form-control date" placeholder="   Enter your date of birth"></td>
-						  </tr>
-						</table>
-					</form>
+								<table class="register-table">
+						 			<tr>
+									    <td align="left"><label for="id">Identifying number:</label></td>
+									    <td><input class="form-control" name="id" id="id" type="text" placeholder="Enter your identifing number"></td>
+									  </tr>
+									  <tr>
+									    <td align="left"><label for="password">Password:</label></td>
+									    <td><input class="form-control" name="password" id="password" type="password" placeholder="Enter your password"></td>
+									  </tr>
+									  <tr>
+									    <td align="left"><label for="password_again">Confirm Password:</label></td>
+									    <td><input class="form-control" name="password_again" id="password-confirm" type="password" placeholder="Confirm your password"></td>
+									  </tr>
+									  <tr>
+									    <td align="left"><label for="dob">Date of Birth:</label></td>
+									    <td><input type="text" id="symptomDate" name="dob" class="form-control date" placeholder="   Enter your date of birth"></td>
+									  </tr>
+								</table>
+							</form>
+						</div>
 					</div>
-					</div>
-				<button id="btn_submit_dieticianSignUpDetails" class="btn btn-lg btn-success btn-block btn-signup" onclick="SubmitController.prototype.submit(this.id)">Submit</button>
-					</div>
+					<button id="btn_submit_dieticianSignUpDetails" class="btn btn-lg btn-success btn-block btn-signup" onclick="SubmitController.prototype.submit(this.id)">Submit</button>
+				</div>
 				</div>
 				</div>
   	</body>

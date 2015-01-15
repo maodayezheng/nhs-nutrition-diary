@@ -371,4 +371,6 @@ position: relative; }
 	width: 100%;
     display: inline-block;
 }
-
+.container {
+    max-width: 750px;
+}

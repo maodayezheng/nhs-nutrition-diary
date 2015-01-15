@@ -4,6 +4,8 @@ SubmitController.prototype.submit = function(submitter) {
 
 	switch(submitter) {
 		case 'btn_submit_signUpDetails': this.submitSignUpDetails(); break;
+		case 'btn_submit_userSignUpDetails': this.submitUserSignUpDetails(); break; 
+		case 'btn_submit_dieticianSignUpDetails': this.submitDieticianSignUpDetails(); break;
 		case 'btn_submit_foods': this.submitFoods(); break;
 		case 'btn_submit_newFood': this.submitNewFood(); break;
 		case 'btn_save_meals': this.submitMeal(); break;
@@ -11,8 +13,6 @@ SubmitController.prototype.submit = function(submitter) {
 		case 'btn_save_newCustomSymptom': this.submitNewCustomSymptom(); break;
 		case 'btn_submit_weight': this.submitWeight(); break;
 		case 'btn_submit_settings': this.submitSettings(); break;
-		case 'btn_submit_userSignUpDetails': this.submitUserSignUpDetails(); break; 
-		case 'btn_submit_dieticianSignUpDetails': this.submitDieticianSignUpDetails(); break;
 		default: console.log("in default case"); break;
 	}
 }

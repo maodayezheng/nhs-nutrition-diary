@@ -59,8 +59,10 @@ body{
 	height:400px;
 }
 .login-table,
-.regester-table,
+.register-table
 {
+	padding-left:5%;
+	padding-right:5%;
 	border:0; 
 	width:100%; 
 	text-align: center;
@@ -73,7 +75,8 @@ body{
 	margin-top: 10px;	
 }
 
-#btn_signup_to_details{
+.btn-signup{
+	display:block;
 	max-width:767px;
 	align:center;
 	margin:10px auto;
@@ -95,13 +98,11 @@ body{
 	left:50%;
 	top:50%;
 	z-index:1040;
-	
-	
 }
 .tab-panel{
 	
-	width:765px;
-	height:371px;
+	width:100%;
+	height:100%;
 	
 }	
 

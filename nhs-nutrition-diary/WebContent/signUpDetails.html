@@ -17,7 +17,6 @@
 		<script src="scripts/database/server/ServerDBAdapter.js"></script>
 		<script src="scripts/RequirementsCalculator.js"></script>
 		<script src="scripts/Navigator.js"></script>
-		<script src="scripts/util/dateTimePicker.js"></script>
   		<script src="lib/jquery/jquery.js"></script>
   		<script src="lib/jquery/jquery-ui-1.11.2.min.js"></script>
     	<script src="scripts/util/dateTimePicker.js"></script>
@@ -36,7 +35,7 @@
       		</div>
 		</nav>
     	<div class="container">
-      	
+      	<input type="hidden" class="time" id="time"> <!--  this is here to remove date picker errors (jQuery expects an element with id='time' -->
       	<ul class="nav nav-tabs nav-justified">
 	    	<li role="presentation" class="active"><a href="#patient-pane" aria-controls="patient-pane" role="tab" data-toggle="tab">Register as Patient</a></li>
 	    	<li role="presentation"><a href="#doctor-pane" aria-controls="doctor-pane" role="tab" data-toggle="tab">Register as Dietician</a></li>
@@ -49,7 +48,7 @@
 								<table class="register-table">
 								  <tr>
 								    <td align="left"><label for="nhsnumber">NHS Number:</label></td>
-								    <td><input class="form-control" name="nhsnumber" id="nhs-number" type="text" placeholder="Enter your NHS number"></td>
+								    <td><input class="form-control" name="nhsnumber" id="nhs-number" type="text" placeholder="Enter your NHS number"required></td>
 								  </tr>
 								  <tr>
 								    <td align="left"><label for="password">Password:</label></td>
@@ -65,7 +64,7 @@
 								  </tr>
 								  <tr>
 								    <td align="left"><label for="dob">Date of Birth:</label></td>
-								    <td><input type="text" id="symptomDate" name="dob" class="form-control date" placeholder="   Enter your date of birth"></td>
+								    <td><input type="text" id="dob" name="dob" class="form-control date" placeholder="   Enter your date of birth"></td>
 								  </tr>
 								  <tr>
 								    <td align="left"><label for="activity_level">Activity Level:</label></td>
@@ -78,10 +77,11 @@
 						      			<input class="radio_buttons optional" id="user_basic_sex_female" name="user_basic[sex]" type="radio" value="Female"> Female</td>
 								  </tr>
 								</table>
+								<button id="btn_submit_userSignUpDetails" class="btn btn-lg btn-success btn-block" type="submit" onclick="">Submit</button>
 							</form>
 						</div>
 					</div>
-					<button id="btn_submit_userSignUpDetails" class="btn btn-lg btn-success btn-block" onclick="SubmitController.prototype.submit(this.id)">Submit</button>
+					<button id="btn_submit_userSignUpDetails" class="btn btn-lg btn-success btn-block" type="submit" onclick="SubmitController.prototype.submit(this.id)">Submit</button>
 				</div>
 						
 				<div role="tabpanel" class="tab-pane panel-body element-margin tab-panel" id="doctor-pane">

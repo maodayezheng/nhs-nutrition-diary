@@ -3,17 +3,17 @@ function SubmitController() {}
 SubmitController.prototype.submit = function(submitter) {
 
 	switch(submitter) {
-		case 'btn_submit_signUpDetails': this.submitSignUpDetails(); break;
-		case 'btn_submit_userSignUpDetails': this.submitUserSignUpDetails(); break; 
-		case 'btn_submit_dieticianSignUpDetails': this.submitDieticianSignUpDetails(); break;
-		case 'btn_submit_foods': this.submitFoods(); break;
-		case 'btn_submit_newFood': this.submitNewFood(); break;
-		case 'btn_save_meals': this.submitMeal(); break;
-		case 'btn_submit_symptoms': this.submitSymptoms(); break;
-		case 'btn_save_newCustomSymptom': this.submitNewCustomSymptom(); break;
-		case 'btn_submit_weight': this.submitWeight(); break;
-		case 'btn_submit_settings': this.submitSettings(); break;
-		default: console.log("in default case"); break;
+		case 'btn_submit_signUpDetails': 			this.submitSignUpDetails(); break;
+		case 'btn_submit_userSignUpDetails': 		this.submitUserSignUpDetails(); break; 
+		case 'btn_submit_dieticianSignUpDetails': 	this.submitDieticianSignUpDetails(); break;
+		case 'btn_submit_foods': 					this.submitFoods(); break;
+		case 'btn_submit_newFood': 					this.submitNewFood(); break;
+		case 'btn_save_meals': 						this.submitMeal(); break;
+		case 'btn_submit_symptoms': 				this.submitSymptoms(); break;
+		case 'btn_save_newCustomSymptom': 			this.submitNewCustomSymptom(); break;
+		case 'btn_submit_weight': 					this.submitWeight(); break;
+		case 'btn_submit_settings': 				this.submitSettings(); break;
+		default: 									console.log("in default case"); break;
 	}
 }
 
@@ -76,11 +76,30 @@ SubmitController.prototype.submitSignUpDetails = function() {
 	
 }
 
+/**
+ * Once migrated to a permanent server, this function would need to be implemented using SSL. 
+ */
 SubmitController.prototype.submitUserSignUpDetails = function() 
 {
 	console.log("Trying to submit user's details for sign up."); 
+	
+	var userSignUpDetails = 
+	{
+		"nhsnumber": 		document.getElementById("nhs-number").value,
+		"password": 		document.getElementById("password").value,
+		"confirmpassword": 	document.getElementById("password-confirm").value,
+		"weight": 			document.getElementById("weight").value,
+		"dob": 				document.getElementById("").value,
+		"activitylevel": 	document.getElementById("").value,
+		"gender": 			document.getElementById("").value
+	}
+	console.log("printing userSignUpDetails");
+	console.log(userSignUpDetails);
 }
 
+/**
+ * Once migrated to a permanent server, this function would need to be implemented using SSL. 
+ */
 SubmitController.prototype.submitDieticianSignUpDetails = function() 
 {
 	console.log("Trying to submit dietician's details for sign up."); 

@@ -257,31 +257,31 @@ var dropContent = '<br> <input type="text" class="form-control comments symptoms
     
    // $('#get-checked-data').on('click', function(event) {
        // event.preventDefault(); 
+	var userid = SubmitController.prototype.getUserID();
+	var customSymptomsRequestJSON = {
+			"action": "get",
+			"table": "usersymptomlist",
+			"where": "userid,=," + userid
+	};
 	
+	var customSymptoms = ServerDBAdapter.prototype.get(customSymptomsRequestJSON);
+	for(var index = 0; index < customSymptoms.length; index++) {
+		var singleCustomSymptom = customSymptoms[index];
+		if(singleCustomSymptom.symptom != ""){
+			//singleCustomSymptom.symptom = "caught";
+		
+		var newSymptomInList = '<li class="list-group-item loadedCustomSymptoms" style="cursor: pointer;"><span class="state-icon glyphicon glyphicon-unchecked"></span>'+singleCustomSymptom.symptom+'</li><div class="drop-scoring">'+dropContent+'</div>';
+		$("#symptomListCustom").append(newSymptomInList);
+		setUpCheckbox2();
+		$('.loadedCustomSymptoms').click(function(){
+			var target = $(this).next(".drop-scoring");	
+			$(target).slideDown('slow');
+		});
+		}
+	}	
 	$('#revealHiddenCustomSymptoms').click(function() {
 		
-		var userid = SubmitController.prototype.getUserID();
-		var customSymptomsRequestJSON = {
-				"action": "get",
-				"table": "usersymptomlist",
-				"where": "userid,=," + userid
-		};
-		
-		var customSymptoms = ServerDBAdapter.prototype.get(customSymptomsRequestJSON);
-		for(var index = 0; index < customSymptoms.length; index++) {
-			var singleCustomSymptom = customSymptoms[index];
-			if(singleCustomSymptom.symptom != ""){
-				//singleCustomSymptom.symptom = "caught";
-			
-			var newSymptomInList = '<li class="list-group-item loadedCustomSymptoms" style="cursor: pointer;"><span class="state-icon glyphicon glyphicon-unchecked"></span>'+singleCustomSymptom.symptom+'</li><div class="drop-scoring">'+dropContent+'</div>';
-			$("#symptomListCustom").append(newSymptomInList);
-			setUpCheckbox2();
-			$('.loadedCustomSymptoms').click(function(){
-				var target = $(this).next(".drop-scoring");	
-				$(target).slideDown('slow');
-			});
-			}
-		}
+
 		
 		
 		$(".hiddenSymptomContainer").toggle(400);

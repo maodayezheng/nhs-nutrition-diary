@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -37,6 +38,13 @@
 		<link href="lib/tidy-table-1.9.3/tidy-table.min.css" rel="stylesheet"></link>
 		<script src="lib/tidy-table-1.9.3/tidy-table.min.js"></script>
 		<title>APPetite</title>
+		<script language="JavaScript">
+var frmvalidator  = new Validator("contactform");
+frmvalidator.addValidation("name","req","Please provide your name");
+frmvalidator.addValidation("email","req","Please provide your email");
+frmvalidator.addValidation("email","email",
+  "Please enter a valid email address");
+</script>
 	</head>
 	
 	<body onload="OnLoad.prototype.load('history')">
@@ -167,5 +175,6 @@
   			</div>
 		</div>
 		</div>
+
   	</body>
 </html>

@@ -280,25 +280,21 @@ var dropContent = '<br> <input type="text" class="form-control comments symptoms
 		}
 	}	
 	$('#revealHiddenCustomSymptoms').click(function() {
-		
 
-		
-		
 		$(".hiddenSymptomContainer").toggle(400);
 	});
 	
 
 ////////////////////////////////Get state of checkboxes weight///////////////////////////////////////////////
 
-	/*$("#saveWeight").click(function(){
-		console.log("helo");
+	$("#saveWeight").click(function() {
 		var checkedWeight = {};
 		var counter = 0;
 		$("#swellings li.active").each(function(idx, li) {
-	    	checkedWeight[counter] = $(li).text();
-	    	counter++;
-	    	console.log(checkedWeight);	
-		});	});*/
+			checkedWeight[counter] = $(li).text();
+			counter++;
+		});
+	});
 	
 
 
@@ -335,73 +331,3 @@ function symptomsListView(symptoms){
 		self.ratingSection = ko.computed(function(){
 		},this);
 }
-
-////////////////////////////////NOT USED IN SYMPTOMS//////////////////////////////
-////////////////////////////////USED IN WEIGHT//////////////////////////////
-
-/*$(document).on('click', '.panel-heading span.clickable', function (e) {
-    var $this = $(this);
-    if (!$this.hasClass('panel-collapsed')) {
-        $this.parents('.panel').find('.panel-body').slideUp();
-        $this.addClass('panel-collapsed');
-        $this.find('i').removeClass('glyphicon-minus').addClass('glyphicon-plus');
-    } else {
-        $this.parents('.panel').find('.panel-body').slideDown();
-        $this.removeClass('panel-collapsed');
-        $this.find('i').removeClass('glyphicon-plus').addClass('glyphicon-minus');
-    }
-});
-$(document).on('click', '.panel div.clickable', function (e) {
-    var $this = $(this);
-    if (!$this.hasClass('panel-collapsed')) {
-        $this.parents('.panel').find('.panel-body').slideUp();
-        $this.addClass('panel-collapsed');
-        $this.find('i').removeClass('glyphicon-minus').addClass('glyphicon-plus');
-    } else {
-        $this.parents('.panel').find('.panel-body').slideDown();
-        $this.removeClass('panel-collapsed');
-        $this.find('i').removeClass('glyphicon-plus').addClass('glyphicon-minus');
-    }
-});
-$(document).ready(function () {
-    $('.panel-heading span.clickable').click();
-    $('.panel div.clickable').click();
-});
-
-
-$(document).ready(function(){
-    $('[data-toggle="popover"]').popover({
-        placement : 'top'
-    });
-});
-
-$(function() {
-	var action;
-    $(".number-spinner button").mousedown(function () {
-        btn = $(this);
-        input = btn.closest('.number-spinner').find('input');
-        btn.closest('.number-spinner').find('button').prop("disabled", false);
-
-    	if (btn.attr('data-dir') == 'up') {
-            action = setInterval(function(){
-                if ( input.attr('max') == undefined || parseInt(input.val()) < parseInt(input.attr('max')) ) {
-                    input.val(parseInt(input.val())+1);
-                }else{
-                    btn.prop("disabled", true);
-                    clearInterval(action);
-                }
-            }, 50);
-    	} else {
-            action = setInterval(function(){
-                if ( input.attr('min') == undefined || parseInt(input.val()) > parseInt(input.attr('min')) ) {
-                    input.val(parseInt(input.val())-1);
-                }else{
-                    btn.prop("disabled", true);
-                    clearInterval(action);
-                }
-            }, 50);
-    	}
-    }).mouseup(function(){
-        clearInterval(action);
-    });
-});*/

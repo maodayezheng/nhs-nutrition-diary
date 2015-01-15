@@ -12,6 +12,7 @@ SubmitController.prototype.submit = function(submitter) {
 		case 'btn_submit_weight': this.submitWeight(); break;
 		case 'btn_submit_settings': this.submitSettings(); break;
 		case 'btn_submit_userSignUpDetails': this.submitUserSignUpDetails(); break; 
+		case 'btn_submit_dieticianSignUpDetails': this.submitDieticianSignUpDetails(); break;
 		default: console.log("in default case"); break;
 	}
 }
@@ -75,10 +76,14 @@ SubmitController.prototype.submitSignUpDetails = function() {
 	
 }
 
-
 SubmitController.prototype.submitUserSignUpDetails = function() 
 {
-	console.log("At submit user sign up details2"); 
+	console.log("Trying to submit user's details for sign up."); 
+}
+
+SubmitController.prototype.submitDieticianSignUpDetails = function() 
+{
+	console.log("Trying to submit dietician's details for sign up."); 
 }
 
 SubmitController.prototype.updateRequirements = function() {

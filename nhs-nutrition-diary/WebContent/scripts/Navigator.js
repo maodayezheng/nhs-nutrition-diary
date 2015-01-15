@@ -14,7 +14,7 @@ Navigator.prototype.navigate = function(origin) {
 		case "btn_home_to_weight": nextPage = 'weight.html'; break;
 		case "listEl_home_to_settings": nextPage = 'settings.html'; break;
 		case "btn_symptoms_to_symptomNotInList": nextPage = 'symptomNotInList.html'; break;
-		default: console.log('hyperlink not in switch statement');
+		default: console.log('Hyperlink unknown.');
 	}
 	
 	window.location.href = nextPage;

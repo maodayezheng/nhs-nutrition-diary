@@ -5,8 +5,6 @@
  * @author Vikram Bakshi
  */
 
-//require_once 'init.php';
-
 class Validate
 {
 	//private instance variables  
@@ -23,7 +21,7 @@ class Validate
 	 * This method is used to check whether the $source passed to it conforms to the given rules. 
 	 * If it does not the addError method is called. 
 	 */
-	public function check($source, $items = array())
+	public function check($source, $items = array()) //The keys in the $items associative array must match the the keys passed in the $source array. 
 	{
 		foreach($items as $item => $rules) //$item will be each of the entries e.g. nhsnumber, password. $rules will be the array that governs each $item. see register.php.
 		{
@@ -35,7 +33,8 @@ class Validate
 				if($rule === 'required' && empty($value))
 				{
 					$this->addError("{$item} is required");
-				} else if(!empty($value)){
+				} else if(!empty($value))
+				{
 					switch($rule)
 					{
 						case 'min': if(strlen($value)<$rule_value) { $this-> addError("{$item} must be a minimum of {$rule_value} characters"); }
@@ -49,14 +48,9 @@ class Validate
 							if($check->count()) { $this -> addError("{$item} already exists"); }
 							break;
 					}
-				}
-				
-				//echo $source[$item].'<br />';
-
-				
+				}	
 			}	
 		}
-		
 		if(empty($this->_errors)) //if the errors array is empty at this point then all of the checks were passed.
 		{
 			$this->_passed = true;

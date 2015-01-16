@@ -122,6 +122,7 @@ SubmitController.prototype.submitUserSignUpDetails = function()
 	}
 		console.log("printing userSignUpDetails");
 		console.log(userSignUpDetails);
+		
 		ServerDBAdapter.prototype.submit(userSignUpDetails, 'register');
 }
 

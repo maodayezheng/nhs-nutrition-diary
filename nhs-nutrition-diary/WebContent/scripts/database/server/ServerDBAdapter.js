@@ -21,58 +21,59 @@ ServerDBAdapter.prototype.submit = function(dataToServer, action)
 	var actionUrl;
 	switch(action) 
 	{	
-		case "register":  console.log("at register"); actionUrl = "scripts/database/server/registerTest.php"; break; //actionUrl = "scripts/database/server/register.php"; <- what used to be there. 
-		default: actionUrl = "scripts/database/server/clientToServerController.php"; 
+		case "register":  	actionUrl = "scripts/database/server/registerTest.php"; 			break;  
+		default: 			actionUrl = "scripts/database/server/clientToServerController.php"; break; 
 	}
 	
 	$.ajax({
-	    url: actionUrl,
-	    type: "POST",
-	    dataType: "text", //what you will receive in response. 
-	    contentType: "application/json", //what you are sending.
-	    data: JSON.stringify(dataToServer),
-	    success: function (msg){
-	        console.log("success " + msg); 
-	    },
-	    error: function (xhr, ajaxOptions, thrownError) {
-	        console.log(xhr.statusText);
-	        console.log(xhr.responseText);
-	        console.log(xhr.status);
-	        console.log(thrownError);
-	    }
+	    url: 			actionUrl,
+	    type: 			"POST",
+	    dataType: 		"text", //what you will receive in response. 
+	    contentType: 	"application/json", //what you are sending.
+	    data: 			JSON.stringify(dataToServer),
+	    success: 		function (msg){
+	        				console.log("success " + msg); 
+	    				},
+	    				
+	    error: 			function (xhr, ajaxOptions, thrownError) {
+				        console.log(xhr.statusText);
+				        console.log(xhr.responseText);
+				        console.log(xhr.status);
+				        console.log(thrownError);
+	    				}
 	});
 };
 
 ServerDBAdapter.prototype.get = function(dataToServer)
 {
-	//the dataToServer object should contain the properties, 'action', 'table', 'dateFrom' and 'dateTo'. 
+	 
 	console.log("ServerDBAdapter.prototype.get() entered.");
 	console.log("Showing the data being sent to the server"); 
 	console.log(dataToServer); 
 	
 	var results; 
 	$.ajax({
-	    url: "scripts/database/server/clientToServerController.php",
-	    type: "POST",
-	    dataType: "text", //what you will receive in response. 
-	    contentType: "application/json", //what you are sending.
-	    data: JSON.stringify(dataToServer),
-	    timeout: 5000, //timeout the AJAX after 5000 milliseconds. 
-	    success: function (result){
-	        console.log("success" + result);
-	        if(result != null) {
-	        	results = JSON.parse(result); 
-	        } else {
-	        	results = null;
-	        }
-	    },
-	    async: false, //we want this call to be synchronous 
-	    error: function (xhr, ajaxOptions, thrownError) {
-	        console.log(xhr.statusText);
-	        console.log(xhr.responseText);
-	        console.log(xhr.status);
-	        console.log(thrownError);
-	    }
+	    url: 			"scripts/database/server/clientToServerController.php",
+	    type: 			"POST",
+	    dataType: 		"text", //what you will receive in response. 
+	    contentType: 	"application/json", //what you are sending.
+	    data: 			JSON.stringify(dataToServer),
+	    timeout: 		5000, //timeout the AJAX after 5000 milliseconds. 
+	    success: 		function (result){
+		        			console.log("success" + result);
+		        			if(result != null) {
+					        	results = JSON.parse(result); 
+					        } else {
+					        	results = null;
+					        }
+	    				},
+	    async: 			false, //we want this call to be synchronous 
+	    error: 			function (xhr, ajaxOptions, thrownError) {
+					        console.log(xhr.statusText);
+					        console.log(xhr.responseText);
+					        console.log(xhr.status);
+					        console.log(thrownError);
+	    				}
 	});
 	return results;
 };

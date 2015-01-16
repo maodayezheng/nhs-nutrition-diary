@@ -98,7 +98,7 @@ $(document).ready(function()
         e.preventDefault();
         console.log("Im at the jquery bit for the dietician reg form");  
 		
-		SubmitController.prototype.submitUserSignUpDetails();
+		SubmitController.prototype.submitDieticianSignUpDetails();
 		 
 	}));
 });
@@ -118,12 +118,15 @@ SubmitController.prototype.submitUserSignUpDetails = function()
 			"weight": 			document.getElementById("weight").value,
 			"dob": 				document.getElementById("dob").value,
 			"activitylevel": 	document.getElementById("activity_level").value,
-			"gender": 			$('input[name="user_basic[sex]"]:checked').val()
+			"gender": 			$('input[name="user_basic[sex]"]:checked').val(),
+			"group":			1
 	}
-		console.log("printing userSignUpDetails");
-		console.log(userSignUpDetails);
+	
+	console.log("printing userSignUpDetails");
+	console.log(userSignUpDetails);
+	ServerDBAdapter.prototype.submit(userSignUpDetails, 'register');
 		
-		ServerDBAdapter.prototype.submit(userSignUpDetails, 'register');
+		
 }
 
 /**

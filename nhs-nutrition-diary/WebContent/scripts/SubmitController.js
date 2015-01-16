@@ -64,8 +64,9 @@ SubmitController.prototype.getAge = function(dateOfBirth) {
     return age;
 }
 
+//// OLD FUNCTION FOR SUBMITTING SIGN UP DETAILS
 SubmitController.prototype.submitSignUpDetails = function() {
-	console.log("in submit details");
+	console.log("in submit sign updetails");
 	var userId = this.getUserID();
 	var registerRequestJSON = {
 			"table": "userweightmanifest",
@@ -76,25 +77,52 @@ SubmitController.prototype.submitSignUpDetails = function() {
 	
 }
 
+
+/**
+ * Once migrated to a permanent server, this function would need to be implemented using SSL. 
+ */
+$(document).ready(function() 
+{
+
+	$('#patient_registration_form').on('submit',(function (e) 
+	{
+        e.preventDefault();
+		console.log("Im at the jquery bit for the patient reg form");  
+		
+		SubmitController.prototype.submitUserSignUpDetails();
+		 
+	}));
+	
+	$('#dietician_registration_form').on('submit',(function (e) 
+	{
+        e.preventDefault();
+        console.log("Im at the jquery bit for the dietician reg form");  
+		
+		SubmitController.prototype.submitUserSignUpDetails();
+		 
+	}));
+});
+
 /**
  * Once migrated to a permanent server, this function would need to be implemented using SSL. 
  */
 SubmitController.prototype.submitUserSignUpDetails = function() 
 {
-	console.log("Trying to submit user's details for sign up."); 
-	
+	console.log("Trying to submit user's details for sign up.");
 	var userSignUpDetails = 
 	{
-		"nhsnumber": 		document.getElementById("nhs-number").value,
-		"password": 		document.getElementById("password").value,
-		"confirmpassword": 	document.getElementById("password-confirm").value,
-		"weight": 			document.getElementById("weight").value,
-		"dob": 				document.getElementById("").value,
-		"activitylevel": 	document.getElementById("").value,
-		"gender": 			document.getElementById("").value
+			"action":			"register",
+			"nhsnumber": 		document.getElementById("nhs-number").value,
+			"password": 		document.getElementById("password").value,
+			"confirmpassword": 	document.getElementById("password-confirm").value,
+			"weight": 			document.getElementById("weight").value,
+			"dob": 				document.getElementById("dob").value,
+			"activitylevel": 	document.getElementById("activity_level").value,
+			"gender": 			$('input[name="user_basic[sex]"]:checked').val()
 	}
-	console.log("printing userSignUpDetails");
-	console.log(userSignUpDetails);
+		console.log("printing userSignUpDetails");
+		console.log(userSignUpDetails);
+		ServerDBAdapter.prototype.submit(userSignUpDetails, 'register');
 }
 
 /**
@@ -104,6 +132,11 @@ SubmitController.prototype.submitDieticianSignUpDetails = function()
 {
 	console.log("Trying to submit dietician's details for sign up."); 
 }
+
+
+
+
+
 
 SubmitController.prototype.updateRequirements = function() {
 	var table = "userrequirementsmanifest";

@@ -112,20 +112,21 @@ SubmitController.prototype.submitUserSignUpDetails = function()
 	var userSignUpDetails = 
 	{
 			"action":			"register",
+			"group":			1,
 			"nhsnumber": 		document.getElementById("nhs-number").value,
 			"password": 		document.getElementById("password").value,
 			"confirmpassword": 	document.getElementById("password-confirm").value,
 			"weight": 			document.getElementById("weight").value,
 			"dob": 				document.getElementById("dob").value,
 			"activitylevel": 	document.getElementById("activity_level").value,
-			"gender": 			$('input[name="user_basic[sex]"]:checked').val(),
-			"group":			1
+			"gender": 			$('input[name="user_basic[sex]"]:checked').val()
+			
 	}
 	
 	console.log("printing userSignUpDetails");
 	console.log(userSignUpDetails);
 	ServerDBAdapter.prototype.submit(userSignUpDetails, 'register');
-		
+	this.successMessage("Successfully Registered!", 3000);
 		
 }
 
@@ -135,6 +136,20 @@ SubmitController.prototype.submitUserSignUpDetails = function()
 SubmitController.prototype.submitDieticianSignUpDetails = function() 
 {
 	console.log("Trying to submit dietician's details for sign up."); 
+	var dieticianSignUpDetails = 
+	{
+			"action":			"register",
+			"group":			2,
+			"nhsnumber": 		document.getElementById("nhs-number").value,
+			"password": 		document.getElementById("password").value,
+			"confirmpassword": 	document.getElementById("password-confirm").value,
+			"weight": 			document.getElementById("weight").value,
+			"dob": 				document.getElementById("dob").value,
+			"activitylevel": 	document.getElementById("activity_level").value,
+			"gender": 			$('input[name="user_basic[sex]"]:checked').val()
+	}
+	
+	
 }
 
 
@@ -295,7 +310,7 @@ SubmitController.prototype.submitFoods = function() {
 		ServerDBAdapter.prototype.submit(dataToServer, "save");
 	});
 	
-	this.successMessage("Foods submitted.");
+	this.successMessage("Foods submitted.", 2000);
 }
 
 SubmitController.prototype.submitNewFood = function() {
@@ -487,7 +502,7 @@ SubmitController.prototype.submitSymptoms = function() {
 		ServerDBAdapter.prototype.submit(dataToServer, "save");
 	}
 	
-	this.successMessage("Symptoms submitted.");
+	this.successMessage("Symptoms submitted.",2000);
 }
 	
 SubmitController.prototype.submitNewCustomSymptom = function() {
@@ -528,7 +543,7 @@ SubmitController.prototype.submitWeight = function() {
 	
 	this.updateRequirements();
 	
-	this.successMessage("Weight submitted.");
+	this.successMessage("Weight submitted.",2000);
 }
 
 SubmitController.prototype.submitSettings = function() {
@@ -591,10 +606,10 @@ SubmitController.prototype.submitSettings = function() {
 	
 	ServerDBAdapter.prototype.submit(dataToServer, "save");
 	
-	this.successMessage("Amendments submitted.");
+	this.successMessage("Amendments submitted.", 2000);
 }
 
-SubmitController.prototype.successMessage = function(message) {
+SubmitController.prototype.successMessage = function(message, timeout) {
 
 	var warning = $('<div>',{
 		"class":"alert alert-success center",
@@ -603,5 +618,5 @@ SubmitController.prototype.successMessage = function(message) {
 	});
 	$('body').append(warning);
 	
-	setTimeout(function(){warning.remove(); window.location.href = 'home.html';},1000);
+	setTimeout(function(){warning.remove(); window.location.href = 'home.html';}, timeout);
 }

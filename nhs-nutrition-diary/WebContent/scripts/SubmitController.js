@@ -693,6 +693,25 @@ SubmitController.prototype.submitSettings = function() {
 	var date = new Date();
 	var dateTime = this.formatDateTime(date.dateFormat('d/m/Y'), null);
 	
+	var additionalActivity = $('#activity').val();
+	var additionalCalories = Math.round($('#cals').val());
+	var additionalProtein = Math.round($('#protein').val());
+	var additionalFluid = Math.round($('#fluid').val());
+	
+	if(isNaN(additionalActivity)) {
+		alert("Please enter a valid number for additional actitity level.");
+		return;
+	} else if(isNaN(additionalCalories)) {
+		alert("Please enter a valid number for additional calories.");
+		return;
+	} else if(isNaN(additionalProtein)) {
+		alert("Please enter a valid number for additional protein.");
+		return;
+	} else if(isNaN(additionalFluid)) {
+		alert("Please enter a valid number for additional fluid.");
+		return;
+	}
+	
 	var weightRequestJSON = {
 			"action": "getLast",
 			"table": "userweightmanifest",
@@ -712,15 +731,11 @@ SubmitController.prototype.submitSettings = function() {
 	var activityLevel = userInfoResponseJSON.activitylevel;
 	var age = this.getAge(dateOfBirth);
 	
-	var additionalActivity = $('#activity').val();
 	var finalActivityLevel = parseFloat(activityLevel) + parseFloat(additionalActivity);
 	var requirementsCalculator = new RequirementsCalculator();
 	var formulaCalories = Math.round(requirementsCalculator.calcCalories(gender, weight, age));
 	var formulaProtein = Math.round(requirementsCalculator.calcProtein(weight, age));
 	var formulaFluid = Math.round(requirementsCalculator.calcFluid(weight, age));
-	var additionalCalories = Math.round($('#cals').val());
-	var additionalProtein = Math.round($('#protein').val());
-	var additionalFluid = Math.round($('#fluid').val());
 	var finalCalories = Math.round(parseFloat(formulaCalories) * finalActivityLevel + parseFloat(additionalCalories));
 	var finalProtein = Math.round(parseFloat(formulaProtein) * finalActivityLevel + parseFloat(additionalProtein));
 	var finalFluid = Math.round(parseFloat(formulaFluid) * finalActivityLevel + parseFloat(additionalFluid));

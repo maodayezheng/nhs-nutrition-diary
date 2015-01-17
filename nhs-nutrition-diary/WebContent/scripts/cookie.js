@@ -32,6 +32,8 @@ Cookies.prototype.getUserHash = function()
 
 /**
  * Method returns the value of the userID cookie. If it does not exist it returns null. 
+ * The userID cookie is useful when developing so we can easily see which user is logged in.
+ * However, when dealing with any user request or submittal the hash should always be used. 
  * @returns
  */
 Cookies.prototype.getUserID = function() 

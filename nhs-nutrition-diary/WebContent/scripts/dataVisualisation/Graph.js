@@ -8,14 +8,15 @@ function manageGraph(presentedParameter, dateFrom, dateTo) {
 	
 	var userId = SubmitController.prototype.getUserID();
 	
-	var dateFromFormatted = SubmitController.prototype.formatDateOnly(dateFrom);
-	var dateToFormatted = SubmitController.prototype.formatDateOnly(dateTo);
 	
-	
-	
-////////////////////////////////////Testing code block (Vik)
+	////////////////////////////////////Testing code block (Vik)
 	 
-	var getVisualisationDataJSON = 
+	
+	var userData = new UserData(); 
+	userData.getVisualisationDataJSON(dateFrom, dateTo);
+	
+	
+	/*var getVisualisationDataJSON = 
 	{
 			"action":	"getVisualisationData",
 			"userHash": Cookies.prototype.getUserHash(),
@@ -23,7 +24,7 @@ function manageGraph(presentedParameter, dateFrom, dateTo) {
 			"dateTo": dateToFormatted
 	}
 	var visualisationDataJSON = ServerDBAdapter.prototype.get(getVisualisationDataJSON);
-	console.log(visualisationDataJSON); 
+	console.log(visualisationDataJSON);*/ 
 	
 	
 	//////////////////////////////////////End of testing code block (Vik)
@@ -32,7 +33,7 @@ function manageGraph(presentedParameter, dateFrom, dateTo) {
 	
 	
 	
-	
+	/*
 	var historyRequestJSON = {
 			"action": "get",
 			"table": "userfoodmanifest",
@@ -40,7 +41,7 @@ function manageGraph(presentedParameter, dateFrom, dateTo) {
 	};
 	var history = ServerDBAdapter.prototype.get(historyRequestJSON);
 	//console.log(history);
-	
+	*/
 	var requirementsRequestJSON = {
 			"action": "getLast",
 			"table": "userrequirementsmanifest",

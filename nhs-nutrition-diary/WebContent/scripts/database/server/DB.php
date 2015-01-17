@@ -145,7 +145,7 @@ class DB
 	public function getUserData($dataDecoded) 
 	{
 		$queryResults = array(); //array the data will be pushed to. 
-		//echo "in get user data method in DB class.php";
+		
 		if((isset($dataDecoded['userID']) && isset($dataDecoded['dateFrom']) && isset($dataDecoded['dateTo']) ) )
 		{
 			$dateFrom = $dataDecoded['dateFrom']; $dateTo = $dataDecoded['dateTo']; $userID	= $dataDecoded['userID'];

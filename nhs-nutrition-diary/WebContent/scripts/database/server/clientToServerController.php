@@ -80,8 +80,7 @@ function get($db, $table, $where, $endStatement = null) {
 function getVisualisationData($db, $dataDecoded)
 {
 	$queryResultArray = $db->getUserData($dataDecoded);
-	echo "in get vis";
-	var_dump($queryResultArray);
+	echo json_encode($queryResultArray);
 }
 
 function getUserProfile($db, $table, $where)

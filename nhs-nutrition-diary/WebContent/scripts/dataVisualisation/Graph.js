@@ -13,8 +13,9 @@ function manageGraph(presentedParameter, dateFrom, dateTo) {
 	 
 	
 	var userData = new UserData(); 
-	userData.getVisualisationDataJSON(dateFrom, dateTo);
 	
+	userData.getRawData(dateFrom, dateTo);
+	userData.wrangleFoodManifestData();
 	
 	/*var getVisualisationDataJSON = 
 	{

@@ -109,10 +109,11 @@
 										<!-- option id="symptoms_dropdown" value="Symptoms">Symptoms</option-->
 									</select>
 								</form></div>
+								<div id = "target">
 	    				<div class="panel-body history-panel">
 						    <div class="row">
 					<div class="col-md-12 column">
-					<div id = "target">
+					
 	     				<div id="datepicker_div">
 							<p>
 								From: <input type="text" class="date" id="datepickerFrom" onchange="toggleHistoryVisualisation()" readonly="true"> 
@@ -184,7 +185,7 @@
 						<form method="post" name="contact_form"
 							action="scripts/database/server/contact-form-handler.php">
 							Email Address: <input type="text" name="email"> 
-							<input type="submit" class="btn btn-success" "data-dismiss="modal"  value="Send">
+							<input type="submit" class="btn btn-success" "data-dismiss="modal"  value="Send"  >
 							
 						</form>
 						 <!--for mailto function:  data-email="jobarry@tcd.ie" class="email" -->
@@ -193,8 +194,10 @@
   			</div>
 		</div>
 		</div>
-<form method="POST" enctype="multipart/form-data" action="scripts/database/server/saveimage.php" id="myForm">
+		
+<form method="POST" enctype="multipart/form-data" action="scripts/database/server/contact-form-handler.php" id="myForm">
     <input type="hidden" name="img_val" id="img_val" value="" />
 </form>
+
   	</body>
 </html>

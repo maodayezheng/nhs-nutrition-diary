@@ -1,6 +1,6 @@
 <?php
 //save.php code
- 
+
 //Show the image
 $image='<img src="'.$_POST['img_val'].'" />';
 echo $image;

@@ -70,21 +70,63 @@ Validator.prototype.datesAreValid = function(from, to) {
 }
 
 Validator.prototype.isValidNhsNumber = function(nhsNumber) {
+	if(isNaN(nhsNumber)) {
+		return false;
+	} else if(nhsNumber.length != 10) {
+		return false;
+	}
+	
 	return true;
 }
 
-Validator.prototype.samePassword = function(password, passwordConfirm) {
-	return true;
+Validator.prototype.isValidPassword = function(password) {
+	if(password.length == 0) {
+		return false
+	} else {
+		return true;
+	}
+}
+
+Validator.prototype.isSamePassword = function(password, passwordConfirm) {
+	if(password == passwordConfirm) {
+		return true;
+	} else {
+		return false;
+	}
 }
 
 Validator.prototype.isValidWeight = function(weight) {
-	return true;
+	if(isNaN(weight)) {
+		return false;
+	} else if(weight <= 0) {
+		return false;
+	} else {
+		return true;
+	}
+}
+
+Validator.prototype.isInPastDateOfBirth = function(dateOfBirth) {
+	var now = new Date();
+	var nowFormatted = SubmitController.prototype.formatDateOnly(now.dateFormat('d/m/Y'));
+	alert(nowFormatted);
+	
+	return dateFromOlderThanTo(dateOfBirth, now);
 }
 
 Validator.prototype.isValidActivityLevel = function(activityLevel) {
-	return true;
+	if(isNaN(activityLevel)) {
+		return false;
+	} else if(activityLevel <= 0) {
+		return false;
+	} else {
+		return true;
+	}
 }
 
 Validator.prototype.isValidGender = function(gender) {
-	return true;
+	if(gender == "Male" || gender == "Female") {
+		return true;
+	} else {
+		return false;
+	}
 }

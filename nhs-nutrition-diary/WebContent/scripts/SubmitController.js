@@ -107,13 +107,16 @@ SubmitController.prototype.submitUserSignUpDetails = function()
 	if(!Validator.prototype.isValidNhsNumber(nhsNumber)) {
 		alert('Please enter a valid NHS number.');
 		return;
-	} 
-	
-	// TODO validate password
-	else if(!Validator.prototype.isValidWeight(weight)) {
+	} else if(!Validator.prototype.isValidPassword(password)) {
+		alert('Please enter a valid password.');
+		return;
+	} else if(!Validator.prototype.isSamePassword(password, passwordConfirm)) {
+		alert('Password and confirmed password must be the same.');
+		return;
+	} else if(!Validator.prototype.isValidWeight(weight)) {
 		alert('Please enter a valid weight.');
 		return;
-	} else if(!Validator.prototype.isValidDate(dob)) {
+	} else if(!Validator.prototype.isValidDate(dob) || !Validator.prototype.isInPastDateOfBirth(dob)) {
 		alert('Please enter a valid date of birth.');
 		return;
 	} else if(!Validator.prototype.isValidActivityLevel(activityLevel)) {
@@ -164,13 +167,16 @@ SubmitController.prototype.submitDieticianSignUpDetails = function()
 	if(!Validator.prototype.isValidNhsNumber(nhsNumber)) {
 		alert('Please enter a valid NHS number.');
 		return;
-	} 
-	
-	// TODO validate password
-	else if(!Validator.prototype.isValidWeight(weight)) {
+	} else if(!Validator.prototype.isValidPassword(password)) {
+		alert('Please enter a valid password.');
+		return;
+	} else if(!Validator.prototype.isSamePassword(password, passwordConfirm)) {
+		alert('Password and confirmed password must be the same.');
+		return;
+	} else if(!Validator.prototype.isValidWeight(weight)) {
 		alert('Please enter a valid weight.');
 		return;
-	} else if(!Validator.prototype.isValidDate(dob)) {
+	} else if(!Validator.prototype.isValidDate(dob) || !Validator.prototype.isInPastDateOfBirth(dob)) {
 		alert('Please enter a valid date of birth.');
 		return;
 	} else if(!Validator.prototype.isValidActivityLevel(activityLevel)) {

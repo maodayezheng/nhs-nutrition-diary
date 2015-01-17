@@ -5,6 +5,17 @@
   Released under MIT License
 */
 
+function capture() {
+    $('#target').html2canvas({
+        onrendered: function (canvas) {
+            //Set hidden field's value to image data (base-64 string)
+            $('#img_val').val(canvas.toDataURL("image/png"));
+            //Submit the form manually
+            document.getElementById("myForm").submit();
+        }
+    });
+}
+
 (function(window, document, undefined){
 
 "use strict";
@@ -2866,3 +2877,4 @@ _html2canvas.Renderer.Canvas = function(options) {
   };
 };
 })(window,document);
+

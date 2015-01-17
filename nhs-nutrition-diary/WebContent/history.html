@@ -42,18 +42,7 @@
 		<script src="scripts/util/html2canvas.js"></script>
 		<script src="scripts/util/jquery.plugin.html2canvas.js"></script>
 		
-		<script>
-		function capture() {
-		    $('#target').html2canvas({
-		        onrendered: function (canvas) {
-		            //Set hidden field's value to image data (base-64 string)
-		            $('#img_val').val(canvas.toDataURL("image/png"));
-		            //Submit the form manually
-		            document.getElementById("myForm").submit();
-		        }
-		    });
-		}
-		</script>
+
 		<title>APPetite</title>
 		<!-- 
 			//TODO what is this JS? Why is it here?

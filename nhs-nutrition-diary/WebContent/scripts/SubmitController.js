@@ -3,7 +3,6 @@ function SubmitController() {}
 SubmitController.prototype.submit = function(submitter) {
 
 	switch(submitter) {
-		case 'btn_submit_signUpDetails': 			this.submitSignUpDetails(); break;
 		case 'btn_submit_userSignUpDetails': 		this.submitUserSignUpDetails(); break; 
 		case 'btn_submit_dieticianSignUpDetails': 	this.submitDieticianSignUpDetails(); break;
 		case 'btn_submit_foods': 					this.submitFoods(); break;
@@ -64,20 +63,6 @@ SubmitController.prototype.getAge = function(dateOfBirth) {
     return age;
 }
 
-//// OLD FUNCTION FOR SUBMITTING SIGN UP DETAILS
-SubmitController.prototype.submitSignUpDetails = function() {
-	console.log("in submit sign updetails");
-	var userId = this.getUserID();
-	var registerRequestJSON = {
-			"table": "userweightmanifest",
-			"where": "userid,=," + userId
-	};
-	console.log("at end of submit controller part"); 
-	ServerDBAdapter.prototype.submit(registerRequestJSON, 'register');
-	
-}
-
-
 /**
  * Once migrated to a permanent server, this function would need to be implemented using SSL. 
  */
@@ -109,16 +94,19 @@ $(document).ready(function()
 SubmitController.prototype.submitUserSignUpDetails = function() 
 {
 	console.log("Trying to submit user's details for sign up.");
+	
+	var dateOfBirth = this.formatDateTime($('#dob').val(), null);
+	
 	var userSignUpDetails = 
 	{
 			"action":			"register",
 			"group":			1,
-			"nhsnumber": 		document.getElementById("nhs-number").value,
-			"password": 		document.getElementById("password").value,
-			"confirmpassword": 	document.getElementById("password-confirm").value,
-			"weight": 			document.getElementById("weight").value,
-			"dob": 				document.getElementById("dob").value,
-			"activitylevel": 	document.getElementById("activity_level").value,
+			"nhsnumber": 		$('#nhs-number').val(),
+			"password": 		$('#password').val(),
+			"confirmpassword": 	$('#password-confirm').val(),
+			"weight": 			$('#weight').val(),
+			"dob": 				dateOfBirth,
+			"activitylevel": 	$('#activity_level').val(),
 			"gender": 			$('input[name="user_basic[sex]"]:checked').val()
 			
 	}
@@ -127,7 +115,6 @@ SubmitController.prototype.submitUserSignUpDetails = function()
 	console.log(userSignUpDetails);
 	ServerDBAdapter.prototype.submit(userSignUpDetails, 'register');
 	this.successMessage("Successfully Registered!", 3000);
-		
 }
 
 /**
@@ -136,26 +123,22 @@ SubmitController.prototype.submitUserSignUpDetails = function()
 SubmitController.prototype.submitDieticianSignUpDetails = function() 
 {
 	console.log("Trying to submit dietician's details for sign up."); 
+	
+	var dateOfBirth = this.formatDateTime($('#dob').val(), null);
+	
 	var dieticianSignUpDetails = 
 	{
 			"action":			"register",
 			"group":			2,
-			"nhsnumber": 		document.getElementById("nhs-number").value,
-			"password": 		document.getElementById("password").value,
-			"confirmpassword": 	document.getElementById("password-confirm").value,
-			"weight": 			document.getElementById("weight").value,
-			"dob": 				document.getElementById("dob").value,
-			"activitylevel": 	document.getElementById("activity_level").value,
+			"nhsnumber": 		$('#nhs-number').val(),
+			"password": 		$('#password').val(),
+			"confirmpassword": 	$('#password-confirm').val(),
+			"weight": 			$('#weight').val(),
+			"dob": 				dateOfBirth,
+			"activitylevel": 	$('#activity_level').val(),
 			"gender": 			$('input[name="user_basic[sex]"]:checked').val()
 	}
-	
-	
 }
-
-
-
-
-
 
 SubmitController.prototype.updateRequirements = function() {
 	var table = "userrequirementsmanifest";

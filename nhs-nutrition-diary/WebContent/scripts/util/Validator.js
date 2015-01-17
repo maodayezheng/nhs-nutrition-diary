@@ -1,6 +1,7 @@
 function Validator() {}
 
 Validator.prototype.dateSplit = function(date) {
+//	alert(date);
 	var dateSplit = date.split('/');
 	
 	var day = parseInt(dateSplit[0]);
@@ -106,11 +107,9 @@ Validator.prototype.isValidWeight = function(weight) {
 }
 
 Validator.prototype.isInPastDateOfBirth = function(dateOfBirth) {
-	var now = new Date();
-	var nowFormatted = SubmitController.prototype.formatDateOnly(now.dateFormat('d/m/Y'));
-	alert(nowFormatted);
+	var now = new Date().dateFormat('d/m/Y');
 	
-	return dateFromOlderThanTo(dateOfBirth, now);
+	return this.dateFromOlderThanTo(dateOfBirth, now);
 }
 
 Validator.prototype.isValidActivityLevel = function(activityLevel) {

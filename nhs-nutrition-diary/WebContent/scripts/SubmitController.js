@@ -108,22 +108,25 @@ SubmitController.prototype.submitUserSignUpDetails = function()
 		alert('Please enter a valid NHS number.');
 		return;
 	} else if(!Validator.prototype.isValidPassword(password)) {
-		alert('Please enter a valid password.');
+		alert('Please enter a password.');
 		return;
 	} else if(!Validator.prototype.isSamePassword(password, passwordConfirm)) {
 		alert('Password and confirmed password must be the same.');
 		return;
 	} else if(!Validator.prototype.isValidWeight(weight)) {
-		alert('Please enter a valid weight.');
+		alert('Please enter a valid weight (positive number).');
 		return;
-	} else if(!Validator.prototype.isValidDate(dob) || !Validator.prototype.isInPastDateOfBirth(dob)) {
+	} else if(!Validator.prototype.isValidDate(dob)) {
 		alert('Please enter a valid date of birth.');
+		return;
+	} else if(!Validator.prototype.isInPastDateOfBirth(dob)) {
+		alert('Date of birth cannot be a future date.');
 		return;
 	} else if(!Validator.prototype.isValidActivityLevel(activityLevel)) {
 		alert('Please enter a valid activity level.');
 		return;
 	} else if(!Validator.prototype.isValidGender(gender)) {
-		alert('Please enter a valid gender.');
+		alert('Please select a gender.');
 		return;
 	}
 	
@@ -168,22 +171,25 @@ SubmitController.prototype.submitDieticianSignUpDetails = function()
 		alert('Please enter a valid NHS number.');
 		return;
 	} else if(!Validator.prototype.isValidPassword(password)) {
-		alert('Please enter a valid password.');
+		alert('Please enter a password.');
 		return;
 	} else if(!Validator.prototype.isSamePassword(password, passwordConfirm)) {
 		alert('Password and confirmed password must be the same.');
 		return;
 	} else if(!Validator.prototype.isValidWeight(weight)) {
-		alert('Please enter a valid weight.');
+		alert('Please enter a valid weight (positive number).');
 		return;
-	} else if(!Validator.prototype.isValidDate(dob) || !Validator.prototype.isInPastDateOfBirth(dob)) {
+	} else if(!Validator.prototype.isValidDate(dob)) {
 		alert('Please enter a valid date of birth.');
+		return;
+	} else if(!Validator.prototype.isInPastDateOfBirth(dob)) {
+		alert('Date of birth cannot be a future date.');
 		return;
 	} else if(!Validator.prototype.isValidActivityLevel(activityLevel)) {
 		alert('Please enter a valid activity level.');
 		return;
 	} else if(!Validator.prototype.isValidGender(gender)) {
-		alert('Please enter a valid gender.');
+		alert('Please select a gender.');
 		return;
 	}
 	

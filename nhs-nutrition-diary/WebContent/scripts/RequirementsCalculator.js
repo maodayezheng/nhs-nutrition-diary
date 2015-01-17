@@ -1,7 +1,7 @@
 function RequirementsCalculator() {}
 
 RequirementsCalculator.prototype.calcCalories = function(gender, weight, age) {
-	if(gender == "female") {
+	if(gender == "Female") {
 		return this.calcCaloriesFemale(weight, age);
 	} else {
 		return this.calcCaloriesMale(weight, age);

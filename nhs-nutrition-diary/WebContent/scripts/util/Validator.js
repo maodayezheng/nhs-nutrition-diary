@@ -82,15 +82,7 @@ Validator.prototype.isValidNhsNumber = function(nhsNumber) {
 	return true;
 }
 
-Validator.prototype.isValidPassword = function(password) {
-	if(password.length == 0) {
-		return false
-	} else {
-		return true;
-	}
-}
-
-Validator.prototype.isSamePassword = function(password, passwordConfirm) {
+Validator.prototype.isSame = function(password, passwordConfirm) {
 	if(password == passwordConfirm) {
 		return true;
 	} else {

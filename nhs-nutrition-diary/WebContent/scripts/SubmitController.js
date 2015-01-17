@@ -107,10 +107,10 @@ SubmitController.prototype.submitUserSignUpDetails = function()
 	if(!Validator.prototype.isValidNhsNumber(nhsNumber)) {
 		alert('Please enter a valid NHS number.');
 		return;
-	} else if(!Validator.prototype.isValidPassword(password)) {
+	} else if(Validator.prototype.isEmpty(password)) {
 		alert('Please enter a password.');
 		return;
-	} else if(!Validator.prototype.isSamePassword(password, passwordConfirm)) {
+	} else if(!Validator.prototype.isSame(password, passwordConfirm)) {
 		alert('Password and confirmed password must be the same.');
 		return;
 	} else if(!Validator.prototype.isPositiveNumber(weight)) {
@@ -170,10 +170,10 @@ SubmitController.prototype.submitDieticianSignUpDetails = function()
 	if(!Validator.prototype.isValidNhsNumber(nhsNumber)) {
 		alert('Please enter a valid NHS number.');
 		return;
-	} else if(!Validator.prototype.isValidPassword(password)) {
+	} else if(Validator.prototype.isEmpty(password)) {
 		alert('Please enter a password.');
 		return;
-	} else if(!Validator.prototype.isSamePassword(password, passwordConfirm)) {
+	} else if(!Validator.prototype.isSame(password, passwordConfirm)) {
 		alert('Password and confirmed password must be the same.');
 		return;
 	} else if(!Validator.prototype.isPositiveNumber(weight)) {

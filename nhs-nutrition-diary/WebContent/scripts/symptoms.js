@@ -1,5 +1,7 @@
 $(document).ready(function () {
 	
+
+	
 //For dietician password entry
 $(".passwordButton")
 	.click(

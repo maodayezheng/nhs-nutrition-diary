@@ -38,6 +38,22 @@
 		
 		<link href="lib/tidy-table-1.9.3/tidy-table.min.css" rel="stylesheet"></link>
 		<script src="lib/tidy-table-1.9.3/tidy-table.min.js"></script>
+		
+		<script src="scripts/util/html2canvas.js"></script>
+		<script src="scripts/util/jquery.plugin.html2canvas.js"></script>
+		
+		<script>
+		function capture() {
+		    $('#target').html2canvas({
+		        onrendered: function (canvas) {
+		            //Set hidden field's value to image data (base-64 string)
+		            $('#img_val').val(canvas.toDataURL("image/png"));
+		            //Submit the form manually
+		            document.getElementById("myForm").submit();
+		        }
+		    });
+		}
+		</script>
 		<title>APPetite</title>
 		<!-- 
 			//TODO what is this JS? Why is it here?
@@ -107,6 +123,7 @@
 	    				<div class="panel-body history-panel">
 						    <div class="row">
 					<div class="col-md-12 column">
+					<div id = "target">
 	     				<div id="datepicker_div">
 							<p>
 								From: <input type="text" class="date" id="datepickerFrom" onchange="toggleHistoryVisualisation()" readonly="true"> 
@@ -117,6 +134,7 @@
 							<svg id="graph"></svg>
 							<div id="table"></div>
 							<div id="summary"></div>
+						</div>
 						</div>
 	     			</div>
 	     		</div>
@@ -177,7 +195,7 @@
 						<form method="post" name="contact_form"
 							action="scripts/database/server/contact-form-handler.php">
 							Email Address: <input type="text" name="email"> 
-							<input type="submit" class="btn btn-success" "data-dismiss="modal" value="Send">
+							<input type="submit" class="btn btn-success" "data-dismiss="modal" onclick="capture();" value="Send">
 							
 						</form>
 						 <!--for mailto function:  data-email="jobarry@tcd.ie" class="email" -->
@@ -186,6 +204,8 @@
   			</div>
 		</div>
 		</div>
-
+<form method="POST" enctype="multipart/form-data" action="scripts/database/server/saveimage.php" id="myForm">
+    <input type="hidden" name="img_val" id="img_val" value="" />
+</form>
   	</body>
 </html>

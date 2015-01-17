@@ -132,3 +132,11 @@ Validator.prototype.isValidGender = function(gender) {
 		return false;
 	}
 }
+
+Validator.prototype.isEmpty = function(input) {
+	if(input == "") {
+		return true;
+	} else {
+		return false;
+	}
+}

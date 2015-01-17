@@ -289,6 +289,16 @@ SubmitController.prototype.submitFoods = function() {
 	var userid = this.getUserID();
 	var date = $('#Date').val();
 	var time = $('#Time').val();
+	
+	// validations
+	if(!Validator.prototype.isValidDate(date)) {
+		alert('Please enter a valid date.');
+		return;
+	} else if(!Validator.prototype.isInPastDateOfBirth(date)) {
+		alert('Date cannot be a future date.');
+		return;
+	}
+	
 	var dateTime = this.formatDateTime(date, time);
 	var meal = "";	
 	var foodList =[];
@@ -403,6 +413,15 @@ SubmitController.prototype.submitMeal = function() {
 	
 	var mealName = $('#mealName').val();
 	
+	// validations
+	if(Validator.prototype.isEmpty(mealName)) {
+		alert("Please enter a meal name.");
+		return;
+	} else if($('.selection-list li').first().length == 0) {
+		alert("Please select at least one food for a meal.");
+		return;
+	}
+	
 	var foodList =[];
 	var counter = 0;
 	$('.selection-list li').each(function(idx, li) {
@@ -477,7 +496,15 @@ SubmitController.prototype.submitSymptoms = function() {
 	var userid = this.getUserID();
 	var date = $('#symptomDate').val();
 	var time = $('#symptomTime').val();
-	var dateTime = this.formatDateTime(date, time);
+	
+	// validations
+	if(!Validator.prototype.isValidDate(date)) {
+		alert('Please enter a valid date.');
+		return;
+	} else if(!Validator.prototype.isInPastDateOfBirth(date)) {
+		alert('Date cannot be a future date.');
+		return;
+	}
 	
 	var checkedSymptoms = {};
 	var counter = 0;
@@ -540,6 +567,8 @@ SubmitController.prototype.submitSymptoms = function() {
 		var rating = ratingComplete[index];
 		var comment = commentsComplete[index];
 		
+		var dateTime = this.formatDateTime(date, time);
+		
 		var dataToServer = {
 				"table": table,
 				"userid" : userid,
@@ -562,9 +591,22 @@ SubmitController.prototype.submitNewCustomSymptom = function() {
 	userid = this.getUserID();
 	var date = $('#symptomDate').val();
 	var time = $('#symptomTime').val();
-	var datetime = this.formatDateTime(date, time);
 	
 	var symptom = $("#newSymptom").val();
+	
+	// validations
+	if(Validator.prototype.isEmpty(symptom)) {
+		alert("Please enter a symptom name.");
+		return;
+	} else if(!Validator.prototype.isValidDate(date)) {
+		alert('Please enter a valid date.');
+		return;
+	} else if(!Validator.prototype.isInPastDateOfBirth(date)) {
+		alert('Date cannot be a future date.');
+		return;
+	} 
+	
+	var datetime = this.formatDateTime(date, time);
 	
 	var dataToServer = {
 			"table": table,
@@ -581,8 +623,21 @@ SubmitController.prototype.submitWeight = function() {
 	
 	var userid = this.getUserID();
 	var date = $('#datetime').val();
-	var datetime = this.formatDateTime(date, null);
 	var weight = $('#newWeight').val();
+	
+	// validations
+	if(!Validator.prototype.isValidWeight(weight)) {
+		alert("Please enter a valid weight (positive number).");
+		return;
+	} else if(!Validator.prototype.isValidDate(date)) {
+		alert('Please enter a valid date.');
+		return;
+	} else if(!Validator.prototype.isInPastDateOfBirth(date)) {
+		alert('Date cannot be a future date.');
+		return;
+	} 
+	
+	var datetime = this.formatDateTime(date, null);
 	
 	var dataToServer = {
 		"table": table,

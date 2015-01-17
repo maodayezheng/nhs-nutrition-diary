@@ -235,19 +235,13 @@ var dropContent = '<br> <input type="text" class="form-control comments symptoms
 
 	$("#btn_save_newCustomSymptom").click(function(){	
 		var customSymptom = $('#newSymptom').val();
-		if(customSymptom == ""){
-			alert("Please enter a valid symptom");
-		}
-		if(customSymptom != ""){
-		
 		var newSymptomInList = '<li class="list-group-item newCustomSymptom" style="cursor: pointer;"><span class="state-icon glyphicon glyphicon-unchecked"></span>'+customSymptom+'</li><div class="drop-scoring">'+dropContent+'</div>';
 		$("#symptomListCustom").append(newSymptomInList);	  
 	     setUpCheckbox3();
 	 	$('.newCustomSymptom').click(function(){
 			var target = $(this).next(".drop-scoring");	
 		$(target).slideDown('slow');
-		});
-		} 
+		}); 
 	});
 
 	var symptoms = new SymptomListSingleton().symptomList;

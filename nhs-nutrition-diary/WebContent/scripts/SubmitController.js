@@ -113,7 +113,7 @@ SubmitController.prototype.submitUserSignUpDetails = function()
 	} else if(!Validator.prototype.isSamePassword(password, passwordConfirm)) {
 		alert('Password and confirmed password must be the same.');
 		return;
-	} else if(!Validator.prototype.isValidWeight(weight)) {
+	} else if(!Validator.prototype.isPositiveNumber(weight)) {
 		alert('Please enter a valid weight (positive number).');
 		return;
 	} else if(!Validator.prototype.isValidDate(dob)) {
@@ -122,7 +122,7 @@ SubmitController.prototype.submitUserSignUpDetails = function()
 	} else if(!Validator.prototype.isInPastDateOfBirth(dob)) {
 		alert('Date of birth cannot be a future date.');
 		return;
-	} else if(!Validator.prototype.isValidActivityLevel(activityLevel)) {
+	} else if(!Validator.prototype.isPositiveNumber(activityLevel)) {
 		alert('Please enter a valid activity level.');
 		return;
 	} else if(!Validator.prototype.isValidGender(gender)) {
@@ -176,7 +176,7 @@ SubmitController.prototype.submitDieticianSignUpDetails = function()
 	} else if(!Validator.prototype.isSamePassword(password, passwordConfirm)) {
 		alert('Password and confirmed password must be the same.');
 		return;
-	} else if(!Validator.prototype.isValidWeight(weight)) {
+	} else if(!Validator.prototype.isPositiveNumber(weight)) {
 		alert('Please enter a valid weight (positive number).');
 		return;
 	} else if(!Validator.prototype.isValidDate(dob)) {
@@ -185,7 +185,7 @@ SubmitController.prototype.submitDieticianSignUpDetails = function()
 	} else if(!Validator.prototype.isInPastDateOfBirth(dob)) {
 		alert('Date of birth cannot be a future date.');
 		return;
-	} else if(!Validator.prototype.isValidActivityLevel(activityLevel)) {
+	} else if(!Validator.prototype.isPositiveNumber(activityLevel)) {
 		alert('Please enter a valid activity level.');
 		return;
 	} else if(!Validator.prototype.isValidGender(gender)) {
@@ -387,7 +387,40 @@ SubmitController.prototype.submitNewFood = function() {
 	var calories = $('#newFoodCalories').val();
 	var protein = $('#newFoodProtein').val();
 	var fluid = $('#newFoodFluid').val();
-
+	
+	// validations
+	if(Validator.prototype.isEmpty(foodName)) {
+		alert("Please enter a food name.");
+		return;
+	} else if(Validator.prototype.isEmpty(comment)) {
+		alert("Please enter a comment.");
+		return;
+	} else if(Validator.prototype.isEmpty(quantityWeight)) {
+		alert("Please enter a quantity weight.");
+		return;
+	} else if(!Validator.prototype.isPositiveNumber(quantityWeight)) {
+		alert("Weight of edible proportion must be a positive number.");
+		return;
+	} else if(Validator.prototype.isEmpty(calories)) {
+		alert("Please enter the amount of calories.");
+		return;
+	} else if(!Validator.prototype.isPositiveNumber(calories)) {
+		alert("Calories must be a positive number.");
+		return;
+	} else if(Validator.prototype.isEmpty(protein)) {
+		alert("Please enter the amount of protein.");
+		return;
+	} else if(!Validator.prototype.isPositiveNumber(protein)) {
+		alert("Protein must be a positive number.");
+		return;
+	} else if(Validator.prototype.isEmpty(fluid)) {
+		alert("Please enter the amount of fluid.");
+		return;
+	} else if(!Validator.prototype.isPositiveNumber(fluid)) {
+		alert("Fluid must be a positive number.");
+		return;
+	} 
+	
 	var dataToServer = {
 			"table": table,
 			"userid": userid,
@@ -626,7 +659,7 @@ SubmitController.prototype.submitWeight = function() {
 	var weight = $('#newWeight').val();
 	
 	// validations
-	if(!Validator.prototype.isValidWeight(weight)) {
+	if(!Validator.prototype.isPositiveNumber(weight)) {
 		alert("Please enter a valid weight (positive number).");
 		return;
 	} else if(!Validator.prototype.isValidDate(date)) {

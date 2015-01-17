@@ -1,7 +1,6 @@
 function Validator() {}
 
 Validator.prototype.dateSplit = function(date) {
-//	alert(date);
 	var dateSplit = date.split('/');
 	
 	var day = parseInt(dateSplit[0]);
@@ -99,10 +98,10 @@ Validator.prototype.isSamePassword = function(password, passwordConfirm) {
 	}
 }
 
-Validator.prototype.isValidWeight = function(weight) {
-	if(isNaN(weight)) {
+Validator.prototype.isPositiveNumber = function(input) {
+	if(isNaN(input)) {
 		return false;
-	} else if(weight <= 0) {
+	} else if(input <= 0) {
 		return false;
 	} else {
 		return true;
@@ -113,16 +112,6 @@ Validator.prototype.isInPastDateOfBirth = function(dateOfBirth) {
 	var now = new Date().dateFormat('d/m/Y');
 	
 	return this.dateFromOlderThanTo(dateOfBirth, now);
-}
-
-Validator.prototype.isValidActivityLevel = function(activityLevel) {
-	if(isNaN(activityLevel)) {
-		return false;
-	} else if(activityLevel <= 0) {
-		return false;
-	} else {
-		return true;
-	}
 }
 
 Validator.prototype.isValidGender = function(gender) {

@@ -70,14 +70,15 @@ Validator.prototype.datesAreValid = function(from, to) {
 }
 
 Validator.prototype.isValidNhsNumber = function(nhsNumber) {
-	if(isNaN(nhsNumber)) {
+	/*if(isNaN(nhsNumber)) {
 		return false;
 	} else if(nhsNumber.length != 10) {
 		return false;
-	}
+	}*/
 	
 	// TODO implement nhs validation checker:
 	// link: http://www.datadictionary.nhs.uk/version2/data_dictionary/data_field_notes/n/nhs_number_de.asp?shownav=0
+	// This validation should also check that the nhs number enetered does not already exist in the database. 
 	
 	return true;
 }

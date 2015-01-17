@@ -5,8 +5,8 @@
 $email= $_POST['email'];
 $message= "A report sent via Appetite";
 
-$subject="GST Patient Report";
-$headers .= 'From: Patient at GST <PatientGST@gmail.com>' . "\r\n";
+$subject="GSST Patient Report";
+$headers .= 'From: Patient at GSST <PatientGSST@gmail.com>' . "\r\n";
 
 // Mail it
 mail($email, $subject, $message, $headers);

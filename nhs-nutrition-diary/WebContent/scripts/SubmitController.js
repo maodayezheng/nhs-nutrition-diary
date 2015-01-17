@@ -95,7 +95,7 @@ SubmitController.prototype.submitUserSignUpDetails = function()
 {
 	console.log("Trying to submit user's details for sign up.");
 	
-	var nhsNumber = $('#nhs-number').val();
+	var nhsNumber = $('#nhsnumber').val();
 	var password = $('#password').val();
 	var passwordConfirm = $('#password-confirm').val();
 	var weight = $('#weight').val();

@@ -2,7 +2,8 @@
 //save.php code
  
 //Show the image
-echo '<img src="'.$_POST['img_val'].'" />';
+$image='<img src="'.$_POST['img_val'].'" />';
+echo $image;
  
 //Get the base-64 string from data
 $filteredData=substr($_POST['img_val'], strpos($_POST['img_val'], ",")+1);

@@ -68,3 +68,23 @@ Validator.prototype.datesAreValid = function(from, to) {
 	
 	return true;
 }
+
+Validator.prototype.isValidNhsNumber = function(nhsNumber) {
+	return true;
+}
+
+Validator.prototype.samePassword = function(password, passwordConfirm) {
+	return true;
+}
+
+Validator.prototype.isValidWeight = function(weight) {
+	return true;
+}
+
+Validator.prototype.isValidActivityLevel = function(activityLevel) {
+	return true;
+}
+
+Validator.prototype.isValidGender = function(gender) {
+	return true;
+}

@@ -95,20 +95,48 @@ SubmitController.prototype.submitUserSignUpDetails = function()
 {
 	console.log("Trying to submit user's details for sign up.");
 	
-	var dateOfBirth = this.formatDateTime($('#dob').val(), null);
+	var nhsNumber = $('#nhs-number').val();
+	var password = $('#password').val();
+	var passwordConfirm = $('#password-confirm').val();
+	var weight = $('#weight').val();
+	var dob = $('#dob').val();
+	var activityLevel = $('#activity_level').val();
+	var gender = $('input[name="user_basic[sex]"]:checked').val();
+	
+	// validations
+	if(!Validator.prototype.isValidNhsNumber(nhsNumber)) {
+		alert('Please enter a valid NHS number.');
+		return;
+	} 
+	
+	// TODO validate password
+	else if(!Validator.prototype.isValidWeight(weight)) {
+		alert('Please enter a valid weight.');
+		return;
+	} else if(!Validator.prototype.isValidDate(dob)) {
+		alert('Please enter a valid date of birth.');
+		return;
+	} else if(!Validator.prototype.isValidActivityLevel(activityLevel)) {
+		alert('Please enter a valid activity level.');
+		return;
+	} else if(!Validator.prototype.isValidGender(gender)) {
+		alert('Please enter a valid gender.');
+		return;
+	}
+	
+	var dateOfBirth = this.formatDateTime(dob, null);
 	
 	var userSignUpDetails = 
 	{
 			"action":			"register",
 			"group":			1,
-			"nhsnumber": 		$('#nhs-number').val(),
-			"password": 		$('#password').val(),
-			"confirmpassword": 	$('#password-confirm').val(),
-			"weight": 			$('#weight').val(),
+			"nhsnumber": 		nhsNumber,
+			"password": 		password,
+			"confirmpassword": 	passwordConfirm,
+			"weight": 			weight,
 			"dob": 				dateOfBirth,
-			"activitylevel": 	$('#activity_level').val(),
-			"gender": 			$('input[name="user_basic[sex]"]:checked').val()
-			
+			"activitylevel": 	activityLevel,
+			"gender": 			gender
 	}
 	
 	console.log("printing userSignUpDetails");
@@ -124,19 +152,48 @@ SubmitController.prototype.submitDieticianSignUpDetails = function()
 {
 	console.log("Trying to submit dietician's details for sign up."); 
 	
-	var dateOfBirth = this.formatDateTime($('#dob').val(), null);
+	var nhsNumber = $('#nhs-number').val();
+	var password = $('#password').val();
+	var passwordConfirm = $('#password-confirm').val();
+	var weight = $('#weight').val();
+	var dob = $('#dob').val();
+	var activityLevel = $('#activity_level').val();
+	var gender = $('input[name="user_basic[sex]"]:checked').val();
+	
+	// validations
+	if(!Validator.prototype.isValidNhsNumber(nhsNumber)) {
+		alert('Please enter a valid NHS number.');
+		return;
+	} 
+	
+	// TODO validate password
+	else if(!Validator.prototype.isValidWeight(weight)) {
+		alert('Please enter a valid weight.');
+		return;
+	} else if(!Validator.prototype.isValidDate(dob)) {
+		alert('Please enter a valid date of birth.');
+		return;
+	} else if(!Validator.prototype.isValidActivityLevel(activityLevel)) {
+		alert('Please enter a valid activity level.');
+		return;
+	} else if(!Validator.prototype.isValidGender(gender)) {
+		alert('Please enter a valid gender.');
+		return;
+	}
+	
+	var dateOfBirth = this.formatDateTime(dob, null);
 	
 	var dieticianSignUpDetails = 
 	{
 			"action":			"register",
 			"group":			2,
-			"nhsnumber": 		$('#nhs-number').val(),
-			"password": 		$('#password').val(),
-			"confirmpassword": 	$('#password-confirm').val(),
-			"weight": 			$('#weight').val(),
+			"nhsnumber": 		nhsNumber,
+			"password": 		password,
+			"confirmpassword": 	passwordConfirm,
+			"weight": 			weight,
 			"dob": 				dateOfBirth,
-			"activitylevel": 	$('#activity_level').val(),
-			"gender": 			$('input[name="user_basic[sex]"]:checked').val()
+			"activitylevel": 	activityLevel,
+			"gender": 			gender
 	}
 }
 

@@ -77,6 +77,9 @@ Validator.prototype.isValidNhsNumber = function(nhsNumber) {
 		return false;
 	}
 	
+	// TODO implement nhs validation checker:
+	// link: http://www.datadictionary.nhs.uk/version2/data_dictionary/data_field_notes/n/nhs_number_de.asp?shownav=0
+	
 	return true;
 }
 

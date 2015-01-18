@@ -261,6 +261,7 @@ var dropContent = '<br> <input type="text" class="form-control comments symptoms
 	};
 	
 	var customSymptoms = ServerDBAdapter.prototype.get(customSymptomsRequestJSON);
+	//console.log(JSON.stringify(customSymptoms) + "  HERREEEE!!!!");
 	for(var index = 0; index < customSymptoms.length; index++) {
 		var singleCustomSymptom = customSymptoms[index];
 		if(singleCustomSymptom.symptom != ""){
@@ -300,9 +301,8 @@ var dropContent = '<br> <input type="text" class="form-control comments symptoms
 
 $( window ).load(function() { 	$('li').click(function(){
 		var target = $(this).next(".drop-scoring");	
-	$(target).slideToggle('slow');
+	$(target).slideDown('slow');
 	}); 
-
 })
 
 //---- method to combine data with DOMs----

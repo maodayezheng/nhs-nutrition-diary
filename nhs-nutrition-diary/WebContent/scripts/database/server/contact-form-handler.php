@@ -1,6 +1,6 @@
 
 <?php
-//include 'saveimage.php';
+/*include 'saveimage.php';
 $image='<img src="'.$_POST['img_val'].'" />';
 echo $image;
  
@@ -11,12 +11,29 @@ $filteredData=substr($_POST['img_val'], strpos($_POST['img_val'], ",")+1);
 $unencodedData=base64_decode($filteredData);
  
 //Save the image
-file_put_contents('img.png', $unencodedData);
+file_put_contents('img.png', $unencodedData);*/
 
 
 require 'phpmailer/PHPMailerAutoload.php';
 
 $mail = new PHPMailer;
+
+$message ="
+<html>
+<body bgcolor='#FFFFCC' text='#000000'>
+<div align='center'>
+<h1>GSST patient report</h1>
+
+
+<div id='historyVisualisation'>
+							<svg id='graph'></svg>
+							<div id='table'></div>
+							<div id='summary'></div>
+						</div>
+</div>
+</body>
+</html>
+";
 
 //$mail->SMTPDebug = 3;                               // Enable verbose debug output
 
@@ -41,7 +58,7 @@ $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
 $mail->isHTML(true);                                  // Set email format to HTML
 
 $mail->Subject = 'Report from patient at GSST';
-$mail->Body    = 'Sent via Appetite <b>sample HTML content</b>';
+$mail->Body    = $message;
 $mail->AltBody = 'body...';
 
 if(!$mail->send()) {

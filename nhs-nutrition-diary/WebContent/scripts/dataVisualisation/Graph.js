@@ -1,7 +1,7 @@
 function manageGraph(presentedParameter, dateFrom, dateTo) {
 	
-	var stats;
-	var requirements;
+	var stats = null;
+	var requirements = null;
 	
 	var validator = new Validator();
 	if(!validator.datesAreValid(dateFrom, dateTo)) {
@@ -40,6 +40,11 @@ function manageGraph(presentedParameter, dateFrom, dateTo) {
 }
 
 function makeGraph(presentedParameter, dateFrom, dateTo, history, requirements) {
+	console.log(presentedParameter);
+	console.log(dateFrom);
+	console.log(dateTo);
+	console.log(history);
+	
 	//TODO draw current requirements as well (as a horizontal line)
 	if(requirements == null) {
 		//TODO no requirements because weight is selected

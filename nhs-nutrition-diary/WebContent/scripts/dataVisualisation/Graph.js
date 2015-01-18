@@ -11,6 +11,9 @@ function manageGraph(presentedParameter, dateFrom, dateTo) {
 	
 	var userId = SubmitController.prototype.getUserID();
 	
+	var dateFromFormatted = SubmitController.prototype.formatDateOnly(dateFrom);
+	var dateToFormatted = SubmitController.prototype.formatDateOnly(dateTo);
+	
 	if(presentedParameter == "Weight (kg)") {
 		var weightHistoryRequestJSON = {
 				"action": "get",

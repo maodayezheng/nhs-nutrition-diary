@@ -13,19 +13,10 @@ function manageGraph(presentedParameter, dateFrom, dateTo) {
 	 
 	
 	var userData = new UserData(); 
-	
 	userData.getRawData(dateFrom, dateTo);
-	userData.wrangleFoodManifestData();
+	var stats = userData.wrangleFoodManifestData();
 	
-	/*var getVisualisationDataJSON = 
-	{
-			"action":	"getVisualisationData",
-			"userHash": Cookies.prototype.getUserHash(),
-			"dateFrom": dateFromFormatted,
-			"dateTo": dateToFormatted
-	}
-	var visualisationDataJSON = ServerDBAdapter.prototype.get(getVisualisationDataJSON);
-	console.log(visualisationDataJSON);*/ 
+	
 	
 	
 	//////////////////////////////////////End of testing code block (Vik)
@@ -34,15 +25,7 @@ function manageGraph(presentedParameter, dateFrom, dateTo) {
 	
 	
 	
-	/*
-	var historyRequestJSON = {
-			"action": "get",
-			"table": "userfoodmanifest",
-			"where": "userid,=," + userId + ",datetime,>=," + dateFromFormatted + " 00:00:00," + "datetime,<=," + dateToFormatted + " 23:59:59"
-	};
-	var history = ServerDBAdapter.prototype.get(historyRequestJSON);
-	//console.log(history);
-	*/
+
 	var requirementsRequestJSON = {
 			"action": "getLast",
 			"table": "userrequirementsmanifest",
@@ -52,26 +35,9 @@ function manageGraph(presentedParameter, dateFrom, dateTo) {
 	console.log(requirements);
 	
 	
-	var history = 
-		[
-			{
-				"Date": new Date(2014, 0, 15, 0, 0, 0, 0), "timestamp":"20140115", "calories":345, "protein":20, "fluid":100, "weight":80
-			},
-			{ 
-				"Date": new Date(2014, 0, 16, 0, 0, 0, 0), "timestamp":"20140116", "calories":500, "protein":30, "fluid":250, "weight":75
-			},
-			{
-				"Date": new Date(2014, 0, 17, 0, 0, 0, 0), "timestamp":"20140117", "calories":127, "protein":13, "fluid":400, "weight":78
-			},
-			{
-				"Date": new Date(2014, 0, 18, 0, 0, 0, 0), "timestamp":"20140118", "calories":470, "protein":66, "fluid":480, "weight":72
-			},
-			{
-				"Date": new Date(2014, 0, 25, 0, 0, 0, 0), "timestamp":"20140125", "calories":500, "protein":35, "fluid":300, "weight":68
-			}  
-		];
+
 	
-	makeGraph(presentedParameter, dateFrom, dateTo, history, requirements);
+	makeGraph(presentedParameter, dateFrom, dateTo, stats, requirements);
 }
 
 //TODO draw current requirements as well (as a horizontal line)
@@ -110,10 +76,10 @@ function makeGraph(presentedParameter, dateFrom, dateTo, history, requirements) 
     	
         xRange = d3.time.scale().range([MARGINS.left, WIDTH - MARGINS.right]).domain([
             d3.min(history, function(d) {
-            	return parseDate(d.timestamp);
+            	return parseDate(d.date);
             }),
     	    d3.max(history, function(d) {
-    	    	return parseDate(d.timestamp);
+    	    	return parseDate(d.date);
     	    })
     	]),
     	
@@ -171,7 +137,7 @@ function makeGraph(presentedParameter, dateFrom, dateTo, history, requirements) 
 	
 	var lineFunc = d3.svg.line()
 	  .x(function(d) {
-	    return xRange(parseDate(d.timestamp));
+	    return xRange(parseDate(d.date));
 	  })
 	  .y(function(d) {
 		  if(presentedParameter == "Calories (kcal)")
@@ -232,10 +198,10 @@ Graph.prototype.create = function() {
     	
         xRange = d3.time.scale().range([MARGINS.left, WIDTH - MARGINS.right]).domain([
             d3.min(history, function(d) {
-            	return parseDate(d.timestamp);
+            	return parseDate(d.date);
             }),
     	    d3.max(history, function(d) {
-    	    	return parseDate(d.timestamp);
+    	    	return parseDate(d.date);
     	    })
     	]),
     	
@@ -293,7 +259,7 @@ Graph.prototype.create = function() {
 	
 	var lineFunc = d3.svg.line()
 	  .x(function(d) {
-	    return xRange(parseDate(d.timestamp));
+	    return xRange(parseDate(d.date));
 	  })
 	  .y(function(d) {
 		  if(this.presentedParameter == "Calories (kcal)")
@@ -322,35 +288,35 @@ Graph.prototype.updateView = function(visualisation) {
 function retrieveData() {
 	var data = [
 	    {
-		 	  "timestamp":"20140115",
+		 	  "date":"20140115",
 			  "calories":345,
 			  "protein":20,
 			  "fluid":100,
 			  "weight":80
 		},
 		{
-		 	  "timestamp":"20140116",
+		 	  "date":"20140116",
 			  "calories":500,
 			  "protein":30,
 			  "fluid":250,
 			  "weight":75
 		},
 		{
-		 	  "timestamp":"20140117",
+		 	  "date":"20140117",
 			  "calories":127,
 			  "protein":13,
 			  "fluid":400,
 			  "weight":78
 		},
 		{
-		 	  "timestamp":"20140118",
+		 	  "date":"20140118",
 			  "calories":470,
 			  "protein":66,
 			  "fluid":480,
 			  "weight":72
 		},
 		{
-		 	  "timestamp":"20140125",
+		 	  "date":"20140125",
 			  "calories":220,
 			  "protein":35,
 			  "fluid":300,

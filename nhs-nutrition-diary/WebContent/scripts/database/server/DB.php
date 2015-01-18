@@ -148,12 +148,21 @@ class DB
 		
 		if((isset($dataDecoded['userID']) && isset($dataDecoded['dateFrom']) && isset($dataDecoded['dateTo']) ) )
 		{
-			$dateFrom = $dataDecoded['dateFrom']; $dateTo = $dataDecoded['dateTo']; $userID	= $dataDecoded['userID'];
-			$tables   = array('userfoodmanifest', 'userweightmanifest','usersymptommanifest','userrequirementsmanifest'); //these are the tables we are retrieving the user's data from. 
+			$dateFrom 	= $dataDecoded['dateFrom']; 
+			$userID		= $dataDecoded['userID'];
+			
+			/* Users are expecting to see data which is inclusive of their defined interval. For example, consider that the user defined dateTo was '2015-1-18' and 
+			 * the user had eaten a food at '2015-01-18 21:17:00'. This would not be returned in a query using <= dateTo because of the time element. For this reason, 
+			 * we add 1 day on to the dateTo property passed in to this method so it effectively becomes '2015-01-19 00:00:00' and use this date in the query.  */ 
+			$dateTo 	= $dataDecoded['dateTo'];	
+			$dateToMod 	= (new DateTime($dateTo))->modify('+1 day')->format('Y-m-d'); 
+			
+			//these are the tables we are retrieving the user's data from.
+			$tables   	= array('userfoodmanifest', 'userweightmanifest','usersymptommanifest','userrequirementsmanifest');  
 			
 			for($i=0; $i<sizeof($tables); $i++)
 			{
-				array_push($queryResults, array($tables[$i] => $this->get($tables[$i],array('userid','=',$userID,'datetime','>=',$dateFrom,'datetime','<=',$dateTo))->results()));
+				array_push($queryResults, array($tables[$i] => $this->get($tables[$i],array('userid','=',$userID,'datetime','>=',$dateFrom,'datetime','<=',$dateToMod))->results()));
 			}
 			
 			return $queryResults; 

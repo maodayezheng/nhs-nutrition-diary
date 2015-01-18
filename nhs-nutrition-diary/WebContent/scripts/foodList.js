@@ -204,7 +204,7 @@ function loadCustomMealView(){
 			"action": "get",
 			"table": "usermeallist",
 			"where": "userid,=," + userId,
-			"group": "GROUP BY mealname"
+			//"group": "GROUP BY mealname"
 	};
 	
 	var data = ServerDBAdapter.prototype.get(mealsRequestJSON);

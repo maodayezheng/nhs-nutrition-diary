@@ -302,7 +302,6 @@ $( window ).load(function() { 	$('li').click(function(){
 		var target = $(this).next(".drop-scoring");	
 	$(target).slideToggle('slow');
 	}); 
-
 })
 
 //---- method to combine data with DOMs----

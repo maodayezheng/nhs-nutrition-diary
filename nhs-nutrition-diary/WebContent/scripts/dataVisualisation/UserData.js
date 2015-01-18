@@ -108,9 +108,9 @@ UserData.prototype.wrangleFoodManifestData = function()
 					console.log("equal");
 					console.log(this.rawuserfoodmanifest[j]); 
 					
-					if(!isNaN(this.rawuserfoodmanifest[j]['calories'])) { object.calories 	+= parseFloat(this.rawuserfoodmanifest[j]['calories']);	}
-					if(!isNaN(this.rawuserfoodmanifest[j]['protein'])) 	{ object.protein 	+= parseFloat(this.rawuserfoodmanifest[j]['protein']); 	}
-					if(!isNaN(this.rawuserfoodmanifest[j]['fluid'])) 	{ object.fluid 		+= parseFloat(this.rawuserfoodmanifest[j]['fluid']); 	}
+					if(!isNaN(this.rawuserfoodmanifest[j]['calories'])) { object.calories 	+= parseFloat(this.rawuserfoodmanifest[j]['calories']) * parseFloat(this.rawuserfoodmanifest[j]['quantity']);}
+					if(!isNaN(this.rawuserfoodmanifest[j]['protein'])) 	{ object.protein 	+= parseFloat(this.rawuserfoodmanifest[j]['protein']) * parseFloat(this.rawuserfoodmanifest[j]['quantity']); }
+					if(!isNaN(this.rawuserfoodmanifest[j]['fluid'])) 	{ object.fluid 		+= parseFloat(this.rawuserfoodmanifest[j]['fluid']) * parseFloat(this.rawuserfoodmanifest[j]['quantity']);	 }
 					
 				} else {} //do nothing
 			}

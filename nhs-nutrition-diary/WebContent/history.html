@@ -156,7 +156,7 @@
     						</tr>
       						<tr>
       							<td>Calories</td>
-      							<td><input type="checkbox" onclick="capture();"></td>
+      							<td><input type="checkbox" ></td>
       							<td><input type="checkbox"></td>
     						</tr>
     						<tr>
@@ -185,7 +185,8 @@
 						<form method="post" name="contact_form"
 							action="scripts/database/server/contact-form-handler.php">
 							Email Address: <input type="text" name="email"> 
-							<input type="submit" class="btn btn-success" "data-dismiss="modal"  value="Send"  >
+							<input type="submit" class="btn btn-primary" "data-dismiss="modal"  value="get img"  onclick="capture();">
+							<input type="submit" class="btn btn-success" "data-dismiss="modal"  value="Send" >
 							
 						</form>
 						 <!--for mailto function:  data-email="jobarry@tcd.ie" class="email" -->
@@ -195,8 +196,8 @@
 		</div>
 		</div>
 		
-<form method="POST" enctype="multipart/form-data" action="scripts/database/server/contact-form-handler.php" id="myForm">
-    <input type="hidden" name="img_val" id="img_val" value="" />
+<form method="POST" enctype="multipart/form-data" action="scripts/database/server/saveimage.php" id="myForm">
+    <input type="hidden" name="img_val" id="img_val" value="img_val" />
 </form>
 
   	</body>

@@ -76,14 +76,7 @@ Table.prototype.drawTable = function(presentedParameter, dateFrom, dateTo, histo
 			rows[index] = new Array('' + dateTimeParts[0], '' + entry.weight);
 		}
 	}
-	/*else if(presentedParameter == "Symptoms") {
-		colTitles = ['Date', 'Time', 'Food', 'Symptom'];
-		rows = [
-	            ['02/12/2014', '14:02', 'German sausage', 'Feeling good'],
-	            ['03/12/2014', '15:14', 'German beer', 'Feeling good'],
-	            ['24/12/2014', '05:24', 'German bread', 'Feeling good'],
-			];
-	}*/
+	
 	var block = $('#table').TidyTable({
 		//enableCheckbox: true,
 		//enableMenu:     true
@@ -106,6 +99,7 @@ Table.prototype.drawTable = function(presentedParameter, dateFrom, dateTo, histo
 		},
 
 		// pre-process column values before sort (optional)
+		//TODO sort by date in descending order
 		sortByPattern: function(col_num, val) {
 			if (col_num != 1) return val;
 

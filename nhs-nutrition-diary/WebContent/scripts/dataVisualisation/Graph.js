@@ -1,5 +1,8 @@
 function manageGraph(presentedParameter, dateFrom, dateTo) {
 	
+	var stats;
+	var requirements;
+	
 	var validator = new Validator();
 	if(!validator.datesAreValid(dateFrom, dateTo)) {
 		alert("Dates are not valid. Either wrong format or to is older than from.");
@@ -8,52 +11,36 @@ function manageGraph(presentedParameter, dateFrom, dateTo) {
 	
 	var userId = SubmitController.prototype.getUserID();
 	
+	if(presentedParameter == "Weight (kg)") {
+		var weightHistoryRequestJSON = {
+				"action": "get",
+				"table": "userweightmanifest",
+				"where": "userid,=," + userId + ",datetime,>=," + dateFromFormatted + " 00:00:00," + "datetime,<=," + dateToFormatted + " 23:59:59"
+		};
+		stats = ServerDBAdapter.prototype.get(weightHistoryRequestJSON);
+	} else {
 	
-	////////////////////////////////////Testing code block (Vik)
-	 
+		var userData = new UserData(); 
+		userData.getRawData(dateFrom, dateTo);
+		stats = userData.wrangleFoodManifestData();
 	
-	var userData = new UserData(); 
-	userData.getRawData(dateFrom, dateTo);
-	var stats = userData.wrangleFoodManifestData();
-	
-	//////////////////////////////////////End of testing code block (Vik)
-	
-	
-	
-	
-	
-
-	var requirementsRequestJSON = {
-			"action": "getLast",
-			"table": "userrequirementsmanifest",
-			"where": "userid,=," + userId
-	};
-	var requirements = ServerDBAdapter.prototype.get(requirementsRequestJSON);
-	console.log(requirements);
-	
-	
-
+		var requirementsRequestJSON = {
+				"action": "getLast",
+				"table": "userrequirementsmanifest",
+				"where": "userid,=," + userId
+		};
+		requirements = ServerDBAdapter.prototype.get(requirementsRequestJSON);
+		console.log(requirements);
+	}
 	
 	makeGraph(presentedParameter, dateFrom, dateTo, stats, requirements);
 }
 
-//TODO draw current requirements as well (as a horizontal line)
-
 function makeGraph(presentedParameter, dateFrom, dateTo, history, requirements) {
-	/*var caloriesCurrent = 0;
-	var proteinCurrent = 0;
-	var fluidCurrent = 0;
-	
-	for(var index = 0; index < history.length; index++) {
-		var entry = history[index];
-		caloriesCurrent += parseFloat(entry.calories) * parseFloat(entry.quantity);
-		proteinCurrent += parseFloat(entry.protein) * parseFloat(entry.quantity);
-		fluidCurrent += parseFloat(entry.fluid) * parseFloat(entry.quantity);
+	//TODO draw current requirements as well (as a horizontal line)
+	if(requirements == null) {
+		//TODO no requirements because weight is selected
 	}
-	alert("calories: " + caloriesCurrent);
-	alert("protein: " + proteinCurrent);
-	alert("fluid: " + fluidCurrent);
-	*/
 	
 	$('#table').html("");
 	$('#summary').html("");

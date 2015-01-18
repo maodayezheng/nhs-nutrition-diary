@@ -16,9 +16,6 @@ function manageGraph(presentedParameter, dateFrom, dateTo) {
 	userData.getRawData(dateFrom, dateTo);
 	var stats = userData.wrangleFoodManifestData();
 	
-	
-	
-	
 	//////////////////////////////////////End of testing code block (Vik)
 	
 	

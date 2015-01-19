@@ -198,17 +198,42 @@ function loadFrequentFoodView(){
 
 
 function loadCustomMealView(){
-	
+	 
 	var userId = SubmitController.prototype.getUserID();
 	var mealsRequestJSON = {
 			"action": "get",
 			"table": "usermeallist",
 			"where": "userid,=," + userId,
-			//"group": "GROUP BY mealname"
+			
 	};
 	
-	var data = ServerDBAdapter.prototype.get(mealsRequestJSON);
+	var dataFromServer = ServerDBAdapter.prototype.get(mealsRequestJSON);
 
+	//Data received from the server is in the form of an array of JSON objects. Each item in the meal is contained as a separate object. 
+	//However, items in the same meal all have the same 'mealname' property. This code segment iterates over the data received from the server
+	//and pushes unique meals to an array. This unique array is what is displayed to the user. insert code to push only unique elements to array to display.
+	var data = new Array(); 
+	for(var i = 0; i < dataFromServer.length; i++)
+	{
+		console.log(data.length);
+		//If the length of the array received from the server is not 0, and the length of the array we are pushing unique meals to is zero then push the element. 
+		if( (data.length === 0) && (dataFromServer.length != 0)) 				{ data.push(dataFromServer[i]) } 
+		//Otherwise loop over the unique array, checking that the current element in the array received from the server does not already exist in it. 
+		else
+		{
+			var isIn = false; 
+			for(var j = 0; j <data.length; j++)
+			{
+				if(dataFromServer[i]['mealname'] === data[j]['mealname']) { isIn = true; }
+			}
+			
+			if(!isIn) { data.push(dataFromServer[i]) }
+		}
+		
+	}
+	
+	
+	
 	$('#modal-info-title').text("My meals");
 	// construct body
 	$('#modal-info-body').empty();

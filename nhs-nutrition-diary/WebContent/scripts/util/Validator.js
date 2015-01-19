@@ -69,7 +69,21 @@ Validator.prototype.datesAreValid = function(from, to) {
 	return true;
 }
 
+Validator.prototype.isValidUserName = function(userName)
+{
+	//Following code checks that the username is unique.
+	var usernameUniqueCheck = 
+	{
+			"action": 		"usernameUnique",
+			"nhsnumber": 	userName
+	}
+	var trueOrFalse = ServerDBAdapter.prototype.get(usernameUniqueCheck); //PHP will echo a JSON object back with property 'tOrf' set to true or a blank object if false.  
+	if (trueOrFalse['tOrf']) 	{ return true;  }
+	else						{ return false; }
+}
+
 Validator.prototype.isValidNhsNumber = function(nhsNumber) {
+	
 	/*if(isNaN(nhsNumber)) {
 		return false;
 	} else if(nhsNumber.length != 10) {
@@ -77,11 +91,25 @@ Validator.prototype.isValidNhsNumber = function(nhsNumber) {
 	}*/
 	
 	// TODO implement nhs validation checker:
-	// link: http://www.datadictionary.nhs.uk/version2/data_dictionary/data_field_notes/n/nhs_number_de.asp?shownav=0
-	// This validation should also check that the nhs number enetered does not already exist in the database. 
+	// link: http://www.datadictionary.nhs.uk/version2/data_dictionary/data_field_notes/n/nhs_number_de.asp?shownav=0 
 	
 	return true;
 }
+
+
+
+Validator.prototype.isIdentifyingPassword = function(idPassword)
+{
+	var idPasswordJSON = 
+	{
+			"action": 		"confirmIDPassword",
+			"idPassword": 	idPassword
+	}
+	var trueOrFalse = ServerDBAdapter.prototype.get(idPasswordJSON); //PHP will echo a JSON object back with property 'tOrf' set to true or a blank object if false.  
+	if (trueOrFalse['tOrf']) 	{ return true;  }
+	else						{ return false; }
+}
+
 
 Validator.prototype.isSame = function(password, passwordConfirm) {
 	if(password == passwordConfirm) {

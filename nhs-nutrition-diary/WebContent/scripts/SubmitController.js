@@ -95,38 +95,29 @@ SubmitController.prototype.submitUserSignUpDetails = function()
 {
 	console.log("Trying to submit user's details for sign up.");
 	
-	var nhsNumber = $('#nhsnumber').val();
-	var password = $('#password').val();
-	var passwordConfirm = $('#password-confirm').val();
-	var weight = $('#weight').val();
-	var dob = $('#dob').val();
-	var activityLevel = $('#activity_level').val();
-	var gender = $('input[name="user_basic[sex]"]:checked').val();
+	var nhsNumber		= $('#nhsnumber').val();
+	var password 		= $('#password_user').val();
+	var passwordConfirm = $('#password_confirm_user').val();
+	var weight 			= $('#weight').val();
+	var dob 			= $('#dob').val();
+	var activityLevel 	= $('#activity_level').val();
+	var gender 			= $('input[name="user_basic[sex]"]:checked').val();
 	
+	var errors			= "";
 	// validations
-	if(!Validator.prototype.isValidNhsNumber(nhsNumber)) {
-		alert('Please enter a valid NHS number.');
-		return;
-	} else if(Validator.prototype.isEmpty(password)) {
-		alert('Please enter a password.');
-		return;
-	} else if(!Validator.prototype.isSame(password, passwordConfirm)) {
-		alert('Password and confirmed password must be the same.');
-		return;
-	} else if(!Validator.prototype.isPositiveNumber(weight)) {
-		alert('Please enter a valid weight (positive number).');
-		return;
-	} else if(!Validator.prototype.isValidDate(dob)) {
-		alert('Please enter a valid date of birth.');
-		return;
-	} else if(!Validator.prototype.isInPastDateOfBirth(dob)) {
-		alert('Date of birth cannot be a future date.');
-		return;
-	} else if(!Validator.prototype.isPositiveNumber(activityLevel)) {
-		alert('Please enter a valid activity level.');
-		return;
-	} else if(!Validator.prototype.isValidGender(gender)) {
-		alert('Please select a gender.');
+	if(!Validator.prototype.isValidNhsNumber(nhsNumber)) 		{ errors += '-> Please enter a valid NHS number.\n';					} 
+	if(Validator.prototype.isEmpty(password)) 					{ errors += '-> Please enter a password.\n'; 							} 
+	if(!Validator.prototype.isSame(password, passwordConfirm)) 	{ errors += '-> Password and confirmed password must be the same.\n';	}
+	if(!Validator.prototype.isPositiveNumber(weight)) 			{ errors += '-> Please enter a valid weight (positive number).\n'; 		}
+	if(!Validator.prototype.isValidDate(dob)) 					{ errors += '-> Please enter a valid date of birth.\n'; 				}
+	if(!Validator.prototype.isInPastDateOfBirth(dob)) 			{ errors += '-> Date of birth cannot be a future date.\n'; 			}		 
+	if(!Validator.prototype.isPositiveNumber(activityLevel)) 	{ errors += '-> Please enter a valid activity level.\n'; 				}
+	if(!Validator.prototype.isValidGender(gender)) 				{ errors += '-> Please select a gender.\n'; 							}
+
+	if(errors) 
+	{ 
+		var errorMsg = "Registration Failed. Please address the following issues and try again: \n\n" + errors;
+		alert(errorMsg); 
 		return;
 	}
 	
@@ -148,7 +139,7 @@ SubmitController.prototype.submitUserSignUpDetails = function()
 	console.log("printing userSignUpDetails");
 	console.log(userSignUpDetails);
 	ServerDBAdapter.prototype.submit(userSignUpDetails, 'register');
-	this.successMessage("Successfully Registered!", 3000);
+	//this.successMessage("Successfully Registered!", 3000);
 }
 
 /**
@@ -158,55 +149,40 @@ SubmitController.prototype.submitDieticianSignUpDetails = function()
 {
 	console.log("Trying to submit dietician's details for sign up."); 
 	
-	var nhsNumber = $('#nhsnumber').val();
-	var password = $('#password').val();
-	var passwordConfirm = $('#password-confirm').val();
-	var weight = $('#weight').val();
-	var dob = $('#dob').val();
-	var activityLevel = $('#activity_level').val();
-	var gender = $('input[name="user_basic[sex]"]:checked').val();
+	var idNumber			= $('#identifing_number').val();
+	var idPassword		 	= $('#identifying_password').val();
+	var password 			= $('#password_dietician').val();
+	var passwordConfirm 	= $('#password_confirm_dietician').val();
 	
+	var errors			= "";
 	// validations
-	if(!Validator.prototype.isValidNhsNumber(nhsNumber)) {
-		alert('Please enter a valid NHS number.');
-		return;
-	} else if(Validator.prototype.isEmpty(password)) {
-		alert('Please enter a password.');
-		return;
-	} else if(!Validator.prototype.isSame(password, passwordConfirm)) {
-		alert('Password and confirmed password must be the same.');
-		return;
-	} else if(!Validator.prototype.isPositiveNumber(weight)) {
-		alert('Please enter a valid weight (positive number).');
-		return;
-	} else if(!Validator.prototype.isValidDate(dob)) {
-		alert('Please enter a valid date of birth.');
-		return;
-	} else if(!Validator.prototype.isInPastDateOfBirth(dob)) {
-		alert('Date of birth cannot be a future date.');
-		return;
-	} else if(!Validator.prototype.isPositiveNumber(activityLevel)) {
-		alert('Please enter a valid activity level.');
-		return;
-	} else if(!Validator.prototype.isValidGender(gender)) {
-		alert('Please select a gender.');
+	
+	if(!Validator.prototype.isValidUserName(idNumber)) 			{ errors += '-> Your username is already registered. If you have forgotten your'
+																			+	'password please contact the system administrator.\n';			}
+	if(!Validator.prototype.isIdentifyingPassword(idPassword)) 	{ errors += '-> Please enter the correct dietician registration password.\n'; 	}
+	if(Validator.prototype.isEmpty(password)) 					{ errors += '-> Please enter a password.\n'; 									} 
+	if(!Validator.prototype.isSame(password, passwordConfirm)) 	{ errors += '-> Password and confirmed password must be the same.\n';			}
+	
+	if(errors) 
+	{ 
+		var errorMsg = "Registration  Failed. Please address the following issues and try again: \n\n" + errors;
+		alert(errorMsg); 
 		return;
 	}
 	
-	var dateOfBirth = this.formatDateTime(dob, null);
 	
 	var dieticianSignUpDetails = 
 	{
 			"action":			"register",
 			"group":			2,
-			"nhsnumber": 		nhsNumber,
+			"nhsnumber": 		idNumber,
 			"password": 		password,
 			"confirmpassword": 	passwordConfirm,
-			"weight": 			weight,
-			"dob": 				dateOfBirth,
-			"activitylevel": 	activityLevel,
-			"gender": 			gender
 	}
+	
+	
+	ServerDBAdapter.prototype.submit(dieticianSignUpDetails, 'register');
+	//this.successMessage("Successfully Registered!", 3000);
 }
 
 SubmitController.prototype.updateRequirements = function() {

@@ -54,51 +54,52 @@
 				<form role="form" class="form-signup" id="patient_registration_form" method="post">	
 				<div class="panel panel-default element-margin">
 					<div class="panel-body tab-panel">
+					
 			<table class="register-table">
 			  <tr>
 			    <td align="left"><label for="nhsnumber">NHS Number:</label></td>
-			    <td><input class="form-control" name="nhsnumber" id="nhsnumber" type="text" placeholder="Enter your NHS number" ></td>
-			    <td><span><a href="#" data-toggle="popover" data-trigger="focus" data-placement="top" title="what is NHS Number ?"
+			    <td><input class="form-control" name="nhsnumber" id="nhsnumber" type="text" placeholder="Enter your NHS number" required></td>
+			    <td><span><a href="#" data-toggle="popover" data-trigger="focus" data-placement="top" title="What is this?"
 			    data-content="the NHS number is....."
 			    ><i class="glyphicon glyphicon-question-sign blue"></i></a></span>
 			    </td>
 			  </tr>
 			  <tr>
 			    <td align="left"><label for="password">Password:</label></td>
-			    <td><input class="form-control" name="password" id="password" type="password" placeholder="Enter your password"></td>
-			  <td><span><a href="#" data-toggle="popover" data-trigger="focus" data-placement="top" title="what is NHS Number ?"
+			    <td><input class="form-control" name="password" id="password_user" type="password" placeholder="Enter your password" required></td>
+			  <td><span><a href="#" data-toggle="popover" data-trigger="focus" data-placement="top" title="What is this?"
 			    data-content="the NHS number is....."
 			    ><i class="glyphicon glyphicon-question-sign blue"></i></a></span>
 			    </td>
 			  </tr>
 			  <tr>
 			    <td align="left"><label for="password_again">Confirm Password:</label></td>
-			    <td><input class="form-control" name="password_again" id="password-confirm" type="password" placeholder="Confirm your password"></td>
-			 <td><span><a href="#" data-toggle="popover" data-trigger="focus" data-placement="top" title="what is NHS Number ?"
+			    <td><input class="form-control" name="password_again" id="password_confirm_user" type="password" placeholder="Confirm your password" required></td>
+			 <td><span><a href="#" data-toggle="popover" data-trigger="focus" data-placement="top" title="What is this?"
 			    data-content="the NHS number is....."
 			    ><i class="glyphicon glyphicon-question-sign blue"></i></a></span>
 			    </td>
 			  </tr>
 			  <tr>
 			    <td align="left"><label for="weight">Weight:</label></td>
-			    <td><input class="form-control" name="weight" id="weight" type="text" placeholder="Enter your weight"></td>
-			  <td><span><a href="#" data-toggle="popover" data-trigger="focus" data-placement="top" title="what is NHS Number ?"
+			    <td><input class="form-control" name="weight" id="weight" type="text" placeholder="Enter your weight" required></td>
+			  <td><span><a href="#" data-toggle="popover" data-trigger="focus" data-placement="top" title="What is this?"
 			    data-content="the NHS number is....."
 			    ><i class="glyphicon glyphicon-question-sign blue"></i></a></span>
 			    </td>
 			  </tr>
 			  <tr>
 			    <td align="left"><label for="dob">Date of Birth:</label></td>
-			    <td><input type="text" id="dob" name="dob" class="form-control date" placeholder="   Enter your date of birth"></td>
-			  <td><span><a href="#" data-toggle="popover" data-trigger="focus" data-placement="top" title="what is NHS Number ?"
+			    <td><input type="text" id="dob" name="dob" class="form-control date" placeholder="   Enter your date of birth" required></td>
+			  <td><span><a href="#" data-toggle="popover" data-trigger="focus" data-placement="top" title="What is this?"
 			    data-content="the NHS number is....."
 			    ><i class="glyphicon glyphicon-question-sign blue"></i></a></span>
 			    </td>
 			  </tr>
 			  <tr>
 			    <td align="left"><label for="activity_level">Activity Level:</label></td>
-			    <td><input class="form-control" name="activity_level" id="activity_level" type="text" placeholder="Enter your activity level"></td>
-			  <td><span><a href="#" data-toggle="popover" data-trigger="focus" data-placement="top" title="what is NHS Number ?"
+			    <td><input class="form-control" name="activity_level" id="activity_level" type="text" placeholder="Enter your activity level" required></td>
+			  <td><span><a href="#" data-toggle="popover" data-trigger="focus" data-placement="top" title="What is this?"
 			    data-content="the NHS number is....."
 			    ><i class="glyphicon glyphicon-question-sign blue"></i></a></span>
 			    </td>
@@ -106,11 +107,13 @@
 			  <tr>
 			    <td align="left"><label for="gender">Gender:</label></td>
 			    <td align="left">
-	      			<input class="radio_buttons optional" id="user_basic_sex_male" name="user_basic[sex]" type="radio" value="Male"> Male
+	      			<input class="radio_buttons optional" id="user_basic_sex_male" name="user_basic[sex]" type="radio" value="Male" > Male
 	      			<input class="radio_buttons optional" id="user_basic_sex_female" name="user_basic[sex]" type="radio" value="Female"> Female</td>
 			  </tr>
 			</table> 
 					</div>
+			
+
 				</div>
 			<button id="btn_submit_userSignUpDetails" class="btn btn-lg btn-success btn-block" type="submit">Submit</button>
 			</form>
@@ -125,26 +128,36 @@
 	<table class="register-table">
  			<tr>
 			    <td align="left"><label for="id">Identifying number:</label></td>
-			    <td><input class="form-control" name="id" id="id" type="text" placeholder="Enter your identifing number"></td>
-			  <td><span><a href="#" data-toggle="popover" data-trigger="focus" data-placement="top" title="what is NHS Number ?"
-		    data-content="the NHS number is....."
+			    <td><input class="form-control" name="id" id="identifing_number" type="text" placeholder="Enter your identifing number"></td>
+			  <td><span><a href="#" data-toggle="popover" data-trigger="focus" data-placement="top" title="What is this?"
+		    data-content="This is your identifying dietician number, which will become your username. For example, 'DTXXXXX', where X is a digit from 0-9."
 		    ><i class="glyphicon glyphicon-question-sign blue"></i></a></span>
 	
 		    </td>
 			  </tr>
 			  <tr>
-			    <td align="left"><label for="password">Password:</label></td>
+			    <td align="left"><label for="identifying_password">Dietician Registration Password:</label></td>
+			    <td><input class="form-control" name="identifying_password" id="identifying_password" type="password" placeholder="Enter the identifying password."></td>
+			  <td><span><a href="#" data-toggle="popover" data-trigger="focus" data-placement="top" title="What is this?"
+		    data-content="To register as a dietician you must enter the password created by the administrators. If you do not know this, please contact the application
+		    				operations team."
+		    ><i class="glyphicon glyphicon-question-sign blue"></i></a></span>
+		    </td>
+			  </tr>
+			  
+			  <tr>
+			    <td align="left"><label for="password">Account Password:</label></td>
 			    <td><input class="form-control" name="password" id="password_dietician" type="password" placeholder="Enter your password"></td>
-			  <td><span><a href="#" data-toggle="popover" data-trigger="focus" data-placement="top" title="what is NHS Number ?"
-		    data-content="the NHS number is....."
+			  <td><span><a href="#" data-toggle="popover" data-trigger="focus" data-placement="top" title="What is this?"
+		    data-content="Please enter the password you would like associated with your account."
 		    ><i class="glyphicon glyphicon-question-sign blue"></i></a></span>
 		    </td>
 			  </tr>
 			  <tr>
-			    <td align="left"><label for="password_dietician_confirm">Confirm Password:</label></td>
-			    <td><input class="form-control" name="password_again" id="password-confirm" type="password" placeholder="Confirm your password"></td>
-			  <td><span><a href="#" data-toggle="popover" data-trigger="focus" data-placement="top" title="what is NHS Number ?"
-		    data-content="the NHS number is....."
+			    <td align="left"><label for="password_dietician_confirm">Confirm Account Password:</label></td>
+			    <td><input class="form-control" name="password_again" id="password_confirm_dietician" type="password" placeholder="Confirm your password"></td>
+			  <td><span><a href="#" data-toggle="popover" data-trigger="focus" data-placement="top" title="What is this?"
+		    data-content="Please confirm the password you would like associated with your account."
 		    ><i class="glyphicon glyphicon-question-sign blue"></i></a></span>
 		    </td>
 			  </tr>

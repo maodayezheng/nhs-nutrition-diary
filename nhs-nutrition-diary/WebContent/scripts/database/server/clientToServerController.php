@@ -68,6 +68,30 @@ switch($action)
 	case 'getLast':					getLast($db, $table, $where); break;
 	case 'getTenMostFrequent':		getTenMostFrequent($db, $table, $where, $number); break; 
 	case 'save': 					$db->insert($table, $dataDecoded); break; 
+	case 'confirmIDPassword':		confirmIDPassword($db, $dataDecoded); break;
+	case 'usernameUnique':			usernameUnique($db, $dataDecoded); break;
+}
+
+function usernameUnique($db, $dataDecoded)
+{
+	$check = $db->get('users', array('nhsnumber','=',$dataDecoded['nhsnumber']));
+	if($check->count()) { $trueOrFalse = array(); 					echo json_encode($trueOrFalse); } //echo empty array if not unique
+	else				{ $trueOrFalse = array("tOrf" => "true"); 	echo json_encode($trueOrFalse); } //echo true if unique
+}
+
+function confirmIDPassword($db, $dataDecoded)
+{
+	//Compare the stored hash against the one generated from the password provided. 
+	if(strcmp(Hash::make($dataDecoded['idPassword']), $db->action('SELECT password','groups',array('id','=','2'))->first()->password) == 0)
+	{
+		$trueOrFalse = array("tOrf" => "true");
+		echo json_encode($trueOrFalse); 
+	}
+	else
+	{
+		$trueOrFalse = array();
+		echo json_encode($trueOrFalse);
+	}
 }
 
 function get($db, $table, $where, $endStatement = null) {

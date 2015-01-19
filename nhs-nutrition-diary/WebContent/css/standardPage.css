@@ -115,7 +115,9 @@ body{
 
 .visualisationBody{
 	min-height:320px;
+	max-height:320px;
 	overflow-x:scroll;
+	overflow-y:scroll;
 }
 
 @media (max-width:767px){

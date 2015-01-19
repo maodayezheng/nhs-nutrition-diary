@@ -324,7 +324,7 @@ $(function(){
 	//$.ui.autocomplete.prototype._renderItemData = function(){}
 	
 	$.ui.autocomplete.prototype._renderItem = function(ul, item) {
-		console.log(item);
+		//console.log(item);
 	return $('<li>').append(item.foodname).appendTo(ul);
 		
 	}

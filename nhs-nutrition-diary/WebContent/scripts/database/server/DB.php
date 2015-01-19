@@ -105,9 +105,15 @@ class DB
 			
 			for($i = 0; $i<sizeof($where)/3; $i++) 
 			{
-				$field 		= $where[$i*3];
-				$operator 	= $where[($i*3)+1];
-				array_push($value, $where[($i*3)+2]);
+				
+				
+				$field 			= $where[$i*3];
+				$operator 		= $where[($i*3)+1];
+				
+				//The following code changes an example string of 'Chicken and mushroom pieCOMMA single crustCOMMA homemade' to 'Chicken and mushroom pie, single crust, homemade'. 
+				//Data is transferred like this so that unneccessary commas being passed into the method's arguments are avoided.  
+				$amendedWhere 	= str_replace("COMMA",",",$where[($i*3)+2]); 
+				array_push($value, $amendedWhere);
 				
 				if (in_array($operator, $operators)) //only add to the SQL sent to the database if the operator is in the allowed list.
 				{

@@ -267,13 +267,8 @@ SubmitController.prototype.submitFoods = function() {
 	var time = $('#Time').val();
 	
 	// validations
-	if(!Validator.prototype.isValidDate(date)) {
-		alert('Please enter a valid date.');
-		return;
-	} else if(!Validator.prototype.isInPastDateOfBirth(date)) {
-		alert('Date cannot be a future date.');
-		return;
-	}
+	if(!Validator.prototype.isValidDate(date)) 			{ alert('Please enter a valid date.'); return; } 
+	if(!Validator.prototype.isInPastDateOfBirth(date)) 	{ alert('Date cannot be a future date.'); return; }
 	
 	var dateTime = this.formatDateTime(date, time);
 	var meal = "";	
@@ -293,6 +288,11 @@ SubmitController.prototype.submitFoods = function() {
 		var fluid = 0;
 		var carbohydrates = 0;
 		var fat = 0;
+		
+		console.log(foodLabel);
+		foodLabel = foodLabel.replace(/,/g, "COMMA");
+		console.log(foodLabel); 
+		
 		
 		var foodDetailsRequestJSON = {
 				"action": "get",
@@ -314,6 +314,7 @@ SubmitController.prototype.submitFoods = function() {
 			carbohydrates = foodDetails.carbohydrate_g;
 			fat = foodDetails.fat_g;
 		} else {
+			
 			var userFoodDetailsRequestJSON = {
 					"action": "get",
 					"table": "userfoodlist",
@@ -348,7 +349,7 @@ SubmitController.prototype.submitFoods = function() {
 		ServerDBAdapter.prototype.submit(dataToServer, "save");
 	});
 	
-	this.successMessage("Foods submitted.", 2000);
+	//this.successMessage("Foods submitted.", 2000);
 }
 
 SubmitController.prototype.submitNewFood = function() {

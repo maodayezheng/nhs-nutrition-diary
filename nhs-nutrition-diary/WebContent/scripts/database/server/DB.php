@@ -107,8 +107,6 @@ class DB
 			
 			for($i = 0; $i<sizeof($where)/3; $i++) 
 			{
-				
-				
 				$field 			= $where[$i*3];
 				$operator 		= $where[($i*3)+1];
 				
@@ -216,17 +214,21 @@ class DB
 				}	
 				$x++;
 			}
-			var_dump($fields);
+			
+			////////////////////////////////////////////////////////////////////////////////////
+			var_dump($fields); /////////////////////////////////////////////////////////////////////////////////////////////////DELETE
+			//////////////////////////////////////////////////////////////
+			
 			$sql = "INSERT INTO {$table} (`" . implode('`,`',$keys) . "`) VALUES({$values})"; 
-			echo $sql;
+			
 			if(!$this->query($sql,$fields)->error())
 			{
- 				echo "<br />Inserting into the database was a success!";
+ 				//echo "<br />Inserting into the database was a success!";
 				return true;
 			} else 
 			{ 
- 				echo "<br />there was an error in the insert method<br />";
- 				var_dump($this->error());
+ 				//echo "<br />there was an error in the insert method<br />";
+ 				//var_dump($this->error());
 			}
 		}
 	}

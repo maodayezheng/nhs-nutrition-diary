@@ -430,6 +430,7 @@ SubmitController.prototype.submitMeal = function() {
 	$('.selection-list li').each(function(idx, li) {
 		var food  = $(li).data('data');
 		var foodLabel = food['foodname'];
+		foodLabel = foodLabel.replace(/,/g, "COMMA");
 		var quantity = food['portion'];
 		counter++;
 		

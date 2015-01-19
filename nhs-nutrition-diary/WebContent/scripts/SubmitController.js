@@ -357,10 +357,8 @@ SubmitController.prototype.submitNewFood = function() {
 	var userid = this.getUserID();
 	var date = new Date();
 	var dateTime = this.formatDateTime(date.dateFormat('d/m/Y'), date.dateFormat('H:i'));
-	
 	var foodName = $('#newFoodName').val();
-	var comment = $('#newFoodProportion').val();
-	var quantityWeight = $('#newFoodWeight').val();
+	var edibleproportion = $('#newFoodWeight').val()/100;
 	var calories = $('#newFoodCalories').val();
 	var protein = $('#newFoodProtein').val();
 	var fluid = $('#newFoodFluid').val();
@@ -369,13 +367,10 @@ SubmitController.prototype.submitNewFood = function() {
 	if(Validator.prototype.isEmpty(foodName)) {
 		alert("Please enter a food name.");
 		return;
-	} else if(Validator.prototype.isEmpty(comment)) {
-		alert("Please enter a comment.");
-		return;
-	} else if(Validator.prototype.isEmpty(quantityWeight)) {
+	}else if(Validator.prototype.isEmpty(edibleproportion)) {
 		alert("Please enter a quantity weight.");
 		return;
-	} else if(!Validator.prototype.isPositiveNumber(quantityWeight)) {
+	} else if(!Validator.prototype.isPositiveNumber(edibleproportion)) {
 		alert("Weight of edible proportion must be a positive number.");
 		return;
 	} else if(Validator.prototype.isEmpty(calories)) {
@@ -403,14 +398,12 @@ SubmitController.prototype.submitNewFood = function() {
 			"userid": userid,
 			"datetime": dateTime,
 			"foodname": foodName,
-			"quantity_g": quantityWeight,
-			"quantitycomment": comment,
-			"calories": calories,
-			"protein": protein,
-			"fluid": fluid,
-			"fat": 0
+			"edibleproportion": edibleproportion,
+			"energy_kcal": calories,
+			"protein_g": protein,
+			"water_g": fluid,
+			"fat_g": 0
 	};
-	console.log(dataToServer);
 	ServerDBAdapter.prototype.submit(dataToServer, "save");
 }
 

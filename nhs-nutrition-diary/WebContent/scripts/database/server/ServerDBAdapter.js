@@ -32,7 +32,7 @@ ServerDBAdapter.prototype.submit = function(dataToServer, action)
 	    contentType: 	"application/json", //what you are sending.
 	    data: 			JSON.stringify(dataToServer),
 	    success: 		function (msg){
-	        				console.log("success " + msg); 
+	        				alert("success " + msg); 
 	    				},
 	    				
 	    error: 			function (xhr, ajaxOptions, thrownError) {

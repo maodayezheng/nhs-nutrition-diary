@@ -122,13 +122,6 @@ function loadNewFoodView(){
 	var amountField = $('<input>',{
 		"class":"form-control",
 		"type":"text",
-		"id":"newFoodProportion",
-		"placeholder":"Edible proportion (e.g. 1 slice)"
-	}).appendTo(form);
-	
-	var amountField = $('<input>',{
-		"class":"form-control",
-		"type":"text",
 		"id":"newFoodWeight",
 		"placeholder":"Weight of edible proportion in g (e.g. 100)"
 	}).appendTo(form);
@@ -159,9 +152,9 @@ function loadNewFoodView(){
 		doneButton.unbind('click');
 		doneButton.attr('id','btn_submit_newFood');
 		doneButton.bind('click',function(){
-			
+			alert("clicked new food submit");
 			SubmitController.prototype.submit(this.id);
-			food = loadFoodData();
+			//food = loadFoodData();
 			});
 }
 
@@ -332,7 +325,6 @@ function displaySelection(selection){
 }
 
 function loadFoodData(){
-	console.log("load Data");
 	var dataSetOne = OnLoad.prototype.load('foodList');
 	var dataSetTwo = OnLoad.prototype.load('userFoodList');
 	var data = dataSetTwo.concat(dataSetOne);

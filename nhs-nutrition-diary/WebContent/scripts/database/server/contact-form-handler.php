@@ -25,12 +25,8 @@ $message ="
 <h1>GSST patient report</h1>
 
 
-<div id='historyVisualisation'>
-							<svg id='graph'></svg>
-							<div id='table'></div>
-							<div id='summary'></div>
-						</div>
-</div>
+This report was generated and sent by 'Appetite', an app used by patients and Doctors
+of Guy's and St. Thomas' Hospital
 </body>
 </html>
 ";

@@ -10,7 +10,6 @@ $(document).ready(function(){
 			$('#search').autocomplete({
 			source:function (request, response) {
             var term = $.ui.autocomplete.escapeRegex(request.term);
-            //console.log(response);
             // remove unnecessary search result 
                 startsWithMatcher = new RegExp("^" + term, "i");
                  startsWith = $.grep(food, function(value) {
@@ -154,7 +153,7 @@ function loadNewFoodView(){
 		doneButton.bind('click',function(){
 			alert("clicked new food submit");
 			SubmitController.prototype.submit(this.id);
-			//food = loadFoodData();
+			food = loadFoodData();
 			});
 }
 

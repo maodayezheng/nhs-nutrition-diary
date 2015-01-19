@@ -111,22 +111,15 @@
 								</form></div>
 								<div id = "target">
 	    				<div class="panel-body history-panel">
-						    <div class="row">
-					<div class="col-md-12 column">
-					
-	     				<div id="datepicker_div">
-							<p>
-								From: <input type="text" class="date" id="datepickerFrom" onchange="toggleHistoryVisualisation()" readonly="true"> 
-								To: <input type="text" class="date" id="datepickerTo" onchange="toggleHistoryVisualisation()" readonly="true">
-							</p>
+	     				<div class="row" id="datepicker_div">
+							<div class="col-xs-6">From: <input type="text" class="form-control date" id="datepickerFrom" onchange="toggleHistoryVisualisation()" readonly="true"></div>
+								<div class="col-xs-6">To: <input type="text" class="form-control date" id="datepickerTo" onchange="toggleHistoryVisualisation()" readonly="true"></div>
 						</div>
-	     				<div id="historyVisualisation">
+	     				<div class="row" id="historyVisualisation">
 							<svg id="graph"></svg>
 							<div id="table"></div>
 							<div id="summary"></div>
 						</div>
-						</div>
-	     			</div>
 	     		</div>
 			</div>
 	     				</div>
@@ -148,7 +141,14 @@
         				<h4 class="modal-title">Export</h4>
       				</div>
       				<div class="modal-body">
-      					<table class="table table-striped">
+      				<p>share your nutritional information via email</p>
+      	
+						<form method="post" name="contact_form"
+							action="scripts/database/server/contact-form-handler.php">
+							Email Address: <input type="text" name="email"> 
+							</form>
+      				
+      					<!-- <table class="table table-striped">
 							<tr>
       							<th></th>
       							<th>Graph</th>
@@ -179,16 +179,11 @@
       							<td><input type="checkbox"></td>
       							<td><input type="checkbox"></td>
     						</tr>
-    					</table>
+    					</table>-->
       				</div>
       				<div class="modal-footer">
-						<form method="post" name="contact_form"
-							action="scripts/database/server/contact-form-handler.php">
-							Email Address: <input type="text" name="email"> 
-							<input type="submit" class="btn btn-primary" "data-dismiss="modal"  value="get img"  onclick="capture();">
-							<input type="submit" class="btn btn-success" "data-dismiss="modal"  value="Send" >
-							
-						</form>
+							<input type="submit" class="btn btn-primary" data-dismiss="modal"  value="get img"  onclick="capture();">
+							<input type="submit" class="btn btn-success" data-dismiss="modal"  value="Send" >
 						 <!--for mailto function:  data-email="jobarry@tcd.ie" class="email" -->
       				</div>
     			</div>

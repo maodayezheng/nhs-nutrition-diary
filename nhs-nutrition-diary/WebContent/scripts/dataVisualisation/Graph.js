@@ -155,7 +155,7 @@ function makeGraph(presentedParameter, dateFrom, dateTo, history, requirements) 
 	  .attr('stroke-width', 2)
 	  .attr('fill', 'none');*/
 	
-	d3.select('svg').attr("width", "100%").attr("height", 500);
+	d3.select('svg').attr("width", "100%").attr("height",320);
 }
 
 

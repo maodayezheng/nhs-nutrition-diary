@@ -113,6 +113,11 @@ body{
 	
 }	
 
+.visualisationBody{
+	min-height:320px;
+	overflow-x:scroll;
+}
+
 @media (max-width:767px){
 	#remember-me{
 		visibility:hidden;

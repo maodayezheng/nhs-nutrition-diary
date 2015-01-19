@@ -59,7 +59,7 @@ if(isset($dataDecoded['number']))
 }
 
 $results = null;
-
+//var_dump($dataDecoded);
 switch($action)
 {
 	case 'get':						get($db, $table, $where, $endStatement); break;

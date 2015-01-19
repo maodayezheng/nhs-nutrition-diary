@@ -314,7 +314,7 @@ function displaySelection(selection){
 		increaseButton.bind('click',updateNutritionBreakDown);
 		controlPanel.addItems([reduceButton,accountButton,increaseButton]);
 		li.addItemToLeft(deleteButton);
-		var amount = " (" +parseInt(selection.edibleproportion)*100 +" g)";
+		var amount = " (" +parseFloat(selection.edibleproportion)*100 +" g)";
 		var displayContent = "  "+selection.foodname +amount;
 		li.addItemToLeft(displayContent);
 		li.addItemToRight(controlPanel);

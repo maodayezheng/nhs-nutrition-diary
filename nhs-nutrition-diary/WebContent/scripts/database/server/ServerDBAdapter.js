@@ -16,7 +16,7 @@ ServerDBAdapter.prototype.submit = function(dataToServer, action)
 {
 	console.log("printing the data sent to the submit function");
 	dataToServer.action = action; //this is needed for the PHP side. Do Not Delete!
-//	console.log(dataToServer);
+	console.log(dataToServer);
 	
 	var actionUrl;
 	switch(action) 
@@ -32,7 +32,7 @@ ServerDBAdapter.prototype.submit = function(dataToServer, action)
 	    contentType: 	"application/json", //what you are sending.
 	    data: 			JSON.stringify(dataToServer),
 	    success: 		function (msg){
-	        				alert("success " + msg); 
+	        				console.log("success " + msg); 
 	    				},
 	    				
 	    error: 			function (xhr, ajaxOptions, thrownError) {

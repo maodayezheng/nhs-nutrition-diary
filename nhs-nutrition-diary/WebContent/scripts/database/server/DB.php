@@ -24,7 +24,9 @@ class DB
 		try 
 		{
 			$this->_pdo = new PDO('mysql:host=' . Configurations::get('mysql/host') . ';dbname=' . Configurations::get('mysql/db'), Configurations::get('mysql/userName'), Configurations::get('mysql/passCode'));
-// 			echo "<br /> Successfuly Connected To the DB <br />";
+			$this->_pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+				
+			//echo "<br /> Successfuly Connected To the DB <br />";
 		} catch (PDOExeption $e)
 		{
 			die($e->getMessage());
@@ -214,16 +216,17 @@ class DB
 				}	
 				$x++;
 			}
-			
+			var_dump($fields);
 			$sql = "INSERT INTO {$table} (`" . implode('`,`',$keys) . "`) VALUES({$values})"; 
-			
+			echo $sql;
 			if(!$this->query($sql,$fields)->error())
 			{
- 				//echo "<br />Inserting into the database was a success!";
+ 				echo "<br />Inserting into the database was a success!";
 				return true;
 			} else 
 			{ 
-// 				echo "<br />there was an error in the insert method<br />";
+ 				echo "<br />there was an error in the insert method<br />";
+ 				var_dump($this->error());
 			}
 		}
 	}

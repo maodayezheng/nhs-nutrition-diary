@@ -58,7 +58,7 @@ class Validate
 		
 		return $this;
 	}
-	
+
 	/**
 	 * Adds an error to the errors array.
 	 */

@@ -278,7 +278,7 @@ SubmitController.prototype.submitFoods = function() {
 		var food  = $(li).data('data');
 		var foodLabel = food['foodname'];
 		foodLabel = foodLabel.replace(/,/g, "COMMA");
-		var quantity = food['portion'];
+		var quantity = food['quantity'];
 		counter++;
 		
 		var foodTable = "";
@@ -336,11 +336,11 @@ SubmitController.prototype.submitFoods = function() {
 				"foodid": foodId,
 				"foodname": foodName,
 				"quantity": quantity,
-				"calories": calories,
-				"protein": protein,
-				"fluid": fluid,
-				"carbohydrates": carbohydrates,
-				"fat": fat,
+				"energy_kcal": calories,
+				"protein_g": protein,
+				"water_g": fluid,
+				"carbohydrate_g": carbohydrates,
+				"fat_g": fat,
 				"meal": meal
 		};
 		
@@ -427,7 +427,7 @@ SubmitController.prototype.submitMeal = function() {
 		var food  = $(li).data('data');
 		var foodLabel = food['foodname'];
 		foodLabel = foodLabel.replace(/,/g, "COMMA");
-		var quantity = food['portion'];
+		var quantity = food['quantity'];
 		counter++;
 		
 		var foodTable = "";
@@ -481,10 +481,10 @@ SubmitController.prototype.submitMeal = function() {
 				"edibleproportion": edibleProportion,
 				"foodname": foodLabel,
 				"quantity": quantity,
-				"calories": calories,
-				"protein": protein,
-				"fluid": fluid,
-				"fat": fat
+				"energy_kcal": calories,
+				"protein_g": protein,
+				"water_g": fluid,
+				"fat_g": fat
 		};
 		
 		ServerDBAdapter.prototype.submit(dataToServer, "save");

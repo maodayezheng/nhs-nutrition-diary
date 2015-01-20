@@ -95,14 +95,14 @@ function createBasicLi(data){
 		"class":"col-xs-5 right"
 	})));
 	
-	li.addItemToLeft = function(item){
+	li.addItemToLeft = function(items){
 		var position = $(this).find('.left');
-		position.append(item);	
+		position.addItems(items);	
 	};
 	
-	li.addItemToRight = function(item){
+	li.addItemToRight = function(items){
 		var position = $(this).find('.right');
-		position.append(item);
+		position.addItems(items);
 	}
 	return li;
 }

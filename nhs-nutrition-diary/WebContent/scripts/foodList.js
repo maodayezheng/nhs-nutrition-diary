@@ -313,15 +313,17 @@ function displaySelection(selection){
 		increaseButton.bind('click',updateNutritionBreakDown);
 		controlPanel.addItems([reduceButton,accountButton,increaseButton]);
 		li.addItemToLeft(deleteButton);
-		var amount = "(" +parseFloat(selection.edibleproportion)*100 +"g)";
-		var displayName = selection.foodname;
-		if(displayName.length>6){
-			displayName = displayName.slice(0,6)+"...";
-			
-		}
-		var displayContent = " "+displayName +amount;
-		li.addItemToLeft(displayContent);
-		li.addItemToRight(controlPanel);
+		
+		var amount =$('<span>',{
+			"text": "(" +parseFloat(selection.edibleproportion)*100 +"g)"
+		});
+		
+		var displayName =$('<span>',{
+			"class":"text-overflow",
+			"text":selection.foodname
+		});
+		li.addItemToLeft([" ",displayName,amount]);
+		li.addItemToRight([controlPanel]);
 		$('.selection-list').append(li);
 		updateNutritionBreakDown();
 		

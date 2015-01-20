@@ -119,6 +119,10 @@ body{
 	overflow-x:scroll;
 	overflow-y:scroll;
 }
+.text-overflow{
+	overflow:hidden;
+	text-overflow:ellopsis;
+}
 
 @media (max-width:767px){
 	#remember-me{

@@ -277,6 +277,7 @@ SubmitController.prototype.submitFoods = function() {
 	$('.selection-list li').each(function(idx, li) {
 		var food  = $(li).data('data');
 		var foodLabel = food['foodname'];
+		foodLabel = foodLabel.replace(/,/g, "COMMA");
 		var quantity = food['portion'];
 		counter++;
 		
@@ -289,7 +290,7 @@ SubmitController.prototype.submitFoods = function() {
 		var carbohydrates = 0;
 		var fat = 0;
 	
-		foodLabel = foodLabel.replace(/,/g, "COMMA"); 
+		 
 		
 		var foodDetailsRequestJSON = {
 				"action": "get",

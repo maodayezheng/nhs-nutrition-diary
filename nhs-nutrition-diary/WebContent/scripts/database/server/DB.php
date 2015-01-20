@@ -109,7 +109,7 @@ class DB
 	{
 		if(sizeof($where)%3==0) // The correct number of entries in the $where array should be divisible by 3 otherwise an exception will be thrown. 
 		{
-			$operators  = array('=','>','<','>=','<='); //allowed operators in the SQL query which will be sent to the database. 
+			$operators  = array('=','>','<','>=','<=','GROUP','BY'); //allowed operators in the SQL query which will be sent to the database. 
 			$value 		= array(); 
 			
 			for($i = 0; $i<sizeof($where)/3; $i++) 
@@ -127,7 +127,7 @@ class DB
 					if($i==0)
 					{
 						$sql = "{$action} FROM {$table} WHERE {$field} {$operator} ?";
-					} else 
+					} else if(!($operator === 'GROUP' || $operator === 'BY'))
 					{
 						$sql .= " AND {$field} {$operator} ?";
 					}
@@ -303,35 +303,20 @@ class DB
 	 * Return the ten most frequent entries of a table.
 	 */
 	//TODO implement function to return the ten most frequent foods a given table
-	public function tenMostFrequent($table, $where = array(), $number) {
-		if(sizeof($where)%3==0) { // The correct number of entries in the $where array should be divisible by 3 otherwise an exception will be thrown.
-			$operators  = array('=','>','<','>=','<='); //allowed operators in the SQL query which will be sent to the database.
-			$value 		= array();
+	public function tenMostFrequent($table, $where = array(), $colForCount) {
 		
-			for($i = 0; $i<sizeof($where)/3; $i++) {
-				$field 		= $where[$i*3];
-				$operator 	= $where[($i*3)+1];
-				array_push($value, $where[($i*3)+2]);
-						
-				if (in_array($operator, $operators)) { //only add to the SQL sent to the database if the operator is in the allowed list.
-					if($i==0) {
-						$sql = "SELECT label, COUNT(label) AS counter " + "FROM {$table} WHERE {$field} {$operator} ?";
-					} else {
-						$sql .= " AND {$field} {$operator} ?";
-					}
-				}
-			}
-			
-			$sql .= " GROUP BY label ORDER BY counter DESC";
-			
-			if(!$this->query($sql, $value)->error()) {
-				return $this;
-			}
-		} else {
-			throw new Exception('Your associative array length (argument $where) must have a length divisible by 3.');
-		}
+		//return $this->action('SELECT *', $table, $where); //assume that the action is always SELECT * because we want to return all rows.
+		//$this->action("SELECT *, count({$colForCount} as count)", $table, $where);
 		
-		return $this->results();
+		/*
+		Example for userid=1
+		
+		SELECT *, count(foodname) as count
+		FROM `userfoodmanifest`
+		WHERE `userid`=1
+		GROUP BY foodname
+		*/
+		
 	}
 	
 	/**

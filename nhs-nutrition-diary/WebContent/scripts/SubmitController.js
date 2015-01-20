@@ -346,8 +346,6 @@ SubmitController.prototype.submitFoods = function() {
 		
 		ServerDBAdapter.prototype.submit(dataToServer, "save");
 	});
-	
-	//this.successMessage("Foods submitted.", 2000);
 }
 
 SubmitController.prototype.submitNewFood = function() {

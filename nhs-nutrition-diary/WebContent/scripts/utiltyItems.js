@@ -42,8 +42,8 @@ function createIncreaseButton(data){
 	}).data('data',data).bind('click',function(){
 		var accountButton = $(this).siblings('[name=accountButton]');
 		var food = $(this).data('data');
-		food.portion = food.portion +1;
-		accountButton.text(data.portion);
+		food.quantity = food.quantity +1;
+		accountButton.text(data.quantity);
 	});
 	return increaseButton;
 	}
@@ -59,13 +59,13 @@ function createReduceButton(data){
 	}).data('data',data).bind('click',function(){
 		var accountButton = $(this).siblings('[name=accountButton]');
 		var food = $(this).data('data');
-		food.portion = food.portion -1;
+		food.quantity = food.quantity -1;
 		 
-		if (food.portion <1){
-			food.portion = 1;
+		if (food.quantity <1){
+			food.quantity = 1;
 		}
 		
-		accountButton.text(data.portion);
+		accountButton.text(data.quantity);
 	});
 	
 	return reduceButton;
@@ -78,7 +78,7 @@ function createAccountButton(data){
 	"class":"btn btn-default btn",
 	"name":"accountButton",
 	"disabled":true,
-	"text":data.portion
+	"text":data.quantity
 	});
 	return accountButton;
 }

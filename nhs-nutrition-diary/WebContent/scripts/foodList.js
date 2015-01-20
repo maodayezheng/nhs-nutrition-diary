@@ -66,9 +66,9 @@ function compareWithCurrentSelections(selection){
 			var obj= $(item);
 			var currentSelection = obj.data('data');
 			if(currentSelection.foodname === selection.foodname){
-				currentSelection.portion = currentSelection.portion+selection.portion;
+				currentSelection.quantity = currentSelection.quantity+selection.portion;
 				var accountButton = obj.find('[name=accountButton]');
-				accountButton.text(currentSelection.portion);
+				accountButton.text(currentSelection.quantity);
 				updateNutritionBreakDown();
 				present = true;
 			}
@@ -84,10 +84,10 @@ function updateNutritionBreakDown(){
 	children.each(function(index,item){
 		var obj = $(item);
 		var data = obj.data('data');
-		var portion = data['portion'];
-		protein += portion*parseNutritionData(data['protein_g']);
-		fluid += portion*parseNutritionData(data['water_g']);
-		calories +=portion*parseNutritionData(data['energy_kcal']);
+		var quantity = data['quantity'];
+		protein += quantity*parseNutritionData(data['protein_g']);
+		fluid += quantity*parseNutritionData(data['water_g']);
+		calories +=quantity*parseNutritionData(data['energy_kcal']);
 	});
 	
 	$('#calories').text(calories);
@@ -174,7 +174,7 @@ function loadFrequentFoodView(){
 	$.each(data,function(index){
 		var li =$('<li>',{
 			"class":"list-group-item",
-			"text":data[index].label	
+			"text":data[index].foodname	
 		}).data('data',data[index]).bind('click',function(){
 			displaySelection(data[index]);
 		});
@@ -251,7 +251,7 @@ function loadCustomMealView(){
 				food["protein_g"]= component["protein"];
 				food["water_g"]= component["fluid"];
 				food["foodname"]= component["foodname"];
-				food["portion"]= parseInt(component["quantity"]);
+				food["quantity"]= parseInt(component["quantity"]);
 				displaySelection(food);
 			});
 		});
@@ -297,8 +297,8 @@ function loadSaveMealView(){
 
 function displaySelection(selection){
 	
-	if(!selection.hasOwnProperty('portion')){
-		selection["portion"] = 1;
+	if(!selection.hasOwnProperty('quantity')){
+		selection["quantity"] = 1;
 	}
 	if(!compareWithCurrentSelections(selection)){
 			

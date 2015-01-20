@@ -319,7 +319,7 @@ function displaySelection(selection){
 		});
 		
 		var displayName =$('<span>',{
-			"class":"text-overflow",
+			//"class":"text-overflow",
 			"text":selection.foodname
 		});
 		li.addItemToLeft([" ",displayName,amount]);

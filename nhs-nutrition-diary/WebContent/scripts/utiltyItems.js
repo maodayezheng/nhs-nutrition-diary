@@ -90,10 +90,10 @@ function createBasicLi(data){
 	}).data('data',data).append($('<div>',{
 		"class":"row",
 	}).append($('<div>',{
-		"class":"col-xs-7 left"
-	}).css("padding-right","0px")).append($('<div>',{
-		"class":"col-xs-5 right"
-	})));
+		"class":"col-xs-9 left"
+	}).css("padding-left","0px")).append($('<div>',{
+		"class":"col-xs-3 right"
+	}).css("padding-right","0px")));
 	
 	li.addItemToLeft = function(items){
 		var position = $(this).find('.left');

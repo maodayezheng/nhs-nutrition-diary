@@ -243,13 +243,12 @@ function loadCustomMealView(){
 			$.each(mealComponents,function(index){
 				var component = mealComponents[index];
 				var food ={};
-				food["id"] = component["id"]
+				food["foodcode"] = component["foodcode"]
 				food["edibleproportion"]= component["edibleproportion"];
-				food["energy_kcal"] = component["calories"];
-				food["fat_g"] = component["fat"];
-				food["foodcode"] = component["foodid"];
-				food["protein_g"]= component["protein"];
-				food["water_g"]= component["fluid"];
+				food["energy_kcal"] = component["energy_kcal"];
+				food["fat_g"] = component["fat_g"];
+				food["protein_g"]= component["protein_g"];
+				food["water_g"]= component["water_g"];
 				food["foodname"]= component["foodname"];
 				food["quantity"]= parseInt(component["quantity"]);
 				displaySelection(food);

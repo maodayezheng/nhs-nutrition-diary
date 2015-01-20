@@ -272,80 +272,69 @@ SubmitController.prototype.submitFoods = function() {
 	
 	var dateTime = this.formatDateTime(date, time);
 	var meal = "";	
-	var foodList =[];
-	var counter = 0;
+	//var foodList =[];
+	//var counter = 0;
 	$('.selection-list li').each(function(idx, li) {
 		var food  = $(li).data('data');
-		var foodLabel = food['foodname'];
-		foodLabel = foodLabel.replace(/,/g, "COMMA");
-		var quantity = food['quantity'];
-		counter++;
-		
-		var foodTable = "";
-		var foodId = 0;
-		var foodName = "";
-		var calories = 0;
-		var protein = 0;
-		var fluid = 0;
-		var carbohydrates = 0;
-		var fat = 0;
-	
-		 
-		
-		var foodDetailsRequestJSON = {
-				"action": "get",
-				"table": "foodlist",
-				"where": "foodname,=," + foodLabel		
-		};
-		var foodDetails = ServerDBAdapter.prototype.get(foodDetailsRequestJSON)[0];
-		
-		console.log(foodDetails);
-		
-		if(foodDetails != null) {
-			foodTable = "foodlist";
-			
-			foodId = foodDetails.foodcode;
-			foodName = foodDetails.foodname;
-			calories = foodDetails.energy_kcal;
-			protein = foodDetails.protein_g;
-			fluid = foodDetails.water_g;
-			carbohydrates = foodDetails.carbohydrate_g;
-			fat = foodDetails.fat_g;
-		} else {
-			
-			var userFoodDetailsRequestJSON = {
-					"action": "get",
-					"table": "userfoodlist",
-					"where": "userid,=," + userid + ",foodname,=," + foodLabel
-			};
-			var userFoodDetails = ServerDBAdapter.prototype.get(userFoodDetailsRequestJSON)[0];
-			foodTable = "userfoodlist";
-			foodId = userFoodDetails.id;
-			foodName = userFoodDetails.foodname;
-			calories = userFoodDetails.calories;
-			protein = userFoodDetails.protein;
-			fluid = userFoodDetails.fluid;
-			fat = userFoodDetails.fat;
-		}
-		
+		//var foodLabel = food['foodname'];
+		//foodLabel = foodLabel.replace(/,/g, "COMMA");
+		//var quantity = food['quantity'];
+		//counter++;
 		var dataToServer = {
 				"table": table,
 				"userid": userid,
 				"datetime": dateTime,
-				"foodtable": foodTable,
-				"foodid": foodId,
-				"foodname": foodName,
-				"quantity": quantity,
-				"energy_kcal": calories,
-				"protein_g": protein,
-				"water_g": fluid,
-				"carbohydrate_g": carbohydrates,
-				"fat_g": fat,
+				"foodtable": "userfoodlist",
+				"foodcode": food['foodcode'],
+				"foodname": food['foodname'].replace(/,/g, "COMMA"),
+				"quantity": food['quantity'],
+				"energy_kcal": food['energy_kcal'],
+				"protein_g": food['protein_g'],
+				"water_g": food['water_g'],
+				"edibleproportion":food['edibleproportion'],
+				"carbohydrate_g": food['carbohydrate_g'],
+				"fat_g": food['fat_g'],
 				"meal": meal
 		};
 		
 		ServerDBAdapter.prototype.submit(dataToServer, "save");
 	});
+	
+	/*	var foodDetailsRequestJSON = {
+	"action": "get",
+	"table": "foodlist",
+	"where": "foodname,=," + foodLabel		
+};
+
+var foodDetails = ServerDBAdapter.prototype.get(foodDetailsRequestJSON)[0];
+
+if(foodDetails != null) {
+foodTable = "foodlist";
+
+foodId = foodDetails.foodcode;
+foodName = foodDetails.foodname;
+calories = foodDetails.energy_kcal;
+protein = foodDetails.protein_g;
+fluid = foodDetails.water_g;
+carbohydrates = foodDetails.carbohydrate_g;
+fat = foodDetails.fat_g;
+} else {
+
+var userFoodDetailsRequestJSON = {
+		"action": "get",
+		"table": "userfoodlist",
+		"where": "userid,=," + userid + ",foodname,=," + foodLabel
+};
+var userFoodDetails = ServerDBAdapter.prototype.get(userFoodDetailsRequestJSON)[0];
+foodTable = "userfoodlist";
+foodId = userFoodDetails.id;
+foodName = userFoodDetails.foodname;
+calories = userFoodDetails.calories;
+protein = userFoodDetails.protein;
+fluid = userFoodDetails.fluid;
+fat = userFoodDetails.fat;
+}*/
+
 }
 
 SubmitController.prototype.submitNewFood = function() {
@@ -421,16 +410,33 @@ SubmitController.prototype.submitMeal = function() {
 		return;
 	}
 	
-	var foodList =[];
-	var counter = 0;
+	//var foodList =[];
+	//var counter = 0;
 	$('.selection-list li').each(function(idx, li) {
 		var food  = $(li).data('data');
-		var foodLabel = food['foodname'];
-		foodLabel = foodLabel.replace(/,/g, "COMMA");
-		var quantity = food['quantity'];
-		counter++;
+		//var foodLabel = food['foodname'];
+		//foodLabel = foodLabel.replace(/,/g, "COMMA");
+		//var quantity = food['quantity'];
 		
-		var foodTable = "";
+		var dataToServer = {
+				"table": table,
+				"userid" : userid,
+				"datetime": dateTime,
+				"mealname": mealName,
+				"foodtable": "userfoodlist",
+				"foodcode": food['foodcode'],
+				"edibleproportion": food['edibleProportion'],
+				"foodname": food['foodname'].replace(/,/g, "COMMA"),
+				"quantity":food['quantity'],
+				"energy_kcal":food['energy_kcal'],
+				"protein_g": food['protein_g'],
+				"water_g": food['water_g'],
+				"fat_g": food['fat_g']
+		};
+		
+		ServerDBAdapter.prototype.submit(dataToServer, "save");
+		
+		/*var foodTable = "";
 		var foodId = 0;
 		var edibleProportion = 0;
 		var calories = 0;
@@ -469,25 +475,9 @@ SubmitController.prototype.submitMeal = function() {
 			protein = userFoodDetails.protein_g;
 			fluid = userFoodDetails.water_g;
 			fat = userFoodDetails.fat_g;
-		}
+		}*/
 		
-		var dataToServer = {
-				"table": table,
-				"userid" : userid,
-				"datetime": dateTime,
-				"mealname": mealName,
-				"foodtable": foodTable,
-				"foodid": foodId,
-				"edibleproportion": edibleProportion,
-				"foodname": foodLabel,
-				"quantity": quantity,
-				"energy_kcal": calories,
-				"protein_g": protein,
-				"water_g": fluid,
-				"fat_g": fat
-		};
 		
-		ServerDBAdapter.prototype.submit(dataToServer, "save");
 	});	
 }
 

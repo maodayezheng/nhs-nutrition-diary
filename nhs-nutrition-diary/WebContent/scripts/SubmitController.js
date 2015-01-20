@@ -425,7 +425,7 @@ SubmitController.prototype.submitMeal = function() {
 				"mealname": mealName,
 				"foodtable": "userfoodlist",
 				"foodcode": food['foodcode'],
-				"edibleproportion": food['edibleProportion'],
+				"edibleproportion": food['edibleproportion'],
 				"foodname": food['foodname'].replace(/,/g, "COMMA"),
 				"quantity":food['quantity'],
 				"energy_kcal":food['energy_kcal'],

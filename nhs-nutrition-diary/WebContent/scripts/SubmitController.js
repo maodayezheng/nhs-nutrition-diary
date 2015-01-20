@@ -445,8 +445,8 @@ SubmitController.prototype.submitMeal = function() {
 				"where": "foodname,=," + foodLabel
 		};
 		var foodDetails = ServerDBAdapter.prototype.get(foodDetailsRequestJSON)[0];
-		
 		if(foodDetails != null) {
+			alert("access to food list");
 			foodTable = "foodlist";
 			
 			foodId = foodDetails.foodcode;
@@ -456,6 +456,7 @@ SubmitController.prototype.submitMeal = function() {
 			fluid = foodDetails.water_g;
 			fat = foodDetails.fat_g;
 		} else {
+			alert("access to user food list");
 			var userFoodDetailsRequestJSON = {
 					"action": "get",
 					"table": "userfoodlist",
@@ -464,11 +465,11 @@ SubmitController.prototype.submitMeal = function() {
 			var userFoodDetails = ServerDBAdapter.prototype.get(userFoodDetailsRequestJSON)[0];
 			foodTable = "userfoodlist";
 			foodId = userFoodDetails.id;
-			edibleProportion = userFoodDetails.quantity_g;
-			calories = userFoodDetails.calories;
-			protein = userFoodDetails.protein;
-			fluid = userFoodDetails.fluid;
-			fat = userFoodDetails.fat;
+			edibleProportion = userFoodDetails.edibleProportion;
+			calories = userFoodDetails.energy_kcal;
+			protein = userFoodDetails.protein_g;
+			fluid = userFoodDetails.water_g;
+			fat = userFoodDetails.fat_g;
 		}
 		
 		var dataToServer = {

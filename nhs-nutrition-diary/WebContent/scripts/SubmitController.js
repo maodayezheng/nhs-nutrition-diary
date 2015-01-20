@@ -288,11 +288,8 @@ SubmitController.prototype.submitFoods = function() {
 		var fluid = 0;
 		var carbohydrates = 0;
 		var fat = 0;
-		
-		console.log(foodLabel);
-		foodLabel = foodLabel.replace(/,/g, "COMMA");
-		console.log(foodLabel); 
-		
+	
+		foodLabel = foodLabel.replace(/,/g, "COMMA"); 
 		
 		var foodDetailsRequestJSON = {
 				"action": "get",

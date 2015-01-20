@@ -76,9 +76,16 @@ class DB
 			$x=1; //variable used for the position in the array. From PDO documentation 'parameters are 1 based'.  
 			if(count($params))
 			{
-				foreach($params as $param)
+				
+				//echo "var dump params\n";
+				//var_dump($params);
+				
+				foreach($params as $key => $param)
 				{
-					$this->_query->bindValue($x, $param); //effectively saying we wish to bind the value @ 1 to the $param defined. i.e. assigning the first value to the first ? in the SQL statement. 
+					//Replace the data which has been sent to the server with COMMA in it with actual ',' characters.  
+					//This is done to avoid ',' in the method arguments.
+					$params[$key] = str_replace("COMMA",",",$param); 
+					$this->_query->bindValue($x, $params[$key]); //effectively saying we wish to bind the value @ 1 to the $param defined. i.e. assigning the first value to the first ? in the SQL statement. 
 					$x++;
 				}
 			}
@@ -205,8 +212,9 @@ class DB
 			$x = 1; //count. PDO documentation states position starts with 1. 
 			
 			//building up the $values variable for the query. 
-			foreach($fields as $field)
-			{
+			foreach($fields as $key => $field)
+			{ 
+				//$fields[$key] = str_replace("COMMA",",",$field); //MOVE TO QUERY
 				$values .= '?';
 				if($x < count($fields)) //are we at the end of the fields we have defined? If not, we want to add a comma.
 				{
@@ -214,10 +222,6 @@ class DB
 				}	
 				$x++;
 			}
-			
-			////////////////////////////////////////////////////////////////////////////////////
-			var_dump($fields); /////////////////////////////////////////////////////////////////////////////////////////////////DELETE
-			//////////////////////////////////////////////////////////////
 			
 			$sql = "INSERT INTO {$table} (`" . implode('`,`',$keys) . "`) VALUES({$values})"; 
 			

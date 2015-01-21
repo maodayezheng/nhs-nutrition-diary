@@ -628,13 +628,30 @@ SubmitController.prototype.submitWeight = function() {
 		return;
 	} 
 	
+	var swollenFeet = false;
+	var swollenLegs = false;
+	var swollenAbdomen = false;
+	
+	$("#swellings li.active").each(function(idx, li) {
+		if($(li).text() == "I have swollen feet.") {
+			swollenFeet = true;
+		} else if($(li).text() == "I have swollen legs.") {
+			swollenLegs = true;
+		} else if($(li).text() == "I have a swollen abdomen.") {
+			swollenAbdomen = true;
+		}
+	});
+	
 	var datetime = this.formatDateTime(date, null);
 	
 	var dataToServer = {
 		"table": table,
 		"userid" : userid,
 		"datetime": datetime,
-		"weight": weight 
+		"weight": weight,
+		"swollenfeet": swollenFeet,
+		"swollenlegs": swollenLegs,
+		"swollenabdomen": swollenAbdomen
 	};
 	
 	ServerDBAdapter.prototype.submit(dataToServer, "save");

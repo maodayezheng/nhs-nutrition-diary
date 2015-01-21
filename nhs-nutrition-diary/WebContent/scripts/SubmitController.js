@@ -195,7 +195,7 @@ SubmitController.prototype.updateRequirements = function() {
 	var weightRequestJSON = {
 			"action": "getLast",
 			"table": "userweightmanifest",
-			"where": "userid,=," + userId
+			"where": "userid,=," + userId + ",swollenfeet,=,0,swollenlegs,=,0,swollenabdomen,=,0"
 	};
 	var weight = ServerDBAdapter.prototype.get(weightRequestJSON).weight;
 	
@@ -690,7 +690,7 @@ SubmitController.prototype.submitSettings = function() {
 	var weightRequestJSON = {
 			"action": "getLast",
 			"table": "userweightmanifest",
-			"where": "userid,=," + userId
+			"where": "userid,=," + userId + ",swollenfeet,=,0,swollenlegs,=,0,swollenabdomen,=,0"
 	};
 	var weight = ServerDBAdapter.prototype.get(weightRequestJSON).weight;
 	

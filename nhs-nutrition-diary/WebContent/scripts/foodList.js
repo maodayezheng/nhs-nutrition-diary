@@ -191,16 +191,13 @@ function loadFrequentFoodView(){
 
 function loadCustomMealView(){
 	 
-	var userId = SubmitController.prototype.getUserID();
+	/*var userId = SubmitController.prototype.getUserID();
 	var mealsRequestJSON = {
 			"action": "get",
 			"table": "usermeallist",
-			"where": "userid,=," + userId,
-			
+			"where": "userid,=," + userId,	
 	};
-	
 	var dataFromServer = ServerDBAdapter.prototype.get(mealsRequestJSON);
-
 	//Data received from the server is in the form of an array of JSON objects. Each item in the meal is contained as a separate object. 
 	//However, items in the same meal all have the same 'mealname' property. This code segment iterates over the data received from the server
 	//and pushes unique meals to an array. This unique array is what is displayed to the user. insert code to push only unique elements to array to display.
@@ -218,14 +215,10 @@ function loadCustomMealView(){
 			{
 				if(dataFromServer[i]['mealname'] === data[j]['mealname']) { isIn = true; }
 			}
-			
 			if(!isIn) { data.push(dataFromServer[i]) }
 		}
-		
-	}
-	
-	
-	
+	}*/
+	var data = OnLoad.prototype.customMeal();
 	$('#modal-info-title').text("My meals");
 	// construct body
 	$('#modal-info-body').empty();

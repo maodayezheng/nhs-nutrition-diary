@@ -110,8 +110,8 @@ SubmitController.prototype.submitUserSignUpDetails = function()
 	if(!Validator.prototype.isSame(password, passwordConfirm)) 	{ errors += '-> Password and confirmed password must be the same.\n';	}
 	if(!Validator.prototype.isPositiveNumber(weight)) 			{ errors += '-> Please enter a valid weight (positive number).\n'; 		}
 	if(!Validator.prototype.isValidDate(dob)) 					{ errors += '-> Please enter a valid date of birth.\n'; 				}
-	if(!Validator.prototype.isInPastDateOfBirth(dob)) 			{ errors += '-> Date of birth cannot be a future date.\n'; 			}		 
-	if(!Validator.prototype.isPositiveNumber(activityLevel)) 	{ errors += '-> Please enter a valid activity level.\n'; 				}
+	if(!Validator.prototype.isInPastDateOfBirth(dob)) 			{ errors += '-> Date of birth cannot be a future date.\n'; 				}		 
+	if(!Validator.prototype.isValidActivityLevel(activityLevel)){ errors += '-> Please enter a valid activity level between 1 (low) and 2 (high).\n';}
 	if(!Validator.prototype.isValidGender(gender)) 				{ errors += '-> Please select a gender.\n'; 							}
 
 	if(errors) 

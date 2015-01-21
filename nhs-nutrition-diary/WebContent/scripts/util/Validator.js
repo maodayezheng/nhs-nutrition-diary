@@ -129,6 +129,16 @@ Validator.prototype.isPositiveNumber = function(input) {
 	}
 }
 
+Validator.prototype.isValidActivityLevel = function(activityLevel) {
+	if(ifNaN(activityLevel)) {
+		return false;
+	} else if (activityLevel < 1 || activityLevel > 2) {
+		return false;
+	} else {
+		return true;
+	}
+}
+
 Validator.prototype.isInPastDateOfBirth = function(dateOfBirth) {
 	var now = new Date().dateFormat('d/m/Y');
 	

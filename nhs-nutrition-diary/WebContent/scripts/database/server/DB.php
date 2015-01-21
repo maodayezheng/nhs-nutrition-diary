@@ -109,9 +109,11 @@ class DB
 	{
 		if(sizeof($where)%3==0) // The correct number of entries in the $where array should be divisible by 3 otherwise an exception will be thrown. 
 		{
-			$operators  = array('=','>','<','>=','<=','GROUP','BY'); //allowed operators in the SQL query which will be sent to the database. 
+			$operators  = array('=','>','<','>=','<='); //allowed operators in the SQL query which will be sent to the database.
+			$endSQL		= array('GROUP','BY'); 
 			$value 		= array(); 
 			
+			//This loop deals with the elements of the where() array which should form part of the SQL where clause.  
 			for($i = 0; $i<sizeof($where)/3; $i++) 
 			{
 				$field 			= $where[$i*3];
@@ -127,12 +129,36 @@ class DB
 					if($i==0)
 					{
 						$sql = "{$action} FROM {$table} WHERE {$field} {$operator} ?";
-					} else if(!($operator === 'GROUP' || $operator === 'BY'))
+					} else 
+					{
+						$sql .= " AND {$field} {$operator} ?";
+					} 
+				}
+			}
+			
+			//This loop deals with the elements of the where() array which should not form part of the SQL where clause, but rather the end of the statement, such as GROUP BY.  
+			for($i = 0; $i<sizeof($where)/3; $i++)
+			{
+				$field 			= $where[$i*3];
+				$operator 		= $where[($i*3)+1];
+				
+				//The following code changes an example string of 'Chicken and mushroom pieCOMMA single crustCOMMA homemade' to 'Chicken and mushroom pie, single crust, homemade'.
+				//Data is transferred like this so that unneccessary commas being passed into the method's arguments are avoided.
+				$amendedWhere 	= str_replace("COMMA",",",$where[($i*3)+2]);
+				array_push($value, $amendedWhere);
+			
+				if (in_array($operator, $endSQL)) //only add to the end of the SQL statement if the it is in the $endSQL array. 
+				{
+					if($field==="GROUP")
+					{
+						$sql = "GROUP BY ?";
+					} else
 					{
 						$sql .= " AND {$field} {$operator} ?";
 					}
 				}
 			}
+			
 			
 			if(!$this->query($sql, $value)->error()) 
 			{
@@ -143,6 +169,27 @@ class DB
 			throw new Exception('Your associative array length (argument $where) must have a length divisible by 3.');
 		}
 	}
+	
+	/**
+	 * Return the ten most frequent entries of a table.
+	 */
+	//TODO implement function to return the ten most frequent foods a given table
+	public function tenMostFrequent($table, $where = array(), $colForCount) {
+	
+		//return $this->action('SELECT *', $table, $where); //assume that the action is always SELECT * because we want to return all rows.
+		//$this->action("SELECT *, count({$colForCount} as count)", $table, $where);
+	
+		/*
+			Example for userid=1
+	
+			SELECT *, count(foodname) as count
+			FROM `userfoodmanifest`
+			WHERE `userid`=1
+			GROUP BY foodname
+			*/
+	
+	}
+	
 	
 	/**
 	 * This method is passed an associative array which must have three properties - userID, dateFrom, and dateTo. If these properties are not set 
@@ -299,25 +346,7 @@ class DB
 		}
 	}
 	
-	/**
-	 * Return the ten most frequent entries of a table.
-	 */
-	//TODO implement function to return the ten most frequent foods a given table
-	public function tenMostFrequent($table, $where = array(), $colForCount) {
-		
-		//return $this->action('SELECT *', $table, $where); //assume that the action is always SELECT * because we want to return all rows.
-		//$this->action("SELECT *, count({$colForCount} as count)", $table, $where);
-		
-		/*
-		Example for userid=1
-		
-		SELECT *, count(foodname) as count
-		FROM `userfoodmanifest`
-		WHERE `userid`=1
-		GROUP BY foodname
-		*/
-		
-	}
+
 	
 	/**
 	 * Returns the count of the results i.e. num of rows returned in the query instance variable. 

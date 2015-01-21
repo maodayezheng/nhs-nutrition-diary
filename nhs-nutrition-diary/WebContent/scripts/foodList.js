@@ -10,7 +10,7 @@ $(document).ready(function(){
 			$('#search').autocomplete({
 			source:function (request, response) {
             var term = $.ui.autocomplete.escapeRegex(request.term);
-            // remove unnecessary search result 
+            // sort the search result by input key words
                 startsWithMatcher = new RegExp("^" + term, "i");
                  startsWith = $.grep(food, function(value) {
                 	 var macther = startsWithMatcher.test(value.foodname);
@@ -181,7 +181,7 @@ function loadFrequentFoodView(){
 		li.appendTo(list);
 	})
 	
-	// construct new footer of 
+	// construct new footer 
 	var doneButton = $('.modal-button');
 		doneButton.attr('id','btn_frequentFood');
 		doneButton.unbind('click');
@@ -337,11 +337,8 @@ $(function(){
 	}*/
 	
 	//$.ui.autocomplete.prototype._renderItemData = function(){}
-	
 	$.ui.autocomplete.prototype._renderItem = function(ul, item) {
-		//console.log(item);
 	return $('<li>').append(item.foodname).appendTo(ul);
-		
 	}
 	
 })

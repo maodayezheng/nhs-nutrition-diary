@@ -12,6 +12,11 @@ body{
 .blue{
 	color:#0EBFE9;
 }
+
+.container{
+	margin-bottom:30px;	
+	
+}
 .navbar-title{
 	padding-top:15px;
 	text-align:center;

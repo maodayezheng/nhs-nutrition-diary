@@ -280,21 +280,6 @@ var dropContent = '<br> <input type="text" class="form-control comments symptoms
 
 		$(".hiddenSymptomContainer").toggle(400);
 	});
-	
-
-////////////////////////////////Get state of checkboxes weight///////////////////////////////////////////////
-
-	$("#saveWeight").click(function() {
-		var checkedWeight = {};
-		var counter = 0;
-		$("#swellings li.active").each(function(idx, li) {
-			checkedWeight[counter] = $(li).text();
-			counter++;
-		});
-	});
-	
-
-
 });
 
 ////////////////////////////Enables drop scoring for non custom symptom list

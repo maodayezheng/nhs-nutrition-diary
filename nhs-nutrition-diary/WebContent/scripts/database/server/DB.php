@@ -108,7 +108,7 @@ class DB
 	 * This method utilises the query method (also in this class) to abstract away actions (e.g. get, delete) etc. It is intended to be called by a given action method (such as GET or DELETE or UPDATE). It tries to prevent
 	 * potential SQL injections by specifying a list of allowed operators.  
 	 */
-	public function action($action, $table, $where = array()) //$action e.g. SELECT *
+	public function action($action, $table, $where = array(), $buildingSQL = false) //$action e.g. SELECT *
 	{
 		if(sizeof($where)%3==0) // The correct number of entries in the $where array should be divisible by 3 otherwise an exception will be thrown. 
 		{
@@ -137,6 +137,16 @@ class DB
 				}
 			}
 			
+			if($buildingSQL) 
+			{ 
+				echo "in buildingSQL\n";
+				$buildingSQLArray = array(
+					"sql" 		=> $sql,
+					"values" 	=> $value						
+				);			
+				return $buildingSQLArray;	
+			}
+			
 			if(!$this->query($sql, $value)->error()) 
 			{
 				return $this;
@@ -151,11 +161,29 @@ class DB
 	 * Runs a query intended to return the ten most frequent occuring data items in a table between a specified date. 
 	 * Useful for finding the top 10 symptoms or top 10 consumed foods. 
 	 */
-	//TODO implement function to return the ten most frequent foods a given table
-	public function tenMostFrequent($table, $where = array(), $colForCount) {
-	
-		//return $this->action('SELECT *', $table, $where); //assume that the action is always SELECT * because we want to return all rows.
-		//$this->action("SELECT *, count({$colForCount} as count)", $table, $where);
+	public function tenMostFrequent($table, $where = array(), $colForCount, $groupBy) 
+	{
+		//Calling the action method with the final argument set to true returns an associative array with two keys (sql and values)
+		//The sql key maps to the sql statement built by the action method (containing any '?' characters that need to be bound).
+		//The values key maps to an array which contains the values to be bound to the '?' characters in the SQL statement.   
+		$builtSQL 	= $this->action("SELECT *, count($colForCount) as count", $table, $where, true);
+		
+		//Assign the values of the given keys to local variables to be amended/manipulated. 
+		$sql 		= $builtSQL['sql'];
+		$values 	= $builtSQL['values'];
+		
+		//Add the associated GROUP BY clause to the SQL.
+		if ($groupBy)
+		{
+			$sql .= " GROUP BY {$groupBy}";
+		}
+		
+		//Run the query like normal. 
+		if(!$this->query($sql, $values)->error())
+		{
+			return $this;
+		}
+		
 	
 		/*
 			Example for userid=1

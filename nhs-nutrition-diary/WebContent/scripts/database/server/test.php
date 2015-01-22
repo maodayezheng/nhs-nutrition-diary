@@ -12,8 +12,13 @@ require_once 'init.php';
 
 echo '<br />in test.php for the test m8<br />';
 
-
 $db = DB::getInstance();
+
+$results = $db->tenMostFrequent('userfoodmanifest', array('userid','=','1'), 'foodname', 'foodname')->results();
+echo "<br /> Printing the result <br />";
+		var_dump($results);
+/* 
+
 $comma = json_decode('"\u002C"');
 echo $comma; 
 $sql = "SELECT group$comma test"; 
@@ -61,7 +66,7 @@ echo '<br /> Var dump of the set of results received from the database'.'<br />'
 var_dump($results3).'<br />';
 $results3JSON = json_encode($results3);
 echo '<br /> The JSON encoded results: <br />'.$results3JSON.'<br />';
-
+ */
 
 /* if(Session::exists('success'))
 {

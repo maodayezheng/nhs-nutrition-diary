@@ -31,8 +31,6 @@ class User
 		$this->_cookieName = Configurations::get('remember/cookie_name'); //name for cookie storing the hash.
 		$this->_cookieName2 = Configurations::get('remember/cookie_name2'); //name for cookie storing user ID. 
 		
-		//echo "<br /> In the constructor of User var user is: {$user}";
-		
 		if(!$user)
 		{
 			if(Session::exists($this->_sessionName))

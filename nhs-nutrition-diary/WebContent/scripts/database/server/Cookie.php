@@ -24,7 +24,7 @@ class Cookie
 	}
 	
 	/**
-	 * Puts a cookie in the client side browser. 
+	 * Puts a cookie locally at the client side. 
 	 */
 	public static function put($name, $value, $expiry)
 	{
@@ -36,7 +36,7 @@ class Cookie
 	}
 	
 	/**
-	 * Deletes the cookie from the the client side browser by setting the expiration to a past time. 
+	 * Deletes the cookie from the the client side by setting the expiration to a past time. 
 	 */
 	public static function delete($name)
 	{

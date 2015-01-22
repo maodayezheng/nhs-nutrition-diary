@@ -2,6 +2,7 @@
 
 /**
  * This class contains all of the functionality for receiving data from the client via the GET or POST method. 
+ * 
  * Created: 21nd December 2014
  * @author Vikram Bakshi
  */
@@ -9,8 +10,9 @@
 class Input 
 {
 	/**
-	 * This static function checks whether any post/get data exists. It uses the $_POST and $_GET superglobals and as such it can only be used for when data is being 
-	 * sent through a form. The retrieveData() static function (in this class) is used to retrieve data sent via POST or GET but not through a form.   
+	 * This static function checks whether any post/get data exists. It can only be used to check whether data exists if it has been sent in a way in which 
+	 * the PHP superglobals $_POST and $_GET would be set e.g. through a HTML5 form. Thus, this method is cannot be used to check for JSON data which has been 
+	 * sent through POST/GET. The retrieveData() static function (in this class) is used for that.    
 	 */
 	public static function exists($type)
 	{

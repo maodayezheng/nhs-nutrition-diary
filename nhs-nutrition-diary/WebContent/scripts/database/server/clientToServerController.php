@@ -1,21 +1,21 @@
 <?php
 /**
- * This script is intended to respond to AJAX requests made from the client's side - which should be all requests apart from registering (register.php)
- * and logging in (login.php). If anything is sent back to the client it is in the form of JSON. 
+ * This script is intended to control program flow between an AJAX request made by the client and the response given by the server. 
+ * All responses given are JSON encoded. As part of the json sent to this script, an 'action' property needs to exist. Otherwise
+ * an exception is thrown.   
  *   
  * Created 26th December 2014
- * @author Vikram Bakshi
+ * @author Vikram Bakshi, Robert Juergens 
  */
 
 require_once 'init.php'; //contains the class loader 
 header('Content-Type: application/json'); //states that the response from this script will be JSON data. 
 
-$db 			= 	DB::getInstance(); 
-$data 			= 	Input::retrieveData();
-$dataDecoded 	= 	json_decode($data, true); //decode the json data with the true flag so that objects are converted into associative arrays for entry into the MySQL database. 
+$db 			= 	DB::getInstance(); 			//Get a connection to the MySQL database. 
+$data 			= 	Input::retrieveData();		//Retrieve the data being sent to this script through AJAX.
+$dataDecoded 	= 	json_decode($data, true); 	//decode the json data with the true flag so that objects are converted into associative arrays. 
 
-
-//Extract values and remove them from the array. This is so that only relevant fields remain.  
+//If an action property is not set throw an exception.   
 if(!isset($dataDecoded['action'])) 
 {
 	throw new Exception("An 'action' property needs to exist as a JSON property in the data sent to this script"); 
@@ -25,65 +25,53 @@ if(!isset($dataDecoded['action']))
 	unset($dataDecoded['action']);
 }
 
-if(isset($dataDecoded['userHash'])) //if the userHash property is set: query the DB to return the user_id and add that as a property to the dataDecoded array. 
-{
-	$userHash 				= $dataDecoded['userHash'];
-	$userID 				= (array) $db->action('SELECT `user_id`','users_session',array('hash','=',$userHash))->first();
-	$dataDecoded['userID'] 	= $userID['user_id']; 
-	unset($dataDecoded['userHash']);
-}
-
+//Extract certain values from the data received from the AJAX request and set them to a local variable. Then unset them so that only relevant values remain.  
 if(isset($dataDecoded['table'])) 
 {
 	$table = $dataDecoded['table'];
 	unset($dataDecoded['table']);
 }
-
 if(isset($dataDecoded['where'])) 
 {
 	$whereDecoded = $dataDecoded['where'];
 	$where = explode(",", $whereDecoded); 
 	unset($dataDecoded['where']);
 }
-
-if(isset($dataDecoded['endStatement']))
-{
-	$endStatement = $dataDecoded['endStatement'];  
-	unset($dataDecoded['endStatement']);
-} else { $endStatement = null; }
-
 if(isset($dataDecoded['number']))
 {
 	$number = $dataDecoded['number'];
 	unset($dataDecoded['number']);
 }
-
 if(isset($dataDecoded['colForCount']))
 {
 	$colForCount = $dataDecoded['colForCount'];
 	unset($dataDecoded['colForCount']);
 }
-
 if(isset($dataDecoded['groupBy']))
 {
 	$groupBy = $dataDecoded['groupBy'];
 	unset($dataDecoded['groupBy']);
 }
-
 if(isset($dataDecoded['limit']))
 {
 	$limit = $dataDecoded['limit'];
 	unset($dataDecoded['limit']);
 }
+//if the userHash property is set: query the DB to return the user_id and add that as a property to the dataDecoded array.
+if(isset($dataDecoded['userHash'])) 
+{
+	$userHash 				= $dataDecoded['userHash'];
+	$userID 				= (array) $db->action('SELECT `user_id`','users_session',array('hash','=',$userHash))->first();
+	$dataDecoded['userID'] 	= $userID['user_id'];
+	unset($dataDecoded['userHash']);
+}
 
-
-$results = null;
-//var_dump($dataDecoded);
+//This switch statement controls the request's program flow, depending on the defined action property. 
 switch($action)
 {
 	case 'get':						get($db, $table, $where); break;
 	case 'getUserProfile':			getUserProfile($db, $table, $where); break; 
-	case 'getVisualisationData':	getVisualisationData($db, $dataDecoded); break;
+	case 'getVisualisationData':	getUserData($db, $dataDecoded); break;
 	case 'getLast':					getLast($db, $table, $where); break;
 	case 'getMostFrequent':			getMostFrequent($db, $table, $where, $colForCount, $groupBy, $limit); break; 
 	case 'save': 					$db->insert($table, $dataDecoded); break; 
@@ -91,6 +79,10 @@ switch($action)
 	case 'usernameUnique':			usernameUnique($db, $dataDecoded); break;
 }
 
+/**
+ * Checks whether the provided username exists in the database already or not. 
+ * Returns a JSON array depending on the result.
+ */
 function usernameUnique($db, $dataDecoded)
 {
 	$check = $db->get('users', array('nhsnumber','=',$dataDecoded['nhsnumber']));
@@ -98,9 +90,13 @@ function usernameUnique($db, $dataDecoded)
 	else				{ $trueOrFalse = array("tOrf" => "true"); 	echo json_encode($trueOrFalse); } //echo true if unique
 }
 
+/**
+ * For a user to register as a dietician and gain access to extra priveledges they must enter a password in their registration form.
+ * This function confirms whether that password is correct and then returns true or false depending on that. 
+ */
 function confirmIDPassword($db, $dataDecoded)
 {
-	//Compare the stored hash against the one generated from the password provided. 
+	//Compare the stored hashed password against the one generated from the password provided. 
 	if(strcmp(Hash::make($dataDecoded['idPassword']), $db->action('SELECT password','groups',array('id','=','2'))->first()->password) == 0)
 	{
 		$trueOrFalse = array("tOrf" => "true");
@@ -113,40 +109,58 @@ function confirmIDPassword($db, $dataDecoded)
 	}
 }
 
-function get($db, $table, $where) {
-	$results = $db->get($table, $where)->results();
-	$resultsJSON = json_encode($results);
-	echo($resultsJSON);
+/**
+ * Utilises the DB class to prepare and run an SQL statement including the filters provided in the $where array. 
+ * The result is echoed back as JSON.  
+ */
+function get($db, $table, $where) 
+{
+	$results = $db->get($table, $where)->results(); 
+	echo json_encode($results);
 }
 
-function getVisualisationData($db, $dataDecoded)
+/**
+ * Returns a JSON array containing data of a specified user (all information relating to date interval and userID is set in the $dataDecoded array as key:value pairs).
+ * The JSON array contains data from a number of tables defined in the getUserData() method in the DB class. 
+ */
+function getUserData($db, $dataDecoded)
 {
 	$queryResultArray = $db->getUserData($dataDecoded);
 	echo json_encode($queryResultArray);
 }
 
+/**
+ * This gets the profile data of the user. This data, as it is currently stored, is non-identifiable i.e. contains no names of users. 
+ * The unicode value for the ',' character is used to build up the first argument to prevent the interpreter from thinking
+ * the ',' means move to the next argument. The results of the query are echoed back to the client. 
+ */
 function getUserProfile($db, $table, $where)
 {
 	$comma = json_decode('"\u002C"');	//UTF representation of a comma so that it can be used in function arguments
 	$results = $db->action("SELECT gender$comma dateofbirth$comma activitylevel", $table, $where)->results(); 
-	$resultsJSON = json_encode($results);
-	echo($resultsJSON);
+	echo json_encode($results);
 }
 
-function getLast($db, $table, $where) {
+/**
+ * Echoes back JSON containing the last entry in a specified table for a given user (defined in the $where array). 
+ * This is useful, for example, when returning the most recent requirement of a given user. 
+ */
+function getLast($db, $table, $where) 
+{
 	$results = $db->last($table, $where);
-	$resultsJSON = json_encode($results);
-	echo($resultsJSON);
+	echo json_encode($results);
 }
 
-
+/**
+ * This method returns JSON containing the most frequent occuring symptoms/foods (depends on arguments) for a given user. 
+ * @param $table 		Defines which table you would like summarised.
+ * @param $colForCount 	Defines the column in the table you would like to count occurence of (result will be ordered descending based on count of this column).
+ * @param $groupBy		Defines which field you would like to group the result by.
+ * @param $limit		Defines the limit of the number of rows. For example 10 would mean you would want the top 10 most frequent.
+ */
 function getMostFrequent($db, $table, $where, $colForCount, $groupBy, $limit)
 {
 	$results = $db->mostFrequent($table, $where, $colForCount, $groupBy, $limit)->results();
 	echo json_encode($results); 
 }
-
-
-
-
 ?>

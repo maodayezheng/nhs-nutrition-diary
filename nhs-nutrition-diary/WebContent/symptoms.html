@@ -30,7 +30,7 @@
 
 <body onload="OnLoad.prototype.load('symptoms')">
 	<nav class="navbar navbar-default" role="navigation">
-		<div class="row">
+		
 			<div class="col-xs-2 border">
 				<button class="btn btn-default navbar-btn" id="nav-button"
 					onclick="Navigator.prototype.back()">
@@ -51,7 +51,7 @@
 					<li><a href="#">Log out</a></li>
 				</ul>
 			</div>
-		</div>
+		
 	</nav>
 	<div class="container">
 		<form class="form-signup" role="form">
@@ -60,11 +60,11 @@
 					<div style="display: inline">
 						<div class="left-inner-addon ">
 							<i class="glyphicon glyphicon-calendar"></i> <input type="text"
-								id="symptomDate" class="form-control date" placeholder="Date" readonly="true"><br />
+								id="symptomDate" class="form-control date" placeholder="Date" readonly="readonly" style="cursor :default"><br />
 						</div>
 						<div class="left-inner-addon ">
 							<i class="glyphicon glyphicon-time"></i> <input type="text"
-								id="symptomTime" class="form-control time " placeholder="Time" readonly="true"><br />
+								id="symptomTime" class="form-control time " placeholder="Time" readonly="readonly" style="cursor :default"><br />
 						</div>
 					</div>
 				</form>

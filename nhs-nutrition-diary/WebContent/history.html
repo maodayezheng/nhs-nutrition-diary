@@ -59,7 +59,7 @@
 	<body onload="OnLoad.prototype.load('history')">
 			<nav class="navbar navbar-default" role="navigation">
     <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="row">
+    
  		<div class="col-xs-2 border">
  		<button class="btn btn-default navbar-btn" id="nav-button" onclick="Navigator.prototype.back()" ><i class="glyphicon glyphicon-chevron-left"></i></button>
     	</div>
@@ -75,7 +75,7 @@
         <li><a href="#">Log out</a></li>
       </ul>
     </div>
-      </div>
+      
 </nav>
     	
     	<div class="container">
@@ -111,19 +111,19 @@
 								</form></div>
 								<div id = "target">
 	    				<div class="panel-body history-panel">
-						    <div class="row">
-	     				<div id="datepicker_div">
-							<div class="col-xs-6">	From: <input type="text" class="form-control date" id="datepickerFrom" onchange="toggleHistoryVisualisation()" readonly="true">
+						    
+	     				<div class="row" id="datepicker_div">
+							<div class="col-xs-6">	From: <input type="text" class="form-control date" id="datepickerFrom" onchange="toggleHistoryVisualisation()" readonly="readonly" style="cursor :default">
 							</div> 
-								<div class="col-xs-6">To: <input type="text" class="form-control date" id="datepickerTo" onchange="toggleHistoryVisualisation()" readonly="true">
+								<div class="col-xs-6">To: <input type="text" class="form-control date" id="datepickerTo" onchange="toggleHistoryVisualisation()" readonly="readonly" style="cursor :default">
 							</div>
 						</div>
-	     				<div id="historyVisualisation">
+	     				<div class="row visualisationBody" id="historyVisualisation">
 							<svg id="graph"></svg>
 							<div id="table"></div>
 							<div id="summary"></div>
 						</div>
-	     			</div>
+	     			
 	     		</div>
 			</div>
 	     				</div>

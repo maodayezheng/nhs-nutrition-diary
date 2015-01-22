@@ -4,11 +4,7 @@ body{
 	background-color:#eee;
 
 }
-.row{
-	margin-right: -8px;
-	margin-left: -8px;
-	
-}
+
 .blue{
 	color:#0EBFE9;
 }
@@ -119,11 +115,6 @@ body{
 	overflow-x:scroll;
 	overflow-y:scroll;
 }
-.text-overflow{
-	overflow:hidden;
-	text-overflow:ellopsis;
-}
-
 @media (max-width:767px){
 	#remember-me{
 		visibility:hidden;
@@ -395,4 +386,5 @@ position: relative; }
 }
 #TC {
     text-align: center;
+    cursor: pointer;
 }

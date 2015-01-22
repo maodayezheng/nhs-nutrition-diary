@@ -66,7 +66,7 @@ function compareWithCurrentSelections(selection){
 			var obj= $(item);
 			var currentSelection = obj.data('data');
 			if(currentSelection.foodname === selection.foodname){
-				currentSelection.quantity = currentSelection.quantity+selection.portion;
+				currentSelection.quantity = currentSelection.quantity+selection.quantity;
 				var accountButton = obj.find('[name=accountButton]');
 				accountButton.text(currentSelection.quantity);
 				updateNutritionBreakDown();
@@ -151,7 +151,6 @@ function loadNewFoodView(){
 		doneButton.unbind('click');
 		doneButton.attr('id','btn_submit_newFood');
 		doneButton.bind('click',function(){
-			alert("clicked new food submit");
 			SubmitController.prototype.submit(this.id);
 			food = loadFoodData();
 			});
@@ -232,7 +231,6 @@ function loadCustomMealView(){
 			"text":	data[index].mealname
 		}).data('data',data).bind('click',function(){
 			var mealComponents = OnLoad.prototype.mealComponents(data[index].mealname);
-			console.log(mealComponents);
 			$.each(mealComponents,function(index){
 				var component = mealComponents[index];
 				var food ={};

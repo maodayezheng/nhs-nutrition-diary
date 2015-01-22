@@ -31,16 +31,18 @@ OnLoad.prototype.updateTodaysBalance = function() {
 	var proteinCurrent = 0;
 	var fluidCurrent = 0;
 	
-	for(var index = 0; index < todaysFoods.length; index++) {
-        var entry = todaysFoods[index];
-        caloriesCurrent += parseFloat(entry.calories) * parseFloat(entry.quantity);
-        proteinCurrent += parseFloat(entry.protein) * parseFloat(entry.quantity);
-        fluidCurrent += parseFloat(entry.fluid) * parseFloat(entry.quantity);
-    }
-	
-	caloriesCurrent = Math.round(caloriesCurrent);
-	proteinCurrent = Math.round(proteinCurrent);
-	fluidCurrent = Math.round(fluidCurrent);
+	if(todaysFoods != null) {
+		for(var index = 0; index < todaysFoods.length; index++) {
+	        var entry = todaysFoods[index];
+	        caloriesCurrent += parseFloat(entry.calories) * parseFloat(entry.quantity);
+	        proteinCurrent += parseFloat(entry.protein) * parseFloat(entry.quantity);
+	        fluidCurrent += parseFloat(entry.fluid) * parseFloat(entry.quantity);
+	    }
+		
+		caloriesCurrent = Math.round(caloriesCurrent);
+		proteinCurrent = Math.round(proteinCurrent);
+		fluidCurrent = Math.round(fluidCurrent);
+	}
 	
 	var previousRequirementsRequestJSON = {
 			"action": "getLast",
@@ -125,23 +127,25 @@ OnLoad.prototype.customMeal = function(){
 	//However, items in the same meal all have the same 'mealname' property. This code segment iterates over the data received from the server
 	//and pushes unique meals to an array. This unique array is what is displayed to the user. insert code to push only unique elements to array to display.
 	var data = new Array(); 
-	for(var i = 0; i < dataFromServer.length; i++)
-	{
-		console.log(data.length);
-		//If the length of the array received from the server is not 0, and the length of the array we are pushing unique meals to is zero then push the element. 
-		if( (data.length === 0) && (dataFromServer.length != 0)) 				{ data.push(dataFromServer[i]) } 
-		//Otherwise loop over the unique array, checking that the current element in the array received from the server does not already exist in it. 
-		else
+	if(dataFromServer != null) {
+		for(var i = 0; i < dataFromServer.length; i++)
 		{
-			var isIn = false; 
-			for(var j = 0; j <data.length; j++)
+			console.log(data.length);
+			//If the length of the array received from the server is not 0, and the length of the array we are pushing unique meals to is zero then push the element. 
+			if( (data.length === 0) && (dataFromServer.length != 0)) 				{ data.push(dataFromServer[i]) } 
+			//Otherwise loop over the unique array, checking that the current element in the array received from the server does not already exist in it. 
+			else
 			{
-				if(dataFromServer[i]['mealname'] === data[j]['mealname']) { isIn = true; }
+				var isIn = false; 
+				for(var j = 0; j <data.length; j++)
+				{
+					if(dataFromServer[i]['mealname'] === data[j]['mealname']) { isIn = true; }
+				}
+				
+				if(!isIn) { data.push(dataFromServer[i]) }
 			}
 			
-			if(!isIn) { data.push(dataFromServer[i]) }
 		}
-		
 	}
 	return data;
 }
@@ -177,8 +181,6 @@ OnLoad.prototype.updateWeight = function() {
 	$('#currentWeight').html('' + weight + ' kg');
 	$('#newWeight').val(weight);
 }
-
-
 
 OnLoad.prototype.updateSettings = function() {
 	var userId = SubmitController.prototype.getUserID();

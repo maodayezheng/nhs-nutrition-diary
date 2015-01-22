@@ -112,11 +112,9 @@ class DB
 	{
 		if(sizeof($where)%3==0) // The correct number of entries in the $where array should be divisible by 3 otherwise an exception will be thrown. 
 		{
-			$operators  = array('=','>','<','>=','<='); //allowed operators in the SQL query which will be sent to the database.
-			$endSQL		= array('GROUP','BY'); 
+			$operators  = array('=','>','<','>=','<='); //allowed operators in the SQL query which will be sent to the database. 
 			$value 		= array(); 
 			
-			//This loop deals with the elements of the where() array which should form part of the SQL where clause.  
 			for($i = 0; $i<sizeof($where)/3; $i++) 
 			{
 				$field 			= $where[$i*3];
@@ -127,10 +125,6 @@ class DB
 				$amendedWhere 	= str_replace("COMMA",",",$where[($i*3)+2]); 
 				array_push($value, $amendedWhere);
 				
-				/* echo ($where[$i*3])."\n";
-				echo ($where[($i*3)+1])."\n";
-				echo ($where[($i*3)+2])."\n"; */
-				
 				if (in_array($operator, $operators)) //only add to the SQL sent to the database if the operator is in the allowed list.
 				{
 					if($i==0)
@@ -140,45 +134,8 @@ class DB
 					{
 						$sql .= " AND {$field} {$operator} ?";
 					}
-					
-					/* echo ($where[$i*3])."\n";
-					echo ($where[($i*3)+1])."\n";
-					echo ($where[($i*3)+2])."\n";
-					 */
-					//Unset the where array's current elements which are being managed by the loop so that they are not looped over again in the second loop below. 
-					/* unset($where[$i*3]);
-					unset($where[($i*3)+1]);
-					unset($where[($i*3)+2]); */
 				}
 			}
-			/* echo $sql;
-			var_dump($where);
-			var_dump($value); */
-/* 			//This loop deals with the elements of the where() array which should not form part of the SQL where clause, but rather the end of the statement, such as GROUP BY.  
-			if($where)
-			{
-				for($i = 0; $i<sizeof($where)/3; $i++)
-				{
-					$field 			= $where[$i*3];
-					$operator 		= $where[($i*3)+1];
-					
-					//The following code changes an example string of 'Chicken and mushroom pieCOMMA single crustCOMMA homemade' to 'Chicken and mushroom pie, single crust, homemade'.
-					//Data is transferred like this so that unneccessary commas being passed into the method's arguments are avoided.
-					$amendedWhere 	= str_replace("COMMA",",",$where[($i*3)+2]);
-					array_push($value, $amendedWhere);
-				
-					if (in_array($operator, $endSQL)) //only add to the end of the SQL statement if the it is in the $endSQL array. 
-					{
-						if($field==="GROUP")
-						{
-							$sql = "GROUP BY ?";
-						} else
-						{
-							$sql .= " AND {$field} {$operator} ?";
-						}
-					}
-				}
-			} */
 			
 			if(!$this->query($sql, $value)->error()) 
 			{

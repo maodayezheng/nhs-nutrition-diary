@@ -5,7 +5,8 @@
  * Created 22nd December 2014
  * @author Vikram Bakshi
  * */
- 
+
+
 require_once 'init.php';
 
 if($data = Input::retrieveData()) 
@@ -48,7 +49,7 @@ if($data = Input::retrieveData())
 		));
 	*/
 	
-	if($validation->passed()) //An empty array was passed as the conditions for validation so this will always be true (unless code is amended). 
+	if($validation->passed()) //An empty array was passed as the conditions for validation so this will always be true (unless code commented above is amended). 
 	{
 		switch($dataDecoded['group'])
 		{
@@ -68,6 +69,7 @@ function registerPatient($dataDecoded)
 
 	try
 	{
+		
 		//Create the user in the database
 		$user->create(array(
 				'nhsnumber' 			=> $dataDecoded['nhsnumber'],
@@ -79,7 +81,7 @@ function registerPatient($dataDecoded)
 				'registrationtimestamp' => date('Y-m-d H:i:s'),
 				'group' 				=> $dataDecoded['group']
 		));
-
+		
 		//If the creation of the user is successful (i.e. an exception is not thrown), retrieve the auto incremented userID.
 		$userID = DB::getInstance()->get('users', array('nhsnumber','=',$dataDecoded['nhsnumber']))->first()->id;
 

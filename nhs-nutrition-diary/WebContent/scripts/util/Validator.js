@@ -130,7 +130,7 @@ Validator.prototype.isPositiveNumber = function(input) {
 }
 
 Validator.prototype.isValidActivityLevel = function(activityLevel) {
-	if(ifNaN(activityLevel)) {
+	if(isNaN(activityLevel)) {
 		return false;
 	} else if (activityLevel < 1 || activityLevel > 2) {
 		return false;

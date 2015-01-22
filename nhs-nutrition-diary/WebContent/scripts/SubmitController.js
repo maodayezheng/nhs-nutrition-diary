@@ -136,8 +136,6 @@ SubmitController.prototype.submitUserSignUpDetails = function()
 			"gender": 			gender
 	}
 	
-	console.log("printing userSignUpDetails");
-	console.log(userSignUpDetails);
 	ServerDBAdapter.prototype.submit(userSignUpDetails, 'register');
 	//this.successMessage("Successfully Registered!", 3000);
 }

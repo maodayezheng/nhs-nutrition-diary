@@ -21,7 +21,7 @@ ServerDBAdapter.prototype.submit = function(dataToServer, action)
 	var actionUrl;
 	switch(action) 
 	{	
-		case "register":  	actionUrl = "scripts/database/server/registerTest.php"; 			break;  
+		case "register":  	console.log("in case register"); actionUrl = "scripts/database/server/registerTest.php"; 			break;  
 		default: 			actionUrl = "scripts/database/server/clientToServerController.php"; break; 
 	}
 	

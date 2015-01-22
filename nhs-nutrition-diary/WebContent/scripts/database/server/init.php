@@ -60,14 +60,5 @@ if(Cookie::exists(Configurations::get('remember/cookie_name')) && !Session::exis
 	
 }
 
-
-
-
-
-
-
-
-
-
 ?>
 

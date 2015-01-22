@@ -386,4 +386,5 @@ position: relative; }
 }
 #TC {
     text-align: center;
+    cursor: pointer;
 }

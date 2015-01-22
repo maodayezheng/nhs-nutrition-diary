@@ -182,7 +182,7 @@ SubmitController.prototype.submitDieticianSignUpDetails = function()
 	
 	
 	ServerDBAdapter.prototype.submit(dieticianSignUpDetails, 'register');
-	//this.successMessage("Successfully Registered!", 3000);
+	this.successMessage("Successfully Registered!", 3000);
 }
 
 SubmitController.prototype.updateRequirements = function() {

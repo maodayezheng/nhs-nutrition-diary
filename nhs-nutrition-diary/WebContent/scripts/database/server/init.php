@@ -40,7 +40,7 @@ spl_autoload_register(function($class)
 	require_once $class.'.php';
 });
     
-require_once 'sanitise.php'; // Imports functions which should be accessible to scripts which use require_once 'init.php'. 
+require_once 'functions.php'; // Imports functions which should be accessible to scripts which use require_once 'init.php'. 
 
 //if the cookie exists but the session does not - then the user asked to be remembered and so should be logged in.
 if(Cookie::exists(Configurations::get('remember/cookie_name')) && !Session::exists(Configurations::get('session/session_name'))) 

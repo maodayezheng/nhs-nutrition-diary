@@ -1,6 +1,6 @@
 <?php
 /**
- * REGISTER TEST. IF USERNAME ALREADY TAKEN NEEDS TO BE VALIDATED. 
+ * This script registers the user as a patient (group 1) or a dietician (group 2).  
  * 
  * Created 22nd December 2014
  * @author Vikram Bakshi
@@ -21,7 +21,8 @@ if($data = Input::retrieveData())
 	 * for demonstration purposes and hope that if it is needed in the future, the example code becomes useful. 
 	 */
 	$validate 	= new Validate();
-	$validation = $validate -> check($dataDecoded, array()); //passing an empty array so that there are no conditions which need to be passed. 
+	$validation = $validate -> check($dataDecoded, array()); 	//passing an empty array so that there are no conditions which need to be passed. Refer to commented out code 
+																//below to see what type of array can be passed to enforce validation. 
 	 
 	 /*
 	  * Code is commented out as it was decided validation would be done client side. 
@@ -63,15 +64,17 @@ if($data = Input::retrieveData())
 	}
 }
 
+/**
+ * Register a patient and store their details in the database. 
+ */
 function registerPatient($dataDecoded)
 {
 	$user 		= new User();
 	$salt 		= Hash::salt(32);
-	$regStatus 	= array("success" => false);
+	$regStatus 	= array("success" => false); //Will be changed to true if no exceptions are thrown. 
 	
 	try
 	{
-		
 		//Create the user in the database
 		$user->create(array(
 				'nhsnumber' 			=> $dataDecoded['nhsnumber'],
@@ -129,6 +132,9 @@ function registerPatient($dataDecoded)
 	}
 }
 
+/**
+ * Register a dietician and store their details in the database.
+ */
 function registerDietician($dataDecoded)
 {
 	$user 		= new User();

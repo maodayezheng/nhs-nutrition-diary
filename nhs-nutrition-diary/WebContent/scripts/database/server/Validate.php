@@ -1,6 +1,9 @@
 <?php
 /**
- * This class contains all the functionality relating to validating input passed from the client to the server. 
+ * This class contains all the functionality relating to validating input passed from the client to the server.
+ * Shortly after creating this class, a team decision was made to conduct all of the validation client side, rendering this code
+ * obsolete. It remains in case server side validation is to be introduced in the future.   
+ * 
  * Created 22nd December 2014
  * @author Vikram Bakshi
  */
@@ -27,7 +30,7 @@ class Validate
 		{
 			foreach($rules as $rule => $rule_value)
 			{
-				$item = escape($item); //for sanitisation. imported from init.php and functionality is in sanitise.php.
+				$item = escape($item); //for sanitisation. imported from init.php and functionality is in functions.php.
 				$value = trim($source[$item]); //get rid of whitespaces. 
 				
 				if($rule === 'required' && empty($value))

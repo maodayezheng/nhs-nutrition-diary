@@ -1,6 +1,8 @@
 <?php
-//TODO CONTINUE DOCUMENTATION FROM HERE
 /**
+ * This class allows for the creation of a 'User' object to represent a user in the database.  
+ * It contains the functionality to log the user in, log them out, to check whether they have the relevant permission
+ * and more. 
  * 
  * Created 22nd December 2014
  * @author Vikram Bakshi
@@ -51,15 +53,23 @@ class User
 		}
 	}
 	
+	/**
+	 * Creates a user account.
+	 */
 	public function create($fields = array())
 	{
 		if(!$this->_db->insert('users', $fields))
 		{
-			echo var_dump($fields); //For DEBUGGING
+			//echo var_dump($fields); //For DEBUGGING
 			throw new Exception('There was a problem creating an account.');
 		}
 	}
 	
+	/**
+	 * Finds a user based on their nhsnumber. And sets $this->_data to the results. 
+	 * If no result is found, the same search is conducted using the 'id' field. 
+	 * Again, if no result is found then the method returns false. 
+	 */
 	public function find($user = null)
 	{
 		if($user)
@@ -87,12 +97,10 @@ class User
 	
 	
 	/**
-	 * 
-	 * //TODO REWRITE METHOD DESCRIPTION
-	 * 
-	 * This method logs the user in or returns a session if they are already logged in. If no arguments are passed it is assumed the user is logged in already (i.e. their cookie stores a valid hash).
-	 * Otherwise you pass the $username, $password, and whether or not the user asked to be remembered ($remember). If the $username and hashed $password match that which is stored in the database
-	 * the user is logged in. If the user has clicked 'remember me' then a cookie is also stored with a hash in order to keep the user logged in.   
+	 * This method logs the user in or returns a session if they are already logged in. If no arguments are passed it is assumed the user is logged in already 
+	 * (i.e. their cookie stores a valid hash). Otherwise you pass the $username, $password, and whether or not the user asked to be remembered ($remember). 
+	 * If the $username and hashed $password match that which is stored in the database the user is logged in. 
+	 * If the user has clicked 'remember me' then a cookie is also stored with a hash in order to keep the user logged in.   
 	 */
 	public function login($username = null, $password = null, $remember=false)
 	{
@@ -101,26 +109,29 @@ class User
 			Session::put($this->_sessionName, $this->data()->id);   
 		} else
 		{
-			$user = $this -> find($username);	
-			if ($user)
+			$user = $this -> find($username);	//Otherwise, find the user. 
+			if ($user)							
 			{
-				if($this->data()->password === Hash::make($password, $this->data()->salt))
+				if($this->data()->password === Hash::make($password, $this->data()->salt)) //If the user is found then check the password against the hash saved in the DB. 
 				{
-					Session::put($this->_sessionName, $this->data()->id); 
-					if($remember)
+					Session::put($this->_sessionName, $this->data()->id); 	//If the password was correct, put a session. 
+					if($remember)											//If the user asked to be remembered then run this code block
 					{
-						$hash = Hash::unique();
-						$hashCheck = $this->_db->get('users_session', array('user_id', '=',$this->data()->id)); //check if hash is already stored in the database.
+						$hash = Hash::unique();								//Create a unique hash. 
+						
+						//Check whether a hash exists in the 'users_session' table for that user already i.e. they have logged in previously and asked to be remembered. 
+						$hashCheck = $this->_db->get('users_session', array('user_id', '=',$this->data()->id)); 
 			
-						if(!$hashCheck->count()) //if the count returns 0
+						if(!$hashCheck->count()) //if the row count of the query is 0 run this code.  
 						{
-							$this->_db->insert('users_session',array(
+							//Insert a hash into the database for the user. 
+							$this->_db->insert('users_session',array( 
 									'user_id' 	=> $this->data()->id,
 									'hash' 		=> $hash
 							));
-						} else
+						} else //If the query returned any number of rows. 
 						{
-							$hash = $hashCheck -> first()->hash;
+							$hash = $hashCheck -> first()->hash; //Take the first row and the value stored for hash and save it in the local variable $hash. 
 						}
 						Cookie::put($this->_cookieName, $hash, Configurations::get('remember/cookie_expiry')); //store the hash in a cookie
 						Cookie::put($this->_cookieName2,$this->data()->id , Configurations::get('remember/cookie_expiry')); //store the userID in a cookie 
@@ -132,25 +143,34 @@ class User
 		return false; 
 	}
 	
+	
+	/**
+	 * Returns true if the user has permission for a given $key.
+	 * Example $keys are 'user','admin','moderator' etc.
+	 */
 	public function hasPermission($key)
 	{
+		//Retrieves the row in the database table 'groups' which corresponds to the group of the user. 
 		$group  = $this->_db->get('groups', array('id','=',$this->data()->group));
-		//print_r($group);
 		
 		if($group->count())
 		{
+			//The value stored in the 'permissions' column in the database is JSON.
+			//This decodes the JSON and stores it into a local variable as an associative array. 
 			$permissions = json_decode($group->first()->permissions, true); 
 			
+			//If the $key argument applied as a key to the associative array is true then return true - the user has permission. 
 			if($permissions[$key]==true)
 			{
 				return true;
 			}
-			return false;
-			print_r($permissions); 
+			return false; //otherwise return false; 
 		}
 	}
 	
-	
+	/**
+	 * Returns true or false depending on whether the _data instance variable has been set. 
+	 */
 	public function exists()
 	{
 		return (!empty($this->_data))? true: false;
@@ -168,12 +188,17 @@ class User
 		Cookie::delete($this->_cookieName2);
 	}
 	
-	
+	/**
+	 * Return the data stored in the instance variable. 
+	 */
 	public function data()
 	{
 		return $this->_data;
 	}
 	
+	/**
+	 * Returns the boolean _isLoggedIn instance variable. 
+	 */
 	public function isLoggedIn()
 	{
 		return $this->_isLoggedIn;

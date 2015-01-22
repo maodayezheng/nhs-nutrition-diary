@@ -32,6 +32,7 @@ ServerDBAdapter.prototype.submit = function(dataToServer, action)
 	    dataType: 		"text", //what you will receive in response. 
 	    contentType: 	"application/json", //what you are sending.
 	    data: 			JSON.stringify(dataToServer),
+	    timeout: 		5000, //timeout the AJAX after 5000 milliseconds.
 	    success: 		function (result){
 	        				console.log("success " + result); 
 
@@ -41,9 +42,11 @@ ServerDBAdapter.prototype.submit = function(dataToServer, action)
 					        	results = null;
 					        }
 	    				},
-	    async: 			false, //we want this call to be synchronous
+	    async: 			false, //we want this call to be synchronous to avoid callback complexity. UI is only non-responsive for maximum of 5 seconds.
 	    error: 			function (xhr, ajaxOptions, thrownError) {
-				        console.log(xhr.statusText);
+				        alert("Your request failed. It may have timed out (taken more than 5 seconds). Please check your internet connection and try again.");
+	    	
+	    				console.log(xhr.statusText);
 				        console.log(xhr.responseText);
 				        console.log(xhr.status);
 				        console.log(thrownError);
@@ -75,8 +78,9 @@ ServerDBAdapter.prototype.get = function(dataToServer)
 					        	results = null;
 					        }
 	    				},
-	    async: 			false, //we want this call to be synchronous 
+	    async: 			false, //we want this call to be synchronous to avoid callback complexity. UI is only non-responsive for maximum of 5 seconds. 
 	    error: 			function (xhr, ajaxOptions, thrownError) {
+	    					alert("Your request failed. It may have timed out (taken more than 5 seconds). Please check your internet connection and try again.");
 					        console.log(xhr.statusText);
 					        console.log(xhr.responseText);
 					        console.log(xhr.status);

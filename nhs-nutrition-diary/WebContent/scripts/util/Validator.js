@@ -82,6 +82,20 @@ Validator.prototype.isValidUserName = function(userName)
 	else						{ return false; }
 }
 
+Validator.prototype.isValidUserNameFormat = function(userName) {
+	if(userName.length != 7) {
+		return false;
+	} else {
+		var tokens = userName.split("");
+		if(tokens[0] != "D" || tokens[1] != "T" || isNaN(tokens[2]) || isNaN(tokens[3]) || isNaN(tokens[4]) 
+			|| isNaN(tokens[5]) || isNaN(tokens[6])) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+}
+
 Validator.prototype.isValidNhsNumber = function(nhsNumber) {
 	
 	/*if(isNaN(nhsNumber)) {

@@ -156,7 +156,9 @@ SubmitController.prototype.submitDieticianSignUpDetails = function()
 	// validations
 	
 	if(!Validator.prototype.isValidUserName(idNumber)) 			{ errors += '-> Your username is already registered. If you have forgotten your'
-																			+	'password please contact the system administrator.\n';			}
+																			+	' password please contact the system administrator.\n';			}
+	if(!Validator.prototype.isValidUserNameFormat(idNumber))	{ errors += '-> Your username is not valid. It must have the format \'DTXXXXX\' where' 
+																			+	' \'X\' is a digit from 0 to 9.\n';									}
 	if(!Validator.prototype.isIdentifyingPassword(idPassword)) 	{ errors += '-> Please enter the correct dietician registration password.\n'; 	}
 	if(Validator.prototype.isEmpty(password)) 					{ errors += '-> Please enter a password.\n'; 									} 
 	if(!Validator.prototype.isSame(password, passwordConfirm)) 	{ errors += '-> Password and confirmed password must be the same.\n';			}

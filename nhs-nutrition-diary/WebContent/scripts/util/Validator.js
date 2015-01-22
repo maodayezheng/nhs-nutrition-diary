@@ -97,17 +97,37 @@ Validator.prototype.isValidUserNameFormat = function(userName) {
 }
 
 Validator.prototype.isValidNhsNumber = function(nhsNumber) {
+	// validation of NHS number according to:
+	// link: http://www.datadictionary.nhs.uk/version2/data_dictionary/data_field_notes/n/nhs_number_de.asp?shownav=0
 	
-	/*if(isNaN(nhsNumber)) {
+	if(isNaN(nhsNumber)) {
 		return false;
 	} else if(nhsNumber.length != 10) {
 		return false;
-	}*/
-	
-	// TODO implement nhs validation checker:
-	// link: http://www.datadictionary.nhs.uk/version2/data_dictionary/data_field_notes/n/nhs_number_de.asp?shownav=0 
-	
-	return true;
+	} else {
+		var tokens = nhsNumber.split("");
+		var sum = 0;
+		var factor = 10;
+		for(var index = 0; index < 9; index++) {
+			sum += tokens[index] * factor;
+			factor--;
+		}
+		
+		var remainder = sum % 11;
+		var checkDigit = 11 - remainder;
+		
+		if(checkDigit == 10) {
+			return false;
+		} else if(checkDigit == 11) {
+			checkDigit = 0;
+		}
+		
+		if(checkDigit != tokens[9]) {
+			return false;
+		} else {
+			return true;
+		}
+	}
 }
 
 

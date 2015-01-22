@@ -139,7 +139,6 @@ class DB
 			
 			if($buildingSQL) 
 			{ 
-				echo "in buildingSQL\n";
 				$buildingSQLArray = array(
 					"sql" 		=> $sql,
 					"values" 	=> $value						
@@ -161,7 +160,7 @@ class DB
 	 * Runs a query intended to return the ten most frequent occuring data items in a table between a specified date. 
 	 * Useful for finding the top 10 symptoms or top 10 consumed foods. 
 	 */
-	public function tenMostFrequent($table, $where = array(), $colForCount, $groupBy) 
+	public function mostFrequent($table, $where = array(), $colForCount, $groupBy, $limit) 
 	{
 		//Calling the action method with the final argument set to true returns an associative array with two keys (sql and values)
 		//The sql key maps to the sql statement built by the action method (containing any '?' characters that need to be bound).
@@ -172,10 +171,17 @@ class DB
 		$sql 		= $builtSQL['sql'];
 		$values 	= $builtSQL['values'];
 		
-		//Add the associated GROUP BY clause to the SQL.
+		//Add the associated GROUP BY clause to the SQL, order the result by the descending count (to capture top 10/ top 20 - actual number depends on defined $limit).
 		if ($groupBy)
 		{
 			$sql .= " GROUP BY {$groupBy}";
+			$sql .= " ORDER BY count DESC";
+		}
+		
+		//Limit the results to the defined number of rows ($limit).
+		if ($limit)
+		{
+			$sql .= " LIMIT {$limit}";
 		}
 		
 		//Run the query like normal. 
@@ -184,15 +190,16 @@ class DB
 			return $this;
 		}
 		
-	
+		
 		/*
-			Example for userid=1
-	
+			//EXAMPLE Query this method would produce:
 			SELECT *, count(foodname) as count
-			FROM `userfoodmanifest`
-			WHERE `userid`=1
+			FROM userfoodmanifest
+			WHERE userid = 1
 			GROUP BY foodname
-			*/
+			ORDER BY count DESC
+			LIMIT 10
+		*/
 	
 	}
 	

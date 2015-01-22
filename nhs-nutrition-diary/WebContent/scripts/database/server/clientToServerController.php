@@ -58,15 +58,34 @@ if(isset($dataDecoded['number']))
 	unset($dataDecoded['number']);
 }
 
+if(isset($dataDecoded['colForCount']))
+{
+	$colForCount = $dataDecoded['colForCount'];
+	unset($dataDecoded['colForCount']);
+}
+
+if(isset($dataDecoded['groupBy']))
+{
+	$groupBy = $dataDecoded['groupBy'];
+	unset($dataDecoded['groupBy']);
+}
+
+if(isset($dataDecoded['limit']))
+{
+	$limit = $dataDecoded['limit'];
+	unset($dataDecoded['limit']);
+}
+
+
 $results = null;
 //var_dump($dataDecoded);
 switch($action)
 {
-	case 'get':						get($db, $table, $where, $endStatement); break;
+	case 'get':						get($db, $table, $where); break;
 	case 'getUserProfile':			getUserProfile($db, $table, $where); break; 
 	case 'getVisualisationData':	getVisualisationData($db, $dataDecoded); break;
 	case 'getLast':					getLast($db, $table, $where); break;
-	case 'getTenMostFrequent':		getTenMostFrequent($db, $table, $where, $number); break; 
+	case 'getMostFrequent':			getMostFrequent($db, $table, $where, $colForCount, $groupBy, $limit); break; 
 	case 'save': 					$db->insert($table, $dataDecoded); break; 
 	case 'confirmIDPassword':		confirmIDPassword($db, $dataDecoded); break;
 	case 'usernameUnique':			usernameUnique($db, $dataDecoded); break;
@@ -94,11 +113,10 @@ function confirmIDPassword($db, $dataDecoded)
 	}
 }
 
-function get($db, $table, $where, $endStatement = null) {
-	$results = $db->get($table, $where, $endStatement)->results();
+function get($db, $table, $where) {
+	$results = $db->get($table, $where)->results();
 	$resultsJSON = json_encode($results);
 	echo($resultsJSON);
-	//$resultsJSON = null;
 }
 
 function getVisualisationData($db, $dataDecoded)
@@ -119,13 +137,16 @@ function getLast($db, $table, $where) {
 	$results = $db->last($table, $where);
 	$resultsJSON = json_encode($results);
 	echo($resultsJSON);
-	$resultsJSON = null;
 }
 
-function getTenMostFrequent($db, $table, $where, $number) {
-	$db->tenMostFrequent($table, $where, $number);
-	$results = $db->results();
-	$resultsJSON = json_encode($results);
-	echo($resultsJSON);
-	$resultsJSON = null;
+
+function getMostFrequent($db, $table, $where, $colForCount, $groupBy, $limit)
+{
+	$results = $db->mostFrequent($table, $where, $colForCount, $groupBy, $limit)->results();
+	echo json_encode($results); 
 }
+
+
+
+
+?>

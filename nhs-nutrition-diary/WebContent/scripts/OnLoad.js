@@ -103,10 +103,12 @@ OnLoad.prototype.frequentFoods = function() {
 	
 	//TODO might have to be amended along with the functions for returning the 10 most frequent foods
 	var frequentFoodsRequestJSON = {
-			"action": "getTenMostFrequent",
-			"table": "userfoodmanifest",
-			"where": "userid,=," + userId,
-			"number": 10
+			"action": 		"getMostFrequent",
+			"table": 		"userfoodmanifest",
+			"where": 		"userid,=," + userId,
+			"colForCount":	"foodname",
+			"groupBy":		"foodname",
+			"limit": 		10 				//Change number to limit the number of entries. e.g. 10, 20 for top 10 or top 20 respectively. 
 	};
 	var frequentFoods = ServerDBAdapter.prototype.get(frequentFoodsRequestJSON);
 	

@@ -14,7 +14,7 @@ echo '<br />in test.php for the test m8<br />';
 
 $db = DB::getInstance();
 
-$results = $db->tenMostFrequent('userfoodmanifest', array('userid','=','1'), 'foodname', 'foodname')->results();
+$results = $db->mostFrequent('userfoodmanifest', array('userid','=','1'), 'foodname', 'foodname', 3)->results();
 echo "<br /> Printing the result <br />";
 		var_dump($results);
 /* 

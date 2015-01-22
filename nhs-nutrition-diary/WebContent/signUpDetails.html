@@ -53,74 +53,96 @@
 				<div role="tabpanel" class="tab-pane active" id="patient-pane">
 				<form role="form" class="form-signup" id="patient_registration_form" method="post">	
 				<div class="panel panel-default element-margin">
-					<div class="panel-body tab-panel">
-					
-			<table class="register-table">
-			  <tr>
-			    <td align="left"><label for="nhsnumber">NHS Number:</label></td>
-			    <td><input class="form-control" name="nhsnumber" id="nhsnumber" type="text" placeholder="Enter your NHS number" required></td>
-			    <td><span><a href="#" data-toggle="popover" data-trigger="focus" data-placement="top" title="What is this?"
-			    data-content="The NHS number is a unique 10-digit identifier for all people registered with the NHS."
-			    ><i class="glyphicon glyphicon-question-sign blue"></i></a></span>
-			    </td>
-			  </tr>
-			  <tr>
-			    <td align="left"><label for="password">Password:</label></td>
-			    <td><input class="form-control" name="password" id="password_user" type="password" placeholder="Enter your password" required></td>
-			  <td><span><a href="#" data-toggle="popover" data-trigger="focus" data-placement="top" title="What is this?"
-			    data-content="Please enter the password you would like associated with your account."
-			    ><i class="glyphicon glyphicon-question-sign blue"></i></a></span>
-			    </td>
-			  </tr>
-			  <tr>
-			    <td align="left"><label for="password_again">Confirm Password:</label></td>
-			    <td><input class="form-control" name="password_again" id="password_confirm_user" type="password" placeholder="Confirm your password" required></td>
-			 <td><span><a href="#" data-toggle="popover" data-trigger="focus" data-placement="top" title="What is this?"
-			    data-content="Please confirm the password you would like associated with your account."
-			    ><i class="glyphicon glyphicon-question-sign blue"></i></a></span>
-			    </td>
-			  </tr>
-			  <tr>
-			    <td align="left"><label for="weight">Weight:</label></td>
-			    <td><input class="form-control" name="weight" id="weight" type="text" placeholder="Enter your weight" required></td>
-			  <td><span><a href="#" data-toggle="popover" data-trigger="focus" data-placement="top" title="What is this?"
-			    data-content="Please enter your current weight."
-			    ><i class="glyphicon glyphicon-question-sign blue"></i></a></span>
-			    </td>
-			  </tr>
-			  <tr>
-			    <td align="left"><label for="dob">Date of Birth:</label></td>
-			    <td><input type="text" id="dob" name="dob" class="form-control date" placeholder="   Enter your date of birth" required></td>
-			  <td><span><a href="#" data-toggle="popover" data-trigger="focus" data-placement="top" title="What is this?"
-			    data-content="Please enter you date of birth."
-			    ><i class="glyphicon glyphicon-question-sign blue"></i></a></span>
-			    </td>
-			  </tr>
-			  <tr>
-			    <td align="left"><label for="activity_level">Activity Level:</label></td>
-			    <td><input class="form-control" name="activity_level" id="activity_level" type="text" placeholder="Enter your activity level" required></td>
-			  <td><span><a href="#" data-toggle="popover" data-trigger="focus" data-placement="top" title="What is this?"
-			    data-content="Your activity level reflects how active you are."
-			    ><i class="glyphicon glyphicon-question-sign blue"></i></a></span>
-			    </td>
-			  </tr>
-			  <tr>
-			    <td align="left"><label for="gender">Gender:</label></td>
-			    <td align="left">
-	      			<input class="radio_buttons optional" id="user_basic_sex_male" name="user_basic[sex]" type="radio" value="Male" > Male
-	      			<input class="radio_buttons optional" id="user_basic_sex_female" name="user_basic[sex]" type="radio" value="Female"> Female</td>
-			  </tr>
-			</table> 
-					</div>
-			
+						<div class="panel-body tab-panel">
 
-				</div>
+							<table class="register-table">
+								<tr>
+									<td align="left"><label for="nhsnumber">NHS
+											Number:</label></td>
+									<td><input class="form-control" name="nhsnumber"
+										id="nhsnumber" type="text" placeholder="Enter your NHS number"
+										required></td>
+									<td><span><a href="#" data-toggle="popover"
+											data-trigger="focus" data-placement="top"
+											title="What is this?"
+											data-content="The NHS number is a unique 10-digit identifier for all people registered with the NHS."><i
+												class="glyphicon glyphicon-question-sign blue"></i></a></span></td>
+								</tr>
+								<tr>
+									<td align="left"><label for="password">Password:</label></td>
+									<td><input class="form-control" name="password"
+										id="password_user" type="password"
+										placeholder="Enter your password" required></td>
+									<td><span><a href="#" data-toggle="popover"
+											data-trigger="focus" data-placement="top"
+											title="What is this?"
+											data-content="Please enter the password you would like associated with your account."><i
+												class="glyphicon glyphicon-question-sign blue"></i></a></span></td>
+								</tr>
+								<tr>
+									<td align="left"><label for="password_again">Confirm
+											Password:</label></td>
+									<td><input class="form-control" name="password_again"
+										id="password_confirm_user" type="password"
+										placeholder="Confirm your password" required></td>
+									<td><span><a href="#" data-toggle="popover"
+											data-trigger="focus" data-placement="top"
+											title="What is this?"
+											data-content="Please confirm the password you would like associated with your account."><i
+												class="glyphicon glyphicon-question-sign blue"></i></a></span></td>
+								</tr>
+								<tr>
+									<td align="left"><label for="weight">Weight:</label></td>
+									<td><input class="form-control" name="weight" id="weight"
+										type="text" placeholder="Enter your weight" required></td>
+									<td><span><a href="#" data-toggle="popover"
+											data-trigger="focus" data-placement="top"
+											title="What is this?"
+											data-content="Please enter your current weight."><i
+												class="glyphicon glyphicon-question-sign blue"></i></a></span></td>
+								</tr>
+								<tr>
+									<td align="left"><label for="dob">Date of Birth:</label></td>
+									<td><input type="text" id="dob" name="dob"
+										class="form-control date"
+										placeholder="   Enter your date of birth" required></td>
+									<td><span><a href="#" data-toggle="popover"
+											data-trigger="focus" data-placement="top"
+											title="What is this?"
+											data-content="Please enter you date of birth."><i
+												class="glyphicon glyphicon-question-sign blue"></i></a></span></td>
+								</tr>
+								<tr>
+									<td align="left"><label for="activity_level">Activity
+											Level:</label></td>
+									<td><input class="form-control" name="activity_level"
+										id="activity_level" type="text"
+										placeholder="Enter your activity level" required></td>
+									<td><span><a href="#" data-toggle="popover"
+											data-trigger="focus" data-placement="top"
+											title="What is this?"
+											data-content="Your activity level reflects how active you are."><i
+												class="glyphicon glyphicon-question-sign blue"></i></a></span></td>
+								</tr>
+								<tr>
+									<td align="left"><label for="gender">Gender:</label></td>
+									<td align="left"><input class="radio_buttons optional"
+										id="user_basic_sex_male" name="user_basic[sex]" type="radio"
+										value="Male"> Male <input
+										class="radio_buttons optional" id="user_basic_sex_female"
+										name="user_basic[sex]" type="radio" value="Female">
+										Female</td>
+								</tr>
+
+							</table>
+							I agree to the<p style="color:blue"  data-toggle="modal"
+								data-target="#modalTC" > terms and conditions</p>
+							
+						</div>
+					</div>
 			<button id="btn_submit_userSignUpDetails" class="btn btn-lg btn-success btn-block" type="submit">Submit</button>
 			</form>
-				</div>
-				
-				
-				
+				</div>			
 				<div role="tabpanel" class="tab-pane" id="doctor-pane">
 				<form role="form" class="form-signup" id="dietician_registration_form" method="post">	
 				<div class="panel panel-default element-margin">
@@ -161,6 +183,7 @@
 		    ><i class="glyphicon glyphicon-question-sign blue"></i></a></span>
 		    </td>
 			  </tr>
+			  
 		</table>
 					</div>
 				</div>
@@ -169,6 +192,52 @@
 	</div>
 		</div>
 			
+		</div>
+		
+		    	<div class="modal fade" id="modalTC" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
+  			<div class="modal-dialog">
+    			<div class="modal-content">
+      				<div class="modal-header">
+        				<button type="button" class="close" data-dismiss="modal">
+        					<span aria-hidden="true">&times;</span>
+        					<span class="sr-only">Close</span>
+        				</button>
+        				<h4 class="modal-title" id="modal-info-title"></h4>
+      				</div>
+      				<div class="modal-body" id="modal-info-body">
+      				<p>
+      				"To use this application you must agree to the following terms and conditions:<br><br>
+      				
+Appetite is intended for use in adult patients over the age of 18. It is specifically
+designed for patients who are undergoing treatment for a cancer diagnosis or who
+have recently completed treatment for cancer. Appetite should be used by a patient
+in collaboration with their dietitian / hospital team.<br><br>
+
+This application will enable monitoring of daily food intake in relation to personalised
+nutritional requirements. It is also designed to help the dietitian / healthcare
+professional to monitor changes in food and nutritional intake and advise you more
+specifically on your nutritional needs. It is therefore important to enter information
+into the application as accurately as possible. This will enable advice and
+interventions to be delivered by your healthcare professional / dietitian appropriately.<br><br>
+
+This application is not a substitute for advice that you have been given by your
+healthcare professional. It has been designed to help you and your hospital team to
+monitor your nutritional intake. It is strongly advised that you contact your hospital
+team should your application bring up any alerts that suggest you need to discuss the
+information you have entered. Failure to do so could compromise your health.<br><br>
+
+When you register for the Appetite application, the information that you enter will be
+anonymous and can only be accessed by persons nominated by you including your
+dietitian. The data collected by Appetite may be used for research purposes by your
+hospital team although information used will remain anonymous at all times."</p>
+      				</div>
+      				<div class="modal-footer" id="modal-info-footer">
+      				
+      				<button type="button" class="modal-button btn btn-success" id="" data-dismiss="modal">I Agree</button>
+      				
+      				</div>
+    			</div>
+  			</div>
 		</div>
   	</body>
 </html>

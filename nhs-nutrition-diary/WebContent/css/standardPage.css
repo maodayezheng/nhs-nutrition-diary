@@ -393,3 +393,7 @@ position: relative; }
 .container {
     max-width: 750px;
 }
+p {
+    text-align: center;
+    color: red;
+}

@@ -148,7 +148,8 @@ class DB
 	}
 	
 	/**
-	 * Return the ten most frequent entries of a table.
+	 * Runs a query intended to return the ten most frequent occuring data items in a table between a specified date. 
+	 * Useful for finding the top 10 symptoms or top 10 consumed foods. 
 	 */
 	//TODO implement function to return the ten most frequent foods a given table
 	public function tenMostFrequent($table, $where = array(), $colForCount) {

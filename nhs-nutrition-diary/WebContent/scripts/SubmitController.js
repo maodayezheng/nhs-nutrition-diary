@@ -138,7 +138,6 @@ SubmitController.prototype.submitUserSignUpDetails = function()
 	}
 	
 	ServerDBAdapter.prototype.submit(userSignUpDetails, 'register');
-	//this.successMessage("Successfully Registered!", 3000);
 }
 
 /**
@@ -183,7 +182,6 @@ SubmitController.prototype.submitDieticianSignUpDetails = function()
 	
 	
 	ServerDBAdapter.prototype.submit(dieticianSignUpDetails, 'register');
-	this.successMessage("Successfully Registered!", 3000);
 }
 
 SubmitController.prototype.updateRequirements = function() {

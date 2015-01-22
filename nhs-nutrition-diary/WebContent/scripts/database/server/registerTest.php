@@ -8,6 +8,9 @@
 
 
 require_once 'init.php';
+header('Content-Type: text/html;charset=utf-8');
+
+
 
 if($data = Input::retrieveData()) 
 {
@@ -91,19 +94,36 @@ function registerPatient($dataDecoded)
 		'datetime' 				=> date('Y-m-d H:i:s'),
 		'weight'				=> $dataDecoded['weight']
 		));
-
+	
+		//Calculating current age of the user. 
+		$dateNow 		= new DateTime("now"); 
+		$dobTime 		= explode(" ", $dataDecoded['dob']); 	
+		$dobDateTime	= new DateTime($dobTime[0]);
+		$difference 	= $dobDateTime->diff($dateNow);
+		$age 			= $difference->y; 
+		
+		//Calculating the Initial Requirements of the user based on their gender, weight and age. 
+ 		$requirements = new InitialRequirements($dataDecoded['gender'], $dataDecoded['weight'], $age, $dataDecoded['activitylevel']);
+	 	
+ 		//Put the initial requirements in the database for that user. 
+		DB::getInstance()->insert('userrequirementsmanifest',array(
+		'userid'				=> $userID,
+		'datetime' 				=> date('Y-m-d H:i:s'),
+		'gender'				=> $dataDecoded['gender'],
+		'weight'				=> $dataDecoded['weight'],
+		'activitylevel'			=> $dataDecoded['activitylevel'],
+		'formulacalories'		=> $requirements->getCalorieRequirement(),
+		'formulaprotein'		=> $requirements->getProteinRequirement(),
+		'formulafluid'			=> $requirements->getFluidRequirement()
+		)); 
+		
+				
 		//Now that a user has been created, log them in.
 		$login = $user -> login($dataDecoded['nhsnumber'], $dataDecoded['password'], true);
 	} catch(Exception $e)
 	{
 		echo ($e->getMessage());
-	}
-
-	echo "You have registered successfully! You will be redirected in 5 seconds. <br/>
-				If you are not redirected please ".'<a href="../../../home.html">'. 'click here'.'</a>';
-	header( "refresh:5;url=../../../home.html");
-
-
+	} 
 }
 
 function registerDietician($dataDecoded)
@@ -129,9 +149,7 @@ function registerDietician($dataDecoded)
 		echo ($e->getMessage());
 	}
 	
-	echo "You have registered successfully! You will be redirected in 5 seconds. <br/>
-				If you are not redirected please ".'<a href="../../../home.html">'. 'click here'.'</a>';
-	header( "refresh:5;url=../../../home.html");
+	echo 2;
 }
 
 ?>

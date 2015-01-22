@@ -334,7 +334,7 @@ protein = userFoodDetails.protein;
 fluid = userFoodDetails.fluid;
 fat = userFoodDetails.fat;
 }*/
-
+	this.successMessage("Foods submitted.",2000);
 }
 
 SubmitController.prototype.submitNewFood = function() {

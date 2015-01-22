@@ -14,27 +14,18 @@ function manageGraph(presentedParameter, dateFrom, dateTo) {
 	var dateFromFormatted = SubmitController.prototype.formatDateOnly(dateFrom);
 	var dateToFormatted = SubmitController.prototype.formatDateOnly(dateTo);
 	
-	if(presentedParameter == "Weight (kg)") {
-		var weightHistoryRequestJSON = {
-				"action": "get",
-				"table": "userweightmanifest",
-				"where": "userid,=," + userId + ",datetime,>=," + dateFromFormatted + " 00:00:00," + "datetime,<=," + dateToFormatted + " 23:59:59"
-		};
-		stats = ServerDBAdapter.prototype.get(weightHistoryRequestJSON);
-	} else {
 	
-		var userData = new UserData(); 
-		userData.getRawData(dateFrom, dateTo);
-		stats = userData.wrangleFoodManifestData();
-	
-		var requirementsRequestJSON = {
-				"action": "getLast",
-				"table": "userrequirementsmanifest",
-				"where": "userid,=," + userId
-		};
-		requirements = ServerDBAdapter.prototype.get(requirementsRequestJSON);
-		console.log(requirements);
-	}
+	var userData = new UserData(); 
+	userData.getRawData(dateFrom, dateTo);
+	stats = userData.wrangleFoodManifestData();
+
+	var requirementsRequestJSON = {
+			"action": "getLast",
+			"table": "userrequirementsmanifest",
+			"where": "userid,=," + userId
+	};
+	requirements = ServerDBAdapter.prototype.get(requirementsRequestJSON);
+	console.log(requirements);
 	
 	makeGraph(presentedParameter, dateFrom, dateTo, stats, requirements);
 }

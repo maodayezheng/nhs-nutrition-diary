@@ -47,11 +47,14 @@ UserData.prototype.getRawData = function(dateFrom, dateTo)
 	
 	for(var i=0; i < jsonData.length; i++)
 	{
-		if(jsonData[i]["userfoodmanifest"]) 			{ this.rawuserfoodmanifest = jsonData[i]["userfoodmanifest"]; 					}
-		if(jsonData[i]["userweightmanifest"]) 			{ this.rawuserweightmanifest = jsonData[i]["userweightmanifest"]; 				}
-		if(jsonData[i]["usersymptommanifest"]) 			{ this.rawusersymptommanifest = jsonData[i]["usersymptommanifest"]; 			}
-		if(jsonData[i]["userrequirementsmanifest"]) 	{ this.rawuserrequirementsmanifest = jsonData[i]["userrequirementsmanifest"]; 	}
-	} 
+		if(jsonData[i]["userfoodmanifest"]) 			{ this.rawuserfoodmanifest 			= jsonData[i]["userfoodmanifest"]; 			}
+		if(jsonData[i]["userweightmanifest"]) 			{ this.rawuserweightmanifest 		= jsonData[i]["userweightmanifest"]; 		}
+		if(jsonData[i]["usersymptommanifest"]) 			{ this.rawusersymptommanifest 		= jsonData[i]["usersymptommanifest"]; 		}
+		if(jsonData[i]["userrequirementsmanifest"]) 	{ this.rawuserrequirementsmanifest 	= jsonData[i]["userrequirementsmanifest"]; 	}
+	}
+	
+	console.log(jsonData);
+	
 }
 
 UserData.prototype.wrangleFoodManifestData = function()
@@ -89,15 +92,13 @@ UserData.prototype.wrangleFoodManifestData = function()
 			object.calories		= 0.0;
 			object.fluid		= 0.0;
 			object.protein		= 0.0;
+			object.weight		= 0.0;
 			
 			//Start a loop over the raw json data stored in the rawuserfoodmanifest property. When object.date is equal 
 			//to the date of the of the object being iterated over we need code to be run. 
 			for(var j = 0; j < this.rawuserfoodmanifest.length; j++)
-			{
-				console.log("current object date"); console.log(object.date); 
-				
+			{ 	
 				//Start wrangling the data to a form where we can apply an if condition for the code that needs to be run. 
- 
 				var dateTime	= this.rawuserfoodmanifest[j]['datetime'].split(' '); //splitting by ' ' splits the date and time into dateTime[0] and dateTime[1] respectively. 
 				var date	 	= dateTime[0].split('-'); //splitting dateTime[0] by '-' creates an array where date[0] is the year, date[1] is the monthand date[2] is the day. 
 				var dateString	= ""+date[0]+date[1]+date[2]; //concatenate so that we have a single string to form the if condition with.
@@ -105,18 +106,29 @@ UserData.prototype.wrangleFoodManifestData = function()
 				//If this condition matches we need to add the values to the current values of the object. 
 				if (object.date.valueOf() === dateString.valueOf())
 				{
-					console.log("equal");
-					console.log(this.rawuserfoodmanifest[j]); 
-					
-					if(!isNaN(this.rawuserfoodmanifest[j]['calories'])) { object.calories 	+= parseFloat(this.rawuserfoodmanifest[j]['calories']) * parseFloat(this.rawuserfoodmanifest[j]['quantity']);}
-					if(!isNaN(this.rawuserfoodmanifest[j]['protein'])) 	{ object.protein 	+= parseFloat(this.rawuserfoodmanifest[j]['protein']) * parseFloat(this.rawuserfoodmanifest[j]['quantity']); }
-					if(!isNaN(this.rawuserfoodmanifest[j]['fluid'])) 	{ object.fluid 		+= parseFloat(this.rawuserfoodmanifest[j]['fluid']) * parseFloat(this.rawuserfoodmanifest[j]['quantity']);	 }
+					if(!isNaN(this.rawuserfoodmanifest[j]['energy_kcal'])) 	{ object.calories 	+= parseFloat(this.rawuserfoodmanifest[j]['energy_kcal']); 	}
+					if(!isNaN(this.rawuserfoodmanifest[j]['protein_g'])) 	{ object.protein 	+= parseFloat(this.rawuserfoodmanifest[j]['protein_g']);  	}
+					if(!isNaN(this.rawuserfoodmanifest[j]['water_g'])) 		{ object.fluid 		+= parseFloat(this.rawuserfoodmanifest[j]['water_g']);	 	}
 					
 				} else {} //do nothing
 			}
+			
+			for(var k = 0; k < this.rawuserweightmanifest.length; k++)
+			{ 	
+				//Start wrangling the data to a form where we can apply an if condition for the code that needs to be run. 
+				var dateTime	= this.rawuserweightmanifest[k]['datetime'].split(' '); //splitting by ' ' splits the date and time into dateTime[0] and dateTime[1] respectively. 
+				var date	 	= dateTime[0].split('-'); //splitting dateTime[0] by '-' creates an array where date[0] is the year, date[1] is the monthand date[2] is the day. 
+				var dateString	= ""+date[0]+date[1]+date[2]; //concatenate so that we have a single string to form the if condition with.
+				
+				//If this condition matches we need to add the values to the current values of the object. 
+				if (object.date.valueOf() === dateString.valueOf())
+				{
+					if(!isNaN(this.rawuserweightmanifest[k]['weight'])) 	{ object.weight = this.rawuserweightmanifest[k]['weight']; }
+				} else {} //do nothing
+			}
+			
 			summationStats.push(object); 
 		}
-		console.log(summationStats);
 		return summationStats;
 	}
 	else

@@ -25,16 +25,23 @@ ServerDBAdapter.prototype.submit = function(dataToServer, action)
 		default: 			actionUrl = "scripts/database/server/clientToServerController.php"; break; 
 	}
 	
+	var results;
 	$.ajax({
 	    url: 			actionUrl,
 	    type: 			"POST",
 	    dataType: 		"text", //what you will receive in response. 
 	    contentType: 	"application/json", //what you are sending.
 	    data: 			JSON.stringify(dataToServer),
-	    success: 		function (msg){
-	        				console.log("success " + msg); 
+	    success: 		function (result){
+	        				console.log("success " + result); 
+
+	        				if(result != null) {
+					        	results = JSON.parse(result); 
+					        } else {
+					        	results = null;
+					        }
 	    				},
-	    				
+	    async: 			false, //we want this call to be synchronous
 	    error: 			function (xhr, ajaxOptions, thrownError) {
 				        console.log(xhr.statusText);
 				        console.log(xhr.responseText);
@@ -42,6 +49,7 @@ ServerDBAdapter.prototype.submit = function(dataToServer, action)
 				        console.log(thrownError);
 	    				}
 	});
+	return results;
 };
 
 ServerDBAdapter.prototype.get = function(dataToServer)

@@ -137,7 +137,17 @@ SubmitController.prototype.submitUserSignUpDetails = function()
 			"gender": 			gender
 	}
 	
-	ServerDBAdapter.prototype.submit(userSignUpDetails, 'register');
+	var status = ServerDBAdapter.prototype.submit(userSignUpDetails, 'register');
+	console.log("prining status at end of submit controller");
+	console.log(status); 
+	if (status['success'] === true)
+	{
+		this.successMessage("Registration Successful. You will be redirected in 2 seconds.",2000, "home");
+	}
+	else
+	{
+		alert("Registration Failed. Please check your internet connection.")
+	}
 }
 
 /**
@@ -181,7 +191,16 @@ SubmitController.prototype.submitDieticianSignUpDetails = function()
 	}
 	
 	
-	ServerDBAdapter.prototype.submit(dieticianSignUpDetails, 'register');
+	var status = ServerDBAdapter.prototype.submit(dieticianSignUpDetails, 'register');
+	
+	if (status['success'] === true)
+	{
+		this.successMessage("Registration Successful. You will be redirected in 2 seconds.",2000, "home");
+	}
+	else
+	{
+		alert("Registration Failed. Please check your internet connection.")
+	}
 }
 
 SubmitController.prototype.updateRequirements = function() {
@@ -333,7 +352,7 @@ protein = userFoodDetails.protein;
 fluid = userFoodDetails.fluid;
 fat = userFoodDetails.fat;
 }*/
-	this.successMessage("Foods submitted.",2000);
+	this.successMessage("Foods submitted.",2000,"home");
 }
 
 SubmitController.prototype.submitNewFood = function() {
@@ -573,7 +592,7 @@ SubmitController.prototype.submitSymptoms = function() {
 		ServerDBAdapter.prototype.submit(dataToServer, "save");
 	}
 	
-	this.successMessage("Symptoms submitted.",2000);
+	this.successMessage("Symptoms submitted.",2000,"home");
 }
 	
 SubmitController.prototype.submitNewCustomSymptom = function() {
@@ -657,7 +676,7 @@ SubmitController.prototype.submitWeight = function() {
 	
 	this.updateRequirements();
 	
-	this.successMessage("Weight submitted.",2000);
+	this.successMessage("Weight submitted.",2000,"home");
 }
 
 SubmitController.prototype.submitSettings = function() {
@@ -735,10 +754,10 @@ SubmitController.prototype.submitSettings = function() {
 	
 	ServerDBAdapter.prototype.submit(dataToServer, "save");
 	
-	this.successMessage("Amendments submitted.", 2000);
+	this.successMessage("Amendments submitted.", 2000, "home");
 }
 
-SubmitController.prototype.successMessage = function(message, timeout) {
+SubmitController.prototype.successMessage = function(message, timeout, page) {
 
 	var warning = $('<div>',{
 		"class":"alert alert-success center",
@@ -747,5 +766,12 @@ SubmitController.prototype.successMessage = function(message, timeout) {
 	});
 	$('body').append(warning);
 	
-	setTimeout(function(){warning.remove(); window.location.href = 'home.html';}, timeout);
+	var redirectPage
+	switch(page)
+	{
+		case "home": 	redirectPage = "home.html"; break;
+		default:		console.log("default in redirect"); redirectPage = "home.html"; break;
+	}
+	
+	setTimeout(function(){warning.remove(); window.location.href = redirectPage; }, timeout);
 }

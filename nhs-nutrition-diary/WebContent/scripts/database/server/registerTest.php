@@ -8,8 +8,6 @@
 
 
 require_once 'init.php';
-header('Content-Type: text/html;charset=utf-8');
-
 
 
 if($data = Input::retrieveData()) 
@@ -67,9 +65,10 @@ if($data = Input::retrieveData())
 
 function registerPatient($dataDecoded)
 {
-	$user = new User();
-	$salt = Hash::salt(32);
-
+	$user 		= new User();
+	$salt 		= Hash::salt(32);
+	$regStatus 	= array("success" => false);
+	
 	try
 	{
 		
@@ -117,19 +116,24 @@ function registerPatient($dataDecoded)
 		'formulafluid'			=> $requirements->getFluidRequirement()
 		)); 
 		
-				
 		//Now that a user has been created, log them in.
 		$login = $user -> login($dataDecoded['nhsnumber'], $dataDecoded['password'], true);
+		
+		//If an exception is not thrown by this point, then the registration was successful.
+		$regStatus['success'] = true;
 	} catch(Exception $e)
 	{
 		echo ($e->getMessage());
-	} 
+	} finally {
+		echo json_encode($regStatus);
+	}
 }
 
 function registerDietician($dataDecoded)
 {
-	$user = new User();
-	$salt = Hash::salt(32);
+	$user 		= new User();
+	$salt 		= Hash::salt(32);
+	$regStatus 	= array("success" => false);
 	
 	try
 	{
@@ -144,12 +148,16 @@ function registerDietician($dataDecoded)
 	
 		//Now that a user has been created, log them in.
 		$login = $user -> login($dataDecoded['nhsnumber'], $dataDecoded['password'], true);
+		
+		//If an exception is not thrown by this point, then the registration was successful. 
+		$regStatus['success'] = true;
+		 
 	} catch(Exception $e)
 	{
 		echo ($e->getMessage());
+	} finally {
+		echo json_encode($regStatus);
 	}
-	
-	echo 2;
 }
 
 ?>

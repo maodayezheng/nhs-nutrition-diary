@@ -24,9 +24,22 @@ $message ="
 <div align='center'>
 <h1>GSST patient report</h1>
 
-
+<div>
 This report was generated and sent by 'Appetite', an app used by patients and Doctors
 of Guy's and St. Thomas' Hospital
+</div>
+<div>
+Date From: 12/12/14
+Date To: 15/01/15
+</div>
+Start Weight: 80kg
+Current Weight 90kg
+Weight change in 1 month: 3.5%
+Weight change in 3 month: 15.4%
+Weight change in 6 month: 7.3%
+Current requirements: 2340 kcal, 86 g protein, 1550 ml fluid
+Most frequent symptoms: 1. Vomitting, 2. Loss of appetite, 3. Taste changes
+
 </body>
 </html>
 ";

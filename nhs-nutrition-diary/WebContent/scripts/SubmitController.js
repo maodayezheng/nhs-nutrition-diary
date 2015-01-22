@@ -105,7 +105,8 @@ SubmitController.prototype.submitUserSignUpDetails = function()
 	
 	var errors			= "";
 	// validations
-	if(!Validator.prototype.isValidNhsNumber(nhsNumber)) 		{ errors += '-> Please enter a valid NHS number.\n';					} 
+	//TODO comment out NHS number check --> only commented out for convenience during development
+//	if(!Validator.prototype.isValidNhsNumber(nhsNumber)) 		{ errors += '-> Please enter a valid NHS number.\n';					} 
 	if(Validator.prototype.isEmpty(password)) 					{ errors += '-> Please enter a password.\n'; 							} 
 	if(!Validator.prototype.isSame(password, passwordConfirm)) 	{ errors += '-> Password and confirmed password must be the same.\n';	}
 	if(!Validator.prototype.isPositiveNumber(weight)) 			{ errors += '-> Please enter a valid weight (positive number).\n'; 		}

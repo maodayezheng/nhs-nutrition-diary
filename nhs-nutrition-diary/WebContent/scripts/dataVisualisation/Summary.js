@@ -32,7 +32,9 @@ Summary.prototype.makeSummary = function(presentedParameter, dateFrom, dateTo, h
 			fluidCurrent += parseFloat(entry.fluid) * parseFloat(entry.quantity);
 		}
 	}*/
-	 
+	
+	$('#summary').html('');
+	
 	var userData 					= new UserData(); 
 	var summaryData 				= userData.generateSummaryData();
 	console.log(summaryData);
@@ -65,8 +67,6 @@ Summary.prototype.makeSummary = function(presentedParameter, dateFrom, dateTo, h
 	
 	$('#table').html("");
 	d3.select('#graph').attr("width", 0).attr("height", 0);
-	
-	$('#summary').append($('<h4>Weight: </h4>'));
 	
 	var weightTable = "" +
 		"<table align=\"center\">" +
@@ -142,7 +142,7 @@ Summary.prototype.makeSummary = function(presentedParameter, dateFrom, dateTo, h
 				" <td>Weight Entry for Six Month Comparison:</td>" +
 				"<td> "+sixMonthWeight+"</td>" +
 			"</tr>" +
-		"</table>+" +
+		"</table>" +
 		"<br />";
 	
 	
@@ -188,8 +188,11 @@ Summary.prototype.makeSummary = function(presentedParameter, dateFrom, dateTo, h
 	
 	symptomsTable += "</table>";
 	
+	$('#summary').append($('<h4>Weight: </h4>'));
 	$('#summary').append($(weightTable));//.css('text-align','center'));
+	$('#summary').append($('<h4>Requirements: </h4>'));
 	$('#summary').append($(requirementsTable));//.css('text-align','center'));
+	$('#summary').append($('<h4>Symptoms: </h4>'));
 	$('#summary').append($(symptomsTable));//.css('text-align','center'));
 	
 	

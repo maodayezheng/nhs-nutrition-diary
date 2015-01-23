@@ -101,13 +101,15 @@ OnLoad.prototype.updateUserFoodList = function() {
 OnLoad.prototype.frequentFoods = function() {
 	var userId = SubmitController.prototype.getUserID();
 	
-	//TODO might have to be amended along with the functions for returning the 10 most frequent foods
+	
 	var frequentFoodsRequestJSON = {
 			"action": 		"getMostFrequent",
 			"table": 		"userfoodmanifest",
 			"where": 		"userid,=," + userId,
 			"colForCount":	"foodname",
 			"groupBy":		"foodname",
+			"orderBy":		"count",
+			"ascOrDesc":	"DESC",
 			"limit": 		10 				//Change number to limit the number of entries. e.g. 10, 20 for top 10 or top 20 respectively. 
 	};
 	var frequentFoods = ServerDBAdapter.prototype.get(frequentFoodsRequestJSON);

@@ -11,6 +11,6 @@ require_once 'init.php';
 $user = new User();
 $user->logout(); 
 
-Redirect::to('index.html');
+Redirect::to('index.html'); /////////////////////// DELETE THIS AS REDIRECT CLASS NO LONGER EXISTS.
 
 ?>

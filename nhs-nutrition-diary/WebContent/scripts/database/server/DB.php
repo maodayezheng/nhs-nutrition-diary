@@ -1,8 +1,9 @@
 <?php
 /**
  * This class contains the main functionalty needed for the server side database. The class follows the singleton design pattern so that only one instance of 
- * the connection to the database can ever exist. To return a connection to the database the user should use call the static method 'ServerDatabase::getInstance();'. 
+ * the connection to the database can ever exist. To return a connection to the database the user should use call the static method 'DB::getInstance();'. 
  * To close the connection the user should call closeConnection() on the instance object. The database uses PDO (PHP Data Objects) to connect a MySQL database. 
+ * 
  * Created: 16th December 2014. 
  * @author Vikram Bakshi
  */
@@ -24,9 +25,7 @@ class DB
 		try 
 		{
 			$this->_pdo = new PDO('mysql:host=' . Configurations::get('mysql/host') . ';dbname=' . Configurations::get('mysql/db'), Configurations::get('mysql/userName'), Configurations::get('mysql/passCode'));
-			$this->_pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); //Only uncomment if you are having an error with the DB. 
-				
-			//echo "<br /> Successfuly Connected To the DB <br />";
+			$this->_pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);  
 		} catch (PDOExeption $e)
 		{
 			die($e->getMessage());
@@ -37,8 +36,7 @@ class DB
 	 * This static function creates an instance of the class if it does not exist. Otherwise it returns the pre-existing instance - thus following the singleton pattern.  
 	 */
 	public static function getInstance()
-	{
-		//echo "<br /> in get instance";
+	{	
 		if (!isset(self::$_instance)) { self::$_instance = new DB(); }
 		return self::$_instance; 
 	}
@@ -46,20 +44,12 @@ class DB
 	/**
 	 * For closing the connection to the database. 
 	 */
-	public function closeConnection()
-	{
-// 		echo "\nclosing connection\n";
-		$this->_pdo = null; 
-// 		echo "\nconnection closed\n";
-	}
+	public function closeConnection() { $this->_pdo = null; }
 	
 	/**
 	 * Function returns a pointer/reference to the database for binding purposes. 
 	 */
-	public function getDB() 
-	{
-		return $this->_pdo;
-	}
+	public function getDB() { return $this->_pdo; }
 	
 	/**
 	 * This method abstracts away the native PDO functionality in order to create a more general database query. It takes two inputs, $sql, and $params.
@@ -75,27 +65,25 @@ class DB
 		{
 			$x=1; //variable used for the position in the array. From PDO documentation 'parameters are 1 based'.  
 			if(count($params))
-			{
-				
-				//echo "var dump params\n";
-				//var_dump($params);
-				
+			{	
 				foreach($params as $key => $param)
 				{
-					//Replace the data which has been sent to the server with COMMA in it with actual ',' characters.  
-					//This is done to avoid ',' in the method arguments.
-					$params[$key] = str_replace("COMMA",",",$param); 
-					$this->_query->bindValue($x, $params[$key]); //effectively saying we wish to bind the value @ 1 to the $param defined. i.e. assigning the first value to the first ? in the SQL statement. 
+					//The following code changes an example string of 'Chicken and mushroom pieCOMMA single crustCOMMA homemade' to 'Chicken and mushroom pie, single crust, homemade'.
+					//Data is transferred like this so that unneccessary commas being passed into the method's arguments are avoided.  
+					$params[$key] = str_replace("COMMA",",",$param);
+
+					//effectively saying we wish to bind the value @ 1 to the $param defined. i.e. assigning the first value to the first ? in the SQL statement.
+					$this->_query->bindValue($x, $params[$key]);  
 					$x++;
 				}
 			}
 			if($this->_query->execute()) //if the query has executed successfully we want to store the result set.
 			{
-				try //Using fetch_obj with "update" or "insert" sql queries will throw an exception. 
+				try //Using fetch_obj with "update" or "insert" sql queries will work but a 'general error' exception will be thrown.  
 				{
 					$this->_results = $this->_query->fetchAll(PDO::FETCH_OBJ);
 					$this->_count = $this->_query->rowCount();
-				} catch (Exception $e) { /* If here it is because an update or insert query has been run. No need to do anything with this caught exception here. */ }
+				} catch (Exception $e) { /* If here it is because an update or insert query has been run. No need to do anything with this exception. */ }
 			} else 
 			{
 				$this->_error=true; 
@@ -105,8 +93,12 @@ class DB
 	}
 	
 	/**
-	 * This method utilises the query method (also in this class) to abstract away actions (e.g. get, delete) etc. It is intended to be called by a given action method (such as GET or DELETE or UPDATE). It tries to prevent
-	 * potential SQL injections by specifying a list of allowed operators.  
+	 * This method utilises the query method (also in this class) to perform a defined action (such as 'SELECT *') in a given table.
+	 * It creates an SQL statement with '?' characters from the arguments passed to it. It the buildingSQL parameter is passed as true
+	 * it returns an associative array containing the SQL and values to be bound to the '?'. Otherwise it calls $this->query and runs the query.
+	 * It is expected that the where array will contain three arguments per condition. E.g. where('userid','=','2') or , where('userid','=','2''group','=','1'). 
+	 * The first example $where array contained three elements and thus one condition. The second $where array contains six elements and thus two conditions. 
+	 * If the number of elements is not divisible by 3 an exception is thrown.   
 	 */
 	public function action($action, $table, $where = array(), $buildingSQL = false) //$action e.g. SELECT *
 	{
@@ -117,6 +109,8 @@ class DB
 			
 			for($i = 0; $i<sizeof($where)/3; $i++) 
 			{
+				//It is expected that the where array will contain three arguments per condition. E.g. where('userid','=','2'). 
+				//The following assignments store the values in the where array as local variables i.e. $field = 'userid', $operator = '=', $amendedWhere = '2'. 
 				$field 			= $where[$i*3];
 				$operator 		= $where[($i*3)+1];
 				
@@ -125,18 +119,21 @@ class DB
 				$amendedWhere 	= str_replace("COMMA",",",$where[($i*3)+2]); 
 				array_push($value, $amendedWhere);
 				
-				if (in_array($operator, $operators)) //only add to the SQL sent to the database if the operator is in the allowed list.
+				//If the operator is in the array, start building/amending the SQL statement
+				if (in_array($operator, $operators)) //only add to the SQL statment which will be sent to the database if the operator is in the allowed list.
 				{
-					if($i==0)
+					if($i==0) //If it is the first iteration build the beginning of the SQL statement
 					{
 						$sql = "{$action} FROM {$table} WHERE {$field} {$operator} ?";
-					} else 
+					} else //Otherwise it is an additional part of the where clause. 
 					{
 						$sql .= " AND {$field} {$operator} ?";
 					}
 				}
 			}
 			
+			//If the $buildingSQL statement is marked as true it means that further work needs to be done to the sql statement
+			//before being executed (perhaps add a group by clause) so this returns the sql statement and the values array. 
 			if($buildingSQL) 
 			{ 
 				$buildingSQLArray = array(
@@ -146,21 +143,23 @@ class DB
 				return $buildingSQLArray;	
 			}
 			
+			//Otherwise if $buildingSQL is false, call the query method. The method will bind the '?' characters to the values in the $value array and execute the query.. 
 			if(!$this->query($sql, $value)->error()) 
 			{
 				return $this;
 			} 
 		} else
 		{
-			throw new Exception('Your associative array length (argument $where) must have a length divisible by 3.');
+			throw new Exception('Your array length (argument $where) must have a length divisible by 3.');
 		}
 	}
 	
 	/**
-	 * Runs a query intended to return the ten most frequent occuring data items in a table between a specified date. 
+	 * Adds custom components to a query after being passed through the action method. An example would be creating a query
+	 * intended to return the ten most frequent occuring data items in a table between a specified date. 
 	 * Useful for finding the top 10 symptoms or top 10 consumed foods. 
 	 */
-	public function mostFrequent($table, $where = array(), $colForCount, $groupBy, $limit) 
+	public function mostFrequent($table, $where = array(), $colForCount, $groupBy, $orderBy, $ascOrDesc, $limit) 
 	{
 		//Calling the action method with the final argument set to true returns an associative array with two keys (sql and values)
 		//The sql key maps to the sql statement built by the action method (containing any '?' characters that need to be bound).
@@ -175,10 +174,14 @@ class DB
 		if ($groupBy)
 		{
 			$sql .= " GROUP BY {$groupBy}";
-			$sql .= " ORDER BY count DESC";
 		}
 		
-		//Limit the results to the defined number of rows ($limit).
+		if ($orderBy)
+		{
+			$sql .= " ORDER BY $orderBy $ascOrDesc"; //pass "DESC" or "ASC" as argument
+		}
+		
+		//Limit the results to the defined number of rows ($limit). If the limit is defined as 0, it is interpreted as false, so all results are shown. 
 		if ($limit)
 		{
 			$sql .= " LIMIT {$limit}";
@@ -189,8 +192,6 @@ class DB
 		{
 			return $this;
 		}
-		
-		
 		/*
 			//EXAMPLE Query this method would produce:
 			SELECT *, count(foodname) as count
@@ -261,7 +262,6 @@ class DB
 	 * Inserts a record into a given table. Uses the backtick character '`' to increase security by preventing SQL injections. The backtick character 
 	 * is valid for MySQL only. Other DBMS do not allow it.  
 	 * Usage example: DB::getInstance()->insert('users',array('nhsnumber' => '123456', 'dateofbirth' => '20141222', 'group' => '1'));
-	 * 
 	 */
 	public function insert($table, $fields = array())
 	{
@@ -358,8 +358,6 @@ class DB
 			return null;
 		}
 	}
-	
-
 	
 	/**
 	 * Returns the count of the results i.e. num of rows returned in the query instance variable. 

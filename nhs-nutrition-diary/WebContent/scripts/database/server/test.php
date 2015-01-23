@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This is a TEST script for testing functionality of the other PHP servers. 
+ * This is a TEST script for testing functionality of the other PHP scripts. 
  * 
  * DELETE THIS AFTER TESTING. 
  * 

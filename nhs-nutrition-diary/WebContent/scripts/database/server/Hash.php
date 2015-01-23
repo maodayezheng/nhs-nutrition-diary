@@ -3,6 +3,7 @@
 /**
  * This class contains all of the functionality related to hashes and hashing. It is mainly used for the creation of hashes to be stored as passwords
  * and for the creation of salts. 
+ * 
  * Created: 24th December 2014
  * @author Vikram Bakshi
  *

@@ -297,6 +297,17 @@ UserData.prototype.generateSummaryData = function()
 	
 	//The returned JSON would be a single object because of the limit of 1. This would be the latest requirements of the user.  
 	var userRequirementsData 	= ServerDBAdapter.prototype.get(requirementsDataRequest);
+	/*
+	 * THROW EXCEPTION IF LENGTH is 0
+	 * if (userWeightData.length === 0) 
+	{ 
+		throw { 
+		    name:      	"Unset Property Error",  
+		    message:    "There is no data received from the server for this user's weight.", 
+		    toString:   function(){return this.name + ": " + this.message;} 
+		}; 
+	}*/
+	
 	var latestRequirementsDate	= userRequirementsData[0]['datetime'].split(' ')[0]; //Split on ' ' and take element [0] to store the date only (discarding the time).
 	
 	var symptomsTop10DataRequest = 

@@ -12,6 +12,7 @@ SubmitController.prototype.submit = function(submitter) {
 		case 'btn_save_newCustomSymptom': 			this.submitNewCustomSymptom(); break;
 		case 'btn_submit_weight': 					this.submitWeight(); break;
 		case 'btn_submit_settings': 				this.submitSettings(); break;
+		case 'emailButton':							this.submitEmail(); break;
 		default: 									console.log("in default case"); break;
 	}
 }
@@ -62,6 +63,22 @@ SubmitController.prototype.getAge = function(dateOfBirth) {
     
     return age;
 }
+
+SubmitController.prototype.submitEmail = function()
+{
+	console.log("You clicked the email button");
+	
+	var dataToServer = 
+	{
+		"emailAddress": $('#email_address').val(),
+		"html":			$('#summary').html()
+	}
+	
+	ServerDBAdapter.prototype.submit(dataToServer, 'email');
+	
+}
+
+
 
 /**
  * Once migrated to a permanent server, this function would need to be implemented using SSL. 

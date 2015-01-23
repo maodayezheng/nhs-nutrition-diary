@@ -181,11 +181,10 @@
     					</table>
       				</div>-->
       				<div class="modal-footer">
-						<form method="post" name="contact_form"
-							action="scripts/database/server/contact-form-handler.php">
-							Email Address: <input type="text" name="email"> 
+						<form method="post" name="contact_form">
+							Email Address: <input type="text" id="email_address" name="email"> 
 							<!--  <input type="submit" class="btn btn-primary" "data-dismiss="modal"  value="get img"  onclick="capture();">-->
-							<input type="submit" class="btn btn-success" data-dismiss="modal"  value="Send" >
+							<input type="submit" class="btn btn-success" data-dismiss="modal"  value="Send" id="emailButton" onclick="SubmitController.prototype.submit(this.id)">
 							
 						</form>
 						 <!--for mailto function:  data-email="jobarry@tcd.ie" class="email" -->

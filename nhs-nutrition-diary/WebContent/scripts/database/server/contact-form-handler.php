@@ -14,7 +14,17 @@ $unencodedData=base64_decode($filteredData);
 file_put_contents('img.png', $unencodedData);*/
 
 
-require 'phpmailer/PHPMailerAutoload.php';
+require_once 'phpmailer/PHPMailerAutoload.php';
+require_once 'init.php'; //contains the class loader
+
+$data 			= Input::retrieveData();
+$json_data 		= json_decode($data, true);
+$messageHTML	= $json_data['html'];
+$emailAddress 	= $json_data['emailAddress'];
+
+
+
+
 
 $mail = new PHPMailer;
 
@@ -56,7 +66,7 @@ $mail->Port = 587;                                    // TCP port to connect to
 
 $mail->From = 'from@example.com';
 $mail->FromName = 'Patient Report';
-$mail->addAddress($_POST['email']);;     // Add a recipient
+$mail->addAddress($emailAddress);;     // Add a recipient
 //$mail->addAddress('ellen@example.com');               // Name is optional
 //$mail->addReplyTo('info@example.com', 'Information');
 //$mail->addCC('cc@example.com');
@@ -67,7 +77,7 @@ $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
 $mail->isHTML(true);                                  // Set email format to HTML
 
 $mail->Subject = 'Report from patient at GSST';
-$mail->Body    = $message;
+$mail->Body    = $messageHTML;
 $mail->AltBody = 'body...';
 
 if(!$mail->send()) {

@@ -175,6 +175,15 @@ UserData.prototype.generateSummaryData = function()
 	
 	//The returned JSON would have already been sorted in ascending order i.e. the oldest record would be first. 
 	var userWeightData 			= ServerDBAdapter.prototype.get(weightDataRequest);
+	if (userWeightData.length === 0) 
+	{ 
+		throw { 
+		    name:      	"Unset Property Error",  
+		    message:    "There is no data received from the server for this user's weight.", 
+		    toString:   function(){return this.name + ": " + this.message;} 
+		}; 
+	}
+	
 	//Save the initial weight (and date of recording) and last recorded weight and its date of recording for easy access later. 
 	var initialWeightDate  		= userWeightData[0]['datetime'].split(' ')[0]; //Split on ' ' and take element [0] to store the date only (discarding the time). 
 	var initialWeight	   		= userWeightData[0]['weight'];
@@ -187,7 +196,7 @@ UserData.prototype.generateSummaryData = function()
 	var threeMonthsAgo 	= new Date(); threeMonthsAgo.setMonth(threeMonthsAgo.getMonth() - 3);
 	var sixMonthsAgo 	= new Date(); sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 6);
 	
-	//Varibales which will store an object if the conditions in the loop below are met.
+	//Variables which will store an object if the conditions in the loop below are met.
 	var oneMonthEntry = null, threeMonthEntry = null, sixMonthEntry = null; 
 	
 	//Loops over the userWeightData and stores an object the in above null declared variables if certain conditions are met.

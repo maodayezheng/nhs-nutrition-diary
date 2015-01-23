@@ -77,7 +77,7 @@ $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
 $mail->isHTML(true);                                  // Set email format to HTML
 
 $mail->Subject = 'Report from patient at GSTT';
-$mail->Body    = $messageHTML;
+$mail->Body    = $message;
 $mail->AltBody = 'body...';
 
 if(!$mail->send()) {

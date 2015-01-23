@@ -76,7 +76,7 @@ $mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
 $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
 $mail->isHTML(true);                                  // Set email format to HTML
 
-$mail->Subject = 'Report from patient at GSST';
+$mail->Subject = 'Report from patient at GSTT';
 $mail->Body    = $messageHTML;
 $mail->AltBody = 'body...';
 

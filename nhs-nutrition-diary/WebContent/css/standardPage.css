@@ -408,3 +408,7 @@ position: relative; }
     text-align: center;
     cursor: pointer;
 }
+#TCText{
+	display: block;
+    text-align: center;
+}

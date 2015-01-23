@@ -37,6 +37,10 @@ Summary.prototype.makeSummary = function(presentedParameter, dateFrom, dateTo, h
 	d3.select('#graph').attr("width", 0).attr("height", 0);
 	
 	//TODO make summary
+	
+	$('#summary').append($('<h4>Weight: </h4>'));
+	
+	
 	var startWeight = 80;
 	$('#summary').append($('<p>Patient\'s start weight: </p>').css('text-align','center').append($('<strong>',{
 		"text": startWeight + " kg"
@@ -65,6 +69,7 @@ Summary.prototype.makeSummary = function(presentedParameter, dateFrom, dateTo, h
 	var caloriesCurrent = 2320;
 	var proteinCurrent = 86;
 	var fluidCurrent = 1550;
+	$('#summary').append($('<h4>Requirements: </h4>'));
 	$('#summary').append($('<p>Current requirements: </p>').css('text-align','center').append($('<strong>',{
 		"text": caloriesCurrent + " kcal, " + proteinCurrent + " g protein, " + fluidCurrent + " ml fluid"
 	})));
@@ -79,7 +84,7 @@ Summary.prototype.makeSummary = function(presentedParameter, dateFrom, dateTo, h
 	var topOneSymptom = "Vomiting";
 	var topTwoSymptom = "Loss of appetite";
 	var topThreeSymptom = "Taste changes";
-	
+	$('#summary').append($('<h4>Symptoms: </h4>'));
 	$('#summary').append($('<p>Most Frequent Symptoms: </p>').css('text-align','center').append($('<strong>',{
 		"text": "1. " + topOneSymptom + ", 2. " + topTwoSymptom + ", 3. " + topThreeSymptom
 	})));	

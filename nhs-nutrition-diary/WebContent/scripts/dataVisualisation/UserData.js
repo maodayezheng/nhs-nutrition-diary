@@ -35,6 +35,7 @@ UserData.prototype.getRawData = function(dateFrom, dateTo)
 	this.dateFrom			= SubmitController.prototype.formatDateOnly(dateFrom);
 	this.dateTo				= SubmitController.prototype.formatDateOnly(dateTo);
 	
+	//TODO: Deal with getting actual userID. Change to method from Cookies, or something. 
 	var req = 
 	{
 			"action":		"getVisualisationData",
@@ -58,8 +59,7 @@ UserData.prototype.getRawData = function(dateFrom, dateTo)
 }
 
 UserData.prototype.wrangleFoodManifestData = function()
-{
-	console.log("in wrangle");  
+{  
 	if(this.rawuserfoodmanifest && this.dateFrom && this.dateTo)
 	{			
 		//Splitting the date string by '-' and creating a date object from the resulting array. The month is indexed by zero so 1 needs to be subtracted from that argument.  
@@ -76,7 +76,7 @@ UserData.prototype.wrangleFoodManifestData = function()
 
 		for(var i = 0; i < noDays + 1; i++)
 		{
-			//Clone of startDate. Is needed so that manipulations can be performed whilst keeping a copy of the orginal intact.
+			//Clone of startDate. Is needed so that manipulations can be performed whilst keeping a copy of the original intact.
 			var startDateClone 	= 	new Date(sDateSplit[0], sDateSplit[1] - 1, sDateSplit[2]);
 			startDateClone.setDate(startDateClone.getDate() + i); //Add the current value of i to amend the date of the clone.
 			
@@ -141,4 +141,71 @@ UserData.prototype.wrangleFoodManifestData = function()
 		}; 
 	}
 }
+
+
+UserData.prototype.generateSummaryData = function()
+{
+
+	//Weight Summary
+		//Get weight that patient had when registering + date of registration. 
+		//Get current date and compare it to registration date. 
+		//If the difference if greater than one month, three months, and six months mark certain variables as true and calculate percentage change. 
+	//Requirement Summary
+		//Get current requirements, and amendments (if any).
+		//Add row 'of which added by Dietician': 
+	//Symptoms Summary
+		//Get most frequent. 
+	
+	/*
+Weight:
+
+	Patient's start weight: 80 kg
+
+	Patient's current weight: 90 kg
+
+	Weight change in 1 month: 3.5 %
+
+	Weight change in 3 months: 15.4 %
+
+	Weight change in 6 months: 7.3 %
+
+	Requirements:
+
+	Current requirements: 2320 kcal, 86 g protein, 1550 ml fluid
+
+	Amendments: -150 kcal, 30 g protein, 200 ml fluid
+
+	Symptoms:
+
+	Most Frequent Symptoms: 1. Vomiting, 2. Loss of appetite, 3. Taste changes
+*/
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

@@ -4,12 +4,6 @@ body{
 	background-color:#eee;
 
 }
-th,
-td{
-	max-height:60px;
-	min-height:60px;
-	
-}
 .blue{
 	color:#0EBFE9;
 }
@@ -37,7 +31,7 @@ td{
 }
 	
 .space-margin{
-	margin-top:40px;
+	margin-top:25px;
 }
 .element-margin{
 	margin-top:15px;
@@ -121,20 +115,42 @@ td{
 	overflow-x:scroll;
 	overflow-y:scroll;
 }
-.table-body{
-	padding-right:0px;
-	padding-left:0px;
-}
-.first-col{
-	padding-right:0px;
-	padding-left:0px;
-	
-}
-#main-body{
-	max-height:240px;
-	overflow:auto;
+
+.scroll-table {
+    width: 100% 
 }
 
+.scroll-table > thead,
+.scroll-table > tbody,
+.scroll-table > thead > tr,
+.scroll-table > tbody > tr,
+.scroll-table > thead > tr > th,
+.scroll-table > tbody > tr > td {
+    display: block;
+}
+
+.scroll-table > tbody > tr:after,
+.scroll-table > thead > tr:after {
+    content: ' ';
+    display: block;
+    visibility: hidden;
+    clear: both;
+}
+
+.scroll-table > tbody {
+    overflow-y: auto;
+    height: 240px;
+}
+
+.scroll-table > tbody > tr > td,
+.scroll-table > thead > tr > th {
+    width: 25%;
+    float: left;
+}
+#summary{
+	max-height:260px;
+	overflow:auto;
+}
 @media (max-width:767px){
 	#remember-me{
 		visibility:hidden;
@@ -407,8 +423,4 @@ position: relative; }
 #TC {
     text-align: center;
     cursor: pointer;
-}
-#TCText{
-	display: block;
-    text-align: center;
 }

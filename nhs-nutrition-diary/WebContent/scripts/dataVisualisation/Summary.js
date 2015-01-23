@@ -35,8 +35,8 @@ Summary.prototype.makeSummary = function(presentedParameter, dateFrom, dateTo, h
 	
 	$('#summary').html('');
 	
-	var userData 					= new UserData(); 
-	var summaryData 				= userData.generateSummaryData();
+	var userData 						= new UserData(); 
+	var summaryData 					= userData.generateSummaryData();
 	console.log(summaryData);
 	
 	var initialWeightDate 				= summaryData['initialWeightDate'];
@@ -63,10 +63,7 @@ Summary.prototype.makeSummary = function(presentedParameter, dateFrom, dateTo, h
 	var additionalProteinRequirement	= summaryData['userRequirements'][0]['additionalfluid'];
 	var additionalFluidRequirement		= summaryData['userRequirements'][0]['additionalprotein'];
 	
-	var symptoms					= summaryData['userSymptoms'];
-	
-	//$('#table').html("");
-	//d3.select('#graph').attr("width", 0).attr("height", 0);
+	var symptoms						= summaryData['userSymptoms'];
 	
 	var weightTable = "" +
 		"<table align=\"center\">" +

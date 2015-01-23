@@ -295,30 +295,9 @@ UserData.prototype.generateSummaryData = function()
 			"limit": 		1 				//Limit of 1 returns just the latest entry 
 	};
 	
-	//The returned JSON would be a single object because of the limit of 1. This would be the latest requiremetns of the user.  
+	//The returned JSON would be a single object because of the limit of 1. This would be the latest requirements of the user.  
 	var userRequirementsData 	= ServerDBAdapter.prototype.get(requirementsDataRequest);
 	var latestRequirementsDate	= userRequirementsData[0]['datetime'].split(' ')[0]; //Split on ' ' and take element [0] to store the date only (discarding the time).
-	
-	console.log(userRequirementsData);
-	console.log(latestRequirementsDate);
-	
-	
-	
-	var requirementsDataRequest = 
-	{
-			"action": 		"getMostFrequent",
-			"table": 		"userrequirementsmanifest",
-			"where": 		"userid,=," + userId,
-			"colForCount":	"id",
-			"groupBy":		"datetime",
-			"orderBy":		"datetime",
-			"ascOrDesc":	"DESC",
-			"limit": 		1 				//Limit of 1 returns just the latest entry 
-	};
-	
-	//The returned JSON would be a single object because of the limit of 1. This would be the latest requiremetns of the user.  
-	var userRequirementsData = ServerDBAdapter.prototype.get(requirementsDataRequest);
-	
 	
 	var symptomsTop10DataRequest = 
 	{
@@ -329,7 +308,7 @@ UserData.prototype.generateSummaryData = function()
 			"groupBy":		"symptom",
 			"orderBy":		"count",
 			"ascOrDesc":	"DESC",
-			"limit": 		10 				//Limit of 1 returns just the latest entry 
+			"limit": 		10 				//Limit of 10 returns top 10 
 	};
 	
 	var symptomsTop10Data = ServerDBAdapter.prototype.get(symptomsTop10DataRequest);

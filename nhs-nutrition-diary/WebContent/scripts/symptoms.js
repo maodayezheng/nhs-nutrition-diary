@@ -1,32 +1,7 @@
 $(document).ready(function () {
-	
-
-	
-//For dietician password entry
-$(".passwordButton")
-	.click(
-			function() {
-				var username = $("#username").val();
-				var password = $("#password").val();
-				if (username == 'NHS' && password == '1100') {
-					$('.inputClass').css("border",
-							"2px solid green");
-					$('.inputClass').css("box-shadow",
-							"0 0 3px green");
-					window.location.href = "settings.html";
-					//Navigator.prototype.setting()
-
-				} else {
-					$('.inputClass').css("border",
-							"2px solid red");
-					$('.inputClass').css("box-shadow",
-							"0 0 3px red");
-					alert("Invalid name and password");
-				}
-			});
-	
-/* This function creates the bootstrap style check boxes
- * call "setUpCheckbox" on $('.list-group.checked-list-box .list-group-item') */
+		
+// This function creates the bootstrap style check boxes
+// call "setUpCheckbox" on $('.list-group.checked-list-box .list-group-item') 
 	
 var setUpCheckbox = function() {
 	
@@ -95,6 +70,8 @@ function init() {
     });
  };
  
+ //sets up checkboxes loaded after user user selects "symptom not on list"
+ 
  var setUpCheckbox2 = function() {
 	
 	 $('.loadedCustomSymptoms').each(function () {
@@ -161,6 +138,9 @@ function init() {
         init();
     });
  };
+ 
+ //sets up checkboxes after user appends a new symptom to list
+ 
  var setUpCheckbox3 = function() {
  		
 	 $('.newCustomSymptom').each(function () {
@@ -228,12 +208,12 @@ function init() {
     });
  };
 	     
-	/* "#saveNewSymptom" is used on the "symptomNotOnList page"
-	 * it is used when the user enters a custom symptom 
-	 * which is then appended to the $("#newSymptomList")
-	 * */
-	     //Rate discomfort 1-5 (low to high)<select class="discomfortRating"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select> <br>
-var dropContent = '<br> <input type="text" class="form-control comments symptoms"id="symptomComment" placeholder="Optional comment">';
+ // "#saveNewSymptom" is used on the "symptomNotOnList page"
+ // it is used when the user enters a custom symptom 
+ // which is then appended to the $("#newSymptomList")
+ //Rate discomfort 1-5 (low to high)<select class="discomfortRating"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select> <br>
+
+ var dropContent = '<br> <input type="text" class="form-control comments symptoms"id="symptomComment" placeholder="Optional comment">';
 
 	$("#btn_save_newCustomSymptom").click(function(){	
 		var customSymptom = $('#newSymptom').val();
@@ -261,12 +241,9 @@ var dropContent = '<br> <input type="text" class="form-control comments symptoms
 	};
 	
 	var customSymptoms = ServerDBAdapter.prototype.get(customSymptomsRequestJSON);
-	//console.log(JSON.stringify(customSymptoms) + "  HERREEEE!!!!");
 	for(var index = 0; index < customSymptoms.length; index++) {
 		var singleCustomSymptom = customSymptoms[index];
-		if(singleCustomSymptom.symptom != ""){
-			//singleCustomSymptom.symptom = "caught";
-		
+		if(singleCustomSymptom.symptom != ""){		
 		var newSymptomInList = '<li class="list-group-item loadedCustomSymptoms" style="cursor: pointer;"><span class="state-icon glyphicon glyphicon-unchecked"></span>'+singleCustomSymptom.symptom+'</li><div class="drop-scoring">'+dropContent+'</div>';
 		$("#symptomListCustom").append(newSymptomInList);
 		setUpCheckbox2();
@@ -282,7 +259,7 @@ var dropContent = '<br> <input type="text" class="form-control comments symptoms
 	});
 });
 
-////////////////////////////Enables drop scoring for non custom symptom list
+//Enables drop scoring for non custom symptom list
 
 $( window ).load(function() { 	$('li').click(function(){
 		var target = $(this).next(".drop-scoring");	
@@ -290,7 +267,7 @@ $( window ).load(function() { 	$('li').click(function(){
 	}); 
 })
 
-//---- method to combine data with DOMs----
+//Method to combine data with DOMs
 
 ko.bindingHandlers.ratingScore ={
 		init:function(element,valueAccessor){
@@ -312,3 +289,26 @@ function symptomsListView(symptoms){
 		self.ratingSection = ko.computed(function(){
 		},this);
 }
+
+//For dietician password entry
+$(".passwordButton")
+	.click(
+			function() {
+				var username = $("#username").val();
+				var password = $("#password").val();
+				if (username == 'NHS' && password == '1100') {
+					$('.inputClass').css("border",
+							"2px solid green");
+					$('.inputClass').css("box-shadow",
+							"0 0 3px green");
+					window.location.href = "settings.html";
+					//Navigator.prototype.setting()
+
+				} else {
+					$('.inputClass').css("border",
+							"2px solid red");
+					$('.inputClass').css("box-shadow",
+							"0 0 3px red");
+					alert("Invalid name and password");
+				}
+			});

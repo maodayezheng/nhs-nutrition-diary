@@ -7,7 +7,6 @@ OnLoad.prototype.load = function(pageName) {
 		case 'foodList':		return this.updateFoodList(); break;
 		case 'userFoodList':	return this.updateUserFoodList(); break;
 		case 'symptoms':		this.updateSymptoms(); break;
-		case 'history':			toggleHistoryVisualisation(); break;
 		case 'weight':			this.updateWeight(); break;
 		case 'settings':		this.updateSettings(); break;
 		default: console.log('pageName does not exist.');

@@ -34,14 +34,11 @@ OnLoad.prototype.updateTodaysBalance = function() {
 	if(todaysFoods != null) {
 		for(var index = 0; index < todaysFoods.length; index++) {
 	        var entry = todaysFoods[index];
-	        caloriesCurrent += parseFloat(entry.calories) * parseFloat(entry.quantity);
-	        proteinCurrent += parseFloat(entry.protein) * parseFloat(entry.quantity);
-	        fluidCurrent += parseFloat(entry.fluid) * parseFloat(entry.quantity);
+	        caloriesCurrent += parseNutritionData(entry.calories) * parseNutritionData(entry.quantity);
+	        proteinCurrent += parseNutritionData(entry.protein) * parseNutritionData(entry.quantity);
+	        fluidCurrent += parseNutritionData(entry.fluid) * parseNutritionData(entry.quantity);
 	    }
 		
-		caloriesCurrent = Math.round(caloriesCurrent);
-		proteinCurrent = Math.round(proteinCurrent);
-		fluidCurrent = Math.round(fluidCurrent);
 	}
 	
 	var previousRequirementsRequestJSON = {
@@ -50,9 +47,9 @@ OnLoad.prototype.updateTodaysBalance = function() {
 			"where": "userid,=," + userId
 	};
 	var previousRequirements = ServerDBAdapter.prototype.get(previousRequirementsRequestJSON);
-	var caloriesRequirement = parseFloat(previousRequirements.finalcalories);
-	var proteinRequirement = parseFloat(previousRequirements.finalprotein);
-	var fluidRequirement = parseFloat(previousRequirements.finalfluid);
+	var caloriesRequirement = parseNutritionData(previousRequirements.finalcalories);
+	var proteinRequirement = parseNutritionData(previousRequirements.finalprotein);
+	var fluidRequirement = parseNutritionData(previousRequirements.finalfluid);
 	
 	var caloriesPercentage = caloriesCurrent/caloriesRequirement;
 	var proteinPercentage = proteinCurrent/proteinRequirement;

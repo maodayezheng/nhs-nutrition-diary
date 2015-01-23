@@ -106,3 +106,8 @@ function createBasicLi(data){
 	}
 	return li;
 }
+function parseNutritionData(nutrition){
+	
+	return (isNaN(parseInt(nutrition)))? 0:parseInt(nutrition);
+	
+}

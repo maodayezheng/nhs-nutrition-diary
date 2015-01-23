@@ -66,7 +66,7 @@ function compareWithCurrentSelections(selection){
 			var obj= $(item);
 			var currentSelection = obj.data('data');
 			if(currentSelection.foodname === selection.foodname){
-				currentSelection.quantity = currentSelection.quantity+selection.quantity;
+				currentSelection.quantity = parseNutritionData(currentSelection.quantity)+parseNutritionData(selection.quantity);
 				var accountButton = obj.find('[name=accountButton]');
 				accountButton.text(currentSelection.quantity);
 				updateNutritionBreakDown();
@@ -93,12 +93,6 @@ function updateNutritionBreakDown(){
 	$('#calories').text(calories);
 	$('#protein').text(protein);
 	$('#fluid').text(fluid);
-}
-
-function parseNutritionData(nutrition){
-	
-	return (isNaN(parseInt(nutrition)))? 0:parseInt(nutrition);
-	
 }
 
 function loadNewFoodView(){

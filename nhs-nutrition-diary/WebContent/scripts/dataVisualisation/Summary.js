@@ -65,8 +65,8 @@ Summary.prototype.makeSummary = function(presentedParameter, dateFrom, dateTo, h
 	
 	var symptoms					= summaryData['userSymptoms'];
 	
-	$('#table').html("");
-	d3.select('#graph').attr("width", 0).attr("height", 0);
+	//$('#table').html("");
+	//d3.select('#graph').attr("width", 0).attr("height", 0);
 	
 	var weightTable = "" +
 		"<table align=\"center\">" +
@@ -187,7 +187,6 @@ Summary.prototype.makeSummary = function(presentedParameter, dateFrom, dateTo, h
 	}
 	
 	symptomsTable += "</table>";
-	
 	$('#summary').append($('<h4>Weight: </h4>'));
 	$('#summary').append($(weightTable));//.css('text-align','center'));
 	$('#summary').append($('<h4>Requirements: </h4>'));

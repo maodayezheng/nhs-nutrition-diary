@@ -12,37 +12,24 @@ Summary.prototype.manageSummary = function(presentedParameter, dateFrom, dateTo)
 	var dateFromFormatted = SubmitController.prototype.formatDateOnly(dateFrom);
 	var dateToFormatted = SubmitController.prototype.formatDateOnly(dateTo);
 	
-	/*
-	var historyRequestJSON = {
-			"action": "get",
-			"table": "userfoodmanifest",
-			"where": "userid,=," + userId + ",datetime,>=," + dateFromFormatted + " 00:00:00," + "datetime,<=," + dateToFormatted + " 23:59:59"
-	};
-	var history = ServerDBAdapter.prototype.get(historyRequestJSON);*/
 	
 	this.makeSummary(presentedParameter, dateFrom, dateTo, history);
 }
 
 Summary.prototype.makeSummary = function(presentedParameter, dateFrom, dateTo, history) {
-	/*if(history !== null){
-		for(var index = 0; index < history.length; index++) {
-			var entry = history[index];
-			caloriesCurrent += parseFloat(entry.calories) * parseFloat(entry.quantity);
-			proteinCurrent += parseFloat(entry.protein) * parseFloat(entry.quantity);
-			fluidCurrent += parseFloat(entry.fluid) * parseFloat(entry.quantity);
-		}
-	}*/
+	
 	
 	$('#summary').html('');
 	
-	var userData 						= new UserData(); 
-	var summaryData 					= userData.generateSummaryData();
-	console.log(summaryData);
+	var userData 					= new UserData(); 
+	var summaryData 				= userData.generateSummaryData();
+	
 	
 	var initialWeightDate 				= summaryData['initialWeightDate'];
 	var initialWeight 					= summaryData['initialWeight'];
 	var mostRecentWeightDate 			= summaryData['mostRecentWeightDate'];
 	var mostRecentWeight 				= summaryData['mostRecentWeight'];
+	
 	
 	var oneMonthDateInterval 			= summaryData['oneMonthDateInterval'];
 	var oneMonthPercentageChange 		= summaryData['oneMonthPercentageChange'];
@@ -63,7 +50,10 @@ Summary.prototype.makeSummary = function(presentedParameter, dateFrom, dateTo, h
 	var additionalProteinRequirement	= summaryData['userRequirements'][0]['additionalfluid'];
 	var additionalFluidRequirement		= summaryData['userRequirements'][0]['additionalprotein'];
 	
-	var symptoms						= summaryData['userSymptoms'];
+	var symptoms					= summaryData['userSymptoms'];
+	
+	//$('#table').html("");
+	//d3.select('#graph').attr("width", 0).attr("height", 0);
 	
 	var weightTable = "" +
 		"<table align=\"center\">" +

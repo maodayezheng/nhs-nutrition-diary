@@ -1,9 +1,7 @@
 /**
  * Created by Vikram Bakshi on 03/12/2014.
- * This .js file holds the methods and constructor for the DbEntry object. This object is created when the user adds/deletes/amends an entry to the 
- * database. The object holds all of the relevant information relating to the db entry i.e. whether is is an addition/amendment/delete, whether it concerns food, weight,
- * or symptoms etc. The object is then serialised and sent to the php script through an AJAX request. The php script deserialises it and processes the database 
- * transaction. 
+ * This .js file holds the methods required for sending/receiving data from the server. An object is passed to a method which is sent to the server through AJAX.
+ * A PHP script is then run and it echoes back a response. 
 */
 
 /**

@@ -8,11 +8,41 @@ Table.prototype.manageTable = function(presentedParameter, dateFrom, dateTo) {
 	}
 	
 	var userId = SubmitController.prototype.getUserID();
-	
 	var dateFromFormatted = SubmitController.prototype.formatDateOnly(dateFrom);
 	var dateToFormatted = SubmitController.prototype.formatDateOnly(dateTo);
 	var history;
 	var symptoms;
+	var Tablename;
+	var name;
+	
+	
+	
+	switch(presentedParameter){
+		case "Weight (kg)":
+			tableName = "userweightmanifest";
+			type = "weight";
+			break;
+		case "symptom":
+			tableName = "usersymptommanifest";
+			type = "symptom";
+			break;
+	default:
+		tableName = "userfoodmanifest";
+		type="foodname";
+		break;
+	
+	}
+	this.drawHeader(type,presentedParameter);
+	
+	var requestJSON ={
+			"action": "get",
+			"table": tableName,
+			"where": "userid,=," + userId + ",datetime,>=," + dateFromFormatted + " 00:00:00," + "datetime,<=," + dateToFormatted + " 23:59:59"
+	};
+	
+	history = ServerDBAdapter.prototype.get(requestJSON);
+	
+	/*
 	
 	if(presentedParameter == "Weight (kg)") {
 		var weightHistoryRequestJSON = {
@@ -28,20 +58,58 @@ Table.prototype.manageTable = function(presentedParameter, dateFrom, dateTo) {
 				"where": "userid,=," + userId + ",datetime,>=," + dateFromFormatted + " 00:00:00," + "datetime,<=," + dateToFormatted + " 23:59:59"
 		};
 		history = ServerDBAdapter.prototype.get(historyRequestJSON);
-		
+		alert(history);
 		var symptomsRequestJSON = {
 				"action": "get",
 				"table": "usersymptommanifest",
 				"where": "userid,=," + userId + ",datetime,>=," + dateFromFormatted + " 00:00:00," + "datetime,<=," + dateToFormatted + " 23:59:59"
 		};
 		symptoms = ServerDBAdapter.prototype.get(symptomsRequestJSON);
-	}
-	console.log(history);
+	}*/
 	
-	this.drawTable(presentedParameter, dateFrom, dateTo, history, symptoms);
+	/*this.drawTable(presentedParameter, dateFrom, dateTo, history, symptoms);*/
+	
+	this.drawTable(presentedParameter, dateFrom, dateTo, history,type);
 }
 
-Table.prototype.drawTable = function(presentedParameter, dateFrom, dateTo, history, symptoms) {
+
+
+Table.prototype.drawTable = function(presentedParameter, dateFrom, dateTo, history,type){
+	
+	//d3.select('#graph').attr("width", 0).attr("height", 0);
+	/*
+	 * date time food/symptom 
+	 */
+	var items = history;
+	var itemName = type;
+	$('#date-col').empty();
+	$('#main-body').empty();
+	$.each(history,function(index,data){
+		var dateTime = data['datetime'].split(' ');
+		var date = dateTime[0];
+		var time = dateTime[1];
+		var name = data[type];
+		var value = data[presentedParameter];
+		Table.prototype.drawTableBody(date,time,name,value);
+	});
+}
+
+
+Table.prototype.drawHeader = function(name,presentedParameter){
+	
+	$('#table-header').empty();
+	$('#table-header').append('<th>Date</th>');
+	$('#table-header').append('<th>'+"Time"+'</th>');
+	$('#table-header').append('<th>'+name+'</th>');
+	$('#table-header').append('<th>'+presentedParameter+'</th>');
+	
+}
+
+Table.prototype.drawTableBody = function(date,time,name,presentedParameter){
+	$('#main-body').append('<tr><td>'+date+'</td><td>'+time+'</td><td>'+name+'</td><td>'+presentedParameter+'</td></tr>');
+	
+}
+/*Table.prototype.drawTable = function(presentedParameter, dateFrom, dateTo, history, symptoms) {
 	$('#summary').html("");
 	d3.select('#graph').attr("width", 0).attr("height", 0);
 	
@@ -54,7 +122,7 @@ Table.prototype.drawTable = function(presentedParameter, dateFrom, dateTo, histo
 	
 	if(presentedParameter == "Calories (kcal)") {
 		colTitles = ['Date', 'Time', 'Food / Symptom', 'Calories (kcal) / Comment'];
-		for(var index = 0; index < history.length; index++) {
+		for(var index = 0; index < history.length; index++){
 			var entry = history[index];
 			var caloriesCurrent = parseFloat(entry.energy_kcal) * parseFloat(entry.quantity);
 			var dateTime = "" + entry.datetime;
@@ -142,5 +210,4 @@ Table.prototype.drawTable = function(presentedParameter, dateFrom, dateTo, histo
 
 			return String(val).replace(/$|%|#/g, '');
 		}
-	});
-}
+	});*/

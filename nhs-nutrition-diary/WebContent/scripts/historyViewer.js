@@ -4,12 +4,21 @@ function toggleHistoryVisualisation() {
 	var dateFrom = $('#datepickerFrom').val();
 	var dateTo = $('#datepickerTo').val();
 	
-	if($('#graphSelector').is(':checked')) {
+	if($('#graphSelector').is(':checked')){
+		$('#summary').hide();
+		$('#graph').show();
+		$('#table').hide();
 		manageGraph(presentedParameter, dateFrom, dateTo);
 	} else if($('#tableSelector').is(':checked')) {
+		$('#summary').hide();
+		$('#graph').hide();
+		$('#table').show();
 		var table = new Table();
 		table.manageTable(presentedParameter, dateFrom, dateTo);
 	} else if($('#summarySelector').is(':checked')) {
+		$('#summary').show();
+		$('#graph').hide();
+		$('#table').hide();
 		var summary = new Summary();
 		summary.manageSummary(presentedParameter, dateFrom, dateTo);
 	}/* else if ($('#flagsSelectorLabel').is(':checked')) {
@@ -19,18 +28,26 @@ function toggleHistoryVisualisation() {
 
 function toggleHistoryVisualisationButton(id) {
 	fillEmptyDates();
-	
 	var presentedParameter = $('#foodComponents').val();
 	var dateFrom = $('#datepickerFrom').val();
 	var dateTo = $('#datepickerTo').val();
 	
 	if(id == 'graphSelectorLabel') {
 		//TODO fix graph
+		$('#summary').hide();
+		$('#graph').show();
+		$('#table').hide();
 		manageGraph(presentedParameter, dateFrom, dateTo);
 	} else if (id == 'tableSelectorLabel') {
+		$('#summary').hide();
+		$('#graph').hide();
+		$('#table').show();
 		var table = new Table();
 		table.manageTable(presentedParameter, dateFrom, dateTo);
 	} else if (id == 'summarySelectorLabel') {
+		$('#summary').show();
+		$('#graph').hide();
+		$('#table').hide();
 		var summary = new Summary();
 		summary.manageSummary(presentedParameter, dateFrom, dateTo);
 	}/* else if (id == 'flagsSelectorLabel') {

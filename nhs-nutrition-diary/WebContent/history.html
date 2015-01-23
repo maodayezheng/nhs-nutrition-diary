@@ -26,8 +26,6 @@
     	<script src="scripts/util/email.js"></script>
 		<script src="scripts/Navigator.js"></script>
 		<script src="scripts/historyViewer.js"></script>
-		<script src="scripts/database/local/foodDataJSON.js"></script>
-		<script src="scripts/database/local/symptomJSON.js"></script>
 		<script src="scripts/getController.js"></script>
 		
 		<!-- script src="scripts/dataVisualisation/DateParser.js"></script-->
@@ -35,7 +33,6 @@
 		<script src="scripts/dataVisualisation/Graph.js"></script>
 		<script src="scripts/dataVisualisation/Table.js"></script>
 		<script src="scripts/dataVisualisation/Summary.js"></script>
-		
 		<link href="lib/tidy-table-1.9.3/tidy-table.min.css" rel="stylesheet"></link>
 		<script src="lib/tidy-table-1.9.3/tidy-table.min.js"></script>
 		
@@ -79,9 +76,6 @@
 </nav>
     	
     	<div class="container">
-     		<div class="row clearfix">
-    			<div class="col-md-12 column"></div>
-			</div>
 	   		<div class="row clearfix">
 	    		<div class="col-md-12 column">
 	    			<div class="btn-group btn-group-justified" id="presentationFormat" style="padding-top:10px;" role="group" aria-label="..." data-toggle="buttons">
@@ -102,25 +96,31 @@
 	    			<div class="panel panel-default space-margin">
 	    			<div class="panel-heading"><form style="margin:0 auto;display:inline" id="parameters">Select 
 									<select id="foodComponents" name="foodComponents" onchange="toggleHistoryVisualisation()">
-										<option id="calories_dropdown" value="Calories (kcal)">Calories</option>
-										<option id="protein_dropdown" value="Protein (g)">Protein</option>
-										<option id="fluid_dropdown" value="Fluid (ml)">Fluid</option>
+										<option id="calories_dropdown" value="energy_kcal">Calories</option>
+										<option id="protein_dropdown" value="protein_g">Protein</option>
+										<option id="fluid_dropdown" value="water_g">Fluid</option>
 										<option id="weight_dropdown" value="Weight (kg)">Weight</option>
 										<!-- option id="symptoms_dropdown" value="Symptoms">Symptoms</option-->
 									</select>
 								</form></div>
 								<div id = "target">
 	    				<div class="panel-body history-panel">
-						    
 	     				<div class="row" id="datepicker_div">
 							<div class="col-xs-6">	From: <input type="text" class="form-control date" id="datepickerFrom" onchange="toggleHistoryVisualisation()" readonly="readonly" style="cursor :default">
 							</div> 
 								<div class="col-xs-6">To: <input type="text" class="form-control date" id="datepickerTo" onchange="toggleHistoryVisualisation()" readonly="readonly" style="cursor :default">
 							</div>
 						</div>
-	     				<div class="row visualisationBody" id="historyVisualisation">
+	     				<div class="row space-margin" id="historyVisualisation">
 							<svg id="graph"></svg>
-							<div id="table"></div>
+							<div id="table">
+							<div class="table-responsive row">
+							<table class="table table-stripe">
+							<thead id="table-header"></thead>
+							<tbody id="main-body"></tbody>
+							</table>
+							</div>
+							</div>
 							<div id="summary"></div>
 						</div>
 	     			

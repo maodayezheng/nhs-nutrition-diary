@@ -41,8 +41,7 @@ function makeGraph(presentedParameter, dateFrom, dateTo, history, requirements) 
 		//TODO no requirements because weight is selected
 	}
 	
-	$('#table').html("");
-	$('#summary').html("");
+
 	d3.select("svg").text("");
 	
 	var parseDate = d3.time.format("%Y%m%d").parse;
@@ -68,21 +67,21 @@ function makeGraph(presentedParameter, dateFrom, dateTo, history, requirements) 
     	
     	yRange = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([
             d3.min(history, function(d) {
-            	if(presentedParameter == "Calories (kcal)")
+            	if(presentedParameter == "energy_kcal")
             		return d.calories;
-            	else if(presentedParameter == "Protein (g)")
+            	else if(presentedParameter == "protein_g")
             		return d.protein;
-            	else if(presentedParameter == "Fluid (ml)")
+            	else if(presentedParameter == "water_g")
             		return d.fluid;
             	else if(presentedParameter == "Weight (kg)")
             		return d.weight;
             }),
             d3.max(history, function(d) {
-            	if(presentedParameter == "Calories (kcal)")
+            	if(presentedParameter == "energy_kcal")
             		return d.calories;
-            	else if(presentedParameter == "Protein (g)")
+            	else if(presentedParameter == "protein_g")
             		return d.protein;
-            	else if(presentedParameter == "Fluid (ml)")
+            	else if(presentedParameter == "water_g")
             		return d.fluid;
             	else if(presentedParameter == "Weight (kg)")
             		return d.weight;
@@ -123,11 +122,11 @@ function makeGraph(presentedParameter, dateFrom, dateTo, history, requirements) 
 	    return xRange(parseDate(d.date));
 	  })
 	  .y(function(d) {
-		  if(presentedParameter == "Calories (kcal)")
+		  if(presentedParameter == "energy_kcal")
 			  return yRange(d.calories);
-      	else if(presentedParameter == "Protein (g)")
+      	else if(presentedParameter == "protein_g")
 			  return yRange(d.protein);
-      	else if(presentedParameter == "Fluid (ml)")
+      	else if(presentedParameter == "water_g")
 			  return yRange(d.fluid);
       	else if(presentedParameter == "Weight (kg)")
 			  return yRange(d.weight);

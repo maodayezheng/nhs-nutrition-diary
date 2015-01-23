@@ -52,6 +52,16 @@ if(isset($dataDecoded['groupBy']))
 	$groupBy = $dataDecoded['groupBy'];
 	unset($dataDecoded['groupBy']);
 }
+if(isset($dataDecoded['orderBy']))
+{
+	$orderBy = $dataDecoded['orderBy'];
+	unset($dataDecoded['orderBy']);
+}
+if(isset($dataDecoded['ascOrDesc']))
+{
+	$ascOrDesc = $dataDecoded['ascOrDesc'];
+	unset($dataDecoded['ascOrDesc']);
+}
 if(isset($dataDecoded['limit']))
 {
 	$limit = $dataDecoded['limit'];
@@ -73,11 +83,19 @@ switch($action)
 	case 'getUserProfile':			getUserProfile($db, $table, $where); break; 
 	case 'getVisualisationData':	getUserData($db, $dataDecoded); break;
 	case 'getLast':					getLast($db, $table, $where); break;
-	case 'getMostFrequent':			getMostFrequent($db, $table, $where, $colForCount, $groupBy, $limit); break; 
-	case 'save': 					$db->insert($table, $dataDecoded); break; 
+	case 'getMostFrequent':			getMostFrequent($db, $table, $where, $colForCount, $groupBy, $orderBy, $ascOrDesc, $limit); break; 
+	case 'save': 					save($db,$table, $dataDecoded); break; 
 	case 'confirmIDPassword':		confirmIDPassword($db, $dataDecoded); break;
 	case 'usernameUnique':			usernameUnique($db, $dataDecoded); break;
 }
+
+
+function save($db, $table, $dataDecoded)
+{
+	$db->insert($table, $dataDecoded);
+	echo json_encode(array()); //echo back an empty JSON string otherwise there will be an AJAX error. 
+}
+
 
 /**
  * Checks whether the provided username exists in the database already or not. 
@@ -158,9 +176,9 @@ function getLast($db, $table, $where)
  * @param $groupBy		Defines which field you would like to group the result by.
  * @param $limit		Defines the limit of the number of rows. For example 10 would mean you would want the top 10 most frequent.
  */
-function getMostFrequent($db, $table, $where, $colForCount, $groupBy, $limit)
+function getMostFrequent($db, $table, $where, $colForCount, $groupBy, $orderBy, $ascOrDesc, $limit)
 {
-	$results = $db->mostFrequent($table, $where, $colForCount, $groupBy, $limit)->results();
+	$results = $db->mostFrequent($table, $where, $colForCount, $groupBy, $orderBy, $ascOrDesc, $limit)->results();
 	echo json_encode($results); 
 }
 ?>

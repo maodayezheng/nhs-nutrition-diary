@@ -155,10 +155,11 @@ class DB
 	}
 	
 	/**
-	 * Runs a query intended to return the ten most frequent occuring data items in a table between a specified date. 
+	 * Adds custom components to a query after being passed through the action method. An example would be creating a query
+	 * intended to return the ten most frequent occuring data items in a table between a specified date. 
 	 * Useful for finding the top 10 symptoms or top 10 consumed foods. 
 	 */
-	public function mostFrequent($table, $where = array(), $colForCount, $groupBy, $limit) 
+	public function mostFrequent($table, $where = array(), $colForCount, $groupBy, $orderBy, $ascOrDesc, $limit) 
 	{
 		//Calling the action method with the final argument set to true returns an associative array with two keys (sql and values)
 		//The sql key maps to the sql statement built by the action method (containing any '?' characters that need to be bound).
@@ -173,10 +174,14 @@ class DB
 		if ($groupBy)
 		{
 			$sql .= " GROUP BY {$groupBy}";
-			$sql .= " ORDER BY count DESC";
 		}
 		
-		//Limit the results to the defined number of rows ($limit).
+		if ($orderBy)
+		{
+			$sql .= " ORDER BY $orderBy $ascOrDesc"; //pass "DESC" or "ASC" as argument
+		}
+		
+		//Limit the results to the defined number of rows ($limit). If the limit is defined as 0, it is interpreted as false, so all results are shown. 
 		if ($limit)
 		{
 			$sql .= " LIMIT {$limit}";

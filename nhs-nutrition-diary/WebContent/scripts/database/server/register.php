@@ -116,7 +116,10 @@ function registerPatient($dataDecoded)
 		'activitylevel'			=> $dataDecoded['activitylevel'],
 		'formulacalories'		=> $requirements->getCalorieRequirement(),
 		'formulaprotein'		=> $requirements->getProteinRequirement(),
-		'formulafluid'			=> $requirements->getFluidRequirement()
+		'formulafluid'			=> $requirements->getFluidRequirement(),
+		'finalcalories'			=> $requirements->getCalorieRequirement(), 	//For the initial setting of the requirements at registration the dietician will not be adding
+		'finalprotein'			=> $requirements->getProteinRequirement(),	//any additional protein/cals/fluid, so these should be recorded as the same. 
+		'finalfluid'			=> $requirements->getFluidRequirement()
 		)); 
 		
 		//Now that a user has been created, log them in.

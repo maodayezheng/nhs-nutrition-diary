@@ -34,11 +34,7 @@ SubmitController.prototype.getUserID = function() {
 
 SubmitController.prototype.logOut = function()
 {
-	alert("clicked");
 	window.location.href = "scripts/database/server/logout.php";
-	/*dataToServer = {};
-	ServerDBAdapter.prototype.submit(dataToServer, 'logout');*/
-	
 }
 
 

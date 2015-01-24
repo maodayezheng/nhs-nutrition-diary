@@ -45,13 +45,11 @@ UserData.prototype.getRawData = function(dateFrom, dateTo)
 { 
 	this.dateFrom			= SubmitController.prototype.formatDateOnly(dateFrom);
 	this.dateTo				= SubmitController.prototype.formatDateOnly(dateTo);
-	
-	//TODO: Deal with getting actual userID. Change to method from Cookies, or something. 
+	 
 	var req = 
 	{
 			"action":		"getVisualisationData",
-			//"userHash": 	Cookies.prototype.getUserHash(), //Delete userID once testing is finished and have it all done through a hash. 
-			"userID":		1, //////////////////////////////////// DELETE THIS, and change to userHash after testing. 
+			"userHash": 	Cookies.prototype.getUserHash(), 
 			"dateFrom": 	this.dateFrom,
 			"dateTo": 		this.dateTo
 	}
@@ -155,11 +153,8 @@ UserData.prototype.wrangleFoodManifestData = function()
 
 
 UserData.prototype.generateSummaryData = function()
-{
-	
-	
-	//TODO: Deal with getting actual userID. Change to method from Cookies, or something. 
-	var userId = 1; 
+{ 
+	var userId = SubmitController.prototype.getUserID(); 
 	
 	var weightDataRequest = 
 	{

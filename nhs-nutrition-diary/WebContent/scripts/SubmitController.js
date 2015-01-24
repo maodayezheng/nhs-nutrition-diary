@@ -18,7 +18,17 @@ SubmitController.prototype.submit = function(submitter) {
 }
 
 SubmitController.prototype.getUserID = function() {
-	 	
+	
+	var hash = Cookies.prototype.getUserHash(); 
+	console.log(hash);
+	
+	var getUserID = 
+	{
+			"action": "getUserId",
+			"table": "users",
+			"where": "hash,=," + userId
+	};
+	var userInfoResponseJSON = ServerDBAdapter.prototype.get(userInfoRequestJSON)[0];
 	//TODO retrieve user id
 	return 1;
 }
@@ -609,7 +619,7 @@ SubmitController.prototype.submitSymptoms = function() {
 		ServerDBAdapter.prototype.submit(dataToServer, "save");
 	}
 	
-	this.successMessage("Symptoms submitted.",2000,"home");
+	//this.successMessage("Symptoms submitted.",2000,"home");
 }
 	
 SubmitController.prototype.submitNewCustomSymptom = function() {

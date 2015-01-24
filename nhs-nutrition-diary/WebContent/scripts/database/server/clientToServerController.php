@@ -87,6 +87,7 @@ switch($action)
 	case 'save': 					save($db,$table, $dataDecoded); break; 
 	case 'confirmIDPassword':		confirmIDPassword($db, $dataDecoded); break;
 	case 'usernameUnique':			usernameUnique($db, $dataDecoded); break;
+	case 'getUserId':
 }
 
 

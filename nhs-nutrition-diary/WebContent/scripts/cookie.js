@@ -33,7 +33,7 @@ Cookies.prototype.getUserHash = function()
 /**
  * Method returns the value of the userID cookie. If it does not exist it returns null. 
  * The userID cookie is useful when developing so we can easily see which user is logged in.
- * However, when dealing with any user request or submittal the hash should always be used. 
+ * However, when dealing with any user request or submitting the hash should always be used. 
  * @returns
  */
 Cookies.prototype.getUserID = function() 
@@ -41,15 +41,15 @@ Cookies.prototype.getUserID = function()
 	return Cookies.prototype.getCookie("appetiteCookieUserID");
 }
 
-
 console.log(document.cookie);
 console.log("Current User Logged in is:");
 console.log(Cookies.prototype.getCookie("appetiteCookieUserID"));
 
 
 //COMMENT OUT THIS IF YOU WANT TO GET RID OF THE REDIRECTION WHEN A USER IS NOT LOGGED IN. 
-/*if(!Cookies.prototype.getUserHash()) 
+if(!Cookies.prototype.getUserHash()) 
 {
+	alert('You are not logged in. Redirecting to log in page..');
 	console.log("No User ID stored in cookie. The User is not logged in. Redirecting ....");
-	window.location.replace("notLoggedIn.html");
-}*/
+	window.location.replace("index.html");
+}

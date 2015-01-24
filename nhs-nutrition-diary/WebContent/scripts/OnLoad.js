@@ -33,9 +33,9 @@ OnLoad.prototype.updateTodaysBalance = function() {
 	if(todaysFoods != null) {
 		for(var index = 0; index < todaysFoods.length; index++) {
 	        var entry = todaysFoods[index];
-	        caloriesCurrent += parseNutritionData(entry.calories) * parseNutritionData(entry.quantity);
-	        proteinCurrent += parseNutritionData(entry.protein) * parseNutritionData(entry.quantity);
-	        fluidCurrent += parseNutritionData(entry.fluid) * parseNutritionData(entry.quantity);
+	        caloriesCurrent += parseNutritionData(entry["energy_kcal"]) * parseNutritionData(entry.quantity);
+	        proteinCurrent += parseNutritionData(entry["protein_g"]) * parseNutritionData(entry.quantity);
+	        fluidCurrent += parseNutritionData(entry["water_g"]) * parseNutritionData(entry.quantity);
 	    }
 		
 	}

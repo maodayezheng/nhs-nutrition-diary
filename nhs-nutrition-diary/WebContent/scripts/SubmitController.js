@@ -26,9 +26,9 @@ SubmitController.prototype.getUserID = function() {
 	{
 			"action": "getUserId",
 			"table": "users",
-			"where": "hash,=," + userId
+			"where": "hash,=,"// + userId
 	};
-	var userInfoResponseJSON = ServerDBAdapter.prototype.get(userInfoRequestJSON)[0];
+	//var userInfoResponseJSON = ServerDBAdapter.prototype.get(userInfoRequestJSON)[0];
 	//TODO retrieve user id
 	return 1;
 }

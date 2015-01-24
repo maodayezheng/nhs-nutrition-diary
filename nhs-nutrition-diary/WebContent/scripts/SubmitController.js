@@ -137,8 +137,8 @@ SubmitController.prototype.submitUserSignUpDetails = function()
 	
 	var errors			= "";
 	// validations
-	//TODO comment out NHS number check --> only commented out for convenience during development
-//	if(!Validator.prototype.isValidNhsNumber(nhsNumber)) 		{ errors += '-> Please enter a valid NHS number.\n';					} 
+	
+	if(!Validator.prototype.isValidNhsNumber(nhsNumber)) 		{ errors += '-> Please enter a valid NHS number.\n';					} 
 	if(Validator.prototype.isEmpty(password)) 					{ errors += '-> Please enter a password.\n'; 							} 
 	if(!Validator.prototype.isSame(password, passwordConfirm)) 	{ errors += '-> Password and confirmed password must be the same.\n';	}
 	if(!Validator.prototype.isPositiveNumber(weight)) 			{ errors += '-> Please enter a valid weight (positive number).\n'; 		}
@@ -624,7 +624,7 @@ SubmitController.prototype.submitSymptoms = function() {
 		ServerDBAdapter.prototype.submit(dataToServer, "save");
 	}
 	
-	//this.successMessage("Symptoms submitted.",2000,"home");
+	this.successMessage("Symptoms submitted.",2000,"home");
 }
 	
 SubmitController.prototype.submitNewCustomSymptom = function() {

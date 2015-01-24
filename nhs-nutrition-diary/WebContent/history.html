@@ -79,23 +79,23 @@
 	   		<div class="row clearfix">
 	    		<div class="col-md-12 column">
 	    			<div class="btn-group btn-group-justified" id="presentationFormat" style="padding-top:10px;" role="group" aria-label="..." data-toggle="buttons">
-						<label id="graphSelectorLabel" class="btn btn-primary active" onclick="toggleHistoryVisualisationButton(this.id)">
+						<label id="graphSelectorLabel" class="btn btn-primary active">
 							<input type="radio" name="options" id="graphSelector" class="btn btn-default" autocomplete="off" checked>Graph
 				  		</label>
-						<label id="tableSelectorLabel" class="btn btn-primary" onclick="toggleHistoryVisualisationButton(this.id)">
+						<label id="tableSelectorLabel" class="btn btn-primary" >
 							<input type="radio" name="options" id="tableSelector" class="btn btn-default" autocomplete="off">Table
 						</label>
-				  		<label id="summarySelectorLabel" class="btn btn-primary" onclick="toggleHistoryVisualisationButton(this.id)">
+				  		<label id="summarySelectorLabel" class="btn btn-primary" >
 				  			<input type="radio" name="options" id="summarySelector" class="btn btn-default" autocomplete="off">Summary
 				 		</label>
-				 		<!-- label id="flagsSelectorLabel" class="btn btn-primary" onclick="toggleHistoryVisualisationButton(this.id)">
+				 		<!-- label id="flagsSelectorLabel" class="btn btn-primary" >
 				  			<input type="radio" name="options" id="flagsSelector" class="btn btn-default" autocomplete="off">Flags
 				 		</label-->
 					</div>
 	    			
 	    			<div class="panel panel-default space-margin">
 	    			<div class="panel-heading"><form style="margin:0 auto;display:inline" id="parameters">Select 
-									<select id="foodComponents" name="foodComponents" onchange="toggleHistoryVisualisation()">
+									<select id="foodComponents" name="foodComponents" >
 										<option id="calories_dropdown" value="energy_kcal">Calories</option>
 										<option id="protein_dropdown" value="protein_g">Protein</option>
 										<option id="fluid_dropdown" value="water_g">Fluid</option>
@@ -106,9 +106,9 @@
 								<div id = "target">
 	    				<div class="panel-body history-panel">
 	     				<div class="row" id="datepicker_div">
-							<div class="col-xs-6">	From: <input type="text" class="form-control date" id="datepickerFrom" onchange="toggleHistoryVisualisation()" readonly="readonly" style="cursor :default">
+							<div class="col-xs-6">	From: <input type="text" class="form-control date" id="datepickerFrom"  readonly="readonly" style="cursor :default">
 							</div> 
-								<div class="col-xs-6">To: <input type="text" class="form-control date" id="datepickerTo" onchange="toggleHistoryVisualisation()" readonly="readonly" style="cursor :default">
+								<div class="col-xs-6">To: <input type="text" class="form-control date" id="datepickerTo"  readonly="readonly" style="cursor :default">
 							</div>
 						</div>
 	     				<div class="row space-margin" id="historyVisualisation">

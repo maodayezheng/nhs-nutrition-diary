@@ -87,10 +87,21 @@ switch($action)
 	case 'save': 					save($db,$table, $dataDecoded); break; 
 	case 'confirmIDPassword':		confirmIDPassword($db, $dataDecoded); break;
 	case 'usernameUnique':			usernameUnique($db, $dataDecoded); break;
-	case 'getUserId':
+	case 'getUserId':				getUserId($db, $dataDecoded); break;
 }
 
+/**
+ * Returns the user ID. 
+ */
+function getUserId($db, $dataDecoded)
+{
+	$userID = json_encode(array("userID" => $dataDecoded['userID'])); 
+	echo $userID;
+}
 
+/**
+ * Save record into database. 
+ */
 function save($db, $table, $dataDecoded)
 {
 	$db->insert($table, $dataDecoded);

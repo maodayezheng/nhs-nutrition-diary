@@ -20,17 +20,15 @@ SubmitController.prototype.submit = function(submitter) {
 SubmitController.prototype.getUserID = function() {
 	
 	var hash = Cookies.prototype.getUserHash(); 
-	console.log(hash);
 	
 	var getUserID = 
 	{
 			"action": "getUserId",
-			"table": "users",
-			"where": "hash,=,"// + userId
+			"userHash": hash
 	};
-	//var userInfoResponseJSON = ServerDBAdapter.prototype.get(userInfoRequestJSON)[0];
-	//TODO retrieve user id
-	return 1;
+	var userInfoResponseJSON = ServerDBAdapter.prototype.get(getUserID);
+	var userID = userInfoResponseJSON['userID'];
+	return userID;
 }
 
 SubmitController.prototype.formatDateOnly = function(date) {

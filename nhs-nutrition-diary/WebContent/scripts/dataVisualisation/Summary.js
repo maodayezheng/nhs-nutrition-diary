@@ -56,77 +56,77 @@ Summary.prototype.makeSummary = function(presentedParameter, dateFrom, dateTo, h
 	//d3.select('#graph').attr("width", 0).attr("height", 0);
 	
 	var weightTable = "" +
-		"<table align=\"center\">" +
+		"<table>" +
 			"<tr>" +
-				"<td>Registration Date:</td>" +
+				"<td style='font-weight: bold'>Registration Date:</td>" +
 				"<td> "+initialWeightDate+"</td>" +
 			"</tr>" +
 			"<tr>" +
-				"<td>Registration Weight: </td>" +
+				"<td style='font-weight: bold'>Registration Weight: </td>" +
 				"<td> "+initialWeight+"</td>" +
 			"</tr>" +
 			"</table>" +
 			
 			"<br />" +
 			
-			"<table align=\"center\">" +
+			"<table>" +
 			"<tr>" +
-				"<td>Most Recent Recorded Weight Date:</td>" +
+				"<td style='font-weight: bold'>Most Recent Recorded Weight Date:</td>" +
 				"<td>   "+mostRecentWeightDate+   "</td>" +
 			"</tr>" +
 			"<tr>" +
-				" <td>Most Recent Recorded Weight:</td>" +
+				" <td style='font-weight: bold'>Most Recent Recorded Weight:</td>" +
 				"<td>   "+mostRecentWeight+   "</td>" +
 			"</tr>" +
 			"</table>" +
 			
 			"<br />" +
 			
-			"<table align=\"center\">" +
+			"<table>" +
 			"<tr>" +
-				" <td>One Month Percentage Weight Change:</td>" +
+				" <td style='font-weight: bold'>One Month Percentage Weight Change:</td>" +
 				"<td> "+oneMonthPercentageChange+"</td>" +
 			"</tr>" +
 			"<tr>" +
-				" <td>Date Interval for Comparison:</td>" +
+				" <td style='font-weight: bold'>Date Interval for Comparison:</td>" +
 				"<td> "+oneMonthDateInterval+"</td>" +
 			"</tr>" +
 			"<tr>" +
-				" <td>Weight Entry for One Month Comparison:</td>" +
+				" <td style='font-weight: bold'>Weight Entry for One Month Comparison:</td>" +
 				"<td> "+oneMonthWeight+"</td>" +
 			"</tr>" +
 			"</table>" +
 			
 			"<br />" +
 			
-			"<table align=\"center\">" +
+			"<table >" +
 			"<tr>" +
-				" <td>Three Month Percentage Weight Change:</td>" +
+				" <td style='font-weight: bold'>Three Month Percentage Weight Change:</td>" +
 				"<td> "+threeMonthPercentageChange+"</td>" +
 			"</tr>" +
 			"<tr>" +
-				" <td> Date Interval for Comparison:</td>" +
+				" <td style='font-weight: bold'> Date Interval for Comparison:</td>" +
 				"<td> "+threeMonthDateInterval+"</td>" +
 			"</tr>" +
 			"<tr>" +
-				" <td>Weight Entry for Three Month Comparison:</td>" +
+				" <td style='font-weight: bold'>Weight Entry for Three Month Comparison:</td>" +
 				"<td> "+threeMonthWeight+"</td>" +
 			"</tr>" +
 			"</table>" +
 			
 			"<br />" +
 			
-			"<table align=\"center\">" +
+			"<table>" +
 			"<tr>" +
-				" <td>Six Month Percentage Weight Change:</td>" +
+				" <td style='font-weight: bold'>Six Month Percentage Weight Change:</td>" +
 				"<td> "+sixMonthPercentageChange+"</td>" +
 			"</tr>" +
 			"<tr>" +
-				" <td>Date Interval for Comparison:</td>" +
+				" <td style='font-weight: bold'>Date Interval for Comparison:</td>" +
 				"<td> "+sixMonthDateInterval+"</td>" +
 			"</tr>" +
 			"<tr>" +
-				" <td>Weight Entry for Six Month Comparison:</td>" +
+				" <td style='font-weight: bold'>Weight Entry for Six Month Comparison:</td>" +
 				"<td> "+sixMonthWeight+"</td>" +
 			"</tr>" +
 		"</table>" +
@@ -134,23 +134,23 @@ Summary.prototype.makeSummary = function(presentedParameter, dateFrom, dateTo, h
 	
 	
 	var requirementsTable = ""+
-			"<table align=\"center\">" +
+			"<table >" +
 			"<tr>" +
-				" <td>Calorie Requirement:</td>" +
+				" <td style='font-weight: bold'>Calorie Requirement:</td>" +
 				"<td>   "+calorieRequirement   +"</td>" +
 				"<td>   Of Which Additionally Added:    </td>" +
 				"<td>   "+additionalCalorieRequirement+"   </td>"+
 			"</tr>" +
 			"<tr>" +
-				" <td>Protein Requirement:</td>" +
+				" <td style='font-weight: bold'>Protein Requirement:</td>" +
 				"<td>   "+proteinRequirement+"   </td>" +
 				"<td>   Of Which Additionally Added:   </td>" +
-				"<td>   "+additionalProteinRequirement+"   </td>"+
+				"<td style='font-weight: bold'>   "+additionalProteinRequirement+"   </td>"+
 			"</tr>" +
 			"<tr>" +
-				" <td>Fluid Requirement:</td>" +
-				"<td>   "+fluidRequirement+"   </td>" +
-				"<td>   Of Which Additionally Added:    </td>" +
+				" <td style='font-weight: bold'>Fluid Requirement:</td>" +
+				"<td >   "+fluidRequirement+"   </td>" +
+				"<td >   Of Which Additionally Added:    </td>" +
 				"<td>   "+additionalFluidRequirement+"   </td>"+
 			"</tr>" +
 		"</table>";
@@ -158,7 +158,7 @@ Summary.prototype.makeSummary = function(presentedParameter, dateFrom, dateTo, h
 	
 	
 	var symptomsTable = ""+
-	"<table align=\"center\"> ";
+	"<table > ";
 	
 	for(var i=0; i<symptoms.length; i++)
 	{
@@ -166,9 +166,9 @@ Summary.prototype.makeSummary = function(presentedParameter, dateFrom, dateTo, h
 		
 		symptomsTable += ""+
 			"<tr>" +
-				" <td> Symptom </td>" +
+				" <td> Symptom  </td>" +
 				" <td> "+symptomObject['symptom']+"</td>" +
-				" <td> Occurences </td>" +
+				" <td> Occurences:  </td>" +
 				" <td> "+symptomObject['count']+"</td>" +
 			"</tr>";
 	}

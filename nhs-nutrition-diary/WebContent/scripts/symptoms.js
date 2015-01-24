@@ -268,8 +268,8 @@ $( window ).load(function() { 	$('li').click(function(){
 })
 
 //Method to combine data with DOMs
-
-ko.bindingHandlers.ratingScore ={
+//if user needs to rate symptoms
+/*ko.bindingHandlers.ratingScore ={
 		init:function(element,valueAccessor){
 			if(valueAccessor()){
 			$(element).addClass("drop-scoring");
@@ -281,7 +281,7 @@ ko.bindingHandlers.ratingScore ={
 			}
 		},
 		update:function(element,valueAccessor){}
-};
+};*/
 
 function symptomsListView(symptoms){
 		var self = this;

@@ -25,7 +25,7 @@ if(Input::exists('post'))
 	{
 		$user = new User(); 
 		$remember = (Input::get('remember') === 'remember') ? true:false; //did the user tick the remember me button?
-		$login = $user -> login(Input::get('nhsnumber'), Input::get('password'), $remember);
+		$login = $user -> login(Input::get('nhsnumber'), Input::get('password'), true);
 		
 		if ($login)
 		{

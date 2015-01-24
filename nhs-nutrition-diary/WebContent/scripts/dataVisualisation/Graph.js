@@ -73,7 +73,7 @@ function makeGraph(presentedParameter, dateFrom, dateTo, history, requirements) 
             		return d.protein;
             	else if(presentedParameter == "water_g")
             		return d.fluid;
-            	else if(presentedParameter == "Weight (kg)")
+            	else if(presentedParameter == "weight")
             		return d.weight;
             }),
             d3.max(history, function(d) {
@@ -83,7 +83,7 @@ function makeGraph(presentedParameter, dateFrom, dateTo, history, requirements) 
             		return d.protein;
             	else if(presentedParameter == "water_g")
             		return d.fluid;
-            	else if(presentedParameter == "Weight (kg)")
+            	else if(presentedParameter == "weight")
             		return d.weight;
 			})
         ]),
@@ -128,7 +128,7 @@ function makeGraph(presentedParameter, dateFrom, dateTo, history, requirements) 
 			  return yRange(d.protein);
       	else if(presentedParameter == "water_g")
 			  return yRange(d.fluid);
-      	else if(presentedParameter == "Weight (kg)")
+      	else if(presentedParameter == "weight")
 			  return yRange(d.weight);
 	  })
 	  .interpolate('linear');

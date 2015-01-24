@@ -98,7 +98,8 @@ function loadHistoryPage(){
 		})
 	});
 	 manageGraph($('#foodComponents').val(), $('#datepickerFrom').val(),$('#datepickerTo').val());
-	
+	 Summary.prototype.manageSummary($('#foodComponents').val(), $('#datepickerFrom').val(),$('#datepickerTo').val());
+	 Table.prototype.manageTable($('#foodComponents').val(), $('#datepickerFrom').val(),$('#datepickerTo').val());
 }
 /**
  * generate summary selection

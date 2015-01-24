@@ -11,6 +11,8 @@ require_once 'init.php';
 $user = new User();
 $user->logout(); 
 
-Redirect::to('index.html'); /////////////////////// DELETE THIS AS REDIRECT CLASS NO LONGER EXISTS.
+echo "You have logged out. You will be redirected in 5 seconds";
+header( "refresh:5;url=home.html" );
+
 
 ?>

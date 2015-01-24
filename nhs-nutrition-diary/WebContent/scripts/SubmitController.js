@@ -13,6 +13,7 @@ SubmitController.prototype.submit = function(submitter) {
 		case 'btn_submit_weight': 					this.submitWeight(); break;
 		case 'btn_submit_settings': 				this.submitSettings(); break;
 		case 'emailButton':							this.submitEmail(); break;
+		case 'log_out':								this.logOut(); break;
 		default: 									console.log("in default case"); break;
 	}
 }
@@ -30,6 +31,16 @@ SubmitController.prototype.getUserID = function() {
 	var userID = userInfoResponseJSON['userID'];
 	return userID;
 }
+
+SubmitController.prototype.logOut = function()
+{
+	alert("clicked");
+	window.location.href = "scripts/database/server/logout.php";
+	/*dataToServer = {};
+	ServerDBAdapter.prototype.submit(dataToServer, 'logout');*/
+	
+}
+
 
 SubmitController.prototype.formatDateOnly = function(date) {
 	var dateFormatted = "";

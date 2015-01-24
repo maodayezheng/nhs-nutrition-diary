@@ -36,7 +36,7 @@ OnLoad.prototype.updateTodaysBalance = function() {
 	        caloriesCurrent += parseNutritionData(entry["energy_kcal"]) * parseNutritionData(entry.quantity);
 	        proteinCurrent += parseNutritionData(entry["protein_g"]) * parseNutritionData(entry.quantity);
 	        fluidCurrent += parseNutritionData(entry["water_g"]) * parseNutritionData(entry.quantity);
-	        alert(caloriesCurrent);
+	        
 	    }
 		
 	}

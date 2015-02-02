@@ -16,9 +16,9 @@ session_start();
  */
 $GLOBALS['config'] = array(
 	'mysql' => array(
-		'host' 			=> '127.0.0.1',
-		'userName'	 	=> 'root',
-		'passCode'	 	=> '',
+		'host' 			=> 'eu-cdbr-azure-west-b.cloudapp.net',
+		'userName'	 	=> 'b289ea7fe140be',
+		'passCode'	 	=> '9be5b10d',
 		'db'	 		=> 'appetite'
 	),
 	'remember' => array(

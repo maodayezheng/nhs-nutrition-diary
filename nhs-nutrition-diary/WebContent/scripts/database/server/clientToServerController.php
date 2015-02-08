@@ -80,6 +80,7 @@ if(isset($dataDecoded['userHash']))
 switch($action)
 {
 	case 'get':						get($db, $table, $where); break;
+	case 'getUsers':				getUsers($db, $table); break;
 	case 'getUserProfile':			getUserProfile($db, $table, $where); break; 
 	case 'getVisualisationData':	getUserData($db, $dataDecoded); break;
 	case 'getLast':					getLast($db, $table, $where); break;
@@ -89,6 +90,19 @@ switch($action)
 	case 'usernameUnique':			usernameUnique($db, $dataDecoded); break;
 	case 'getUserId':				getUserId($db, $dataDecoded); break;
 }
+
+
+/**
+ * Returns data with specific columns about the users registered.
+ * For the dietitian view of the directory. 
+ */
+function getUsers($db, $table)
+{
+	$group = 1;
+	$results = $db->action('SELECT nhsnumber, dateofbirth, gender, activitylevel', $table, array('group','=',$group))->results();
+	echo json_encode($results); 
+}
+
 
 /**
  * Returns the user ID. 
@@ -145,6 +159,7 @@ function confirmIDPassword($db, $dataDecoded)
  */
 function get($db, $table, $where) 
 {
+	echo $table; var_dump($where);
 	$results = $db->get($table, $where)->results(); 
 	echo json_encode($results);
 }

@@ -152,9 +152,12 @@ function registerDietician($dataDecoded)
 				'password' 				=> Hash::make($dataDecoded['password'],$salt),
 				'salt' 					=> $salt,
 				'registrationtimestamp' => date('Y-m-d H:i:s'),
-				'group' 				=> $dataDecoded['group']
+				'group' 				=> $dataDecoded['group'],
+				'dateofbirth'			=> null,
+				'gender' 				=> null,
+				'activitylevel' 		=> null
 		));
-	
+				
 		//Now that a user has been created, log them in.
 		$login = $user -> login($dataDecoded['nhsnumber'], $dataDecoded['password'], true);
 		

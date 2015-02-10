@@ -41,6 +41,7 @@ $(document).ready(function()
 	}
 	
 	$('#patientTable').append('</table>');
+	//Port
 	
 	//When clicking search button on dietitian view:
 	$('#directory_search_button').on('click',(function (e)

@@ -65,12 +65,32 @@ if($user->hasPermission('admin'))
 	  				</div>
   				</div>
 				<div class="panel-body selection-body">
-					<div id="progressbar"></div> 	
-   			
-   			
-   			
+					<div id="progressbar"></div> 
+
+					<table id="patientTable" style="width:100%">
+
+					<tr>
+
+					<th>NHS Number</th>
+					<th>Date of Birth</th>
+					<th>Gender</th>
+					<th>Activity Level</th> 
+
+					</tr>
+
+					<tr>
+
+					<td id="NHSnumber">
+					<td id="DOB">
+					<td id="Gender">
+					<td id="Activitylevel">
+					
+					</tr>
+
+					</table>
+			
 				</div>
-			</div>		
+			</div>	
 	</body>';
 	
 	//Now load the dynamic content

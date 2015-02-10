@@ -16,7 +16,7 @@ session_start();
  */
 $GLOBALS['config'] = array(
 	'mysql' => array(
-		'host' 			=> '127.0.0.1',
+		'host' 			=> '127.0.0.1:3308',
 		'userName'	 	=> 'root',
 		'passCode'	 	=> '',
 		'db'	 		=> 'appetite'

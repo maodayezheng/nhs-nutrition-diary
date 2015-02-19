@@ -60,14 +60,14 @@ if($user->hasPermission('admin'))
   				<div class="panel-heading">
 	  				<div class="row">
 	  					<div class="col-xs-6">
-	  						<span>User Directory:</span>
+	  						<span id ="userDir">User Directory:</span>
 	  					</div>
 	  				</div>
   				</div>
 				<div class="panel-body selection-body">
 					<div id="progressbar"></div> 
 
-					<table id="patientTable" style="width:100%">
+					<table id="patientTable" style="width:100%; text-align: center;" border="1">
 
 					<tr>
 
@@ -78,16 +78,7 @@ if($user->hasPermission('admin'))
 
 					</tr>
 
-					<tr>
-
-					<td id="NHSnumber">
-					<td id="DOB">
-					<td id="Gender">
-					<td id="Activitylevel">
-					
-					</tr>
-
-					</table>
+				</table>
 			
 				</div>
 			</div>	

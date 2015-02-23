@@ -8,9 +8,6 @@
 
 
 require_once 'init.php';
-
-echo "test";
-
 if($data = Input::retrieveData()) 
 {
 	$dataDecoded = json_decode($data, true); //decode the json data with the true flag so that the object is converted into an associative array. 

@@ -9,6 +9,7 @@
 
 require_once 'init.php';
 
+echo "test";
 
 if($data = Input::retrieveData()) 
 {

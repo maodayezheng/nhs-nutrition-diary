@@ -83,6 +83,7 @@ ServerDBAdapter.prototype.get = function(dataToServer)
 					        console.log(xhr.statusText);
 					        console.log(xhr.responseText);
 					        console.log(xhr.status);
+					        console.log(ajaxOptions);
 					        console.log(thrownError);
 	    				}
 	});

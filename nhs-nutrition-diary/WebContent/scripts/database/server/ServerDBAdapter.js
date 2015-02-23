@@ -43,13 +43,13 @@ ServerDBAdapter.prototype.submit = function(dataToServer, action)
 	    				},
 	    async: 			false, //we want this call to be synchronous to avoid callback complexity. UI is only non-responsive for maximum of 5 seconds.
 	    error: 			function (xhr, ajaxOptions, thrownError) {
-				        alert("Your request failed. It may have timed out (taken more than 5 seconds). Please check your internet connection and try again.");
+				       // alert("Your request failed. It may have timed out (taken more than 5 seconds). Please check your internet connection and try again.");
 	    	
-	    				console.log(xhr.statusText);
-				        console.log(xhr.responseText);
-				        console.log(xhr.status);
+	    				//console.log(xhr.statusText);
+				        //console.log(xhr.responseText);
+				        //console.log(xhr.status);
 				        console.log(ajaxOptions);
-				        console.log(thrownError);
+				        //console.log(thrownError);
 	    				}
 	});
 	return results;
@@ -80,12 +80,12 @@ ServerDBAdapter.prototype.get = function(dataToServer)
 	    				},
 	    async: 			false, //we want this call to be synchronous to avoid callback complexity. UI is only non-responsive for maximum of 5 seconds. 
 	    error: 			function (xhr, ajaxOptions, thrownError) {
-	    					alert("Your request failed. It may have timed out (taken more than 5 seconds). Please check your internet connection and try again.");
-					        console.log(xhr.statusText);
-					        console.log(xhr.responseText);
-					        console.log(xhr.status);
+	    					//alert("Your request failed. It may have timed out (taken more than 5 seconds). Please check your internet connection and try again.");
+					       // console.log(xhr.statusText);
+					       // console.log(xhr.responseText);
+					        //console.log(xhr.status);
 					        console.log(ajaxOptions);
-					        console.log(thrownError);
+					       // console.log(thrownError);
 	    				}
 	});
 	return results;

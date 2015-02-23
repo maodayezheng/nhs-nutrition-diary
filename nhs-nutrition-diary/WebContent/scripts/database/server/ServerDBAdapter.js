@@ -48,6 +48,7 @@ ServerDBAdapter.prototype.submit = function(dataToServer, action)
 	    				console.log(xhr.statusText);
 				        console.log(xhr.responseText);
 				        console.log(xhr.status);
+				        console.log(ajaxOptions);
 				        console.log(thrownError);
 	    				}
 	});

@@ -288,7 +288,7 @@ class DB
 			
 			if(!$this->query($sql,$fields)->error())
 			{
- 				echo "<br />Inserting into the database was a success!";
+ 				//echo "<br />Inserting into the database was a success!";
 				return true;
 			} else 
 			{ 

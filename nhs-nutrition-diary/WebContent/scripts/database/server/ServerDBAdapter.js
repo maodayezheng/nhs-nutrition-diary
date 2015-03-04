@@ -26,7 +26,7 @@ ServerDBAdapter.prototype.submit = function(dataToServer, action)
 	console.log(actionUrl);
 	var results;
 	$.ajax({
-	    url: 			"scripts/database/server/testing.php",
+	    url: 			actionUrl,
 	    type: 			"POST",
 	    dataType: 		"text", //what you will receive in response. 
 	    contentType: 	"application/json", //what you are sending.

@@ -6,7 +6,6 @@
  * @author Vikram Bakshi
  * */
 
-echo "I am here";
 require_once 'init.php';
 if($data = Input::retrieveData()) 
 {
@@ -58,8 +57,13 @@ if($data = Input::retrieveData())
 		}
 	} else
 	{
+		echo "stop in line 60";
 		print_r($validation->getErrors()); //output errors
 	}
+}else{
+	
+	echo "ERROR!!!!!!!! line 65";
+	
 }
 
 /**
@@ -127,8 +131,10 @@ function registerPatient($dataDecoded)
 		$regStatus['success'] = true;
 	} catch(Exception $e)
 	{
+		echo "error line 134";
 		echo ($e->getMessage());
 	} finally {
+		echo "error line 137";
 		echo json_encode($regStatus);
 	}
 }
@@ -164,8 +170,10 @@ function registerDietician($dataDecoded)
 		 
 	} catch(Exception $e)
 	{
+		echo "error line 172";
 		echo ($e->getMessage());
 	} finally {
+		echo "error line 176";
 		echo json_encode($regStatus);
 	}
 }

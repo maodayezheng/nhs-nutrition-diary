@@ -26,8 +26,10 @@ class DB
 		{
 			$this->_pdo = new PDO('mysql:host=' . Configurations::get('mysql/host') . ';dbname=' . Configurations::get('mysql/db'), Configurations::get('mysql/userName'), Configurations::get('mysql/passCode'));
 			$this->_pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);  
+			
 		} catch (PDOExeption $e)
 		{
+			echo "dead";
 			die($e->getMessage());
 		}
 	}

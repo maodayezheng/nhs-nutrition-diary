@@ -23,7 +23,7 @@ ServerDBAdapter.prototype.submit = function(dataToServer, action)
 		case "email":		actionUrl = "scripts/database/server/contact-form-handler.php";		break;
 		default: 			actionUrl = "scripts/database/server/clientToServerController.php"; break; 
 	}
-	
+	console.log(actionUrl);
 	var results;
 	$.ajax({
 	    url: 			actionUrl,

@@ -9,7 +9,8 @@
  * @author Vikram Bakshi
  */
 
-session_start(); 
+session_start();
+echo "session start"; 
 
 /*
  * Creating a gloabl array for easy access to data.  
@@ -36,15 +37,18 @@ $GLOBALS['config'] = array(
 		'token_name'	=> 'token'
 	)	
 );
-
+echo "set up global variable";
 /**
  * Using the standard php library (spl) to autoload a class only when it is required. This saves having to write require_once '...' for each class in every script. 
  */
 spl_autoload_register(function($class) 
 {
+	echo "required 46";
 	require_once $class.'.php';
+	echo "required 48";
 });
     
+
 require_once 'functions.php'; // Imports functions which should be accessible to scripts which use require_once 'init.php'. 
 
 //if the cookie exists but the session does not - then the user asked to be remembered and so should be logged in.

@@ -35,10 +35,11 @@ ServerDBAdapter.prototype.submit = function(dataToServer, action)
 	    success: 		function (result){
 	    	
 	        				console.log(result); 
-	        					
+	        				results = JSON.parse(result);
+	        				console.log(results);
 	        				if(result != null) {
 					        	
-	        					results = JSON.parse(result); 
+	        					 
 	        						console.log(results);
 	        				} else {
 					        	results = null;

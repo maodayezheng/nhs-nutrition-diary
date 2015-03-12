@@ -170,7 +170,7 @@ SubmitController.prototype.submitUserSignUpDetails = function()
 	}
 	
 	var status = ServerDBAdapter.prototype.submit(userSignUpDetails, 'register');
-	console.log("prining status at end of submit controller");
+	console.log("printing status at end of submit controller");
 	console.log(status); 
 	if (status['success'] === true)
 	{

@@ -33,7 +33,8 @@ ServerDBAdapter.prototype.submit = function(dataToServer, action)
 	    data: 			JSON.stringify(dataToServer),
 	    timeout: 		5000, //timeout the AJAX after 5000 milliseconds.
 	    success: 		function (result){
-	        				console.log("success " + result); 
+	    	
+	        				console.log(result); 
 
 	        				if(result != null) {
 					        	results = JSON.parse(result); 

@@ -131,10 +131,8 @@ function registerPatient($dataDecoded)
 		$regStatus['success'] = true;
 	} catch(Exception $e)
 	{
-		echo "error line 134";
 		echo ($e->getMessage());
 	} finally {
-		echo "error line 137";
 		echo json_encode($regStatus);
 	}
 }

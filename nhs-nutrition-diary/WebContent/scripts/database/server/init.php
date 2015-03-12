@@ -10,7 +10,6 @@
  */
 
 session_start();
-echo "session start"; 
 
 /*
  * Creating a gloabl array for easy access to data.  
@@ -43,9 +42,9 @@ echo "set up global variable";
  */
 spl_autoload_register(function($class) 
 {
-	echo "required 46";
+	
 	require_once $class.'.php';
-	echo "required 48";
+	
 });
     
 

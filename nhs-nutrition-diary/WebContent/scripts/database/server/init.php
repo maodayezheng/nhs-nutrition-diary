@@ -36,7 +36,7 @@ $GLOBALS['config'] = array(
 		'token_name'	=> 'token'
 	)	
 );
-echo "set up global variable";
+
 /**
  * Using the standard php library (spl) to autoload a class only when it is required. This saves having to write require_once '...' for each class in every script. 
  */
